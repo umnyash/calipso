@@ -1,6 +1,8 @@
 block variables
 block data
 
+include ../components/components
+
 doctype html
 html.page(class= pageClass lang='ru')
   head
@@ -17,4 +19,5 @@ html.page(class= pageClass lang='ru')
     .page__inner
       main.page__content
         block content
+      +site-footer(class='page__site-footer')
     script(src='js/script.min.js')

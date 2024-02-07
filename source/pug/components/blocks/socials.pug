@@ -1,0 +1,20 @@
+mixin socials__logo(src, alt, width, height)
+  svg(width= width height= height role='img' aria-label= alt)
+    use(href= src)
+
+mixin socials__item(name, href)
+  li.socials__item
+    a.socials__link(href= href target='_blank' rel='noopener' class=`socials__link--${name}`)
+      case name
+        when 'pinterest'
+          +socials__logo('img/icons.svg#socials_pinterest', 'Pinterest.', 16, 18)
+        when 'whatsapp'
+          +socials__logo('img/icons.svg#socials_whatsapp', 'WhatsApp.', 22, 22)
+        when 'vk'
+          +socials__logo('img/icons.svg#socials_vk', 'VK.', 22, 12)
+
+mixin socials
+  ul.socials&attributes(attributes)
+    +socials__item('pinterest', '#!')
+    +socials__item('whatsapp', '#!')
+    +socials__item('vk', '#!')

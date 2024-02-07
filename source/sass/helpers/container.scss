@@ -1,0 +1,14 @@
+.container {
+  max-width: $centerer-max-width;
+  padding: 0 $mobile-edge-indent;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 $tablet-edge-indent;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 $desktop-edge-indent;
+  }
+}
