@@ -1,0 +1,4 @@
+mixin logo
+  a.logo(href= pageClass === 'index-page' ? false : 'index.html')&attributes(attributes)
+    svg.logo__image.logo__image--full(width='196' height='48' role='img' aria-label='Логотип КАЛИПСО.')
+      use(href='img/logo.svg#logo')

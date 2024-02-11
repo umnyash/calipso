@@ -1,0 +1,41 @@
+.subscription-with-image__inner {
+  display: grid;
+  gap: 20px;
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: 402px 1fr;
+    gap: 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: 560px 1fr;
+    gap: 40px;
+  }
+}
+
+.subscription-with-image__image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  @media (min-width: $tablet-width) {
+    height: 515px;
+  }
+
+  @media (min-width: $desktop-width) {
+    height: 100%;
+    border-radius: 16px;
+  }
+}
+
+.subscription-with-image__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}

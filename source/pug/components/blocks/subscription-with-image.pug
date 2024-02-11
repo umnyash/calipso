@@ -1,0 +1,6 @@
+mixin subscription-with-image
+  section.subscription-with-image&attributes(attributes)
+    .subscription-with-image__inner.container
+      .subscription-with-image__image-wrapper
+        img.subscription-with-image__image(src='img/subscription.webp' alt='' loading='lazy')
+      +subscription(class='subscription-with-image__subscription')

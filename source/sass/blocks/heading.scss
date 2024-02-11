@@ -1,0 +1,23 @@
+.heading {
+  font: 500 20px/25px $main-font-family;
+  text-transform: uppercase;
+
+  @media (min-width: $tablet-width) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 38px;
+    line-height: 48px;
+  }
+}
+
+.heading__accent {
+  color: var(--accent-color-2);
+}

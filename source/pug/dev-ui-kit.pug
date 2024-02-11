@@ -1,0 +1,17 @@
+extends layout/layout
+
+block variables
+  - var title = 'UI-kit'
+
+block content
+  .container
+    +button('button', 'Подписаться', 'submit')(class='button--primary')
+    +button('button', 'Подписаться', 'submit')(class='button--secondary')
+    +button('button', 'Подписаться', 'submit')(class='button--primary' disabled)
+    +button('button', 'Подписаться', 'submit')(class='button--secondary' disabled)
+    +button('button', 'Подписаться', 'submit')(class='button--primary button--pending' disabled)
+    +button('button', 'Подписаться', 'submit')(class='button--secondary button--pending' disabled)
+    +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)
+    +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true, false, true)(class='text-field--disabled')
+    +text-field('Ваш e-mail:', 'email', 'email', 'фыргфгр', 'E-mail', true)(class='text-field--error')
+      p.text-field__error-text Введите корректный e-mail адрес

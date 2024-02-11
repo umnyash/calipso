@@ -1,0 +1,121 @@
+.button {
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 8px;
+  text-align: center;
+  font: 600 14px/17px $main-font-family;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:active {
+    box-shadow: $main-shadow;
+  }
+
+  &:disabled:not(.button--pending) {
+    box-shadow: $main-shadow;
+    opacity: 0.4;
+    cursor: auto;
+  }
+
+  @media (min-width: $tablet-width) {
+    border-radius: 10px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.button--primary {
+  padding: 12px 40px;
+  border: none;
+  background: var(--accent-color-1);
+  color: var(--text-alter-color);
+
+  &:hover {
+    background: var(--accent-color-1-dark);
+  }
+
+  &:active {
+    background: var(--accent-color-1-dark);
+  }
+
+  &:disabled:not(.button--pending) {
+    background: var(--accent-color-1-dark);
+  }
+
+  &.button--pending {
+    background: var(--accent-color-1-dark);
+    box-shadow: $main-shadow;
+
+    &::before {
+      border-color: var(--text-alter-color);
+      border-right-color: transparent;
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 16px 60px;
+  }
+}
+
+.button--secondary {
+  padding: 11px 39px;
+  border: 1px solid var(--accent-color-1);
+  background: var(--background-additional-color);
+  color: var(--accent-color-1);
+
+  &:hover {
+    background: var(--accent-color-1-light);
+  }
+
+  &:active {
+    background: var(--accent-color-1-light);
+  }
+
+  &:disabled:not(.button--pending) {
+    background: var(--accent-color-1-light);
+  }
+
+  &.button--pending {
+    background: var(--accent-color-1-light);
+    box-shadow: $main-shadow;
+
+    &::before {
+      border-color: var(--accent-color-1);
+      border-right-color: transparent;
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 15px 59px;
+  }
+}
+
+.button--pending {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+  cursor: auto;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 50%;
+    animation: button-spinner 600ms linear infinite;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}

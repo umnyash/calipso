@@ -1,0 +1,87 @@
+.text-field {
+  display: inline-block;
+  font: 500 12px/14px $main-font-family;
+
+  &--disabled {
+    opacity: 0.4;
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.text-field__inner {
+  display: block;
+}
+
+.text-field__control-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  border: 1px solid var(--border-color-dark);
+  border-radius: 8px;
+  background: var(--background-additional-color);
+  overflow: hidden;
+
+  &:focus-within {
+    border-color: var(--border-color);
+    box-shadow: $main-shadow;
+  }
+
+  @media (min-width: $tablet-width) {
+    border-radius: 10px;
+  }
+}
+
+.text-field__control {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 9px;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  outline: none;
+
+  &::placeholder {
+    opacity: 1;
+    color: var(--text-weak-color);
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 12px 23px 10px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 15px 23px 14px;
+  }
+}
+
+.text-field__clear-button {
+  display: none;
+  width: 38px;
+  height: 100%;
+  padding: 0;
+  border: none;
+  background: transparent url("../img/icons.svg#close") 50% 50% / 20px 20px no-repeat;
+  cursor: pointer;
+}
+
+.text-field__control-wrapper:focus-within .text-field__control:not(:placeholder-shown) + .text-field__clear-button {
+  display: block;
+}
+
+.text-field--error .text-field__control-wrapper {
+  border-color: var(--accent-color-2);
+}
+
+.text-field__error-text {
+  margin: 5px 0 0;
+  color: var(--accent-color-2);
+}

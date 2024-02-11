@@ -1,0 +1,15 @@
+@keyframes button-spinner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes clench-unclench {
+  50% {
+    transform: scaleX(0);
+  }
+}

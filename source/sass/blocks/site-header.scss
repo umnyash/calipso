@@ -1,0 +1,216 @@
+.site-header {
+  color: (--text-color);
+  font: 500 14px/18px $main-font-family;
+  background: var(--background-additional-color);
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  &--transparent {
+    --logo-text-color: currentColor;
+    color: var(--text-alter-color);
+    background: transparent;
+  }
+}
+
+.site-header__panel {
+  padding: 10px 0;
+
+  @media (min-width: $tablet-width) {
+    padding: 20px 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 24px 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 32px 0;
+  }
+}
+
+.site-header__panel-inner {
+  justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: ($mobile-width - 1)) {
+    display: grid;
+    grid-template-columns: auto auto;
+    row-gap: 8px;
+  }
+
+  @media (min-width: $mobile-width) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.site-header__logo {
+  width: 113px;
+  height: auto;
+  margin: 0 40px 0 0;
+
+  @media (min-width: $tablet-width) {
+    width: 145px;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: 166px;
+    margin: 0 60px 0 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    width: 249px;
+  }
+}
+
+.site-header__location {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    mask: url("../img/icons.svg#location");
+    background: currentColor;
+
+    @media (min-width: $desktop-width) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: ($tablet-width - 1)) {
+    display: none;
+  }
+
+  @media (min-width: $tablet-width) {
+    margin: 0 40px 0 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+  }
+}
+
+.site-header__phone {
+  margin: 0 40px 0 0;
+  text-decoration: none;
+  color: inherit;
+
+  @media (max-width: ($desktop-width - 1)) {
+    display: none;
+  }
+}
+
+.site-header__shortcuts {
+  margin: 0;
+
+  @media (max-width: ($mobile-width - 1)) {
+    grid-column: 1 / -1;
+  }
+
+  @media (min-width: $mobile-width) {
+    margin: 0 0 0 auto;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 0 5px;
+  }
+}
+
+.site-header__menu-button {
+  position: relative;
+  display: grid;
+  padding: 8px;
+  border: none;
+  border-radius: 8px;
+  margin: 0 0 0 5px;
+  grid-auto-flow: column;
+  gap: 10px;
+  align-items: center;
+  font: 600 16px/20px $main-font-family;
+  text-transform: uppercase;
+  color: var(--accent-color-2);
+  background: var(--background-additional-color);
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    order: -1;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: var(--accent-color-2);
+    mask-image: url("../img/icons.svg#burger_open"), url("../img/icons.svg#burger_close");
+    mask-size: 100%, 0;
+    transform-origin: right center;
+    transition:
+      width calc($site-header-navigation-animation-duration / 2) step-end,
+      mask-size calc($site-header-navigation-animation-duration / 2) step-end,
+      background-color $little-interaction-duration $little-interaction-timing-function,
+      opacity $little-interaction-duration $little-interaction-timing-function;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &:hover::after {
+    background-color: var(--accent-color-2);
+    will-change: width, transform;
+  }
+
+  &:active::after {
+    opacity: 0.3;
+  }
+
+  &--close::after {
+    mask-size: 0, 100%;
+  }
+
+  &--animated::after {
+    animation: clench-unclench $site-header-navigation-animation-duration ease-in-out;
+  }
+
+  @media (min-width: $mobile-width) and (max-width: ($desktop-width - 1)) {
+    order: 1;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 8px 20px;
+    margin: 0 0 0 auto;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 5px 20px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.site-header__menu-button-text {
+  @media (max-width: ($desktop-width - 1)) {
+    @include visually-hidden;
+  }
+}
+
+.site-header__navigation {
+  display: none;
+
+  &--open {
+    display: block;
+  }
+}

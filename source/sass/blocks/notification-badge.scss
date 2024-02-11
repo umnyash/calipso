@@ -1,0 +1,17 @@
+.notification-badge {
+  display: grid;
+  box-sizing: border-box;
+  min-width: 16px;
+  min-height: 16px;
+  padding: 3px;
+  border-radius: 50%;
+  place-items: center;
+  font: 500 8px/10px $main-font-family;
+  color: var(--text-alter-color);
+  background: var(--accent-color-1);
+
+  @media (min-width: $wide-desktop-width) {
+    min-width: 20px;
+    min-height: 20px;
+  }
+}

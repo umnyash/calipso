@@ -21,8 +21,8 @@
   display: grid;
   box-sizing: border-box;
   height: 100vh;
-  // grid-template-rows: auto 1fr auto;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto 1fr auto;
+  // grid-template-rows: 1fr auto;
   grid-template-columns: 100%;
   overflow-y: auto;
 }

@@ -1,0 +1,255 @@
+mixin site-navigation
+  .site-navigation&attributes(attributes)
+    .site-navigation__header
+      .site-navigation__header-inner
+        button.site-navigation__back-button Назад
+        p.site-navigation__title Категории
+        button.site-navigation__close-button
+          span.visually-hidden Закрыть
+    .site-navigation__body.container
+      .site-navigation__tabs
+        ul.site-navigation__top-list
+          li
+            a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow(href='#sn-categories') Категории
+          li
+            a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow(href='#sn-rooms') Комнаты
+          li
+            a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow(href='#sn-styles') Стили
+          li
+            a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow(href='#sn-brands') Бренды
+          li
+            a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow(href='#sn-premium') Premium
+          li
+            a.site-navigation__top-link(href='#!') Подарочные сертификаты
+          li
+            a.site-navigation__top-link(href='#!') Sale
+          li
+            a.site-navigation__top-link(href='#!') В наличии
+        ul.site-navigation__top-list
+          li
+            a.site-navigation__top-link(href='#!') Покупателю
+          li
+            a.site-navigation__top-link(href='#!') О компании
+          li
+            a.site-navigation__top-link(href='#!') Контакты
+          li
+            a.site-navigation__top-link(href='#!') Блог
+          li
+            a.site-navigation__top-link(href='#!') Отзывы
+          li
+            a.site-navigation__top-link.site-navigation__top-link--accent(href='#!') Реализованные проекты
+          li
+            a.site-navigation__top-link(href='#!') Дизайнеры
+          li
+            a.site-navigation__top-link(href='#!') Вакансии
+        ul.site-navigation__top-list.site-navigation__top-list--user
+          li
+            a.site-navigation__top-link.site-navigation__top-link--with-arrow.site-navigation__top-link--location(href='#!') Нижний Новгород
+          li
+            a.site-navigation__top-link.site-navigation__top-link--with-arrow.site-navigation__top-link--user(href='#!') Войти/Зарегистрироваться
+          li
+            a.site-navigation__top-link.site-navigation__top-link--favorites(href='#!') Избранное
+        .site-navigation__contacts
+          a.site-navigation__phone(href='tel:+78002009239') 8-800-200-92-39
+          +socials(class='site-navigation__socials socials--sizes_m')
+      .site-navigation__panels
+        .site-navigation__panel#sn-categories
+          ul.site-navigation__middle-list
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Диваны
+                img.site-navigation__middle-link-image(src='img/categories/small/sofas.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Кровати
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Односпальные кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Двуспальные кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Детские кровати
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Кресла и стулья
+                img.site-navigation__middle-link-image(src='img/categories/small/armchairs.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Гардеробы
+                img.site-navigation__middle-link-image(src='img/categories/small/wardrobes.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Комоды и тумбы
+                img.site-navigation__middle-link-image(src='img/categories/small/chests-of-drawers.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Диваны
+                img.site-navigation__middle-link-image(src='img/categories/small/sofas.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Кухни
+                img.site-navigation__middle-link-image(src='img/categories/small/kitchens.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Столы
+                img.site-navigation__middle-link-image(src='img/categories/small/tables.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Гардеробы
+                img.site-navigation__middle-link-image(src='img/categories/small/wardrobes.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Кровати
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener.site-navigation__middle-link--with-arrow(href='#') Текстиль
+                img.site-navigation__middle-link-image(src='img/categories/small/wardrobes.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Прямые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Угловые диваны
+                li
+                  a.site-navigation__bottom-link(href='#!') Модульные диваны
+        .site-navigation__panel#sn-rooms
+          ul.site-navigation__middle-list
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Кухня
+                img.site-navigation__middle-link-image(src='img/categories/small/kitchens.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Столы
+                li
+                  a.site-navigation__bottom-link(href='#!') Стулья
+                li
+                  a.site-navigation__bottom-link(href='#!') Табуреты
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Спальная
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Шкафы
+                li
+                  a.site-navigation__bottom-link(href='#!') Тумбы
+        .site-navigation__panel#sn-styles
+          ul.site-navigation__middle-list
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Лофт
+                img.site-navigation__middle-link-image(src='img/categories/small/kitchens.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Столы
+                li
+                  a.site-navigation__bottom-link(href='#!') Стулья
+                li
+                  a.site-navigation__bottom-link(href='#!') Табуреты
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Модерн
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Шкафы
+                li
+                  a.site-navigation__bottom-link(href='#!') Тумбы
+        .site-navigation__panel#sn-brands
+          ul.site-navigation__middle-list
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Бренд 1
+                img.site-navigation__middle-link-image(src='img/categories/small/kitchens.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Столы
+                li
+                  a.site-navigation__bottom-link(href='#!') Стулья
+                li
+                  a.site-navigation__bottom-link(href='#!') Табуреты
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Бренд 2
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Шкафы
+                li
+                  a.site-navigation__bottom-link(href='#!') Тумбы
+        .site-navigation__panel#sn-premium
+          ul.site-navigation__middle-list
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Premium 1
+                img.site-navigation__middle-link-image(src='img/categories/small/kitchens.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Столы
+                li
+                  a.site-navigation__bottom-link(href='#!') Стулья
+                li
+                  a.site-navigation__bottom-link(href='#!') Табуреты
+            li.site-navigation__item
+              a.site-navigation__middle-link.site-navigation__middle-link--opener(href='#') Premium 2
+                img.site-navigation__middle-link-image(src='img/categories/small/beds.webp' width='40' height='40' alt='')
+              ul.site-navigation__bottom-list
+                li
+                  a.site-navigation__bottom-link(href='#!') Кровати
+                li
+                  a.site-navigation__bottom-link(href='#!') Шкафы
+                li
+                  a.site-navigation__bottom-link(href='#!') Тумбы

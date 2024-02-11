@@ -1,0 +1,19 @@
+mixin shortcuts
+  ul.shortcuts&attributes(attributes)
+    li.shortcuts__item.shortcuts__item--phone
+      a.shortcuts__link.shortcuts__link--phone(href='tel:+78002009239')
+        span.visually-hidden 8 800 200 92 39
+    li.shortcuts__item
+      a.shortcuts__link.shortcuts__link--search(href='#!')
+        span.visually-hidden Поиск
+    li.shortcuts__item.shortcuts__item--favorites
+      a.shortcuts__link.shortcuts__link--favorites(href='#!')
+        span.visually-hidden Избранное
+        span.shortcuts__notification.notification-badge 4
+    li.shortcuts__item.shortcuts__item--user
+      a.shortcuts__link.shortcuts__link--user(href='#!')
+        span.visually-hidden Профиль
+    li.shortcuts__item
+      a.shortcuts__link.shortcuts__link--cart(href='#!')
+        span.visually-hidden Корзина
+        span.shortcuts__notification.notification-badge 4

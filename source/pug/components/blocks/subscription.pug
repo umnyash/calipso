@@ -1,0 +1,12 @@
+mixin subscription
+  section.subscription&attributes(attributes)
+    h2.subscription__heading.heading #[b.heading__accent Подпишитесь] и&nbsp;будьте в&nbsp;курсе интерьерных изменений
+    p.subscription__list-heading Вас будут ждать
+    ul.subscription__list
+      li.subscription__list-item Последние тенденции Европейских выставок
+      li.subscription__list-item Специальные предложения по&nbsp;нашему ассортименту товаров
+      li.subscription__list-item Полезные статьи об&nbsp;эволюции материалов в&nbsp;интерьере
+    form.subscription-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='form__item')
+      +button('button', 'Подписаться', 'submit')(class='button--primary')
+    small.subscription__comment Нажимая кнопку «Подписаться», вы даете #[a.subscription__comment-link(href='#!' target='_blank' rel='noopener') согласие на обработку персональных данных]

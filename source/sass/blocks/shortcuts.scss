@@ -1,0 +1,86 @@
+.shortcuts {
+  display: flex;
+  padding: 0;
+  flex-wrap: wrap;
+  gap: 5px;
+  list-style: none;
+}
+
+.shortcuts__item--phone {
+  @media (min-width: $desktop-width) {
+    display: none;
+  }
+}
+
+.shortcuts__item--user,
+.shortcuts__item--favorites {
+  @media (max-width: ($tablet-width - 1)) {
+    display: none;
+  }
+}
+
+.shortcuts__link {
+  position: relative;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  place-items: center;
+  background: var(--background-additional-color-60);
+
+  // &:hover {
+  //   opacity: 0.8;
+  // }
+
+  // &:active {
+  //   opacity: 0.6;
+  // }
+
+  @media (min-width: $wide-desktop-width) {
+    width: 50px;
+    height: 50px;
+  }
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &--phone::before {
+    background-image: url("../img/icons.svg#shortcuts_phone");
+  }
+
+  &--search::before {
+    background-image: url("../img/icons.svg#shortcuts_search");
+  }
+
+  &--favorites::before {
+    background-image: url("../img/icons.svg#shortcuts_heart");
+  }
+
+  &--user::before {
+    background-image: url("../img/icons.svg#shortcuts_user");
+  }
+
+  &--cart::before {
+    background-image: url("../img/icons.svg#shortcuts_cart");
+  }
+}
+
+.shortcuts__notification {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+
+  @media (min-width: $wide-desktop-width) {
+    top: 5px;
+    right: 5px;
+  }
+}

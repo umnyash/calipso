@@ -1,0 +1,13 @@
+extends layout/layout
+
+block variables
+  - var title = 'Карта сайта'
+
+block content
+  .container
+    h2 Основные страницы
+    ul
+      li #[a(href='index.html') Главная]
+    h2 Страницы для разработчиков
+    ul
+      li #[a(href='dev-ui-kit.html') UI-kit]

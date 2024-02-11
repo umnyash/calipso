@@ -22,48 +22,79 @@
     background: var(--accent-color-1-dark);
     box-shadow: $main-shadow;
   }
-
-  @media (min-width: $wide-desktop-width) {
-    width: 40px;
-    height: 40px;
-  }
 }
 
 .socials__link * {
   max-width: 16px;
   max-height: 16px;
-
-  @media (min-width: $wide-desktop-width) {
-    width: 22px;
-    height: 22px;
-  }
 }
 
 .socials__link--pinterest * {
   width: 12px;
   height: 13px;
-
-  @media (min-width: $wide-desktop-width) {
-    width: 16px;
-    height: 18px;
-  }
 }
 
 .socials__link--whatsapp * {
   width: 16px;
   height: 16px;
-
-  @media (min-width: $wide-desktop-width) {
-    width: 22px;
-    height: 22px;
-  }
 }
 
 .socials__link--vk * {
   width: 16px;
   height: 9px;
+}
 
+.socials--sizes_s-s-s-m {
   @media (min-width: $wide-desktop-width) {
+    .socials__link {
+      width: 40px;
+      height: 40px;
+    }
+
+    .socials__link * {
+      max-width: 22px;
+      max-height: 22px;
+    }
+
+    .socials__link--pinterest * {
+      width: 16px;
+      height: 18px;
+    }
+
+    .socials__link--whatsapp * {
+      width: 22px;
+      height: 22px;
+    }
+
+    .socials__link--vk * {
+      width: 22px;
+      height: 12px;
+    }
+  }
+}
+
+.socials--sizes_m {
+  .socials__link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .socials__link * {
+    max-width: 22px;
+    max-height: 22px;
+  }
+
+  .socials__link--pinterest * {
+    width: 16px;
+    height: 18px;
+  }
+
+  .socials__link--whatsapp * {
+    width: 22px;
+    height: 22px;
+  }
+
+  .socials__link--vk * {
     width: 22px;
     height: 12px;
   }
