@@ -1,0 +1,127 @@
+.banner {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  box-sizing: border-box;
+  padding: 100px 0;
+  min-height: 560px;
+  grid-template-columns: $mobile-edge-indent 1fr $mobile-edge-indent;
+  align-items: center;
+  font: 500 14px/17px $main-font-family;
+  color: var(--text-alter-color);
+  background: var(--background-alter-color);
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url("../img/banners/banner-overlay.webp") 0 0 / cover;
+    mix-blend-mode: multiply;
+  }
+
+  @media (min-width: $tablet-width) {
+    min-height: 700px;
+    padding: 120px 0;
+    grid-template-columns: $tablet-edge-indent 1fr $tablet-edge-indent;
+    font-size: 16px;
+    line-height: 20px;
+
+    &::after {
+      background-image: url("../img/banners/banner-overlay-tablet.webp");
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: ($desktop-edge-indent + 10) 1fr ($desktop-edge-indent + 10);
+    font-size: 22px;
+    line-height: 28px;
+
+    &::after {
+      background-image: url("../img/banners/banner-overlay-desktop.webp");
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    min-height: 960px;
+    padding: 140px 0;
+    grid-template-columns: 1fr $centerer-max-width 1fr;
+    font-size: 26px;
+    line-height: 31px;
+
+    &::after {
+      background-image: url("../img/banners/banner-overlay-wide-desktop.webp");
+    }
+  }
+}
+
+.banner__background-wrapper {
+  z-index: -2;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.banner__background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.banner__content {
+  grid-column: 2 / 3;
+  max-width: 632px;
+
+  @media (min-width: $desktop-width) {
+    max-width: 840px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1055px;
+  }
+}
+
+.banner__heading {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 24px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 30px;
+    line-height: 33px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 24px;
+    font-size: 50px;
+    line-height: 55px;
+  }
+}
+
+.banner__text {
+  margin: 0 0 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 24px;
+  }
+}
+
+.banner__button {
+  margin: 14px 0 0;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 16px 0 0;
+  }
+}
