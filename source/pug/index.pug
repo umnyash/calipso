@@ -4,5 +4,21 @@ block variables
   - var title = 'Калипсо'
   - var pageClass = 'index-page'
 
+block data
+  include data/articles
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
 block content
-  +subscription-with-image
+  //- +navigation-tabs
+  //- +selection
+  //- +ideas
+  //- +advantages
+  //- +premium-brands
+  //- +terms-with-image
+  //- +subscription-with-image
+  +articles(articles)
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')

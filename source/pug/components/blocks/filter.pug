@@ -1,0 +1,21 @@
+//- mixin filter(filter)
+//-   form.filter(action='https://echo.htmlacademy.ru' method='get')&attributes(attributes)
+//-     fieldset.filter__section
+//-       .filter__slider
+//-         .filter__list-wrapper.swiper
+//-           ul.filter__slider-list.swiper-wrapper
+//-             each variant in filter.variants
+//-               li.filter__slider-item.swiper-slide
+//-                 label.filter__button
+//-                   input.filter__control.visually-hidden(name= filter.name type='radio' value= variant.value checked= variant.isChecked disabled= variant.isDisabled)
+//-                   span.filter__label= variant.label
+
+mixin filter(filter)
+  form.filter(action='https://echo.htmlacademy.ru' method='get')&attributes(attributes)
+    .filter__slider.swiper
+      ul.filter__slider-list.swiper-wrapper
+        each variant in filter.variants
+          li.filter__slider-item.swiper-slide
+            label.filter__button
+              input.filter__control.visually-hidden(name= filter.name type='radio' value= variant.value checked= variant.isChecked disabled= variant.isDisabled)
+              span.filter__label= variant.label

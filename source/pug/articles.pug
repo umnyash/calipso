@@ -1,0 +1,24 @@
+extends layout/layout
+
+block variables
+  - var title = 'Калипсо'
+  - var pageClass = 'articles-page'
+
+block data
+  include data/articles
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
+block content
+  +navigation-tabs
+  +selection
+  +ideas
+  +advantages
+  +premium-brands
+  +terms-with-image
+  +subscription-with-image
+  +articles(articles, true)
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')

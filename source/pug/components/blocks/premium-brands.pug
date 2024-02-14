@@ -1,0 +1,51 @@
+mixin premium-brands
+  section.premium-brands&attributes(attributes)
+    .premium-brands__inner.container
+      h2.premium-brands__heading.heading Premium бренды
+      a.premium-brands__link.link.link--alter(href='#!') Все бренды
+      .premium-brands__slider-wrapper
+        picture.premium-brands__background-wripper(aria-hidden='true')
+          source(media='(min-width: 1367px)' srcset='img/premium-brands/premium-brands-bg-wide-desktop.webp 1x, img/premium-brands/premium-brands-bg-wide-desktop@2x.webp 2x')
+          source(media='(min-width: 769px)' srcset='img/premium-brands/premium-brands-bg-desktop.webp 1x, img/premium-brands/premium-brands-bg-desktop@2x.webp 2x')
+          source(media='(min-width: 376px)' srcset='img/premium-brands/premium-brands-bg-tablet.webp 1x, img/premium-brands/premium-brands-bg-tablet@2x.webp 2x')
+          img.premium-brands__background(src='img/premium-brands/premium-brands-bg.webp' srcset='img/premium-brands/premium-brands-bg@2x.webp 2x' alt='')
+        .premium-brands__slider
+          +slider-arrows(class='premium-brands__slider-arrows slider-arrows--alter')
+          .premium-brands__slider-list-wrapper.swiper
+            ul.premium-brands__slider-list.swiper-wrapper
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/molteni&c.svg' height='153' alt='Molteni&C' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/giorgetti.svg' height='153' alt='GIORGETTI' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/scavolini.svg' height='153' alt='SCAVOLINI' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/snaidero.svg' height='153' alt='snaidero' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/calligaris.svg' height='153' alt='calligaris' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/flexform.svg' height='153' alt='FLEXFORM' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/molteni&c.svg' height='153' alt='Molteni&C' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/giorgetti.svg' height='153' alt='GIORGETTI' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/scavolini.svg' height='153' alt='SCAVOLINI' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/snaidero.svg' height='153' alt='snaidero' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/calligaris.svg' height='153' alt='calligaris' loading='lazy')
+              li.premium-brands__slider-item.swiper-slide
+                a.premium-brands__link(href='#!')
+                  img.premium-brands__logo(src='img/brands/flexform.svg' height='153' alt='FLEXFORM' loading='lazy')

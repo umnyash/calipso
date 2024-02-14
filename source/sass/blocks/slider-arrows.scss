@@ -1,0 +1,34 @@
+.slider-arrows {
+  display: inline-grid;
+  padding: 0;
+  list-style: none;
+  grid-auto-flow: column;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider-arrows__button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: var(--accent-color-1);
+  mask: url("../img/icons.svg#controls_slider-arrow");
+  cursor: pointer;
+
+  @media (min-width: $wide-desktop-width) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.slider-arrows__button--prev {
+  transform: scale(-1);
+}
+
+.slider-arrows--alter {
+  .slider-arrows__button {
+    background: var(--background-additional-color);
+  }
+}

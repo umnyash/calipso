@@ -1,0 +1,71 @@
+.filter__slider {
+  box-sizing: border-box;
+  padding: 0 $mobile-edge-indent;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 $tablet-edge-indent;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 $desktop-edge-indent;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0;
+  }
+}
+
+.filter__slider-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.filter__slider-item {
+  width: auto;
+}
+
+.filter__label {
+  display: grid;
+  padding: 7px 23px;
+  border: 1px solid var(--accent-color-1);
+  border-radius: 50px;
+  grid-auto-flow: column;
+  gap: 8px;
+  justify-content: center;
+  font: 600 14px/17px $main-font-family;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-color-1);
+  transition-property: color, background-color, box-shadow;
+  transition-duration: $little-interaction-duration;
+  transition-timing-function: $little-interaction-timing-function;
+  cursor: pointer;
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 11px 31px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.filter__control:enabled:not(:checked):hover + .filter__label {
+  background: var(--accent-color-1-light);
+}
+
+.filter__control:enabled:not(:checked):active + .filter__label {
+  background: var(--accent-color-1-light);
+
+  @include main-shadow;
+}
+
+.filter__control:checked + .filter__label {
+  color: var(--text-alter-color);
+  background: var(--accent-color-1);
+  pointer-events: none;
+}
+
+.filter__control:disabled + .filter__label {
+  opacity: 0.4;
+  cursor: default;
+}

@@ -2,6 +2,10 @@
   font: 500 20px/25px $main-font-family;
   text-transform: uppercase;
 
+  &--small {
+    text-transform: none;
+  }
+
   @media (min-width: $tablet-width) {
     font-size: 24px;
     line-height: 30px;

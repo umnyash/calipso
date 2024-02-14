@@ -1,0 +1,134 @@
+.premium-brands {
+  padding: 24px 0 32px;
+  color: var(--text-alter-color);
+  background: var(--background-alter-color);
+
+  @media (min-width: $desktop-width) {
+    padding: 60px 0 80px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 80px 0 100px;
+  }
+}
+
+.premium-brands__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  align-items: center;
+
+  @media (min-width: $desktop-width) {
+    gap: 40px;
+  }
+}
+
+.premium-brands__heading {
+  margin: 0;
+}
+
+.premium-brands__slider-wrapper {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 100%;
+  align-items: end;
+}
+
+.premium-brands__background-wripper {
+  grid-area: 1 / 1 / 2 / 2;
+  height: 254px;
+
+  @media (min-width: $tablet-width) {
+    height: 296px;
+  }
+
+  @media (min-width: $desktop-width) {
+    height: 504px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    height: 700px;
+  }
+}
+
+.premium-brands__background {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+
+  @media (min-width: $desktop-width) {
+    border-radius: 16px;
+  }
+}
+
+.premium-brands__slider {
+  grid-area: 1 / 1 / 2 / 2;
+  display: grid;
+  margin: 0 0 10px;
+  grid-template-columns: 100%;
+  gap: 10px;
+
+  @media (min-width: $tablet-width) {
+    gap: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 40px;
+  }
+}
+
+.premium-brands__slider-arrows {
+  margin: 0 16px 0 auto;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 40px 0 auto;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 80px 0 auto;
+  }
+}
+
+.premium-brands__slider-list-wrapper {
+  width: 100%;
+}
+
+.premium-brands__slider-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.premium-brands__slider-item {
+  width: auto;
+  padding: 0 20px;
+
+  @media (min-width: $desktop-width) {
+    padding: 0 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 80px;
+  }
+}
+
+.premium-brands__logo {
+  display: block;
+  height: 60px;
+  width: auto;
+
+  @media (min-width: $desktop-width) {
+    height: 100px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    height: 153px;
+  }
+}

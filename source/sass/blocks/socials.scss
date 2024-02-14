@@ -20,7 +20,8 @@
 
   &:active {
     background: var(--accent-color-1-dark);
-    box-shadow: $main-shadow;
+
+    @include main-shadow;
   }
 }
 

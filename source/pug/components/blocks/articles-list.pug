@@ -1,0 +1,4 @@
+mixin articles-list(articles)
+  ul.articles-list&attributes(attributes)
+    each article in articles
+      +article-preview(article)

@@ -1,0 +1,6 @@
+mixin terms-with-image
+  .terms-with-image&attributes(attributes)
+    .terms-with-image__inner.container
+      +terms(class='terms-with-image__terms')
+      .terms-with-image__image-wrapper
+        img.terms-with-image__image(src='img/terms.webp' alt='' loading='lazy')

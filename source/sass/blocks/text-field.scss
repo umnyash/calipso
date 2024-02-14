@@ -31,7 +31,8 @@
 
   &:focus-within {
     border-color: var(--border-color);
-    box-shadow: $main-shadow;
+
+    @include main-shadow;
   }
 
   @media (min-width: $tablet-width) {

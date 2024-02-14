@@ -1,0 +1,26 @@
+mixin navigation-tabs(heading)
+  section.navigation-tabs&attributes(attributes)
+    .navigation-tabs__inner.container
+      h2.visually-hidden Навигация
+      .taber&attributes(attributes)
+        ul.taber__list
+          li.taber__tab-wrapper
+            a.taber__tab(href='#navigation-tab-categories') Категории #[span.taber__tab-counter (24)]
+          li.taber__tab-wrapper
+            a.taber__tab(href='#navigation-tab-rooms') Комнаты #[span.taber__tab-counter (24)]
+          li.taber__tab-wrapper
+            a.taber__tab(href='#navigation-tab-styles') Стили #[span.taber__tab-counter (24)]
+          li.taber__tab-wrapper
+            a.taber__tab(href='#navigation-tab-brands') Бренды #[span.taber__tab-counter (24)]
+        section.taber__panel(id='navigation-tab-categories')
+          h3.visually-hidden Категории
+          +navigation-list(true)(class='taber__panel-list')
+        section.taber__panel(id='navigation-tab-rooms')
+          h3.visually-hidden Комнаты
+          +navigation-list(true)(class='taber__panel-list')
+        section.taber__panel(id='navigation-tab-styles')
+          h3.visually-hidden Стили
+          +navigation-list(true)(class='taber__panel-list')
+        section.taber__panel(id='navigation-tab-brands')
+          h3.visually-hidden Бренды
+          +navigation-list(true)(class='taber__panel-list')

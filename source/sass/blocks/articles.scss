@@ -1,0 +1,65 @@
+.articles__inner {
+  display: grid;
+  grid-template-columns: $mobile-edge-indent 1fr $mobile-edge-indent;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: $tablet-edge-indent 1fr $tablet-edge-indent;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: $desktop-edge-indent 1fr $desktop-edge-indent;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: 1fr $centerer-max-width 1fr;
+  }
+}
+
+.articles__heading {
+  grid-column: 2 / 3;
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}
+
+.articles__filter {
+  grid-column: 1 / -1;
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-column: 2 / -1;
+    margin: 0 0 40px;
+  }
+}
+
+.articles__list {
+  grid-column: 2 / 3;
+  margin: 0 0 40px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 60px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 80px;
+  }
+}
+
+.articles__pagination {
+  grid-column: 2 / 3;
+  margin: 0;
+
+  @media (min-width: 400px) {
+    justify-self: center;
+  }
+}

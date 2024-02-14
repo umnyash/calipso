@@ -11,7 +11,8 @@ html.page(class= pageClass lang='ru')
     link(rel='preload' href='fonts/mulish-400.woff2' as='font' type='font/woff2' crossorigin)
     link(rel='preload' href='fonts/mulish-500.woff2' as='font' type='font/woff2' crossorigin)
     link(rel='preload' href='fonts/mulish-600.woff2' as='font' type='font/woff2' crossorigin)
-    link(rel='stylesheet' href='css/style.min.css')
+    block styles
+      link(rel='stylesheet' href='css/style.min.css')
     title= title
     meta(name='description' content='Интерьерный салон «Калипсо» — богатый выбор и безупречное качество.')
     meta(name='keywords' content='Калипсо, интерьер, мебель.')
@@ -21,4 +22,6 @@ html.page(class= pageClass lang='ru')
       main.page__content
         block content
       +site-footer(class='page__site-footer')
-    script(src='js/script.min.js')
+    block modals
+    block scripts
+      script(src='js/script.min.js')

@@ -1,0 +1,39 @@
+-
+  var articlesFilter = {
+    name: 'tag',
+    variants: [
+      {
+        label: 'Все',
+        value: 'all',
+        isChecked: true,
+      },
+      {
+        label: 'Блог',
+        value: 'blog',
+      },
+      {
+        label: 'Новости',
+        value: 'news',
+      },
+      {
+        label: 'Пресса о нас',
+        value: 'press',
+        isDisabled: true,
+      },
+    ],
+  };
+
+mixin articles(articles, isMain)
+  if isMain
+    .articles&attributes(attributes)
+      .articles__inner
+        h1.articles__heading.heading Блог компании
+        +filter(articlesFilter)(class='articles__filter')
+        +articles-list(articles)(class='articles__list')
+        +pagination(class='articles__pagination')
+  else
+    section.articles&attributes(attributes)
+      .articles__inner
+        h2.visually-hidden Блог компании
+        +filter(articlesFilter)(class='articles__filter')
+        +articles-list(articles.slice(0, 4))(class='articles__list')
