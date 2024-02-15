@@ -1,7 +1,5 @@
 import { DESKTOP_WIDTH_MEDIA_QUERY } from './const.js';
 
-// const ANIMATION_DURATION = 300;
-
 const initSiteHeader = (headerElement) => {
   const toggleButtonElement = headerElement.querySelector('.site-header__menu-button');
   const navigationElement = headerElement.querySelector('.site-header__navigation');
@@ -9,26 +7,25 @@ const initSiteHeader = (headerElement) => {
   const desktopWidthMediaQueryList = window.matchMedia(DESKTOP_WIDTH_MEDIA_QUERY);
 
   toggleButtonElement.addEventListener('click', () => {
-    toggleButtonElement.classList.remove('site-header__menu-button--animated');
-
-    setTimeout(() => {
-      toggleButtonElement.classList.toggle('site-header__menu-button--close');
-      toggleButtonElement.classList.add('site-header__menu-button--animated');
-    }, 1);
-
-    // if (navigationElement.classList.contains('main-header__navigation--open')) {
-    //   setTimeout(() => menuElement.classList.remove('main-header__main-menu--animated'), ANIMATION_DURATION);
-    // } else {
-    //   menuElement.classList.add('main-header__main-menu--animated');
-    // }
-
+    toggleButtonElement.classList.toggle('site-header__menu-button--close');
     toggleButtonElement.ariaExpanded = toggleButtonElement.ariaExpanded === 'true' ? 'false' : 'true';
     navigationElement.classList.toggle('site-header__navigation--open');
+    headerElement.classList.toggle('page__site-header--expand');
   });
 
   const groupsElement = navigationElement.querySelector('.site-navigation__panels');
   const backButtonElement = navigationElement.querySelector('.site-navigation__back-button');
   const titleElement = navigationElement.querySelector('.site-navigation__title');
+  const closeButtonElement = navigationElement.querySelector('.site-navigation__close-button');
+
+  closeButtonElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    navigationElement.classList.remove('site-header__navigation--open');
+    headerElement.classList.remove('page__site-header--expand');
+    toggleButtonElement.classList.remove('site-header__menu-button--animated');
+    toggleButtonElement.classList.remove('site-header__menu-button--close');
+    toggleButtonElement.ariaExpanded = 'false';
+  });
 
   const firstPanelOpener = navigationElement.querySelector('.site-navigation__top-link--opener');
   let activePanelElement = null;
@@ -142,6 +139,30 @@ const initSiteHeader = (headerElement) => {
 
     openedItemElement = null;
   }
+
+  // Скрытие/отображение шапки при скролле
+  let pageScrollY = 0;
+
+  const box = document.querySelector('.page__inner');
+
+  box.addEventListener('scroll', () => {
+    const headerHeight = headerElement.offsetHeight;
+
+    if (box.scrollTop > 0) {
+      headerElement.classList.add('site-header--sticked');
+    }
+
+    if (box.scrollTop > pageScrollY && box.scrollTop > headerHeight) {
+      headerElement.classList.add('page__site-header--hidden');
+    } else {
+      headerElement.classList.remove('page__site-header--hidden');
+
+      if (box.scrollTop === 0) {
+        headerElement.classList.remove('site-header--sticked');
+      }
+    }
+    pageScrollY = box.scrollTop;
+  });
 };
 
 export { initSiteHeader };

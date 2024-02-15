@@ -4,13 +4,13 @@ block variables
   - var title = 'Калипсо'
   - var pageClass = 'articles-page'
 
-block data
-  include data/articles
-
 prepend styles
   link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
 
 block content
+  +centered-breadcrumbs([
+      { text: 'Блог' },
+    ])(class='page__breadcrumbs')
   +navigation-tabs
   +selection
   +ideas

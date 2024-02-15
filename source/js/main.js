@@ -3,6 +3,7 @@ import { initPremiumBrandsSlider } from './premium-brands-slider.js';
 import { initSelectionSlider } from './selection-slider.js';
 import { initTaber } from './taber.js';
 import { initFilterSlider } from './filter.js';
+import { initBanners } from './banners.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -13,3 +14,4 @@ document.querySelectorAll('.taber').forEach((taber, index) => {
 });
 
 document.querySelectorAll('.filter__slider').forEach(initFilterSlider);
+document.querySelectorAll('.banners').forEach(initBanners);

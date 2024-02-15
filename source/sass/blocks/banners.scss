@@ -1,0 +1,114 @@
+.banners {
+  display: grid;
+  grid-template-columns: 100%;
+}
+
+.banners__slider {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+}
+
+.banners__list,
+.banners__thumbnails-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.banners__thumbnails-slider {
+  grid-area: 1 / 1 / 2 / 2;
+  place-self: end start;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 $mobile-edge-indent;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 $tablet-edge-indent;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 ($desktop-edge-indent + 10);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    width: $centerer-max-width;
+    padding: 0;
+    margin: 0 auto;
+  }
+}
+
+.banners__thumbnails-item {
+  width: auto;
+}
+
+.banners__thumbnail {
+  position: relative;
+  display: grid;
+  padding: 12px 24px;
+  gap: 5px;
+  border-radius: 10px 10px 0 0;
+  font: 500 12px/14px $main-font-family;
+  color: var(--text-weak-color-light);
+
+  @media (min-width: $desktop-width) {
+    padding: 16px 40px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 20px 60px;
+    gap: 10px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.banners__thumbnail-heading {
+  margin: 0;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-alter-color);
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.banners__thumbnail-text {
+  margin: 0;
+}
+
+.banners__thumbnails-item:first-child .banners__thumbnail {
+  border-top-left-radius: 16px;
+}
+
+.banners__thumbnails-item--active {
+  .banners__thumbnail {
+    color: var(--text-weak-color);
+    background: var(--background-color);
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: "";
+      height: 2px;
+      width: 124px;
+      max-width: 65%;
+      background: var(--accent-color-2);
+    }
+  }
+
+  .banners__thumbnail-heading {
+    color: var(--text-color);
+  }
+}

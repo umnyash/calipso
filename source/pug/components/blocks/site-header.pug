@@ -1,11 +1,12 @@
 mixin site-header
   header.site-header&attributes(attributes)
-    .site-header__panel
-      .site-header__panel-inner.container
-        +logo(class='site-header__logo')
-        a.site-header__location(href='#!') Нижний Новгород
-        a.site-header__phone(href='tel:+78002009239') 8 800 200 92 39
-        button.site-header__menu-button(type='button' aria-expanded='false')
-          span.site-header__menu-button-text Меню
-        +shortcuts(class='site-header__shortcuts')
-    +site-navigation(class='site-header__navigation')
+    .site-header__inner(class= isHeaderTransparent ? 'site-header__inner--transparent' : '')
+      .site-header__main-panel
+        .site-header__main-panel-inner.container
+          +logo(class='site-header__logo')
+          a.site-header__location(href='#!') Нижний Новгород
+          a.site-header__phone(href='tel:+78002009239') 8 800 200 92 39
+          button.site-header__menu-button(type='button' aria-expanded='false')
+            span.site-header__menu-button-text Меню
+          +shortcuts(class='site-header__shortcuts')
+      +site-navigation(class='site-header__navigation')

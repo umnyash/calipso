@@ -1,4 +1,5 @@
 .site-navigation {
+  position: relative;
   padding: 20px 0 40px;
   list-style: none;
   font: 500 14px/17px $main-font-family;
@@ -16,13 +17,19 @@
 }
 
 .site-navigation__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: none;
-  padding: 10px 0 9px;
+  padding: 60px 0 9px;
   border-bottom: 1px solid var(--border-color-light);
   margin: 0 0 20px;
+  background: var(--background-additional-color);
+  transform: translateY(-100%);
 
   @media (min-width: $tablet-width) {
-    padding: 0 $tablet-edge-indent;
+    padding: 60px $tablet-edge-indent 0;
     border-bottom: none;
   }
 }

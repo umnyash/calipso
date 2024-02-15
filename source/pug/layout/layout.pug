@@ -1,5 +1,7 @@
 block variables
-block data
+
+include ../data/articles
+include ../data/banners
 
 include ../components/components
 
@@ -18,7 +20,7 @@ html.page(class= pageClass lang='ru')
     meta(name='keywords' content='Калипсо, интерьер, мебель.')
   body.page__body
     .page__inner
-      +site-header
+      +site-header(class='page__site-header')
       main.page__content
         block content
       +site-footer(class='page__site-footer')

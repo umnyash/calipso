@@ -20,7 +20,7 @@
     bottom: 0;
     left: 0;
     background: url("../img/banners/banner-overlay.webp") 0 0 / cover;
-    mix-blend-mode: multiply;
+    // mix-blend-mode: multiply; // Глючно!!!
   }
 
   @media (min-width: $tablet-width) {

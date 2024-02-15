@@ -1,0 +1,25 @@
+mixin banners(banners)
+  section.banners&attributes(attributes)
+    h2.visually-hidden Предложения
+    .banners__slider.swiper
+      ul.banners__list.swiper-wrapper
+        li.banners__item.swiper-slide
+          +banner(banners.exhibition)
+        li.banners__item.swiper-slide
+          +banner(banners.discount)
+        li.banners__item.swiper-slide
+          +banner(banners.payment)
+    .banners__thumbnails-slider.swiper(thumbsSlider='')
+      ul.banners__thumbnails-list.swiper-wrapper
+        li.banners__thumbnails-item.swiper-slide
+          .banners__thumbnail
+            p.banners__thumbnail-heading= banners.exhibition.thumbnail.heading
+            p.banners__thumbnail-text= banners.exhibition.thumbnail.text
+        li.banners__thumbnails-item.swiper-slide
+          .banners__thumbnail
+            p.banners__thumbnail-heading= banners.discount.thumbnail.heading
+            p.banners__thumbnail-text= banners.discount.thumbnail.text
+        li.banners__thumbnails-item.swiper-slide
+          .banners__thumbnail
+            p.banners__thumbnail-heading= banners.payment.thumbnail.heading
+            p.banners__thumbnail-text= banners.payment.thumbnail.text

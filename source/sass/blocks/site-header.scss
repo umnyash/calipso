@@ -1,4 +1,12 @@
-.site-header {
+.site-header--sticked {
+  @include main-shadow;
+}
+
+.page__site-header--expand {
+  background: var(--overlay-color);
+}
+
+.site-header__inner {
   color: (--text-color);
   font: 500 14px/18px $main-font-family;
   background: var(--background-additional-color);
@@ -11,15 +19,15 @@
     font-size: 18px;
     line-height: 20px;
   }
-
-  &--transparent {
-    --logo-text-color: currentColor;
-    color: var(--text-alter-color);
-    background: transparent;
-  }
 }
 
-.site-header__panel {
+.site-header:not(.site-header--sticked):not(.page__site-header--expand) .site-header__inner--transparent {
+  --logo-text-color: currentColor;
+  color: var(--text-alter-color);
+  background: transparent;
+}
+
+.site-header__main-panel {
   padding: 10px 0;
 
   @media (min-width: $tablet-width) {
@@ -35,7 +43,7 @@
   }
 }
 
-.site-header__panel-inner {
+.site-header__main-panel-inner {
   justify-content: space-between;
   align-items: center;
 
@@ -153,14 +161,7 @@
     width: 24px;
     height: 24px;
     background-color: var(--accent-color-2);
-    mask-image: url("../img/icons.svg#burger_open"), url("../img/icons.svg#burger_close");
-    mask-size: 100%, 0;
-    transform-origin: right center;
-    transition:
-      width calc($site-header-navigation-animation-duration / 2) step-end,
-      mask-size calc($site-header-navigation-animation-duration / 2) step-end,
-      background-color $little-interaction-duration $little-interaction-timing-function,
-      opacity $little-interaction-duration $little-interaction-timing-function;
+    mask: url("../img/icons.svg#burger_open");
 
     @media (min-width: $wide-desktop-width) {
       width: 40px;
@@ -170,19 +171,10 @@
 
   &:hover::after {
     background-color: var(--accent-color-2);
-    will-change: width, transform;
-  }
-
-  &:active::after {
-    opacity: 0.3;
   }
 
   &--close::after {
-    mask-size: 0, 100%;
-  }
-
-  &--animated::after {
-    animation: clench-unclench $site-header-navigation-animation-duration ease-in-out;
+    mask: url("../img/icons.svg#burger_close");
   }
 
   @media (min-width: $mobile-width) and (max-width: ($desktop-width - 1)) {

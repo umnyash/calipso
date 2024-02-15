@@ -3,21 +3,20 @@ extends layout/layout
 block variables
   - var title = 'Калипсо'
   - var pageClass = 'index-page'
-
-block data
-  include data/articles
+  - var isHeaderTransparent = true
 
 prepend styles
   link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
 
 block content
-  //- +navigation-tabs
-  //- +selection
-  //- +ideas
-  //- +advantages
-  //- +premium-brands
-  //- +terms-with-image
-  //- +subscription-with-image
+  +banners(banners)(class='page__banners')
+  +navigation-tabs(class='page__navigation-tabs')
+  +selection
+  +ideas
+  +advantages
+  +premium-brands
+  +terms-with-image
+  +subscription-with-image
   +articles(articles)
 
 prepend scripts
