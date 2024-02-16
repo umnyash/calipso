@@ -1,0 +1,5 @@
+mixin products-list(products)
+  ul.products-list&attributes(attributes)
+    each product in products
+      li.products-list__item
+        +product-card(product)(class='product-card--size_xl')

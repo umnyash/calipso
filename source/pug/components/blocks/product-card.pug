@@ -1,0 +1,25 @@
+mixin product-card(product)
+  article.product-card&attributes(attributes)
+    .product-card__heading-and-signs
+      h3.product-card__heading
+        a.product-card__link(href='#!')= product.name
+      p.product-card__signs= product.dimensions
+    .product-card__prices
+      p.product-card__price(class= product.discount ? 'product-card__price--accent': '')= `${product.price} ₽`
+      if product.discount
+        s.product-card__old-price= `${product.price} ₽`
+        p.producr-card__discount= `-${product.discount}%`
+    .product-card__slider.swiper
+      ul.product-card__slider-list.swiper-wrapper
+        each image, index in product.images
+          li.product-card__slider-item.swiper-slide
+            img.product-card__image(src= image srcset= `${product.images2x[index]} 2x` alt='' loading='lazy')
+      p.product-card__slider-pagination
+    .product-card__labels
+      if product.isPremium
+        p.product-card__premium-label
+          span.product-card__premium-label-text Premium
+      p.product-card__label В наличии
+      p.product-card__like-button-wrapper
+        +like-button(class=`product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}`)
+    a.product-card__brand(href='#!') Бренд #[span.product-card__brand-name= product.brand]

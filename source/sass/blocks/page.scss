@@ -95,6 +95,18 @@
   }
 }
 
+.page__premium-brands + .page__selection {
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 220px;
+  }
+}
+
+.page__appointment + .page__products {
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 220px;
+  }
+}
+
 .page__site-footer {
   margin-top: 100px;
 

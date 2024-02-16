@@ -1,0 +1,13 @@
+mixin products(heading, products, size)
+  section.products&attributes(attributes)
+    .products__header
+      h2.products__heading.heading= heading
+      +slider-arrows(class='products__slider-arrows')
+    .products__slider.swiper
+      ul.products__slider-list.swiper-wrapper(class= size === 'l' ? 'products__slider-list--size_l' : '')
+        each product in products
+          li.products__slider-item.swiper-slide
+            if size === 'l'
+              +product-card(product)(class='product-card--size_l')
+            else
+              +product-card(product)

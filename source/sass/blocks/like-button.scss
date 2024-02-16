@@ -1,0 +1,17 @@
+.like-button {
+  padding: 0;
+  border: none;
+  background: var(--text-color);
+  mask: url("../img/icons.svg#like_like-false") 0 0 / contain;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--accent-color-2);
+  }
+
+  &:active,
+  &--active {
+    background: var(--accent-color-2);
+    mask-image: url("../img/icons.svg#like_like-true");
+  }
+}

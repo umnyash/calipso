@@ -1,0 +1,24 @@
+.products-list {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  gap: 40px 20px;
+
+  @media (min-width: $mobile-width) {
+    grid-template-columns: repeat(auto-fill, minmax(343px, 1fr));
+  }
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(402px, 1fr));
+    gap: 60px 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 80px 40px;
+  }
+}

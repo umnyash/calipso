@@ -2,6 +2,7 @@ block variables
 
 include ../data/articles
 include ../data/banners
+include ../data/products
 
 include ../components/components
 
@@ -15,7 +16,6 @@ html.page(class= pageClass lang='ru')
     link(rel='preload' href='fonts/mulish-600.woff2' as='font' type='font/woff2' crossorigin)
     block styles
       link(rel='stylesheet' href='css/style.min.css')
-    //- script(src='https://api-maps.yandex.ru/2.1/?apikey=e6c045b8-c60b-415c-82d4-b4adf6e237da&lang=ru_RU')
     script(src='https://api-maps.yandex.ru/v3/?apikey=e6c045b8-c60b-415c-82d4-b4adf6e237da&lang=ru_RU')
     title= title
     meta(name='description' content='Интерьерный салон «Калипсо» — богатый выбор и безупречное качество.')
