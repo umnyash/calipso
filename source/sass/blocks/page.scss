@@ -75,7 +75,8 @@
   }
 }
 
-.page__breadcrumbs {
+.page__breadcrumbs,
+.page__heading {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {
@@ -92,6 +93,18 @@
 
   @media (min-width: $wide-desktop-width) {
     margin-top: 140px;
+  }
+}
+
+.page__heading + .page__navigation-list {
+  margin-top: 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-top: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 40px;
   }
 }
 
