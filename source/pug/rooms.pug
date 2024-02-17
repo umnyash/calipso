@@ -1,17 +1,18 @@
 extends layout/layout
 
 block variables
-  - var title = 'Блог'
-  - var pageClass = 'articles-page'
+  - var title = 'Комнаты'
+  - var pageClass = 'rooms-page'
 
 prepend styles
   link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
 
 block content
   +centered-breadcrumbs([
-      { text: 'Блог' },
+      { text: 'Комнаты' },
     ])
-  +articles(articles, true)
+  +links('Комнаты', rooms)
+  +products('Вы смотрели', products)
   +subscription-with-image
 
 prepend scripts

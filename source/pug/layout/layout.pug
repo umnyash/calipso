@@ -3,6 +3,8 @@ block variables
 include ../data/articles
 include ../data/banners
 include ../data/products
+include ../data/styles
+include ../data/rooms
 
 include ../components/components
 
@@ -25,7 +27,7 @@ html.page(class= pageClass lang='ru')
       +site-header(class='page__site-header')
       main.page__content
         block content
-      +site-footer(class='page__site-footer')
+      +site-footer
     block modals
     block scripts
       script(src='js/script.min.js')

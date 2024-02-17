@@ -1,0 +1,14 @@
+mixin links(heading, links, linkToAll)
+  section.links&attributes(attributes)
+    .links__inner.container
+      h2.links__heading.heading= heading
+      if linkToAll
+        a.links__to-all.link(href= linkToAll.href)= linkToAll.text
+      ul.links__list
+        each link in links
+          li.links__item
+            h3.links__text
+              a.links__link(href='#!')= link.heading
+            picture.links__image-wrapper
+              source(media='(min-width: 376px)' srcset=`${link.desktopImage} 1x, ${link.desktopImage2x} 2x`)
+              img.links__image(src= link.image srcset=`${link.image2x} 2x` alt='' loading='lazy')

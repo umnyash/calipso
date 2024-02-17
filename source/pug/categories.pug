@@ -10,10 +10,10 @@ prepend styles
 block content
   +centered-breadcrumbs([
     { text: 'Категории' },
-  ])(class='page__breadcrumbs')
-  +page-heading('Категории')(class='page__heading')
-  +centered-navigation-list(class='page__navigation-list')
-  +products('Хит', products)(class='page__products')
+  ])
+  +page-heading('Категории')
+  +centered-navigation-list
+  +products('Хит', products)
   +subscription-with-image
 
 prepend scripts

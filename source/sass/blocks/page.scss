@@ -47,19 +47,19 @@
 }
 
 .page__content > * {
-  margin-top: 100px;
+  margin: 100px 0 0;
 
   @media (min-width: $desktop-width) {
-    margin-top: 120px;
+    margin: 120px 0 0;
   }
 
   @media (min-width: $wide-desktop-width) {
-    margin-top: 140px;
+    margin: 140px 0 0;
   }
 }
 
-.page__banner,
-.page__banners {
+.page__content > .banner,
+.page__content > .banners {
   margin-top: -60px;
 
   @media (min-width: $tablet-width) {
@@ -75,8 +75,8 @@
   }
 }
 
-.page__breadcrumbs,
-.page__breadcrumbs + * {
+.page__content > .centered-breadcrumbs,
+.page__content > .centered-breadcrumbs + * {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {
@@ -84,7 +84,7 @@
   }
 }
 
-.page__navigation-tabs {
+.page__content > .navigation-tabs {
   margin-top: 60px;
 
   @media (min-width: $desktop-width) {
@@ -96,7 +96,7 @@
   }
 }
 
-.page__heading + .page__navigation-list {
+.page__content > .page-heading + * {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {
@@ -108,19 +108,19 @@
   }
 }
 
-.page__premium-brands + .page__selection {
+.page__content > .premium-brands + .selection {
   @media (min-width: $wide-desktop-width) {
     margin-top: 220px;
   }
 }
 
-.page__appointment + .page__products {
+.page__content > .appointment + .products {
   @media (min-width: $wide-desktop-width) {
     margin-top: 220px;
   }
 }
 
-.page__site-footer {
+.page__inner > .site-footer {
   margin-top: 100px;
 
   @media (min-width: $desktop-width) {

@@ -27,12 +27,14 @@
 
 .navigation-list__item {
   position: relative;
+  z-index: 0;
   display: grid;
   padding: 5px;
   border-radius: 10px;
   gap: 5px;
   align-content: start;
   text-align: center;
+  background: var(--background-color);
 
   &:hover {
     background-color: var(--background-additional-color);
@@ -70,6 +72,7 @@
   &::after {
     content: "";
     position: absolute;
+    z-index: 1;
     top: 0;
     right: 0;
     bottom: 0;
@@ -88,6 +91,7 @@
   border-radius: 8px;
   object-fit: scale-down;
   object-position: center;
+  mix-blend-mode: darken;
 
   @media (min-width: $desktop-width) {
     height: 91px;

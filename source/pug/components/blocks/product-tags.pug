@@ -1,0 +1,5 @@
+mixin product-tags
+  .product-tags&attributes(attributes)
+    .product-tags__inner.container
+      +product-tag('В наличии', 'in-stock')(class='products-tags__tag')
+      +product-tag('Sale', 'sale')(class='products-tags__tag')

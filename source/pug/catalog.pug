@@ -1,0 +1,31 @@
+extends layout/layout
+
+block variables
+  - var title = 'Каталог'
+  - var pageClass = 'catalog-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Каталог' },
+    ])
+  +page-heading('Каталог')
+  +centered-navigation-list
+  +premium-brands
+  +links(
+    'Комнаты',
+    styles.slice(0, 4),
+    { text: 'Все комнаты', href: 'rooms.html' }
+  )(class='links--big')
+  +links(
+    'Стили',
+    styles.slice(0, 4),
+    { text: 'Все стили', href: 'styles.html' }
+  )(class='links--big')
+  +product-tags
+  +subscription-with-image
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')

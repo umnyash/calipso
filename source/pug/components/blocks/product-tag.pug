@@ -1,0 +1,5 @@
+mixin product-tag(title, type)
+  .product-tag(class= `product-tag--${type}`)&attributes(attributes)
+    a.product-tag__heading.heading(href='#!')= title
+    .product-tag__image-wrapper
+      img.product-tag__image(src=`img/product-tags/${type}.webp` srcset=`img/product-tags/${type}@2x.webp 2x` alt='' loading='lazy')
