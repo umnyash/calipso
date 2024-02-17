@@ -76,7 +76,7 @@
 }
 
 .page__breadcrumbs,
-.page__heading {
+.page__breadcrumbs + * {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {

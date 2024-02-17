@@ -1,7 +1,7 @@
 extends layout/layout
 
 block variables
-  - var title = 'Калипсо'
+  - var title = 'Блог'
   - var pageClass = 'articles-page'
 
 prepend styles
@@ -11,14 +11,8 @@ block content
   +centered-breadcrumbs([
       { text: 'Блог' },
     ])(class='page__breadcrumbs')
-  +navigation-tabs
-  +selection
-  +ideas
-  +advantages
-  +premium-brands
-  +terms-with-image
-  +subscription-with-image
   +articles(articles, true)
+  +subscription-with-image
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')
