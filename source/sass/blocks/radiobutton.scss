@@ -1,0 +1,44 @@
+.radiobutton__label {
+  display: grid;
+  padding: 7px 23px;
+  border: 1px solid var(--accent-color-1);
+  border-radius: 50px;
+  grid-auto-flow: column;
+  gap: 8px;
+  justify-content: center;
+  font: 600 14px/17px $main-font-family;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-color-1);
+  transition-property: color, background-color, box-shadow;
+  transition-duration: $little-interaction-duration;
+  transition-timing-function: $little-interaction-timing-function;
+  cursor: pointer;
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 11px 31px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.radiobutton__control:enabled:not(:checked):hover + .radiobutton__label {
+  background: var(--accent-color-1-light);
+}
+
+.radiobutton__control:enabled:not(:checked):active + .radiobutton__label {
+  background: var(--accent-color-1-light);
+
+  @include main-shadow;
+}
+
+.radiobutton__control:checked + .radiobutton__label {
+  color: var(--text-alter-color);
+  background: var(--accent-color-1);
+  pointer-events: none;
+}
+
+.radiobutton__control:disabled + .radiobutton__label {
+  opacity: 0.4;
+  cursor: default;
+}

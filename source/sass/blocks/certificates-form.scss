@@ -1,0 +1,37 @@
+.certificates-form__heading {
+  margin: 0 0 10px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+}
+
+.certificates-form__section {
+  display: flex;
+  padding: 0;
+  border: none;
+  margin: 0 0 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 32px;
+    gap: 10px 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}
+
+.certificates-form__submit-button {
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    width: auto;
+  }
+}

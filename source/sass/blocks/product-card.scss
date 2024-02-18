@@ -613,9 +613,13 @@
     font-size: 14px;
     line-height: 17px;
 
+    @media (min-width: $desktop-width) {
+      margin: 10px 10px 40px;
+      grid-template-columns: auto auto;
+    }
+
     @media (min-width: $wide-desktop-width) {
       margin: 20px 20px 60px;
-      grid-template-columns: auto auto;
       font-size: 18px;
       line-height: 18px;
     }
@@ -646,17 +650,21 @@
       height: 16px;
     }
 
-    @media (min-width: $wide-desktop-width) {
+    @media (min-width: $desktop-width) {
       grid-row: 2 / 3;
       grid-column: 1 / -1;
       justify-self: end;
+      padding: 7px 20px 6px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
       min-height: 40px;
       padding: 12px 20px 10px;
     }
   }
 
   .product-card__premium-label-text {
-    @media (min-width: $wide-desktop-width) {
+    @media (min-width: $desktop-width) {
       all: initial;
       font: inherit;
       color: inherit;
