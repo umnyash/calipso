@@ -108,6 +108,14 @@
   }
 }
 
+.page__content > .page-premium-heading + .premium-navigation {
+  margin-top: 10px;
+
+  @media (min-width: $tablet-width) {
+    margin-top: 20px;
+  }
+}
+
 .page__content > .premium-brands + .selection {
   @media (min-width: $wide-desktop-width) {
     margin-top: 220px;
@@ -120,6 +128,18 @@
   }
 }
 
+.page__content > .premium-navigation + .navigation-shortcuts {
+  margin-top: 10px;
+
+  @media (min-width: $tablet-width) {
+    margin-top: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 40px;
+  }
+}
+
 .page__content > .navigation-shortcuts + .catalog {
   margin-top: 20px;
 
@@ -129,6 +149,22 @@
 
   @media (min-width: $wide-desktop-width) {
     margin-top: 40px;
+  }
+}
+
+.page__content > .premium-navigation + .centered-navigation-list {
+  margin: 10px 0 0;
+
+  @media (min-width: $tablet-width) {
+    margin-top: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-top: 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 60px;
   }
 }
 

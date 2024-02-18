@@ -1,0 +1,19 @@
+.page-premium-heading__text {
+  margin: 0;
+  font: 500 22px/24px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    font-size: 30px;
+    line-height: 33px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 50px;
+    line-height: 55px;
+  }
+}
