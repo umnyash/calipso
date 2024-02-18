@@ -1,0 +1,5 @@
+mixin button-alter(tag, text, type, href, target, rel)
+  if tag === 'button'
+    button.button-alter(type= type)&attributes(attributes)= text
+  else if tag === 'a'
+    a.button-alter(href= href target= target rel= rel)&attributes(attributes)= text

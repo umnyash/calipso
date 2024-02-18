@@ -120,6 +120,18 @@
   }
 }
 
+.page__content > .navigation-shortcuts + .catalog {
+  margin-top: 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-top: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 40px;
+  }
+}
+
 .page__inner > .site-footer {
   margin-top: 100px;
 

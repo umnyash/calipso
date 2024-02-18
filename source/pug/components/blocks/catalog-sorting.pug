@@ -1,0 +1,16 @@
+mixin catalog-sorting
+  .catalog-sorting.catalog-sorting-open&attributes(attributes)
+    button.catalog-sorting__toggle-button(type='button') По новизне
+    .catalog-sorting__popup
+      button.catalog-sorting__close-button(type='button') Сортировать
+      ul.catalog-sorting__list
+        li.catalog-sorting__item
+          a.catalog-sorting__link(href='#!') По новизне
+        li.catalog-sorting__item
+          a.catalog-sorting__link(href='#!') По популярности
+        li.catalog-sorting__item
+          a.catalog-sorting__link.catalog-sorting__link--active(href='#!') По размеру скидки
+        li.catalog-sorting__item
+          a.catalog-sorting__link(href='#!') Сначала дороже
+        li.catalog-sorting__item
+          a.catalog-sorting__link(href='#!') Сначала дешевле

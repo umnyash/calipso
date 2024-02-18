@@ -1,7 +1,11 @@
-.button {
-  display: inline-block;
+.button-alter {
+  display: inline-grid;
   box-sizing: border-box;
-  border-radius: 8px;
+  min-height: 33px;
+  border-radius: 50px;
+  grid-auto-flow: column;
+  gap: 10px;
+  align-items: center;
   text-align: center;
   font: 600 14px/17px $main-font-family;
   text-transform: uppercase;
@@ -18,19 +22,15 @@
     cursor: auto;
   }
 
-  @media (min-width: $tablet-width) {
-    border-radius: 10px;
-  }
-
   @media (min-width: $wide-desktop-width) {
-    border-radius: 16px;
+    gap: 20px;
     font-size: 16px;
     line-height: 19px;
   }
 }
 
-.button--primary {
-  padding: 12px 40px;
+.button-alter--primary {
+  padding: 7px 24px 6px;
   border: none;
   background: var(--accent-color-1);
   color: var(--text-alter-color);
@@ -59,14 +59,15 @@
   }
 
   @media (min-width: $wide-desktop-width) {
-    padding: 16px 60px;
+    min-height: 51px;
+    padding: 12px 40px 9px;
   }
 }
 
-.button--secondary {
-  padding: 11px 39px;
+.button-alter--secondary {
+  padding: 6px 23px 5px;
   border: 1px solid var(--accent-color-1);
-  background: var(--background-additional-color);
+  background: transparent;
   color: var(--accent-color-1);
 
   &:hover {
@@ -93,12 +94,11 @@
   }
 
   @media (min-width: $wide-desktop-width) {
-    min-height: 43px;
-    padding: 12px 31px 10px;
+    padding: 11px 31px 8px;
   }
 }
 
-.button--pending {
+.button-alter--pending {
   position: relative;
   color: transparent;
   pointer-events: none;
@@ -121,4 +121,23 @@
       height: 16px;
     }
   }
+}
+
+.button-alter--with-icon {
+  &::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    &::after {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.button-alter--with-icon_filter::after {
+  background: url("../img/icons.svg#filter");
 }
