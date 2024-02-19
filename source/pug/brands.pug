@@ -1,0 +1,11 @@
+extends layout/layout
+
+block variables
+  - var title = 'Бренды'
+  - var pageClass = 'brands-page'
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Бренды' },
+    ])
+  +brands

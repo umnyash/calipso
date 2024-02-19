@@ -29,8 +29,26 @@
   }
 }
 
+.button--simple {
+  padding: 0;
+  font-size: 12px;
+  line-height: 14px;
+  background: transparent;
+  color: var(--accent-color-1);
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
 .button--primary {
-  padding: 12px 40px;
+  padding: 13px 40px 11px;
   border: none;
   background: var(--accent-color-1);
   color: var(--text-alter-color);

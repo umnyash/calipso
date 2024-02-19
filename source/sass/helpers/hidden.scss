@@ -1,0 +1,29 @@
+/*
+ * Модификатор обозначает на какой ширине происходит скрытие:
+ * --m-t – скрывать только на мобильной (m) и планшетной (t) ширине
+ * --m-l-d – скрывать только на мобильной (m), лэптопной (l) и десктопной (d) ширине. Элемент будет виден только на планшетной (t) ширине.
+ */
+
+.hidden {
+  // &--m-t {
+  //   @media (max-width: ($laptop-width - 1)) {
+  //     display: none;
+  //   }
+  // }
+
+  // &--m-l-d {
+  //   @media (max-width: ($tablet-width - 1)) {
+  //     display: none;
+  //   }
+
+  //   @media (min-width: $laptop-width) {
+  //     display: none;
+  //   }
+  // }
+
+  &--wd {
+    @media (min-width: $wide-desktop-width) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+-
+  var buttons = [
+    {
+      label: '180*200',
+      name: 'size',
+      value: '180*200',
+    },
+    {
+      label: '190*200',
+      name: 'size',
+      value: '190*200',
+      isDisabled: true,
+    },
+    {
+      label: '200*220',
+      name: 'size',
+      value: '200*220',
+      isChecked: true,
+    },
+  ];
+
+mixin product-header
+  header.product-header&attributes(attributes)
+    p.product-header__name Комод Chill, бренд Calligaris, серый
+    .product-header__signs 15х20х60
+    .product-header__prices
+      p.product-header__price.product-header__price--accent 15 000р
+      s.product-header__old-price 15 000р
+      p.product-header__discount -10%
+    form.product-header__form(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+      fieldset.product-header__form-section
+        each button in buttons
+          +radiobutton(button)
+      fieldset.product-header__form-buttons
+        +button('button', 'Добавить в корзину', 'submit')(class='product-header__form-submit-button button--primary')
+        +button('a', 'Купить в 1 клик', '', '#!')(class='product-header__form-secondary-button button--simple')
+    ul.product-header__navigation
+      li.product-header__navigation-item
+        a.product-header__navigation-link(href='#product-characteristics') Описание и характеристики
+      li.product-header__navigation-item
+        a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#!') О доставке
+      li.product-header__navigation-item
+        a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#!') О гарантии
+      li.product-header__navigation-item
+        a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#!') Возможна рассрочка, уточните#[br.hidden.hidden--wd] у&nbsp;менеджера
+    ul.product-header__links
+      li
+        a.product-header__link(href='files/recipe.pdf' download) Скачать 3D модель .pdf
+      li
+        a.product-header__link(href='#!') Задать вопрос по товару
+    a.product-header__brand(href='#!')
+      img.product-header__brand-logo(src='img/product-brands/calligaris.svg' width='218' height='42' alt='')
+    +share(class='product-header__share')

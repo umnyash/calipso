@@ -1,0 +1,124 @@
+.product-characteristics {
+  display: grid;
+  padding: 24px;
+  border-radius: 10px;
+  gap: 24px;
+  font: 500 14px/17px $main-font-family;
+  background: var(--background-additional-color);
+
+  @media (min-width: $desktop-width) {
+    padding: 40px;
+    gap: 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 80px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.product-characteristics__heading {
+  margin: 0;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+  text-transform: uppercase;
+
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+.product-characteristics__section {
+  display: grid;
+  gap: 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    // gap: 26px;
+    gap: 20px;
+  }
+}
+
+.product-characteristics__section-heading {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 23px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+.product-characteristics__list {
+  display: grid;
+  margin: 0;
+  gap: 10px;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 32px;
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 20px 74px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px 200px;
+  }
+}
+
+.product-characteristics__list-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: baseline;
+
+  &::after {
+    content: "";
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
+    height: 1px;
+    background: var(--border-color-light);
+    transform: translateY(3px);
+  }
+}
+
+.product-characteristics__list-item--comment {
+  @media (min-width: $tablet-width) {
+    grid-row: 3 / 5;
+    grid-column: 2 / 3;
+  }
+}
+
+.product-characteristics__key {
+  color: var(--text-weak-color);
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.product-characteristics__value {
+  margin: 0;
+  text-align: right;
+}
+
+.product-characteristics__section-text {
+  margin: 0;
+}

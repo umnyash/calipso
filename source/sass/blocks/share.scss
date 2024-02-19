@@ -1,0 +1,36 @@
+.share {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  font: 500 12px/14px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.share__text {
+  margin: 0;
+}
+
+.share__list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.share__image {
+  display: block;
+  width: 30px;
+  height: 30px;
+}

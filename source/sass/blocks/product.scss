@@ -1,0 +1,109 @@
+.product__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @media (min-width: $desktop-width) {
+    // justify-content: end;
+    grid-template-columns: 834px 1fr;
+    column-gap: 50px;
+    grid-template-areas:
+      "photos          heading-wrapper"
+      "photos          header"
+      "characteristics header";
+    // grid-template-columns: 362px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    column-gap: 80px;
+    grid-template-columns: 1160px 1fr;
+  }
+}
+
+.product__heading-wrapper {
+  display: grid;
+  margin: 0 0 10px;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+
+  @media (min-width: $desktop-width) {
+    grid-area: heading-wrapper;
+    margin: 0 20px 10px 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 40px 10px 0;
+  }
+}
+
+.product__heading {
+  margin: 0;
+  text-transform: uppercase;
+  font: 500 16px/19px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}
+
+.product__like-button {
+  width: 20px;
+  height: 20px;
+
+  @media (min-width: $tablet-width) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+//////////////////
+/// //////////////////
+//////////////////
+//////////////////
+//////////////////
+//////////////////
+///////////////////
+.product__images {
+  margin: 0 0 24px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-area: photos;
+  }
+}
+//////////////////
+/// //////////////////
+/// //////////////////
+/// //////////////////
+/// //////////////////
+/// //////////////////
+/// //////////////////
+/// //////////////////
+
+.product__header {
+  margin: 0 0 40px;
+
+  @media (min-width: $desktop-width) {
+    grid-area: header;
+    margin: 0 20px 0 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 40px 0 0;
+  }
+}
+
+.product-characteristics {
+  @media (min-width: $desktop-width) {
+    grid-area: characteristics;
+  }
+}

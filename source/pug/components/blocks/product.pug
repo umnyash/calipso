@@ -1,0 +1,9 @@
+mixin product
+  article.product&attributes(attributes)
+    .product__inner.container
+      .product__heading-wrapper
+        h1.product__heading Chill
+        +like-button(class='product__like-button')
+      .product__images(style='display: grid; place-items: center; padding: 16px; box-sizing: border-box; min-height: 1000px; background: grey;') Фото товара
+      +product-header(class='product__header')
+      +product-characteristics(class='product__characteristics')
