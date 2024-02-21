@@ -1,0 +1,6 @@
+mixin textarea(label, name, text, placeholder, isRequired, isReadonly, isDisabled)
+  .textarea&attributes(attributes)
+    label.textarea__inner
+      span.visually-hidden= label
+      textarea.textarea__control(name= name, placeholder= placeholder, required= isRequired ? true : false, readonly= isReadonly ? true : false, disabled= isDisabled ? true : false)= text
+    block

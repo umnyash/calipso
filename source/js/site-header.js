@@ -1,4 +1,5 @@
 import { DESKTOP_WIDTH_MEDIA_QUERY } from './const.js';
+import { throttle } from './util.js';
 
 const initSiteHeader = (headerElement) => {
   const toggleButtonElement = headerElement.querySelector('.site-header__menu-button');
@@ -145,7 +146,7 @@ const initSiteHeader = (headerElement) => {
 
   const box = document.querySelector('.page__inner');
 
-  box.addEventListener('scroll', () => {
+  const onBoxScroll = () => {
     const headerHeight = headerElement.offsetHeight;
 
     if (box.scrollTop > 0) {
@@ -162,7 +163,9 @@ const initSiteHeader = (headerElement) => {
       }
     }
     pageScrollY = box.scrollTop;
-  });
+  };
+
+  box.addEventListener('scroll', throttle(onBoxScroll, 100));
 };
 
 export { initSiteHeader };

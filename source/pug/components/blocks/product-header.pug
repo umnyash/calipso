@@ -21,6 +21,9 @@
 
 mixin product-header
   header.product-header&attributes(attributes)
+    .product-header__heading-wrapper
+      h1.product-header__heading Chill
+      +like-button(class='product-header__like-button')
     p.product-header__name Комод Chill, бренд Calligaris, серый
     .product-header__signs 15х20х60
     .product-header__prices

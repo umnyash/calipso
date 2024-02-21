@@ -1,0 +1,5 @@
+.product-page .page__inner {
+  @media (max-width: ($desktop-width - 1)) {
+    padding-bottom: 116px;
+  }
+}

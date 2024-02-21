@@ -14,7 +14,26 @@ block content
       { text: 'Комод Chill' },
     ])
   +product
-  //- +subscription-with-image
+  +products('С этим товаром покупают', products, 'l')
+  +products('Похожие товары', products, 'l')
+  +products('Вы смотрели', products)
+  +features
+
+append modals
+  +modal(class='modal--with_form')
+    +one-click-form(class='modal__form')
+  +modal(class='modal--with_form')
+    +installment-request-form(class='modal__form')
+  +modal(class='modal--with_form')
+    +product-question-form(class='modal__form')
+  +modal(class='modal--with_alert')
+    +alert(
+      'Заявка успешно отправлена',
+      'Наш менеджер свяжется с вами в течении 3 рабочих дней',
+      'Закрыть'
+    )(class='modal__alert')
+  +modal(class='modal--with_product-gallery')
+    +product-gallery(class='modal__product-gallery')
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

@@ -2,7 +2,7 @@ mixin product-card(product)
   article.product-card&attributes(attributes)
     .product-card__heading-and-signs
       h3.product-card__heading
-        a.product-card__link(href='#!')= product.name
+        a.product-card__link(href='product.html')= product.name
       p.product-card__signs= product.dimensions
     .product-card__prices
       p.product-card__price(class= product.discount ? 'product-card__price--accent': '')= `${product.price} ₽`

@@ -6,11 +6,6 @@ function initBanners(bannersElement) {
     spaceBetween: 5,
     slidesPerView: 'auto',
     watchSlidesProgress: true,
-    // slideThumbActiveClass: 'banners__thumbnails-item--active',
-    // effect: 'fade',
-    // fadeEffect: {
-    //   crossFade: true
-    // },
   });
 
   const bannersSwiper = new Swiper(sliderElement, { // eslint-disable-line
@@ -18,13 +13,11 @@ function initBanners(bannersElement) {
     fadeEffect: {
       crossFade: true
     },
-    // slideActiveClass: 'AAAAAAAAAA',
     thumbs: {
       swiper: thumbnailsSwiper,
       slideThumbActiveClass: 'banners__thumbnails-item--active',
     }
   });
-
 }
 
 export { initBanners };

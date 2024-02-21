@@ -9,6 +9,12 @@ import { initProductCard } from './product-card.js';
 import { initProducts } from './products.js';
 import { initNavigationShortcuts } from './navigation-shortcuts.js';
 import { initCatalogSorting } from './catalog-sorting.js';
+import { initProductImages } from './product-images.js';
+import { initProductGallery } from './product-gallery.js';
+import { initProductGalleryModal } from './product-gallery-modal.js';
+import { openModal } from './modal.js';
+import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
+
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -25,3 +31,27 @@ document.querySelectorAll('.product-card').forEach(initProductCard);
 document.querySelectorAll('.products').forEach(initProducts);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
+document.querySelectorAll('.product-images').forEach(initProductImages);
+document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
+
+
+const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');
+if (productGalleryModalElement) {
+  initProductGalleryModal(productGalleryModalElement, openModal, initProductGallery);
+}
+
+/// Проверка модалки
+const modal = document.querySelector('[data-modal="product-question"]');
+const modalOpener = document.querySelector('[data-modal-opener="product-question"]');
+
+if (modal && modalOpener) {
+  modalOpener.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    modal.classList.add('modal--open');
+  });
+
+  modal.querySelector('.modal__close-button').addEventListener('click', (evt) => {
+    evt.preventDefault();
+    modal.classList.remove('modal--open');
+  });
+}
