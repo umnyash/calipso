@@ -154,7 +154,8 @@
 }
 
 .page__content > .premium-navigation + .centered-navigation-list {
-  margin: 10px 0 0;
+  // margin: 10px 0 0;
+  margin-top: 10px 0 0;
 
   @media (min-width: $tablet-width) {
     margin-top: 20px;
@@ -166,6 +167,22 @@
 
   @media (min-width: $wide-desktop-width) {
     margin-top: 60px;
+  }
+}
+
+.page__content > .brands + .all-brands {
+  margin-top: 60px;
+
+  @media (min-width: $tablet-width) {
+    margin-top: 100px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-top: 120px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 140px;
   }
 }
 

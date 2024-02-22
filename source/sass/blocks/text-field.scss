@@ -23,9 +23,10 @@
 
 .text-field__control-wrapper {
   display: grid;
-  grid-template-columns: 1fr auto;
   border: 1px solid var(--border-color-dark);
   border-radius: 8px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
   background: var(--background-additional-color);
   overflow: hidden;
 
@@ -77,6 +78,44 @@
 .text-field__control-wrapper:focus-within .text-field__control:not(:placeholder-shown) + .text-field__clear-button {
   display: block;
 }
+
+.text-field--search .text-field__control-wrapper {
+  &::after {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background: var(--text-weak-color-light);
+    mask: url("../img/icons.svg#shortcuts_search");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.text-field--big {
+  font-size: 14px;
+  line-height: 17px;
+
+  .text-field__control {
+    padding: 13px 23px 12px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 25px;
+
+    .text-field__control {
+      padding: 18px 23px 17px;
+    }
+  }
+}
+
+.text-field--big.text-field--search .text-field__control-wrapper::after {
+  margin: 0 23px 0 0;
+}
+
 
 .text-field--error .text-field__control-wrapper {
   border-color: var(--accent-color-2);

@@ -1,0 +1,22 @@
+mixin all-brands(brands, brandLinks)
+  section.all-brands&attributes(attributes)
+    .all-brands__inner.container
+      h2.all-brands__heading.heading Все бренды
+      form.all-brands__form(action='https://echo.htmlacademy.ru' method='get' target='_blank')
+        +text-field('Поиск:', 'query', 'search', '', 'Найти бренд', true)(class='all-brands__form-item text-field--big text-field--search')
+      ul.all-brands__navigation
+        each link, index in brandLinks
+          li.all-brands__navigation-item
+            if index < 12
+              a.all-brands__navigation-link(href=`#all-brands-${link}`)= link
+            else
+              a.all-brands__navigation-link= link
+      dl.all-brands__groups
+        each link in brandLinks.slice(0, 12)
+          .all-brands__group
+            dt.all-brands__group-name(id=`all-brands-${link}`)= link
+            dd.all-brands__list-wrapper
+              ul.all-brands__list
+                each brand in brands
+                  li.all-brands__item
+                    a.all-brands__link(href='brand.html' class= brand.isPremium ? 'all-brands__link--premium' : '')= brand.name
