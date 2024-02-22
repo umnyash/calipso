@@ -48,17 +48,19 @@
 }
 
 .button--primary {
-  padding: 13px 40px 11px;
-  border: none;
+  padding: 12px 39px 10px;
+  border: 1px solid var(--accent-color-1);
   background: var(--accent-color-1);
   color: var(--text-alter-color);
 
   &:hover {
     background: var(--accent-color-1-dark);
+    border-color: var(--accent-color-1-dark);
   }
 
   &:active {
     background: var(--accent-color-1-dark);
+    border-color: var(--accent-color-1-dark);
   }
 
   &:disabled:not(.button--pending) {
@@ -77,12 +79,12 @@
   }
 
   @media (min-width: $wide-desktop-width) {
-    padding: 16px 60px;
+    padding: 16px 59px 14px;
   }
 }
 
 .button--secondary {
-  padding: 11px 39px;
+  padding: 12px 39px 10px;
   border: 1px solid var(--accent-color-1);
   background: var(--background-additional-color);
   color: var(--accent-color-1);
@@ -111,8 +113,7 @@
   }
 
   @media (min-width: $wide-desktop-width) {
-    min-height: 43px;
-    padding: 12px 31px 10px;
+    padding: 16px 59px 14px;
   }
 }
 
