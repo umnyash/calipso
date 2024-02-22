@@ -164,27 +164,8 @@
     padding: 0 0 13px;
   }
 
-  &::before {
-    content: "";
-    width: 16px;
-    height: 16px;
-    background: url("../img/icons.svg#shortcuts_heart");
-  }
-
   @media (min-width: $tablet-width) {
     align-items: center;
-
-    &::before {
-      width: 20px;
-      height: 20px;
-    }
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    &::before {
-      width: 24px;
-      height: 24px;
-    }
   }
 }
 
@@ -217,5 +198,21 @@
 
   &:hover {
     color: var(--accent-color-2);
+  }
+}
+
+.all-brands__like-button {
+  order: -1;
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: $tablet-width) {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    width: 24px;
+    height: 24px;
   }
 }

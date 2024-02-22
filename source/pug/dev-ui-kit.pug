@@ -8,7 +8,7 @@ block content
     .
       .container.dev {
         display: grid;
-        gap: 40px;
+        gap: 60px;
       }
 
       .container.dev > div {
@@ -46,3 +46,15 @@ block content
       p.product__status.product__status--5 В наличии
       p.product__status.product__status--4 Ожидается поступление
       p.product__status.product__status--3 Под заказ
+    div
+      +checker('Россия', false, 'country', 'checkbox', 'russia', true)
+      +checker('Италия', false, 'country', 'checkbox', 'italy')
+      +checker('Франция', false, 'country', 'checkbox', 'france', false, true)
+      +checker('Германия', false, 'country', 'checkbox', 'germany', true, true)
+      +checker('Подпись обязательна, но может быть скрыта визуально', true, 'country', 'checkbox', 'Neverland', true)
+    div
+      +checker('Россия', false, 'country', 'radio', 'russia', true)
+      +checker('Италия', false, 'country', 'radio', 'italy')
+      +checker('Франция', false, 'country', 'radio', 'france', false, true)
+      +checker('Германия', false, 'country-2', 'radio', 'germany', true, true)
+      +checker('Подпись обязательна, но может быть скрыта визуально', true, 'country', 'radio', 'Neverland', true)

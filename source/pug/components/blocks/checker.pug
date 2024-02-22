@@ -1,0 +1,9 @@
+mixin checker(label, labelIsHidden, name, type, value, isChecked, isDisabled)
+  .checker&attributes(attributes)
+    label.checker__inner
+      input.checker__control(name= name type= type value= value checked= isChecked ? true : false disabled= isDisabled ? true : false)
+      if labelIsHidden
+        span.visually-hidden= label
+      else
+        span.checker__label= label
+    block

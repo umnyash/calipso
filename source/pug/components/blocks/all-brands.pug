@@ -20,3 +20,4 @@ mixin all-brands(brands, brandLinks)
                 each brand in brands
                   li.all-brands__item
                     a.all-brands__link(href='brand.html' class= brand.isPremium ? 'all-brands__link--premium' : '')= brand.name
+                    +like-button(class=`all-brands__like-button ${brand.isFavorite ? 'like-button--active' : ''}`)
