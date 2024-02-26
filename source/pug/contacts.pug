@@ -1,0 +1,18 @@
+extends layout/layout
+
+block variables
+  - var title = 'Контакты'
+  - var pageClass = 'contacts-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Контакты' },
+    ])
+  +contacts('Контакты', contacts.main, true)(class='contacts-page__contacts')
+  +contacts('Отдел качества', contacts.qualityDepartment)
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')

@@ -1,0 +1,6 @@
+mixin cart-result
+  .cart-result&attributes(attributes)
+    .cart-result__inner.container
+      h1.cart-result__heading.heading Заказ № 45678 успешно оформлен!
+      p.cart-result__text Уведомления о&nbsp;заказе будут приходить на&nbsp;почту. Более подробно следить за&nbsp;состоянием заказа вы&nbsp;сможете через личный кабинет:
+      +button('a', 'Войти в личный кабинет', '', '#!')(class='cart-result__button button--primary')

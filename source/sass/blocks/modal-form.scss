@@ -9,6 +9,8 @@
   @media (min-width: $tablet-width) {
     padding: 24px;
     border-radius: 10px 10px 0 0;
+    font-size: 16px;
+    line-height: 20px;
   }
 
   @media (min-width: $laptop-width) {
@@ -22,6 +24,24 @@
 
   @media (min-width: $wide-desktop-width) {
     padding: 40px 80px;
+  }
+}
+
+.modal-form__back-button {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 5px;
+  background: url("../img/icons.svg#controls_left-arrow");
+  cursor: pointer;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 10px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -40,6 +60,34 @@
     margin: 0 0 32px;
     font-size: 28px;
     line-height: 34px;
+  }
+}
+
+.modal-form__lead,
+.modal-form__footer-text {
+  font-size: 12px;
+  line-height: 14px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.modal-form__heading + .modal-form__lead {
+  margin: -15px 0 20px;
+
+  @media (min-width: $tablet-width) {
+    margin: -14px 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: -22px 0 24px;
   }
 }
 
@@ -68,8 +116,16 @@
   border: none;
   margin: 20px 0 0;
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $wide-desktop-width) {
     margin: 24px 0 0;
+  }
+}
+
+.modal-form__footer-text {
+  margin: 0 0 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 16px;
   }
 }
 

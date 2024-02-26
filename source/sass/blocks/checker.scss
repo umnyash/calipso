@@ -1,8 +1,11 @@
 .checker__inner {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 10px;
   align-items: center;
+}
+
+.checker__label {
+  margin: 0 0 0 10px;
 }
 
 .checker__control {
@@ -13,6 +16,7 @@
   margin: 0;
   place-items: center;
   background: var(--background-additional-color);
+  outline: none;
   transition-property: border-color, background-color;
   transition-duration: $little-interaction-duration;
   transition-timing-function: $little-interaction-timing-function;
@@ -23,6 +27,10 @@
 
   &:enabled {
     cursor: pointer;
+  }
+
+  &:focus {
+    @include main-shadow;
   }
 
   &:disabled {
@@ -94,7 +102,15 @@
     }
   }
 
-  @media (min-width: $tablet-width) {
+  // + .checker__label {
+  //   margin: 0 0 0 5px;
+
+  //   @media (min-width: $wide-desktop-width) {
+  //     margin: 0 0 0 10px;
+  //   }
+  // }
+
+  @media (min-width: $wide-desktop-width) {
     width: 24px;
     height: 24px;
 
@@ -102,6 +118,26 @@
       width: 16px;
       height: 16px;
     }
+  }
+}
+
+.checkbox--error .checker__control {
+  border-color: var(--accent-color-2);
+}
+
+.checkbox__error-text {
+  margin: 5px 0 0;
+  font: 500 12px/14px $main-font-family;
+  color: var(--accent-color-2);
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
   }
 }
 

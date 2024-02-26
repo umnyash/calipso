@@ -1,0 +1,26 @@
+mixin cart-item(product, isInForm)
+  .cart-item(class= isInForm ? 'cart-item--in-form' : '')&attributes(attributes)
+    h3.cart-item__heading
+      a.cart-item__link(href='product.html') Кресло Chill, розово-серый
+    if isInForm
+      +checker('Кресло Chill', true, 'products', 'checkbox', 'Chair Chill', true)(class='cart-item__checkbox')
+      +delete-button(class='cart-item__delete-button')
+    img.cart-item__image(src='img/products/product-4-1.webp' srcset='img/products/product-4-1@2x.webp 2x' alt='')
+    dl.cart-item__list
+      if !isInForm
+        .cart-item__list-item
+          dt.cart-item__list-key Количество:
+          dd.cart-item__list-value 1 шт.
+      .cart-item__list-item
+        dt.cart-item__list-key Размер:
+        dd.cart-item__list-value 150 см х 90 см
+      .cart-item__list-item
+        dt.cart-item__list-key Бренд:
+        dd.cart-item__list-value Calligaris
+    if isInForm
+      +counter('Количество', 'count', '1')(class='cart-item__counter')
+    .cart-item__prices
+      p.cart-item__price(class= product.discount ? 'cart-item__price--accent': '')= `${product.price} ₽`
+      if product.discount
+        s.cart-item__old-price= `${product.price} ₽`
+        p.cart-item__discount= `-${product.discount}%`

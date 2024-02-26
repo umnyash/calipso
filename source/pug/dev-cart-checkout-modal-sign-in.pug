@@ -9,9 +9,13 @@ prepend styles
 
 block content
   +back-link('Вернуться к покупкам', 'catalog.html')
-  +page-heading('Корзина')
-  +cart-form
+  +page-heading('Оформление заказа')
+  +cart-form(true, 'delivery', 1)
   +map-marker-template
+
+append modals
+  +modal(class='modal--with_form modal--open')
+    +sign-in-form(class='modal__form')
 
 prepend scripts
   script(src='vendor/choices/choices.min.js')

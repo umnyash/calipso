@@ -5,11 +5,11 @@
  */
 
 .hidden {
-  // &--m-t {
-  //   @media (max-width: ($laptop-width - 1)) {
-  //     display: none;
-  //   }
-  // }
+  &--m-t {
+    @media (max-width: ($desktop-width - 1)) {
+      display: none;
+    }
+  }
 
   // &--m-l-d {
   //   @media (max-width: ($tablet-width - 1)) {
@@ -20,6 +20,7 @@
   //     display: none;
   //   }
   // }
+
 
   &--wd {
     @media (min-width: $wide-desktop-width) {

@@ -1,0 +1,6 @@
+mixin placeholder(heading, text, linkText, linkHref)
+  .placeholder&attributes(attributes)
+    .placeholder__inner.container
+      h1.placeholder__heading.heading= heading
+      p.placeholder__text= text
+      +button('a', linkText, '', linkHref)(class='placeholder__button button--primary')

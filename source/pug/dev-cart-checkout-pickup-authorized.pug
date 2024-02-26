@@ -3,14 +3,15 @@ extends layout/layout
 block variables
   - var title = 'Корзина'
   - var pageClass = 'cart-page'
+  - var isAuthorized = true
 
 prepend styles
   link(rel='stylesheet' href='vendor/choices/choices.min.css')
 
 block content
   +back-link('Вернуться к покупкам', 'catalog.html')
-  +page-heading('Корзина')
-  +cart-form
+  +page-heading('Оформление заказа')
+  +cart-form(true, 'pickup')
   +map-marker-template
 
 prepend scripts

@@ -183,7 +183,7 @@
 
 .product-header__form-buttons {
   @media (max-width: ($desktop-width - 1)) {
-    display: none;
+    // display: none;
     //////////
     position: fixed;
     z-index: 1;

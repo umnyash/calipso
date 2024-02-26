@@ -1,0 +1,25 @@
+mixin contacts-list(contacts, withSocials)
+  dl.contacts-list&attributes(attributes)
+    each group in contacts
+      .contacts-list__group
+        dt.contacts-list__key= group.heading
+        dd.contacts-list__value
+          ul.contacts-list__list
+            each contact in group.list
+              li.contacts-list__item
+                case contact.type
+                  when 'address'
+                    span.contacts-list__link.contacts-list__link--address!= contact.text
+                  when 'time'
+                    span.contacts-list__link.contacts-list__link--time= contact.text
+                  when 'tel'
+                    a.contacts-list__link.contacts-list__link--tel(href=`tel:${contact.tel}`)= contact.text
+                  when 'email'
+                    a.contacts-list__link.contacts-list__link--email(href=`mailto:${contact.text}`)= contact.text
+                  default
+                    span.contacts-list__link= contact.text
+    if withSocials
+      .contacts-list__group
+        dt.visually-hidden Социальные сети
+        dd.contacts-list__value
+          +socials(class='contacts-list__list socials--sizes_s-m-m-m')

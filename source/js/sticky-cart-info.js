@@ -1,15 +1,15 @@
 import { throttle } from './util.js';
 
-function initProductHeaderStickyFormButtons(buttonsWrapperElement) {
+function initStickyCartInfo(buttonsWrapperElement) {
   const box = document.querySelector('.page__inner');
 
   const onBoxScroll = () => {
     const isPageScrolledDown = box.scrollHeight - box.scrollTop === box.clientHeight;
 
     if (!isPageScrolledDown) {
-      buttonsWrapperElement.classList.add('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.add('cart-form__info--sticked');
     } else {
-      buttonsWrapperElement.classList.remove('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.remove('cart-form__info--sticked');
     }
   };
 
@@ -18,4 +18,4 @@ function initProductHeaderStickyFormButtons(buttonsWrapperElement) {
   onBoxScroll();
 }
 
-export { initProductHeaderStickyFormButtons };
+export { initStickyCartInfo };

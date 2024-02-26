@@ -6,6 +6,7 @@ include ../data/products
 include ../data/styles
 include ../data/rooms
 include ../data/brands
+include ../data/contacts
 
 include ../components/components
 
@@ -28,7 +29,8 @@ html.page(class= pageClass lang='ru')
       +site-header(class='page__site-header')
       main.page__content
         block content
-      +site-footer
+      if pageClass !== 'cart-page'
+        +site-footer
     block modals
     block scripts
       script(src='js/script.min.js')

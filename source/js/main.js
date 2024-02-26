@@ -14,7 +14,8 @@ import { initProductGallery } from './product-gallery.js';
 import { initProductGalleryModal } from './product-gallery-modal.js';
 import { openModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
-
+import { initStickyCartInfo } from './sticky-cart-info.js';
+import { initSelect } from './select.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -33,7 +34,8 @@ document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcu
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);
 document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
-
+document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
+document.querySelectorAll('.select').forEach(initSelect);
 
 const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');
 if (productGalleryModalElement) {

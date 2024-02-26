@@ -1,0 +1,11 @@
+mixin contacts(heading, contacts, isMain)
+  if isMain
+    .contacts&attributes(attributes)
+      .contacts__inner.container
+        h1.contacts__heading.heading= heading
+        +contacts-list(contacts, true)(class='contacts__list')
+  else
+    section.contacts&attributes(attributes)
+      .contacts__inner.container
+        h2.contacts__heading.heading= heading
+        +contacts-list(contacts)(class='contacts__list')

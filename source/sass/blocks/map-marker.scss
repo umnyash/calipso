@@ -8,7 +8,9 @@
   width: 38px;
   height: auto;
   transform: translate(-50%, -100%);
+}
 
+.map-marker--big .map-marker__image {
   @media (min-width: $tablet-width) {
     width: 50px;
   }

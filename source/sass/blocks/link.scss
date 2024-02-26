@@ -40,3 +40,32 @@
 .link--alter {
   color: var(--text-alter-color);
 }
+
+.link--back {
+  grid-template-columns: auto 1fr;
+
+  &::after {
+    order: -1;
+    transform: scaleX(-1);
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 14px;
+    line-height: 17px;
+
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 24px;
+
+    &::after {
+      width: 28px;
+      height: 28px;
+    }
+  }
+}

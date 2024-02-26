@@ -1,0 +1,15 @@
+.delete-button {
+  padding: 0;
+  border: none;
+  background: var(--text-weak-color);
+  mask: url("../img/icons.svg#bin") 0 0 / contain;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--accent-color-2);
+  }
+
+  &:active {
+    background: var(--text-color);
+  }
+}
