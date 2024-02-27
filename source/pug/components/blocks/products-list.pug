@@ -1,5 +1,8 @@
-mixin products-list(products)
-  ul.products-list&attributes(attributes)
+mixin products-list(products, size)
+  ul.products-list(class= size === 's' ? 'products-list--size_s' : '')&attributes(attributes)
     each product in products
       li.products-list__item
-        +product-card(product)(class='product-card--size_xl')
+        if size === 's'
+          +product-card(product)(class='product-card--size_s')
+        else
+          +product-card(product)(class='product-card--size_xl')

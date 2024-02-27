@@ -232,3 +232,17 @@
     max-width: $tablet-edge-indent + 640 + $tablet-edge-indent;
   }
 }
+
+.page__content > .contacts + .centered-feedback-form {
+  @media (min-width: $tablet-width) {
+    margin-top: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-top: 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 60px;
+  }
+}

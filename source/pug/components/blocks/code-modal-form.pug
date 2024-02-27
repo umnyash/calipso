@@ -1,4 +1,4 @@
-mixin code-form
+mixin code-modal-form
   form.modal-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
     a.modal-form__back-button(href='#!')
       span.visually-hidden Назад
@@ -8,4 +8,4 @@ mixin code-form
       +text-field('Код подтверждения:', 'code', 'text', '', 'Код подтверждения', true)
     fieldset.modal-form__footer
       p.modal-form__footer-text Повторный запрос кода доступен через 55&nbsp;сек.
-      +button('button', 'Войти', 'submit')(class='modal-form__submit-button button--primary')
+      +button('button', 'Войти', 'submit')(class='modal-form__submit-button button--primary' disabled)

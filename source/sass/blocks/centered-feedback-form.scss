@@ -1,0 +1,11 @@
+.centered-feedback-form__form {
+  @media (max-width: ($tablet-width - 1)) {
+    margin: 0 (-$mobile-edge-indent);
+  }
+
+  max-width: 834px;
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1160px;
+  }
+}

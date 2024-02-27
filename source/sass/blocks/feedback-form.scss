@@ -1,0 +1,98 @@
+.feedback-form {
+  box-sizing: border-box;
+  padding: 24px 16px;
+  background: var(--background-additional-color);
+
+  @media (min-width: $tablet-width) {
+    padding: 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 24px 40px;
+    border-radius: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 80px;
+  }
+}
+
+.feedback-form__heading {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  font: 500 16px/19px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 20px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 24px;
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+.feedback-form__section {
+  display: grid;
+  padding: 0;
+  border: none;
+  margin: 0;
+  gap: 8px;
+
+  @media (min-width: $desktop-width) {
+    gap: 10px;
+  }
+}
+
+.feedback-form__textarea {
+  height: 90px;
+
+  @media (min-width: $wide-desktop-width) {
+    height: 140px;
+  }
+}
+
+.feedback-form__footer {
+  padding: 0;
+  border: none;
+  margin: 20px 0 0;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 24px 0 0;
+  }
+}
+
+.feedback-form__submit-button {
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    width: auto;
+  }
+}
+
+.feedback-form__comment {
+  display: block;
+  margin: 5px 0 0;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--text-weak-color);
+
+  @media (min-width: $tablet-width) {
+    margin: 10px 0 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.feedback-form__comment-link {
+  color: inherit;
+}

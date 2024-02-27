@@ -12,7 +12,9 @@ block content
       { text: 'Контакты' },
     ])
   +contacts('Контакты', contacts.main, true)(class='contacts-page__contacts')
-  +contacts('Отдел качества', contacts.qualityDepartment)
+  +centered-feedback-form
+  +appointment
+  +map-marker-template(true)
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

@@ -1,0 +1,11 @@
+mixin feedback-form
+  form.feedback-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
+    h2.feedback-form__heading Обратная связь
+    fieldset.feedback-form__section
+      +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)
+      +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)
+      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)
+      +textarea('Ваш комментарий:', 'text', '', 'Комментарий', true)(class='feedback-form__textarea')
+    fieldset.feedback-form__footer
+      +button('button', 'Отправить', 'submit')(class='feedback-form__submit-button button--primary')
+      small.feedback-form__comment Нажимая на кнопку «Отправить», я соглашаюсь с #[a.feedback-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
