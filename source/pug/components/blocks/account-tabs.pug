@@ -1,0 +1,19 @@
+mixin account-tabs(heading)
+  .account-tabs&attributes(attributes)
+    .taber&attributes(attributes)
+      ul.taber__list.taber__list--wide
+        li.taber__tab-wrapper
+          a.taber__tab(href='#account-tab-orders') Мои заказы
+        li.taber__tab-wrapper
+          a.taber__tab(href='#account-tab-profile') Профиль
+        li.taber__tab-wrapper
+          a.taber__tab(href='#account-tab-favorites') Избранное #[span.taber__tab-counter (24)]
+      section.taber__panel(id='account-tab-orders')
+        h2.visually-hidden Мои заказы
+        +orders-folds(orders)(class='taber__panel-orders-folds')
+      section.taber__panel(id='account-tab-profile')
+        h2.visually-hidden Профиль
+        +profile(class='taber__panel-profile-form')
+      section.taber__panel(id='account-tab-favorites')
+        h2.visually-hidden Избранные
+        +favorites-list(products.slice(0, 6))

@@ -21,6 +21,7 @@
 
 .taber__tab {
   display: grid;
+  box-sizing: border-box;
   padding: 7px 23px;
   border: 1px solid var(--accent-color-1);
   border-radius: 50px;
@@ -77,5 +78,50 @@
 
   to {
     opacity: 1;
+  }
+}
+
+.taber__panel-orders-folds {
+  max-width: 834px;
+
+  @media (max-width: ($tablet-width - 1)) {
+    margin: 0 (-$mobile-edge-indent);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1160px;
+  }
+}
+
+.taber__panel-profile-form {
+  max-width: 834px;
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1160px;
+  }
+}
+
+.taber__list--wide {
+  @media (min-width: $tablet-width) {
+    gap: 10px;
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 12px 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 12px 40px;
+  }
+
+
+  .taber__tab {
+    @media (min-width: $desktop-width) {
+      min-width: 260px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      min-width: 360px;
+    }
   }
 }

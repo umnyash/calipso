@@ -8,8 +8,12 @@ mixin contacts-list(contacts, withSocials)
             each contact in group.list
               li.contacts-list__item
                 case contact.type
+                  when 'empty'
+                    span.contacts-list__link.contacts-list__link--empty!= contact.text
                   when 'address'
                     span.contacts-list__link.contacts-list__link--address!= contact.text
+                  when 'comment'
+                    span.contacts-list__link.contacts-list__link--comment!= contact.text
                   when 'time'
                     span.contacts-list__link.contacts-list__link--time= contact.text
                   when 'tel'

@@ -1,0 +1,25 @@
+.profile {
+  display: grid;
+}
+
+.profile__button {
+  justify-self: end;
+  margin: 0 0 20px;
+  font: 600 12px/14px $main-font-family;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-color-1);
+
+  &:hover {
+    color: var(--accent-color-2);
+  }
+
+  @media (min-width: $tablet-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 24px;
+  }
+}

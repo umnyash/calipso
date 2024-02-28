@@ -1,7 +1,5 @@
-mixin favorites(products, isMain)
+mixin favorites(products)
   .favorites&attributes(attributes)
     .favorites__inner.container
-      if isMain
-        h1.favorites__heading.heading Избранное
-      button.favorites__clear-button(type='button') Очистить все
-      +products-list(products, 's')(class='favorites__list')
+      h1.favorites__heading.heading Избранное
+      +favorites-list(products)

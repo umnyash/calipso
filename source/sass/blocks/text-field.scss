@@ -22,6 +22,7 @@
 }
 
 .text-field__control-wrapper {
+  position: relative;
   display: grid;
   border: 1px solid var(--border-color-dark);
   border-radius: 8px;
@@ -94,6 +95,76 @@
   }
 }
 
+.text-field__edit-button {
+  display: grid;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 1px 9px 0 0;
+  border: none;
+  grid-auto-flow: column;
+  gap: 10px;
+  align-items: center;
+  font: inherit;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--text-weak-color);
+  background: transparent;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: currentColor;
+    mask: url("../img/icons.svg#edit");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:hover {
+    color: var(--accent-color-1);
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 1px 23px 0 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.text-field--accent {
+  font-size: 14px;
+  line-height: 17px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .text-field__control {
+    padding: 12px 9px 9px;
+
+    @media (min-width: $tablet-width) {
+      padding: 10px 23px 9px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      padding: 14px 23px 13px;
+    }
+  }
+}
+
 .text-field--big {
   font-size: 14px;
   line-height: 17px;
@@ -124,4 +195,51 @@
 .text-field__error-text {
   margin: 5px 0 0;
   color: var(--accent-color-2);
+}
+
+.text-field__control[type="date"] {
+  width: 150%;
+}
+
+.text-field--date {
+  .text-field__control {
+    width: 150%;
+  }
+
+  .text-field__calendar-button {
+    display: grid;
+    box-sizing: border-box;
+    height: 100%;
+    padding: 1px 9px 0;
+    border: none;
+    align-items: center;
+    color: var(--text-weak-color);
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent-color-1);
+    }
+
+    @media (min-width: $tablet-width) {
+      padding: 1px 23px 0;
+    }
+  }
+
+  .text-field__calendar-button::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: currentColor;
+    mask: url("../img/icons.svg#calendar");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .air-datepicker {
+    position: absolute;
+  }
 }

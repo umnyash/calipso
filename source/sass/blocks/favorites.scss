@@ -10,30 +10,30 @@
   }
 }
 
-.favorites__clear-button {
-  padding: 0;
-  border: none;
-  margin: 0 0 20px auto;
-  font: 600 12px/14px $main-font-family;
-  text-transform: uppercase;
-  color: var(--accent-color-1);
-  cursor: pointer;
+// .favorites__clear-button {
+//   padding: 0;
+//   border: none;
+//   margin: 0 0 20px auto;
+//   font: 600 12px/14px $main-font-family;
+//   text-transform: uppercase;
+//   color: var(--accent-color-1);
+//   cursor: pointer;
 
-  &:hover {
-    color: var(--accent-color-2);
-  }
+//   &:hover {
+//     color: var(--accent-color-2);
+//   }
 
-  @media (min-width: $desktop-width) {
-    font-size: 14px;
-    line-height: 17px;
-  }
+//   @media (min-width: $desktop-width) {
+//     font-size: 14px;
+//     line-height: 17px;
+//   }
 
-  @media (min-width: $wide-desktop-width) {
-    font-size: 16px;
-    line-height: 19px;
-  }
-}
+//   @media (min-width: $wide-desktop-width) {
+//     font-size: 16px;
+//     line-height: 19px;
+//   }
+// }
 
-.favorites__list {
-  margin: 0;
-}
+// .favorites__list {
+//   margin: 0;
+// }

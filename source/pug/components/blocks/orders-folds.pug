@@ -1,0 +1,36 @@
+mixin orders-folds(orders)
+  ul.orders-folds.folds&attributes(attributes)
+    each order, index in orders
+      li.orders-folds__item.folds__item(class= order.status === 'awaiting-payment' ? 'folds__item--open' : false)
+        .orders-folds__header
+          h3.orders-folds__heading= `Заказ № ${order.id}`
+          .orders-folds__info
+            time.orders-folds__date(datetime='2024-02-27') 27.02.2024
+            p.orders-folds__count 2 товара
+          case order.status
+            when 'сanceled'
+              p.orders-folds__status.orders-folds__status--canceled Отменен
+            when 'awaiting-payment'
+              p.orders-folds__status.orders-folds__status--awaiting-payment Ожидает оплаты
+            when 'paid-and-accepted'
+              p.orders-folds__status.orders-folds__status--paid-and-accepted Оплачен и принят в работу
+            when 'passed-for-delivery'
+              p.orders-folds__status.orders-folds__status--passed-for-delivery Передан в доставку
+            when 'delivered'
+              p.orders-folds__status.orders-folds__status--delivered Доставлен
+          button.orders-folds__button.folds__button(type='button' aria-expanded= order.status === 'awaiting-payment' ? 'true' : 'false')
+            span.orders-folds__button-open-text Свернуть
+            span.orders-folds__button-close-text Развернуть
+        .orders-folds__content-wrapper.folds__content-wrapper
+          .orders-folds__content.folds__content
+            ul.orders-folds__list
+              li.orders-folds__list-item
+                +cart-item(products[0])
+              li.orders-folds__list-item
+                +cart-item(products[2])
+            .orders-folds__prices
+              p.orders-folds__price Итого: #[span.orders-folds__price-value 30 000 ₽]
+              if order.discount
+                s.orders-folds__old-price 45 000 ₽
+                p.orders-folds__discount -10%
+            +contacts-list(contacts.order)(class='orders-folds__contacts-list contacts-list--alter-2')

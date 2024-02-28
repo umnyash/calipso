@@ -195,11 +195,11 @@
 
   @media (min-width: $desktop-width) {
     padding: 24px 40px;
+    border-radius: 16px;
   }
 
   @media (min-width: $wide-desktop-width) {
     padding: 40px 80px;
-    border-radius: 16px;
     gap: 16px;
   }
 }

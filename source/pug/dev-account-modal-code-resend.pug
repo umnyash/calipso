@@ -1,0 +1,25 @@
+extends layout/layout
+
+block variables
+  - var title = 'Личный кабинет'
+  - var pageClass = 'account-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+  link(rel='stylesheet' href='vendor/air-datepicker/air-datepicker.css')
+  link(rel='stylesheet' href='vendor/choices/choices.min.css')
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Личный кабинет' },
+    ])
+  +account
+
+append modals
+  +modal(class='modal--with_form modal--open')
+    +code-modal-form('Подтвердить')(class='modal__form')
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')
+  script(src='vendor/air-datepicker/air-datepicker.js')
+  script(src='vendor/choices/choices.min.js')

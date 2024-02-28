@@ -1,0 +1,25 @@
+.folds__content-wrapper {
+  position: relative;
+  overflow: hidden;
+  transition: height $drawer-timing-duration $drawer-timing-function;
+}
+
+.folds__content {
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  visibility: hidden;
+  transition: visibility $drawer-timing-duration step-end;
+}
+
+.folds__item:not(.folds__item--open) .folds__content-wrapper {
+  height: 0 !important; // stylelint-disable-line
+}
+
+.folds__item--open {
+  .folds__content {
+    visibility: visible;
+    transition-timing-function: step-start;
+  }
+}

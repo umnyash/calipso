@@ -1,0 +1,7 @@
+mixin account
+  .account&attributes(attributes)
+    .account-inner.container
+      h1.visually-hidden Личный кабинет
+      p.account__heading.heading Пользователь 1234
+      a.account__phone(href='tel:+78314351266') +7 (831) 435-12-66
+      +account-tabs

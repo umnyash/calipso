@@ -1,7 +1,9 @@
 .alert {
+  display: grid;
   box-sizing: border-box;
   padding: 24px 16px;
   border-radius: 16px 16px 0 0;
+  gap: 10px;
   font: 500 14px/17px $main-font-family;
   background: var(--background-additional-color);
 
@@ -21,6 +23,7 @@
   @media (min-width: $desktop-width) {
     padding: 40px 60px;
     border-radius: 16px;
+    gap: 24px;
   }
 
   @media (min-width: $wide-desktop-width) {
@@ -31,17 +34,13 @@
 }
 
 .alert__heading {
-  margin: 0 0 10px;
+  margin: 0;
   text-transform: uppercase;
   font: 500 16px/19px $main-font-family;
 
   @media (min-width: $tablet-width) {
     font-size: 20px;
     line-height: 24px;
-  }
-
-  @media (min-width: $desktop-width) {
-    margin: 0 0 24px;
   }
 
   @media (min-width: $wide-desktop-width) {
@@ -51,15 +50,7 @@
 }
 
 .alert__text {
-  margin: 0 0 10px;
-
-  @media (min-width: $tablet-width) {
-    margin: 0 0 12px;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    margin: 0 0 16px;
-  }
+  margin: 0;
 }
 
 .alert__button.alert__button {
@@ -70,7 +61,11 @@
     margin: 12px 0 0;
   }
 
+  @media (min-width: $desktop-width) {
+    margin: 0;
+  }
+
   @media (min-width: $wide-desktop-width) {
-    margin: 16px 0 0;
+    margin: 8px 0 0;
   }
 }

@@ -41,7 +41,14 @@ function initTaber(taber, idPrefix) { // (1)
     panelElements[index].classList.remove('taber__panel--hidden');
   };
 
-  switchTab(null, tabElements[0], true);
+  const openStartTab = () => {
+    const targetTabHash = window.location.hash;
+    const targetTab = tabElements.find((tabElement) => tabElement.hash === targetTabHash);
+
+    switchTab(null, targetTab || tabElements[0], true);
+  };
+
+  openStartTab();
 
   listElement.addEventListener('click', (evt) => {
     evt.preventDefault();

@@ -16,6 +16,8 @@ import { openModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
 import { initSelect } from './select.js';
+import { initFolds } from './folds.js';
+import { initDateFieldCalendar } from './date-field-calendar.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -36,6 +38,8 @@ document.querySelectorAll('.product-images').forEach(initProductImages);
 document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.select').forEach(initSelect);
+document.querySelectorAll('.folds').forEach(initFolds);
+document.querySelectorAll('.text-field--date .text-field__control-wrapper').forEach(initDateFieldCalendar);
 
 const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');
 if (productGalleryModalElement) {

@@ -1,0 +1,42 @@
+.account__heading {
+  margin: 0 0 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 20px;
+  }
+}
+
+.account__phone {
+  display: grid;
+  margin: 0 0 20px;
+  grid-auto-flow: column;
+  gap: 5px;
+  justify-content: start;
+  align-items: center;
+  font: 600 14px/17px $main-font-family;
+  text-decoration: none;
+  color: inherit;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+    font-size: 18px;
+    line-height: 1;
+    margin: 0 0 24px;
+  }
+
+  &::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url("../img/icons.svg#contacts_phone");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

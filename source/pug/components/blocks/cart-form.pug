@@ -31,7 +31,7 @@
   };
 
 mixin cart-form(isCheckout, receivingMethod, promocodeStage)
-  form.cart-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+  form.cart-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
     .cart-form__buttons
       button.cart-form__choose-all-button(type='button' class= isCheckout ? 'cart-form__choose-all-button--active' : '') Выбрать все
       button.cart-form__delete-selected-button(type='button') Удалить выбранные
@@ -47,7 +47,7 @@ mixin cart-form(isCheckout, receivingMethod, promocodeStage)
           legend.cart-form__section-heading Заполните информацию о себе
           if !isAuthorized
             p.cart-form__message Войдите в личный кабинет #[a.cart-form__message-link(href='#!') Войти]
-          +text-field('Ваш имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--wide')
+          +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--wide')
           +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='cart-form__item cart-form__item--wide')
           +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='cart-form__item cart-form__item--wide')
       fieldset.cart-form__section

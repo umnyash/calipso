@@ -2,7 +2,7 @@ mixin product-question-modal-form
   form.modal-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
     h2.modal-form__heading Задать вопрос по товару
     fieldset.modal-form__section
-      +text-field('Ваш имя:', 'name', 'text', '', 'Имя', true)
+      +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)
       +text-field('Ваша фамилия:', 'surname', 'text', '', 'Фамилия', true)
       +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)
       +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)

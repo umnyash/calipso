@@ -1,0 +1,4 @@
+mixin favorites-list(products)
+  .favorites-list&attributes(attributes)
+    button.favorites-list__clear-button(type='button') Очистить все
+    +products-list(products, 's')(class='favorites-list__list')

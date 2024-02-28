@@ -1,4 +1,4 @@
-mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, isDisabled)
+mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, isDisabled, isWithEditButton)
   .text-field&attributes(attributes)
     label.text-field__inner
       span.visually-hidden= label
@@ -7,4 +7,9 @@ mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, 
         if type === 'email'
           button.text-field__clear-button(type='button')
             span.visually-hidden Очистить
+        if type === 'date'
+          button.text-field__calendar-button(type='button' aria-hidden='true')
+            span.visually-hidden Показать окно выбора даты
+        if isWithEditButton
+          button.text-field__edit-button(type='button') Изменить номер
     block
