@@ -27,17 +27,20 @@ export default {
     dest: `${pathDest}/img`
   },
 
+  // createWebp: {
+  //   src: `${pathSrc}/img/**/*.{png,jpg}`,
+  //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
+  //   dest: `${pathDest}/img`
+  // },
+
   createWebp: {
-    src: `${pathSrc}/img/**/*.{png,jpg}`,
+    src: [
+      `${pathSrc}/img/products3/*.{png,jpg}`,
+      `${pathSrc}/img/articles3/*.{png,jpg}`,
+    ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
   },
-
-  // createWebp: {
-  //   src: `${pathSrc}/img/products/*.{png,jpg}`,
-  //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
-  //   dest: `${pathDest}/img/products`
-  // },
 
   optimizeVector: {
     src: [
@@ -51,20 +54,25 @@ export default {
     dest: `${pathDest}/img`
   },
 
-  processMarkup: {
-    src: `${pathSrc}/pug/*.pug`,
-    watch: `${pathSrc}/pug/**/*.pug`,
-    dest: pathDest,
-  },
-
   // processMarkup: {
-  //   src: [
-  //     `${pathSrc}/pug/index.pug`,
-  //     `${pathSrc}/pug/dev-site-map.pug`
-  //   ],
+  //   src: `${pathSrc}/pug/*.pug`,
   //   watch: `${pathSrc}/pug/**/*.pug`,
   //   dest: pathDest,
   // },
+
+  processMarkup: {
+    src: [
+      `${pathSrc}/pug/brands.pug`,
+      `${pathSrc}/pug/dev-index-cities.pug`,
+      `${pathSrc}/pug/dev-index-search-modal.pug`,
+      `${pathSrc}/pug/search.pug`,
+      `${pathSrc}/pug/brands.pug`,
+      `${pathSrc}/pug/dev-search-articles.pug`,
+      `${pathSrc}/pug/dev-site-map.pug`,
+    ],
+    watch: `${pathSrc}/pug/**/*.pug`,
+    dest: pathDest,
+  },
 
   processScripts: {
     src: `${pathSrc}/js/*.js`,

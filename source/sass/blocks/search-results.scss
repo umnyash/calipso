@@ -1,0 +1,31 @@
+.search-results {
+  display: grid;
+  gap: 10px;
+  font: 500 14px/17px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+    font-size: 26px;
+    line-height: 31px;
+  }
+}
+
+.search-results__heading {
+  margin: 0;
+}
+
+.search-results__text {
+  margin: 0;
+  color: var(--text-weak-color);
+}
+
+.search-results__filter {
+  @media (min-width: $wide-desktop-width) {
+    margin: 4px 0 0;
+  }
+}

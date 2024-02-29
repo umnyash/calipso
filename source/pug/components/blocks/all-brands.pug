@@ -2,8 +2,7 @@ mixin all-brands(brands, brandLinks)
   section.all-brands&attributes(attributes)
     .all-brands__inner.container
       h2.all-brands__heading.heading Все бренды
-      form.all-brands__form(action='https://echo.htmlacademy.ru' method='get' target='_blank')
-        +text-field('Поиск:', 'query', 'search', '', 'Найти бренд', true)(class='all-brands__form-item text-field--big text-field--search')
+      +search-form('Поиск', 'query', 'Найти бренд')(class='all-brands__form')
       ul.all-brands__navigation
         each link, index in brandLinks
           li.all-brands__navigation-item

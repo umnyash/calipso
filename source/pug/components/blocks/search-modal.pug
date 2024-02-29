@@ -2,7 +2,7 @@ mixin search-modal(isEmpty)
   section.search-modal&attributes(attributes)
     .search-modal__inner
       h2.visually-hidden Поиск по сайту
-      +text-field('Поиск:', 'query', 'search', '', 'Поиск', true)(class='search-modal__field text-field--big text-field--alter text-field--search')
+      +search-form('Поиск', 'query', 'Поиск')(class='search-modal__form')
       if isEmpty
         ul.search-modal__popular-list
           li.search-modal__popular-list-item

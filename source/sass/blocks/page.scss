@@ -215,6 +215,19 @@
   }
 }
 
+.page__content > .search + .catalog,
+.page__content > .search + .articles {
+  margin-top: 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-top: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 40px;
+  }
+}
+
 .contacts-page__contacts {
   @media (max-width: ($desktop-width - 1)) {
     max-width: $tablet-edge-indent + 640 + $tablet-edge-indent;

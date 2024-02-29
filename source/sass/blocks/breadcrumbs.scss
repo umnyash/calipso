@@ -21,10 +21,14 @@
 
 .breadcrumbs__item {
   display: inline;
+
+  &:not(:last-child)::after {
+    content: "\0020";
+  }
 }
 
 .breadcrumbs__item + .breadcrumbs__item::before {
-  content: "/ ";
+  content: "/\0020";
   pointer-events: none;
 }
 

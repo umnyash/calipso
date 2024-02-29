@@ -1,0 +1,21 @@
+-
+  var searchFilter = {
+    name: 'type',
+    variants: [
+      {
+        label: 'Товары',
+        value: 'products',
+        isChecked: true,
+      },
+      {
+        label: 'Статьи',
+        value: 'articles',
+      },
+    ],
+  };
+
+mixin search-results
+  .search-results&attributes(attributes)
+    h1.search-results__heading.heading Результат поиска «дизайнерский стол»
+    p.search-results__text Найдено 236
+    +filter(searchFilter)(class='search-results__filter')

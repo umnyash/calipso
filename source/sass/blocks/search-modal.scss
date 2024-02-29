@@ -34,8 +34,7 @@
   }
 }
 
-.search-modal__field {
-  width: 100%;
+.search-modal__form {
   margin: 0 0 20px;
 
   @media (min-width: $wide-desktop-width) {
@@ -94,7 +93,7 @@
   }
 }
 
-.search-modal__field + .search-modal__result-group {
+.search-modal__form + .search-modal__result-group {
   @media (min-width: $wide-desktop-width) {
     margin-top: 8px;
   }

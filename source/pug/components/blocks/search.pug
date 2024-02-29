@@ -1,0 +1,5 @@
+mixin search
+  .search&attributes(attributes)
+    .search__inner.container
+      +search-form('Поиск', 'query', 'Поиск')(class='search__form')
+      +search-results(class='search__results')
