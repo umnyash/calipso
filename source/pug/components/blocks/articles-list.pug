@@ -1,4 +1,8 @@
-mixin articles-list(articles)
-  ul.articles-list&attributes(attributes)
+mixin articles-list(articles, size)
+  ul.articles-list(class= size ? `articles-list--size_${size}` : '')&attributes(attributes)
     each article in articles
-      +article-preview(article)
+      case size
+        when 's'
+          +article-preview(article, 's')
+        when 'm'
+          +article-preview(article, 'm')

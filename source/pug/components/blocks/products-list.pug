@@ -1,8 +1,11 @@
 mixin products-list(products, size)
-  ul.products-list(class= size === 's' ? 'products-list--size_s' : '')&attributes(attributes)
+  ul.products-list(class= size ? `products-list--size_${size}` : '')&attributes(attributes)
     each product in products
       li.products-list__item
-        if size === 's'
-          +product-card(product)(class='product-card--size_s')
-        else
-          +product-card(product)(class='product-card--size_xl')
+        case size
+          when 'xs'
+            +product-card(product)(class='product-card--size_xs')
+          when 's'
+            +product-card(product)(class='product-card--size_s')
+          when 'xl'
+            +product-card(product)(class='product-card--size_xl')

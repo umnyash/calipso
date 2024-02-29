@@ -29,11 +29,11 @@ mixin articles(articles, isMain)
       .articles__inner
         h1.articles__heading.heading Блог компании
         +filter(articlesFilter)(class='articles__filter')
-        +articles-list(articles)(class='articles__list')
+        +articles-list(articles, 'm')(class='articles__list')
         +pagination(class='articles__pagination')
   else
     section.articles&attributes(attributes)
       .articles__inner
         h2.visually-hidden Блог компании
         +filter(articlesFilter)(class='articles__filter')
-        +articles-list(articles.slice(0, 4))(class='articles__list')
+        +articles-list(articles.slice(0, 4), 'm')(class='articles__list')

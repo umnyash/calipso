@@ -1,5 +1,5 @@
-mixin article-preview(article)
-  li.article-preview&attributes(attributes)
+mixin article-preview(article, size)
+  li.article-preview(class= size ? `article-preview--size_${size}` : '')&attributes(attributes)
     h3.article-preview__heading
       a.article-preview__link(href='#!')!= article.heading
     p.article-preview__label= article.label

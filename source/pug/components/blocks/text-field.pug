@@ -4,7 +4,7 @@ mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, 
       span.visually-hidden= label
       span.text-field__control-wrapper
         input.text-field__control(name= name, type= type, value= value ? value : false, placeholder= placeholder, required= isRequired ? true : false, readonly= isReadonly ? true : false, disabled= isDisabled ? true : false)
-        if type === 'email'
+        if type === 'email' || type === 'search'
           button.text-field__clear-button(type='button')
             span.visually-hidden Очистить
         if type === 'date'

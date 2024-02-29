@@ -27,17 +27,17 @@ export default {
     dest: `${pathDest}/img`
   },
 
-  // createWebp: {
-  //   src: `${pathSrc}/img/**/*.{png,jpg}`,
-  //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
-  //   dest: `${pathDest}/img`
-  // },
-
   createWebp: {
-    src: `${pathSrc}/img/products/*.{png,jpg}`,
+    src: `${pathSrc}/img/**/*.{png,jpg}`,
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
-    dest: `${pathDest}/img/products`
+    dest: `${pathDest}/img`
   },
+
+  // createWebp: {
+  //   src: `${pathSrc}/img/products/*.{png,jpg}`,
+  //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
+  //   dest: `${pathDest}/img/products`
+  // },
 
   optimizeVector: {
     src: [
@@ -59,7 +59,7 @@ export default {
 
   // processMarkup: {
   //   src: [
-  //     `${pathSrc}/pug/account.pug`,
+  //     `${pathSrc}/pug/index.pug`,
   //     `${pathSrc}/pug/dev-site-map.pug`
   //   ],
   //   watch: `${pathSrc}/pug/**/*.pug`,

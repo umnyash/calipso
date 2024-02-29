@@ -1,0 +1,119 @@
+.search-modal {
+  box-sizing: border-box;
+  padding: 63px $mobile-edge-indent 40px;
+  font: 500 14px/17px $main-font-family;
+  background: var(--background-additional-color);
+
+
+  @media (min-width: $tablet-width) {
+    padding: 70px $tablet-edge-indent 40px;
+    border-radius: 0 0 16px 16px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 40px 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 60px 0;
+    font-size: 22px;
+    line-height: 29px;
+  }
+}
+
+.search-modal__inner {
+  @media (min-width: $desktop-width) {
+    max-width: 834px;
+    margin: 0 auto;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1160px;
+  }
+}
+
+.search-modal__field {
+  width: 100%;
+  margin: 0 0 20px;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 32px;
+  }
+}
+
+.search-modal__popular-list {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  @media (max-width: ($tablet-width - 1)) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+}
+
+.search-modal__popular-list-link {
+  display: block;
+  padding: 8px 24px 6px;
+  border: 1px solid currentColor;
+  border-radius: 50px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--accent-color-1);
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 12px 31px 10px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.search-modal__result-group {
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 8px;
+  }
+}
+
+.search-modal__result-group + .search-modal__result-group {
+  margin: 40px 0 0;
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 80px 0 0;
+  }
+}
+
+.search-modal__field + .search-modal__result-group {
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 8px;
+  }
+}
+
+.search-modal__result-group-header {
+  display: grid;
+  margin: 0 0 24px;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+
+.search-modal__result-group-heading {
+  margin: 0;
+  font: inherit;
+  color: var(--text-weak-color);
+}
+
+.search-modal__result-group-list {
+  margin: 0;
+}

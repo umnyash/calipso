@@ -26,7 +26,7 @@
   display: grid;
   border: 1px solid var(--border-color-dark);
   border-radius: 8px;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
   align-items: center;
   background: var(--background-additional-color);
   overflow: hidden;
@@ -41,6 +41,7 @@
     border-radius: 10px;
   }
 }
+
 
 .text-field__control {
   box-sizing: border-box;
@@ -72,12 +73,31 @@
   height: 100%;
   padding: 0;
   border: none;
-  background: transparent url("../img/icons.svg#close") 50% 50% / 20px 20px no-repeat;
+  place-items: center;
+  // background: transparent url("../img/icons.svg#close") 50% 50% / 20px 20px no-repeat;
+  background: transparent;
   cursor: pointer;
+
+  &::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: #000000;
+    mask: url("../img/icons.svg#close");
+  }
+
+  &:hover::before {
+    background: var(--accent-color-2);
+  }
+
+  &:active::before {
+    background: var(--accent-color-2);
+    transform: scale(0.85);
+  }
 }
 
 .text-field__control-wrapper:focus-within .text-field__control:not(:placeholder-shown) + .text-field__clear-button {
-  display: block;
+  display: grid;
 }
 
 .text-field--search .text-field__control-wrapper {
@@ -165,6 +185,10 @@
   }
 }
 
+.text-field--alter .text-field__control-wrapper {
+  background: var(--background-color-dark-2);
+}
+
 .text-field--big {
   font-size: 14px;
   line-height: 17px;
@@ -187,6 +211,38 @@
   margin: 0 23px 0 0;
 }
 
+.text-field--big.text-field--search .text-field__clear-button {
+  position: relative;
+  margin-right: 15px;
+
+  @media (min-width: $wide-desktop-width) {
+    width: 60px;
+    margin-right: 24px;
+    // background-size: 24px 24px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -4px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border-color);
+
+    @media (min-width: $wide-desktop-width) {
+      top: 14px;
+      bottom: 14px;
+    }
+  }
+
+  &::before {
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
 
 .text-field--error .text-field__control-wrapper {
   border-color: var(--accent-color-2);

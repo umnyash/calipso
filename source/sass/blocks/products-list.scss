@@ -2,6 +2,47 @@
   display: grid;
   padding: 0;
   list-style: none;
+}
+
+.products-list--size_xs {
+  grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+  gap: 40px 15px;
+
+  @media (min-width: $tablet-width) {
+    gap: 40px 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(186px, 1fr));
+    gap: 40px 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 40px;
+  }
+}
+
+.products-list--size_s {
+  grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
+  gap: 40px 15px;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(402px, 1fr));
+    gap: 60px 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
+    gap: 80px 40px;
+  }
+}
+
+.products-list--size_xl {
   gap: 40px 20px;
 
   @media (min-width: $mobile-width) {
@@ -20,12 +61,5 @@
   @media (min-width: $wide-desktop-width) {
     grid-template-columns: repeat(auto-fill, minmax(560px, 1fr));
     gap: 80px 40px;
-  }
-}
-
-.products-list--size_s {
-  @media (max-width: ($tablet-width - 1)) {
-    grid-template-columns: repeat(auto-fill, minmax(164px, 1fr));
-    gap: 40px 15px;
   }
 }

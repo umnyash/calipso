@@ -22,11 +22,10 @@ block content
   +subscription-with-image
   +map-marker-template(true)
 
+
 append modals
-  +modal(class='modal--with_cities')
-    +cities(cities, true)(class='modal__cities')
-  +modal(class='modal--with_search')
-    +search-modal(true)(class='modal__search')
+  +modal(class='modal--with_search modal--open')
+    +search-modal(class='modal__search')
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

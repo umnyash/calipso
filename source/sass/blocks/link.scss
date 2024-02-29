@@ -41,6 +41,28 @@
   color: var(--text-alter-color);
 }
 
+.link--small {
+  @media (min-width: $desktop-width) {
+    font-size: 14px;
+    line-height: 17px;
+
+    &::after {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+
+    &::after {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
 .link--back {
   grid-template-columns: auto 1fr;
 

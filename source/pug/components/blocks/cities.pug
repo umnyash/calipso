@@ -1,0 +1,19 @@
+mixin cities(cities, isPopular)
+  form.cities&attributes(attributes)
+    h2.cities__heading Укажите свой город
+    +text-field('Поиск города:', 'city', 'search', '', 'Начните вводить название города', true)(class='cities__search-field text-field--big text-field--alter text-field--search')
+    .cities__scroll-container.swiper
+      .cities__scroll-container-inner.swiper-wrapper
+        .cities__scroll-container-content.swiper-slide
+          if isPopular
+            ul.cities__list.cities__list--popular
+              each city in cities
+                li.cities__item
+                  a.cities__link(href='#!')= city.name
+          else
+            ul.cities__list
+              each city in cities
+                li.cities__item
+                  a.cities__link(href='#!')= `${city.name}, `
+                    span.cities__link-part= city.location
+      .cities__scroll-container-scrollbar.swiper-scrollbar

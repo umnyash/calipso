@@ -19,5 +19,5 @@ mixin catalog
           ul.catalog__applied-options
             li.catalog__applied-option Показывать: #[a.catalog__applied-option-link(href='#!') В наличии]
           +catalog-sorting(class='catalog__sorting')
-        +products-list(products)(class='catalog__list')
+        +products-list(products, 'xl')(class='catalog__list')
         +pagination(class='catalog__pagination')

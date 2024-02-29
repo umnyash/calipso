@@ -279,6 +279,122 @@
   @include visually-hidden;
 }
 
+.product-card--size_xs {
+  @media (max-width: ($desktop-width - 1)) {
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  .product-card__heading-and-signs {
+    @media (max-width: ($desktop-width - 1)) {
+      margin: 0 0 10px 10px;
+    }
+  }
+
+  .product-card__heading {
+    @media (max-width: ($desktop-width - 1)) {
+      font-weight: 500;
+    }
+  }
+
+  .product-card__prices {
+    @media (max-width: ($desktop-width - 1)) {
+      gap: 5px;
+      align-items: flex-end;
+    }
+  }
+
+  .product-card__price {
+    @media (max-width: ($desktop-width - 1)) {
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+
+  .product-card__old-price {
+    @media (max-width: ($desktop-width - 1)) {
+      font-size: 10px;
+      line-height: 13px;
+    }
+  }
+
+  .producr-card__discount {
+    @media (max-width: ($desktop-width - 1)) {
+      padding: 4px 5px 2px;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .product-card__brand {
+    @media (max-width: ($desktop-width - 1)) {
+      padding: 4px 9px;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .product-card__slider-item {
+    @media (max-width: ($desktop-width - 1)) {
+      padding: 8px 8px 12px;
+      height: 116px;
+    }
+  }
+
+  .product-card__slider-pagination.product-card__slider-pagination {
+    @media (max-width: ($desktop-width - 1)) {
+      gap: 5px;
+    }
+  }
+
+  .product-card__slider-pagination-button {
+    @media (max-width: ($desktop-width - 1)) {
+      width: 10px;
+    }
+  }
+
+  .product-card__like-button {
+    @media (max-width: ($desktop-width - 1)) {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
+  .product-card__labels {
+    @media (max-width: ($desktop-width - 1)) {
+      margin: 5px;
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+
+  .product-card__label {
+    @media (max-width: ($desktop-width - 1)) {
+      padding: 6px 10px 4px;
+    }
+  }
+
+  .product-card__premium-label,
+  .product-card__like-button-wrapper {
+    @media (max-width: ($desktop-width - 1)) {
+      min-width: 24px;
+    }
+  }
+
+  .product-card__premium-label {
+    @media (max-width: ($desktop-width - 1)) {
+      min-height: 24px;
+    }
+  }
+
+  .product-card__premium-label::after {
+    @media (max-width: ($desktop-width - 1)) {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}
+
 .product-card--size_s {
   font-size: 16px;
   line-height: 21px;
