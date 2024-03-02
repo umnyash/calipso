@@ -16,10 +16,10 @@ import { openModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
 import { initSelect } from './select.js';
-import { initFolds } from './folds.js';
-import { initDateFieldCalendar } from './date-field-calendar.js';
+import { initFolds, toggleFoldState } from './folds.js';
+import { initDateField } from './date-field.js';
 import { initScrollContainer } from './scroll-container.js';
-import { initCatalogFilters } from './catalog-filters.js';
+import { initCatalogFiltersModal } from './catalog-filters-modal.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -41,11 +41,11 @@ document.querySelectorAll('.product-header__form-buttons').forEach(initProductHe
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
-document.querySelectorAll('.text-field--date .text-field__control-wrapper').forEach(initDateFieldCalendar);
+document.querySelectorAll('.text-field--date').forEach(initDateField);
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
 
-document.querySelectorAll('.catalog-filters').forEach((filtersElement) => {
-  initCatalogFilters(filtersElement, initScrollContainer);
+document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
+  initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);
 });
 
 const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');

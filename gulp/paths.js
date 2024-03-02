@@ -35,7 +35,7 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/products/*.{png,jpg}`,
+      `${pathSrc}/img/products1/*.{png,jpg}`,
     ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
@@ -61,9 +61,7 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/dev-premium-catalog-filters.pug`,
-      `${pathSrc}/pug/premium-catalog.pug`,
-      `${pathSrc}/pug/dev-product-cart-modal.pug`,
+      `${pathSrc}/pug/premium-category.pug`,
       `${pathSrc}/pug/account.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],

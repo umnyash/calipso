@@ -1,24 +1,43 @@
-const initFolds = (foldsElement) => {
+function toggleFoldState(buttonElement) {
+  const foldElement = buttonElement.closest('.folds__item');
+  const contentWrapperElement = foldElement.querySelector('.folds__content-wrapper');
+  const contentElement = contentWrapperElement.querySelector('.folds__content');
+
+  const contentElementHeight = contentElement.getBoundingClientRect().height;
+  contentWrapperElement.style.height = `${contentElementHeight}px`;
+
+  // contentElement.style.position = 'absolute'; // (1)
+
+  setTimeout(() => { // (2)
+    foldElement.classList.toggle('folds__item--open');
+  }, 20);
+
+  buttonElement.ariaExpanded = buttonElement.ariaExpanded === 'true' ? 'false' : 'true';
+}
+
+function initFolds(foldsElement) {
   foldsElement.addEventListener('click', ({ target }) => {
     const buttonElement = target.closest('.folds__button');
     if (!buttonElement) {
       return;
     }
 
-    const foldElement = buttonElement.closest('.folds__item');
-    const contentWrapperElement = foldElement.querySelector('.folds__content-wrapper');
-    const contentElement = contentWrapperElement.querySelector('.folds__content');
+    toggleFoldState(buttonElement);
 
-    const contentElementHeight = contentElement.getBoundingClientRect().height;
-    contentWrapperElement.style.height = `${contentElementHeight}px`;
+    // const foldElement = buttonElement.closest('.folds__item');
+    // const contentWrapperElement = foldElement.querySelector('.folds__content-wrapper');
+    // const contentElement = contentWrapperElement.querySelector('.folds__content');
 
-    // contentElement.style.position = 'absolute'; // (1)
+    // const contentElementHeight = contentElement.getBoundingClientRect().height;
+    // contentWrapperElement.style.height = `${contentElementHeight}px`;
 
-    setTimeout(() => { // (2)
-      foldElement.classList.toggle('folds__item--open');
-    }, 20);
+    // // contentElement.style.position = 'absolute'; // (1)
 
-    buttonElement.ariaExpanded = buttonElement.ariaExpanded === 'true' ? 'false' : 'true';
+    // setTimeout(() => { // (2)
+    //   foldElement.classList.toggle('folds__item--open');
+    // }, 20);
+
+    // buttonElement.ariaExpanded = buttonElement.ariaExpanded === 'true' ? 'false' : 'true';
   });
 
   foldsElement.addEventListener('transitionend', ({ target }) => { // (3)
@@ -38,9 +57,9 @@ const initFolds = (foldsElement) => {
       }, 0);
     }
   });
-};
+}
 
-export { initFolds };
+export { initFolds, toggleFoldState };
 
 /* (1)
  * Зачем менять позиционирование? Это нужно для создания эффекта,

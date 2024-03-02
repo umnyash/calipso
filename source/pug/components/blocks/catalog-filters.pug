@@ -8,7 +8,7 @@ mixin catalog-filters
           ul.catalog-filters__folds.folds
             li.catalog-filters__folds-item.folds__item
               h3.catalog-filters__folds-heading
-                button.catalog-filters__folds-button.folds__button(type='button') Цена, ₽
+                button.catalog-filters__folds-button.folds__button(type='button' data-fold-name='price') Цена, ₽
                   span.catalog-filters__folds-value Цена от 4990 до 125900
               .folds__content-wrapper
                 .folds__content
@@ -39,7 +39,7 @@ mixin catalog-filters
                         span.catalog-filter__box-toggle-button-expand-text Показать меньше
             li.catalog-filters__folds-item.folds__item
               h3.catalog-filters__folds-heading
-                button.catalog-filters__folds-button.folds__button(type='button') Ширина, см
+                button.catalog-filters__folds-button.folds__button(type='button' data-fold-name='size') Ширина, см
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section

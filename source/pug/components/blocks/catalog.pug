@@ -6,8 +6,8 @@ mixin catalog
         .catalog__panel
           .catalog__filter-openers
             +button-alter('a', 'Все фильтры', '', '#!')(class='catalog__filter-opener-button button-alter--primary button-alter--small button-alter--with-icon button-alter--with-icon_filter')
-            +button-alter('a', 'Цена', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small')
-            +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small')
+            +button-alter('a', 'Цена', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='price')
+            +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='size')
           p.catalog__panel-text Найдено 100
           ul.catalog__applied-filters
             li.catalog__applied-filter Классический
