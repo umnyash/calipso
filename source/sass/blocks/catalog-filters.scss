@@ -1,0 +1,319 @@
+.catalog-filters {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: auto 1fr auto;
+  background: var(--background-additional-color);
+  font: 500 14px/17px $main-font-family;
+
+  @media (min-width: 450px) {
+    border-radius: 16px 0 0 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.catalog-filters__header {
+  display: grid;
+  box-sizing: border-box;
+  padding: 24px $mobile-edge-indent 9px;
+  align-items: center;
+  background: var(--background-additional-color);
+
+  @media (min-width: 450px) {
+    border-top-left-radius: 16px;
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 28px 24px 26px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 28px 80px 26px 60px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 80px 40px 60px;
+  }
+}
+
+.catalog-filters__heading {
+  margin: 0;
+}
+
+.catalog-filters__scroll-container {
+  position: relative;
+  z-index: 0;
+  box-sizing: border-box;
+  max-height: 100%;
+  width: 100%;
+  padding: 0 0 24px;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 0 28px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 0 40px;
+  }
+}
+
+.catalog-filters__scroll-container-scrollbar.catalog-filters__scroll-container-scrollbar {
+  right: 2px;
+  width: 4px;
+  background: var(--background-color-dark);
+
+  @media (min-width: $tablet-width) {
+    right: 10px;
+    width: 6px;
+  }
+}
+
+.catalog-filters__scroll-container-scrollbar .swiper-scrollbar-drag {
+  background: var(--border-color-dark-2);
+  border-radius: 8px;
+}
+
+.catalog-filters__scroll-container-content {
+  box-sizing: border-box;
+  display: grid;
+  height: auto;
+  padding: 0 $mobile-edge-indent;
+  gap: 24px;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 24px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 80px 0 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 80px 0 60px;
+  }
+}
+
+.catalog-filters__folds {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.catalog-filters__folds-item {
+  padding: 0 0 5px;
+  border-bottom: 1px solid var(--border-color-light);
+
+  @media (min-width: $tablet-width) {
+    padding: 0 0 1px;
+  }
+
+  .folds__content-wrapper,
+  .folds__content {
+    transition-duration: 100ms;
+  }
+}
+
+.catalog-filters__folds-heading {
+  margin: 0;
+  font: inherit;
+  font-weight: 600;
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
+
+.catalog-filters__folds-button {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 16px 0 10px;
+  border: none;
+  grid-template-columns: 1fr auto auto;
+  gap: 20px;
+  align-items: center;
+  text-align: start;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+
+  @media (min-width: $tablet-width) {
+    padding: 20px 0 10px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 24px 0 20px;
+  }
+
+  &::after {
+    content: "";
+    grid-column: -1 / -2;
+    width: 20px;
+    height: 20px;
+    background: url("../img/icons.svg#controls_right-arrow-without-tail");
+    transform: rotate(90deg);
+    transition: transform 100ms $drawer-timing-function;
+
+    @media (min-width: $tablet-width) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &[aria-expanded="true"]::after {
+    transform: rotate(-90deg);
+  }
+}
+
+.catalog-filters__folds-value {
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 500;
+  color: var(--text-weak-color);
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.catalog-filters__folds-item.folds__item--open .catalog-filters__folds-value {
+  display: none;
+}
+
+.catalog-filter__section {
+  padding: 0;
+  border: none;
+  margin: 0 0 10px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 18px;
+  }
+
+  &--checkboxes {
+    display: grid;
+    padding: 0 0 19px;
+    border-bottom: 1px solid var(--border-color-light);
+    margin: 0;
+    gap: 20px;
+  }
+}
+
+.catalog-filter__box {
+  display: grid;
+  gap: 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+}
+
+.catalog-filter__box-list {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 10px;
+
+  @media (min-width: $tablet-width) {
+    gap: 16px;
+  }
+}
+
+.catalog-filter__box-list--colors {
+  gap: 8px;
+}
+
+.catalog-filter__box:not(.catalog-filter__box--expand) .catalog-filter__box-list-item:nth-child(n + 5) {
+  display: none;
+}
+
+.catalog-filter__box-toggle-button {
+  display: grid;
+  padding: 0;
+  border: none;
+  grid-auto-flow: column;
+  gap: 5px;
+  justify-content: start;
+  align-items: center;
+  font: inherit;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--accent-color-1);
+  background: transparent;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  &::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+    background: url("../img/icons.svg#controls_right-arrow-without-tail");
+    transform: rotate(90deg);
+
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.catalog-filter__box-toggle-button-expand-text {
+  display: none;
+}
+
+.catalog-filter__box--expand {
+  .catalog-filter__box-toggle-button::after {
+    transform: rotate(-90deg);
+  }
+
+  .catalog-filter__box-toggle-button-text {
+    display: none;
+  }
+
+  .catalog-filter__box-toggle-button-expand-text {
+    display: inline;
+  }
+}
+
+.catalog-filters__footer {
+  display: grid;
+  padding: 10px $mobile-edge-indent 20px;
+  border: none;
+  border-top: 1px solid var(--border-color-light);
+  margin: 0;
+  gap: 20px;
+  background: var(--background-additional-color);
+
+  @media (min-width: 450px) {
+    border-bottom-left-radius: 16px;
+  }
+
+  @media (min-width: $tablet-width) {
+    padding: 24px 80px 24px 60px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 80px 40px 60px;
+  }
+}

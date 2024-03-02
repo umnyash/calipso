@@ -1,0 +1,5 @@
+mixin color(name, value, src, isBordered, isChecked)
+  label.color(class= isBordered ? 'color--bordered' : '')&attributes(attributes)
+    input.color__control(name='color' type='radio' value= value checked= isChecked ? true : false)
+    img.color__image(src= src alt='')
+    span.color__name= name

@@ -2,7 +2,7 @@ mixin cities(cities, isPopular)
   section.cities&attributes(attributes)
     h2.cities__heading Укажите свой город
     +search-form('Поиск города', 'query', 'Начните вводить название города')(class='cities__form')
-    .cities__scroll-container.swiper
+    .cities__scroll-container.scroll-container.swiper
       .cities__scroll-container-inner.swiper-wrapper
         .cities__scroll-container-content.swiper-slide
           if isPopular

@@ -1,0 +1,6 @@
+mixin number-range(name, values)
+  .number-range&attributes(attributes)
+    label.number-range__field&attributes(attributes) От
+      input.number-range__field-control(type='number' name=`min-${name}` value=values[0] min='0' placeholder='0')
+    label.number-range__field&attributes(attributes) До
+      input.number-range__field-control(type='number' name=`max-${name}` value=values[1] min='0' placeholder='0')

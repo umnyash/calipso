@@ -22,6 +22,21 @@
   }
 }
 
+.heading--tiny {
+  font-size: 16px;
+  line-height: 19px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
 .heading__accent {
   color: var(--accent-color-2);
 }

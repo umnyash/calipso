@@ -1,0 +1,24 @@
+mixin cart-modal
+  section.cart-modal&attributes(attributes)
+    header.cart-modal__header
+      h2.cart-modal__heading.heading.heading--tiny Товар в корзине
+    .cart-modal__scroll-container.scroll-container.swiper
+      .cart-modal__scroll-container-inner.swiper-wrapper
+        .cart-modal__scroll-container-content.swiper-slide
+          .cart-modal__info
+            ul.cart-modal__products-list
+              li.cart-modal__products-item
+                +cart-item(products[2])
+              li.cart-modal__products-item
+                +cart-item(products[2])
+            .cart-modal__total
+              p.cart-modal__total-text Итого 2 товара на сумму:
+              .cart-modal__prices
+                p.cart-modal__price 30 000 ₽
+                s.cart-modal__old-price 45 000 ₽
+                p.cart-modal__discount -10%
+            .cart-modal__actions
+              +button('a', 'Перейти в корзину', '', 'cart.html')(class='button--primary')
+              +button('button', 'Продолжить покупки', 'button')(class='button--secondary')
+          +products-for-cart-modal('С этим товаром покупают', products)(class='cart-modal__offer')
+      .cart-modal__scroll-container-scrollbar.swiper-scrollbar

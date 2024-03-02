@@ -18,7 +18,8 @@ import { initStickyCartInfo } from './sticky-cart-info.js';
 import { initSelect } from './select.js';
 import { initFolds } from './folds.js';
 import { initDateFieldCalendar } from './date-field-calendar.js';
-import { initCitiesScrollContainer } from './cities-scroll-container.js';
+import { initScrollContainer } from './scroll-container.js';
+import { initCatalogFilters } from './catalog-filters.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -41,7 +42,11 @@ document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date .text-field__control-wrapper').forEach(initDateFieldCalendar);
-document.querySelectorAll('.cities__scroll-container').forEach(initCitiesScrollContainer);
+document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
+
+document.querySelectorAll('.catalog-filters').forEach((filtersElement) => {
+  initCatalogFilters(filtersElement, initScrollContainer);
+});
 
 const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');
 if (productGalleryModalElement) {

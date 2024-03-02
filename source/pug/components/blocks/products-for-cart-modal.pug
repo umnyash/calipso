@@ -1,0 +1,10 @@
+mixin products-for-cart-modal(heading, products)
+  section.products.products--for-cart-modal&attributes(attributes)
+    .products__header
+      h2.products__heading.heading.heading--tiny= heading
+      +slider-arrows(class='products__slider-arrows')
+    .products__slider.swiper
+      ul.products__slider-list.swiper-wrapper
+        each product in products
+          li.products__slider-item.swiper-slide
+            +product-card(product)

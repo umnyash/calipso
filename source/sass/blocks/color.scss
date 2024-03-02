@@ -1,0 +1,48 @@
+.color {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  place-items: center;
+  gap: 10px;
+
+  &--bordered::after {
+    content: "";
+    grid-area: 1 / 1 / 2 / 2;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--border-color-light);
+    border-radius: 50%;
+  }
+}
+
+.color__control {
+  grid-area: 1 / 1 / 2 / 2;
+  appearance: none;
+  box-sizing: border-box;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  margin: 0;
+  outline: none;
+
+  &:checked {
+    border-color: var(--border-color);
+  }
+}
+
+.color__image {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.color__name {
+  justify-self: start;
+}
