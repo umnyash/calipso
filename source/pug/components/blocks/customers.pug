@@ -1,0 +1,26 @@
+mixin customers(heading)
+  section.customers&attributes(attributes)
+    .customers__inner.container
+      h2.customers__heading.heading Покупателям
+      .customers__taber.taber
+        ul.taber__list
+          li.taber__tab-wrapper
+            a.taber__tab(href='#customers-tab-delivery') Доставка, оплата, сборка
+          li.taber__tab-wrapper
+            a.taber__tab(href='#customers-tab-guarantee') Гарантия
+          li.taber__tab-wrapper
+            a.taber__tab(href='#customers-tab-offer-terms') Условия оферты
+          li.taber__tab-wrapper
+            a.taber__tab(href='#customers-tab-exploitation') Уход за мебелью
+        section.taber__panel(id='customers-tab-delivery')
+          h3.visually-hidden Доставка, оплата, сборка
+          +delivery
+        section.taber__panel(id='customers-tab-guarantee')
+          h3.visually-hidden Гарантия
+          +guarantee
+        section.taber__panel(id='customers-tab-offer-terms')
+          h3.visually-hidden Условия оферты
+          +offer-terms
+        section.taber__panel(id='customers-tab-exploitation')
+          h3.visually-hidden Уход за мебелью
+          +exploitation

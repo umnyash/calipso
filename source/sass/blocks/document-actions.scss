@@ -1,0 +1,51 @@
+.document-actions {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.document-actions__button {
+  display: block;
+  box-sizing: border-box;
+  padding: 0;
+  border: none;
+  color: var(--text-weak-color);
+  background: transparent;
+  cursor: pointer;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: currentColor;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &:hover {
+    color: var(--text-color);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    color: var(--accent-color-1);
+  }
+
+  &--copy::after {
+    mask: url("../img/icons.svg#file_copy");
+  }
+
+  &--download::after {
+    mask: url("../img/icons.svg#file_download");
+  }
+
+  &--print::after {
+    mask: url("../img/icons.svg#file_print");
+  }
+}

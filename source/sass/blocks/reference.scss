@@ -1,0 +1,42 @@
+.reference {
+  display: grid;
+  box-sizing: border-box;
+  padding: 20px;
+  border-radius: 10px;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+  font: 500 16px/20px $main-font-family;
+  background: var(--background-additional-color);
+
+  @media (min-width: $tablet-width) {
+    padding: 24px 40px 24px 24px;
+    gap: 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 40px 60px;
+    border-radius: 16px;
+    gap: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 60px 210px 60px 80px;
+    gap: 40px;
+    font-size: 22px;
+    line-height: 29px;
+  }
+
+  &::before {
+    content: "";
+    width: 40px;
+    height: 40px;
+    background: var(--accent-color-1);
+    mask: url("../img/icons.svg#file_read");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 80px;
+      height: 80px;
+    }
+  }
+}

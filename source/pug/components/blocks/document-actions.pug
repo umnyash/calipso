@@ -1,0 +1,11 @@
+mixin document-actions
+  ul.document-actions&attributes(attributes)
+    li.document-actions__item
+      button.document-actions__button.document-actions__button--copy(type='button')
+        span.visually-hidden Скопировать
+    li.document-actions__item
+      button.document-actions__button.document-actions__button--print(type='button')
+        span.visually-hidden Распечатать
+    li.document-actions__item
+      a.document-actions__button.document-actions__button--download(href='files/recipe.pdf' download)
+        span.visually-hidden Скачать

@@ -107,7 +107,7 @@
     }
   }
 
-  &--empty {
+  &--empty::before {
     display: block;
   }
 

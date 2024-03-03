@@ -242,6 +242,44 @@
   max-height: 100vh;
 }
 
+.modal--with_document {
+  .modal__inner {
+    width: 100%;
+    max-width: 440px;
+    height: 100%;
+    margin: 0 0 0 auto;
+
+    @media (min-width: $tablet-width) {
+      max-width: 640px;
+    }
+
+    @media (min-width: $desktop-width) {
+      max-width: 884px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      max-width: 1240px;
+    }
+  }
+
+  .modal__close-button {
+    @media (min-width: $desktop-width) {
+      top: 40px;
+      right: 50px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      right: 80px;
+    }
+  }
+
+  .modal__document {
+    height: 100%;
+    max-height: 100vh;
+  }
+}
+
+
 .modal--with_catalog-filters {
   .modal__inner {
     width: 100%;

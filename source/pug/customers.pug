@@ -1,0 +1,21 @@
+extends layout/layout
+
+block variables
+  - var title = 'Покупателям'
+  - var pageClass = 'contacts-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Покупателям' },
+    ])
+  +customers
+
+append modals
+  +modal(class='modal--with_document')
+    +document-modal(class='modal__document')
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')
