@@ -42,7 +42,7 @@
 
 .filter__label {
   display: grid;
-  padding: 7px 23px;
+  padding: 8px 23px 6px;
   border: 1px solid var(--accent-color-1);
   border-radius: 50px;
   grid-auto-flow: column;
@@ -58,7 +58,7 @@
   cursor: pointer;
 
   @media (min-width: $wide-desktop-width) {
-    padding: 11px 31px;
+    padding: 12px 31px 10px;
     font-size: 16px;
     line-height: 19px;
   }
@@ -83,4 +83,62 @@
 .filter__control:disabled + .filter__label {
   opacity: 0.4;
   cursor: default;
+}
+
+.filter--alter {
+  @media (min-width: $tablet-width) {
+    .filter__item--guarantee {
+      order: 1;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    .filter__list {
+      gap: 12px;
+    }
+
+    .filter__item {
+      width: 100%;
+    }
+
+    .filter__label {
+      padding: 6px 20px 4px;
+      border: none;
+      border-radius: 10px;
+      justify-content: start;
+      font-size: 16px;
+      line-height: 19px;
+      color: var(--text-color);
+      background: transparent;
+    }
+
+    .filter__control:enabled:not(:checked):hover + .filter__label {
+      color: var(--accent-color-1);
+      background: var(--accent-color-1-light);
+    }
+
+    .filter__control:enabled:not(:checked):active + .filter__label {
+      color: var(--accent-color-1);
+      background: var(--accent-color-1-light);
+      box-shadow: none;
+    }
+
+    .filter__control:checked + .filter__label {
+      color: var(--accent-color-1);
+      background: var(--accent-color-1-light);
+      pointer-events: none;
+    }
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    .filter__list {
+      gap: 20px;
+    }
+
+    .filter__label {
+      padding: 11px 20px 9px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
 }

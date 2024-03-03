@@ -35,10 +35,10 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/delivery/*.{png,jpg}`,
+      `${pathSrc}/img/delivery3/*.{png,jpg}`,
     ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
-    dest: `${pathDest}/img/delivery`
+    dest: `${pathDest}/img`
   },
 
   optimizeVector: {
@@ -61,8 +61,7 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/customers.pug`,
-      `${pathSrc}/pug/dev-customers-document-modal.pug`,
+      `${pathSrc}/pug/faq.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
     watch: `${pathSrc}/pug/**/*.pug`,

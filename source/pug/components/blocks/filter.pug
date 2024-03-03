@@ -11,7 +11,7 @@ mixin filter(filter, isSlider)
     else
       ul.filter__list
         each variant in filter.variants
-          li.filter__item
+          li.filter__item(class= variant.className ? variant.className : '')
             label.filter__button
               input.filter__control.visually-hidden(name= filter.name type='radio' value= variant.value checked= variant.isChecked disabled= variant.isDisabled)
               span.filter__label= variant.label

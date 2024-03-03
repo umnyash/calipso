@@ -1,0 +1,28 @@
+.faq__inner {
+  display: grid;
+  gap: 20px;
+  align-items: start;
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: 294px 1fr;
+    gap: 24px 108px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: 408px 1fr;
+    gap: 40px 152px;
+  }
+}
+
+.faq__heading {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+
+.faq__folds {
+  margin: 0 (-$mobile-edge-indent);
+
+  @media (min-width: $tablet-width) {
+    margin: 0;
+  }
+}

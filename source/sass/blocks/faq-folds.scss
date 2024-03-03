@@ -1,0 +1,186 @@
+.faq-folds {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  gap: 10px;
+  font: 500 14px/17px $main-font-family;
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.faq-folds__item {
+  padding: 0 0 2px;
+  background: var(--background-additional-color);
+
+  @media (min-width: $tablet-width) {
+    padding: 0 0 14px;
+    border-radius: 10px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0;
+    border-radius: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 0 16px;
+  }
+
+  .folds__content-wrapper,
+  .folds__content {
+    transition-duration: 100ms;
+  }
+}
+
+.folds__content {
+  padding: 0 $mobile-edge-indent 10px;
+  color: var(--text-weak-color);
+
+  @media (min-width: $tablet-width) {
+    padding: 0 24px 10px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 40px 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 60px 24px;
+  }
+
+  p {
+    margin: 8px 0 0;
+
+    @media (min-width: $desktop-width) {
+      margin: 16px 0 0;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      margin: 20px 0 0;
+    }
+  }
+
+  p:first-child {
+    margin: 0;
+  }
+}
+
+.faq-folds__heading {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 26px;
+    line-height: 31px;
+  }
+}
+
+.faq-folds__button {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px $mobile-edge-indent 10px;
+  border: none;
+  grid-template-columns: 1fr auto auto;
+  grid-auto-flow: dense;
+  align-items: center;
+  text-align: start;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+
+  @media (min-width: $tablet-width) {
+    padding: 24px 24px 10px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 24px 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 60px 24px;
+  }
+
+  &::before {
+    content: "";
+    grid-column: -1 / -2;
+    width: 20px;
+    height: 20px;
+    background: url("../img/icons.svg#controls_right-arrow-without-tail");
+    margin: 0 0 0 24px;
+    transform: rotate(90deg);
+    transition: transform 100ms $drawer-timing-function;
+
+    @media (min-width: $tablet-width) {
+      width: 16px;
+      height: 16px;
+      margin: 0 0 0 5px;
+    }
+
+    @media (min-width: $desktop-width) {
+      width: 20px;
+      height: 20px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
+      margin: 0 0 0 10px;
+    }
+  }
+
+  &::after {
+    content: "Развернуть";
+    margin: 0 0 0 24px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent-color-1);
+
+    @media (max-width: ($tablet-width - 1)) {
+      display: none;
+    }
+
+    @media (min-width: $desktop-width) {
+      margin: 0 0 0 40px;
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      margin: 2px 0 0 80px;
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+
+  &[aria-expanded="true"]::before {
+    transform: rotate(-90deg);
+  }
+
+  &[aria-expanded="true"]::after {
+    content: "Свернуть";
+  }
+
+  // &::after {
+  //   content: "Развернуть";
+  // }
+}
