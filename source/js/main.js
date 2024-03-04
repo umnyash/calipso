@@ -10,8 +10,8 @@ import { initProducts } from './products.js';
 import { initNavigationShortcuts } from './navigation-shortcuts.js';
 import { initCatalogSorting } from './catalog-sorting.js';
 import { initProductImages } from './product-images.js';
-import { initProductGallery } from './product-gallery.js';
-import { initProductGalleryModal } from './product-gallery-modal.js';
+import { initGallery } from './gallery.js';
+import { initGalleryModal } from './gallery-modal.js';
 import { openModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
@@ -58,10 +58,13 @@ document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement)
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);
 });
 
-const productGalleryModalElement = document.querySelector('.modal--with_product-gallery');
-if (productGalleryModalElement) {
-  initProductGalleryModal(productGalleryModalElement, openModal, initProductGallery);
-}
+document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement) => {
+  initGalleryModal(modalElement, openModal, initGallery, '.product__images');
+});
+
+document.querySelectorAll('.modal--with_review-gallery').forEach((modalElement) => {
+  initGalleryModal(modalElement, openModal, initGallery, '.review__slider');
+});
 
 /// Проверка модалки
 const modal = document.querySelector('[data-modal="product-question"]');

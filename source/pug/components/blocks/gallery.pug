@@ -1,0 +1,36 @@
+mixin gallery(images, withVideo)
+  .gallery&attributes(attributes)
+    .gallery__inner
+      .gallery__slider
+        +slider-arrows(class='gallery__slider-arrows slider-arrows--with-background')
+        .gallery__slider-wrapper.swiper
+          ul.gallery__slider-list.swiper-wrapper
+            if withVideo
+              li.gallery__slider-item.swiper-slide
+                +video({ poster: 'img/reviews/review-1.webp' })(class='gallery__video')
+            each image in images
+              li.gallery__slider-item.swiper-slide
+                picture.gallery__image-wrapper
+                  if image.big
+                    source(media='(min-width: 500px)' srcset=`${image.big} 1x, ${image.big2x} 2x`)
+                  if image.small2x
+                    img.gallery__image(src= image.small srcset=`${image.small2x} 2x` alt='' loading='lazy')
+                  else
+                    img.gallery__image(src= image.small alt='' loading='lazy')
+      .gallery__thumbnails-slider
+        +slider-arrows(class='gallery__thumbnails-slider-arrows')
+        .gallery__thumbnails-slider-wrapper.swiper
+          ul.gallery__thumbnails-slider-list.swiper-wrapper
+            if withVideo
+              li.gallery__thumbnails-slider-item.swiper-slide
+                .gallery__image-wrapper.gallery__image-wrapper--video
+                  img.gallery__thumbnails-image(src='img/reviews/review-1.webp' alt='')
+            each image in images
+              li.gallery__thumbnails-slider-item.swiper-slide
+                picture.gallery__image-wrapper
+                  if image.big
+                    source(media='(min-width: 500px)' srcset=`${image.big} 1x, ${image.big2x} 2x`)
+                  if image.small2x
+                    img.gallery__thumbnails-image(src= image.small srcset=`${image.small2x} 2x` alt='' loading='lazy')
+                  else
+                    img.gallery__thumbnails-image(src= image.small alt='' loading='lazy')

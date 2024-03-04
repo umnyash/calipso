@@ -32,8 +32,8 @@ append modals
       'Наш менеджер свяжется с вами в течении 3 рабочих дней',
       'Закрыть'
     )(class='modal__alert')
-  +modal(class='modal--with_product-gallery modal--open')
-    +product-gallery(class='modal__product-gallery')
+  +modal(class='modal--with_gallery modal--with_product-gallery modal--open')
+    +gallery(productGallery.concat(productGallery, productGallery))(class='modal__gallery')
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

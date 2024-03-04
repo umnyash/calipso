@@ -1,7 +1,7 @@
-mixin video({ poster, src })
+mixin video({ poster })
   .video&attributes(attributes)
     video(class='video__player' controls)
-      source(src= src type='video/mp4')
+      source(src='files/video.mp4' type='video/mp4')
     img.video__poster(src= poster alt='')
     .video__play-button-wrapper
       button.video__play-button

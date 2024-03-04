@@ -63,6 +63,10 @@ export default {
   processMarkup: {
     src: [
       `${pathSrc}/pug/reviews.pug`,
+      `${pathSrc}/pug/product.pug`,
+      `${pathSrc}/pug/dev-reviews-review-modal.pug`,
+      `${pathSrc}/pug/dev-reviews-review-sent-modal.pug`,
+      `${pathSrc}/pug/dev-reviews-gallery-modal.pug`,
       `${pathSrc}/pug/dev-product-gallery-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
