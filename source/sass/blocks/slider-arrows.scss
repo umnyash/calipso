@@ -10,6 +10,7 @@
 }
 
 .slider-arrows__button {
+  display: block;
   width: 40px;
   height: 40px;
   padding: 0;
@@ -46,6 +47,24 @@
   .slider-arrows__button {
     &::before {
       background: var(--background-additional-color);
+    }
+  }
+}
+
+.slider-arrows--small {
+  gap: 5px;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+  }
+
+  .slider-arrows__button {
+    width: 24px;
+    height: 24px;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 40px;
+      height: 40px;
     }
   }
 }

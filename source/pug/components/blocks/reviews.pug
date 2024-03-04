@@ -1,0 +1,9 @@
+mixin reviews(reviews)
+  section.reviews&attributes(attributes)
+    .reviews__inner.container
+      h2.reviews__heading.heading Отзывы (23)
+      ul.reviews__list
+        each review in reviews
+          li.reviews__item
+            +review(review)
+      +pagination(class='reviews__pagination')

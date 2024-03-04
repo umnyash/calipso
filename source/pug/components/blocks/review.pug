@@ -1,0 +1,16 @@
+mixin review(review, isVideo)
+  article.review&attributes(attributes)
+    footer.review__data
+      p.review__author Анна
+      time.review__date(datetime='2024-02-27') 27.02.2024
+    .review__content
+      if review.video
+        +video(review.video)(class='review__video')
+      if review.text
+        .review__text-wrapper.review__text-wrapper--clipped
+          p.review__text= review.text
+          button.review__toggle-button(type='button')
+            span.review__toggle-button-text Показать меньше
+            span.review__toggle-button-text-clipped Показать больше
+      if review.media
+        +feed(class='review__slider')

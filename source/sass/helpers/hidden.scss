@@ -21,6 +21,11 @@
   //   }
   // }
 
+  &--m-t-d {
+    @media (max-width: ($wide-desktop-width - 1)) {
+      display: none;
+    }
+  }
 
   &--wd {
     @media (min-width: $wide-desktop-width) {

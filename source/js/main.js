@@ -20,6 +20,11 @@ import { initFolds, toggleFoldState } from './folds.js';
 import { initDateField } from './date-field.js';
 import { initScrollContainer } from './scroll-container.js';
 import { initCatalogFiltersModal } from './catalog-filters-modal.js';
+import { initReviewsList } from './reviews-list.js';
+import { initFileField } from './file-field.js';
+import { initFeed } from './feed.js';
+import { initVideoReiewsSlider } from './video-reviews-slider.js';
+import { initVideo } from './video.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -43,6 +48,11 @@ document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date').forEach(initDateField);
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
+document.querySelectorAll('.reviews__list').forEach(initReviewsList);
+document.querySelectorAll('.file-field').forEach(initFileField);
+document.querySelectorAll('.feed').forEach(initFeed);
+document.querySelectorAll('.video-reviews').forEach(initVideoReiewsSlider);
+document.querySelectorAll('.video').forEach(initVideo);
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);

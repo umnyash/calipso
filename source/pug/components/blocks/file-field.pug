@@ -1,0 +1,9 @@
+mixin file-field
+  .file-field.file-field--empty&attributes(attributes)
+    label.file-field__inner
+      span.file-field__label Прикрепить фото или видео
+      span.file-field__control-wrapper
+        input.file-field__control(name='file' type='file' multiple)
+        button.file-field__reset-button(type='button')
+          span.visually-hidden Отменить выбор файла
+    block

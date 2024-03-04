@@ -35,7 +35,8 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/delivery3/*.{png,jpg}`,
+      `${pathSrc}/img/products/*.{png,jpg}`,
+      `${pathSrc}/img/reviews/*.{png,jpg}`,
     ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
@@ -61,7 +62,8 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/faq.pug`,
+      `${pathSrc}/pug/reviews.pug`,
+      `${pathSrc}/pug/dev-product-gallery-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
     watch: `${pathSrc}/pug/**/*.pug`,

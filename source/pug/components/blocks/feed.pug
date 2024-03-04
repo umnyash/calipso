@@ -1,0 +1,26 @@
+mixin feed
+  .feed&attributes(attributes)
+    .feed__slider.swiper
+      ul.feed__slider-list.swiper-wrapper
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link.feed__slider-link--video
+            img.feed__slider-image(src='img/reviews/review-1.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-1.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-2.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-3.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-1.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-2.webp' width='158' height='120' alt='')
+        li.feed__slider-item.swiper-slide
+          a.feed__slider-link
+            img.feed__slider-image(src='img/reviews/review-3.webp' width='158' height='120' alt='')
+    +slider-arrows(class='feed__slider-arrows slider-arrows--small')

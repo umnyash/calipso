@@ -1,0 +1,10 @@
+mixin video-reviews(reviews)
+  section.video-reviews&attributes(attributes)
+    .video-reviews__header
+      h2.video-reviews__heading.heading Видеоотзывы (4)
+      +slider-arrows(class='video-reviews__slider-arrows')
+    .video-reviews__slider.swiper
+      ul.video-reviews__slider-list.swiper-wrapper
+        each review in reviews
+          li.video-reviews__slider-item.swiper-slide
+            +review(review)(class='video-reviews__review review--video')

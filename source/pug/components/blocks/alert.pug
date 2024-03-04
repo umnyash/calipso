@@ -2,5 +2,5 @@ mixin alert(heading, text, buttonText)
   section.alert&attributes(attributes)
     h2.alert__heading= heading
     if text
-      p.alert__text= text
+      p.alert__text!= text
     +button('button', buttonText, 'button')(class='alert__button button--secondary')

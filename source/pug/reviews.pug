@@ -1,0 +1,29 @@
+extends layout/layout
+
+block variables
+  - var title = 'Отзывы'
+  - var pageClass = 'reviews-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Отзывы' },
+  ])
+  +external-reviews
+  //- +reviews(reviews)
+  +video-reviews(videoReviews.concat(videoReviews))
+
+append modals
+  +modal(class='modal--with_form')
+    +review-modal-form(class='modal__form')
+  +modal(class='modal--with_alert')
+    +alert(
+      'Спасибо, что оценили нашу работу',
+      'Ваш отзыв будет проверен модератором сайта,<br class="hidden hidden--m-t-d"> и&nbsp;опубликован в течение 2 рабочих дней',
+      'Закрыть'
+    )(class='modal__alert')
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')
