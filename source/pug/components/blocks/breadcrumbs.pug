@@ -1,5 +1,5 @@
-mixin breadcrumbs(links)
-  ol.breadcrumbs&attributes(attributes)
+mixin breadcrumbs(links, isAlter)
+  ol.breadcrumbs(class= isAlter ? 'breadcrumbs--alter' : '')&attributes(attributes)
     li.breadcrumbs__item
       a.breadcrumbs__link.breadcrumbs__link--home(href='index.html') Главная
     each link in links

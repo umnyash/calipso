@@ -1,0 +1,23 @@
+extends layout/layout
+
+block variables
+  - var title = 'Дизайнерам'
+  - var pageClass = 'designers-page'
+  - var isHeaderTransparent = true
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Дизайнерам' },
+  ], true)(class='page__suspended-breadcrumbs')
+  +banner(banners.designers)
+  +terms-with-image(terms.cooperation)
+
+append modals
+  +modal(class='modal--with_form')
+    +cooperation-modal-form(class='modal__form')
+  +modal(class='modal--with_alert modal--open')
+    +alert(
+      'Спасибо! Ваша заявка успешно отправлена',
+      'Наш менеджер свяжется с вами в течении 3 рабочих дней для обсуждения деталей',
+      'Закрыть'
+    )(class='modal__alert')

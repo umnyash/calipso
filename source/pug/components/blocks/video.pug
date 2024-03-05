@@ -2,7 +2,7 @@ mixin video({ poster })
   .video&attributes(attributes)
     video(class='video__player' controls)
       source(src='files/video.mp4' type='video/mp4')
-    img.video__poster(src= poster alt='')
+    img.video__poster(src= poster alt='' loading='lazy')
     .video__play-button-wrapper
       button.video__play-button
         span.visually-hidden Воспроизвести

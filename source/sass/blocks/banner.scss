@@ -80,11 +80,11 @@
   max-width: 632px;
 
   @media (min-width: $desktop-width) {
-    max-width: 840px;
+    max-width: 800px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    max-width: 1055px;
+    max-width: 1000px;
   }
 }
 
@@ -92,6 +92,7 @@
   margin: 0 0 10px;
   font-size: 22px;
   line-height: 24px;
+  font-weight: 500;
 
   @media (min-width: $tablet-width) {
     font-size: 30px;
@@ -112,8 +113,18 @@
 
 .banner__text {
   margin: 0 0 10px;
+  max-width: 320px;
+
+  @media (min-width: $tablet-width) {
+    max-width: 380px;
+  }
+
+  @media (min-width: $desktop-width) {
+    max-width: 530px;
+  }
 
   @media (min-width: $wide-desktop-width) {
+    max-width: 620px;
     margin: 0 0 24px;
   }
 }

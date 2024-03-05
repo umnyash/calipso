@@ -1,4 +1,4 @@
-mixin centered-breadcrumbs(links)
+mixin centered-breadcrumbs(links, isAlter)
   .centered-breadcrumbs&attributes(attributes)
     .container
-      +breadcrumbs(links)(class='centered-breadcrumbs__list')
+      +breadcrumbs(links, isAlter)(class='centered-breadcrumbs__list')

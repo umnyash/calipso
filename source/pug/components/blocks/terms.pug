@@ -1,12 +1,6 @@
-mixin terms
+mixin terms(terms)
   section.terms&attributes(attributes)
-    h2.terms__heading.heading #[b.heading__accent Выгодные условия] для#[br] сотрудничества:
+    h2.terms__heading.heading!= terms.heading
     ul.terms__list
-      li.terms__list-item Обустройство объектов недвижимости с&nbsp;полной или частичной меблировкой
-      li.terms__list-item Программа лояльности для&nbsp;ваших клиентов
-      li.terms__list-item Обустройство объектов недвижимости с&nbsp;полной или частичной меблировкой
-      li.terms__list-item Программа лояльности для&nbsp;ваших клиентов
-      li.terms__list-item Обустройство объектов недвижимости с&nbsp;полной или частичной меблировкой
-      li.terms__list-item Программа лояльности для&nbsp;ваших клиентов
-      li.terms__list-item Обустройство объектов недвижимости с&nbsp;полной или частичной меблировкой
-      li.terms__list-item Программа лояльности для&nbsp;ваших клиентов
+      each item in terms.list
+        li.terms__list-item!= item

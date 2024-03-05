@@ -40,6 +40,7 @@
   margin: 0;
   list-style: none;
   gap: 20px;
+  align-items: start;
 
   @media (min-width: $tablet-width) {
     grid-template-columns: 1fr 1fr;
