@@ -1,0 +1,8 @@
+mixin vacancy-card
+  li.vacancy-card&attributes(attributes)
+    .vacance-card__header
+      h3.vacancy-card__heading Ведущий дизайнер - консультант
+      p.vacancy-card__address г. Нижний Новгород, ул. Варварская, д. 7
+    +vacancy-features(class='vacancy-card__features')
+    p.vacancy-card__salary от 50 000 ₽
+    a.vacancy-card__link(href='vacancy.html') Подробнее

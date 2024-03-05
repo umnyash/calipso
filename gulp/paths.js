@@ -35,8 +35,7 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/banners/*.{png,jpg}`,
-      `${pathSrc}/img/terms.png`,
+      `${pathSrc}/img/bannersr/*.{png,jpg}`,
     ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
@@ -62,9 +61,10 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/designers.pug`,
-      `${pathSrc}/pug/dev-designers-cooperation-modal.pug`,
-      `${pathSrc}/pug/dev-designers-application-sent-modal.pug`,
+      `${pathSrc}/pug/vacancies.pug`,
+      `${pathSrc}/pug/vacancy.pug`,
+      // `${pathSrc}/pug/dev-designers-cooperation-modal.pug`,
+      // `${pathSrc}/pug/dev-designers-application-sent-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
     watch: `${pathSrc}/pug/**/*.pug`,

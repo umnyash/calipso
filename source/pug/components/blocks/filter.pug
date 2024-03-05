@@ -8,6 +8,8 @@ mixin filter(filter, isSlider)
               label.filter__button
                 input.filter__control.visually-hidden(name= filter.name type='radio' value= variant.value checked= variant.isChecked disabled= variant.isDisabled)
                 span.filter__label= variant.label
+                  if variant.counter
+                    span= variant.counter
     else
       ul.filter__list
         each variant in filter.variants
@@ -15,3 +17,5 @@ mixin filter(filter, isSlider)
             label.filter__button
               input.filter__control.visually-hidden(name= filter.name type='radio' value= variant.value checked= variant.isChecked disabled= variant.isDisabled)
               span.filter__label= variant.label
+                if variant.counter
+                    span= variant.counter

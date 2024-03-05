@@ -1,25 +1,14 @@
 mixin advantages
   section.advantages&attributes(attributes)
-    .advantages__inner.container
-      h2.advantages__heading.heading Наши преимущества
-      ul.advantages__list
-        li.advantages__item Широкий ассортимент и&nbsp;индивидуальные решения
-          picture.advantages__background-wrapper(aria-hidden='true')
-            source(media='(min-width: 1367px)' srcset='img/advantages/advantage-1-wide-desktop.webp 1x, img/advantages/advantage-1-wide-desktop@2x.webp 2x')
-            source(media='(min-width: 769px)' srcset='img/advantages/advantage-1-desktop.webp 1x, img/advantages/advantage-1-desktop@2x.webp 2x')
-            img.advantages__background(src='img/advantages/advantage-1.webp' srcset='img/advantages/advantage-1@2x.webp 2x' alt='' loading='lazy')
-        li.advantages__item Натуральные материалы и&nbsp;премиальное качество
-          picture.advantages__background-wrapper(aria-hidden='true')
-            source(media='(min-width: 1367px)' srcset='img/advantages/advantage-2-wide-desktop.webp 1x, img/advantages/advantage-2-wide-desktop@2x.webp 2x')
-            source(media='(min-width: 769px)' srcset='img/advantages/advantage-2-desktop.webp 1x, img/advantages/advantage-2-desktop@2x.webp 2x')
-            img.advantages__background(src='img/advantages/advantage-2.webp' srcset='img/advantages/advantage-2@2x.webp 2x' alt='' loading='lazy')
-        li.advantages__item Более 30 лет на&nbsp;мебельном&nbsp;рынке
-          picture.advantages__background-wrapper(aria-hidden='true')
-            source(media='(min-width: 1367px)' srcset='img/advantages/advantage-3-wide-desktop.webp 1x, img/advantages/advantage-3-wide-desktop@2x.webp 2x')
-            source(media='(min-width: 769px)' srcset='img/advantages/advantage-3-desktop.webp 1x, img/advantages/advantage-3-desktop@2x.webp 2x')
-            img.advantages__background(src='img/advantages/advantage-3.webp' srcset='img/advantages/advantage-3@2x.webp 2x' alt='' loading='lazy')
-        li.advantages__item Профессиональная сборка&nbsp;мебели
-          picture.advantages__background-wrapper(aria-hidden='true')
-            source(media='(min-width: 1367px)' srcset='img/advantages/advantage-4-wide-desktop.webp 1x, img/advantages/advantage-4-wide-desktop@2x.webp 2x')
-            source(media='(min-width: 769px)' srcset='img/advantages/advantage-4-desktop.webp 1x, img/advantages/advantage-4-desktop@2x.webp 2x')
-            img.advantages__background(src='img/advantages/advantage-4.webp' srcset='img/advantages/advantage-4@2x.webp 2x' alt='' loading='lazy')
+    .container
+      .advantages__inner
+        h2.advantages__heading.heading Сотрудники «Калипсо»#[br]#[b.accent профессионалы] своего дела
+        ul.advantages__list
+          li.advantages__item Одними из&nbsp;первых знакомятся с&nbsp;новинками
+            img.advantages__icon(src='img/icons.svg#advantages_new' width='60' height='60' alt='' aria-hidden='true' loading='lazy')
+          li.advantages__item Огромное пространство возможностей
+            img.advantages__icon(src='img/icons.svg#advantages_possibilities' width='60' height='60' alt='' aria-hidden='true' loading='lazy')
+          li.advantages__item Постоянное обучение и&nbsp;развитие
+            img.advantages__icon(src='img/icons.svg#advantages_education' width='60' height='60' alt='' aria-hidden='true' loading='lazy')
+          li.advantages__item Быстрый и&nbsp;прозрачный карьерный рост
+            img.advantages__icon(src='img/icons.svg#advantages_career' width='60' height='60' alt='' aria-hidden='true' loading='lazy')

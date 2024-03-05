@@ -1,0 +1,12 @@
+extends layout/layout
+
+block variables
+  - var title = 'Вакансия'
+  - var pageClass = 'vacancy-page'
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Вакансии', href: 'vacancies.html' },
+    { text: 'Ведущий дизайнер - консультант' },
+  ])
+  +vacancy

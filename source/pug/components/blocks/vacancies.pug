@@ -1,0 +1,31 @@
+-
+  var vacanciesFilter = {
+    name: 'category',
+    variants: [
+      {
+        label: 'Администрация',
+        value: 'administration',
+        counter: '(1)',
+      },
+      {
+        label: 'Консультанты',
+        value: 'consultants',
+        counter: '(8)',
+      },
+      {
+        label: 'Дизайнеры',
+        value: 'designers',
+        counter: '(4)',
+        isChecked: true,
+      },
+    ],
+  };
+
+mixin vacancies
+  .vacancies&attributes(attributes)
+    .vacancies__inner.container
+      h1.vacancies__heading.heading Посмотрите доступные вакансии
+      +filter(vacanciesFilter)(class='vacancies__filter')
+      ul.vacancies__list
+        +vacancy-card
+        +vacancy-card

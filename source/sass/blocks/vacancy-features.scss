@@ -1,0 +1,44 @@
+.vacancy-features {
+  display: grid;
+  padding: 0;
+  list-style: none;
+  gap: 5px;
+  font: 500 14px/17px $main-font-family;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.vacancy-features__item {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 5px;
+  justify-content: start;
+  align-items: center;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 10px;
+  }
+}
+
+.vacancy-features__icon {
+  order: -1;
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: $wide-desktop-width) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.vacancy-features--big {
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
