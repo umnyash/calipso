@@ -1,23 +1,27 @@
-mixin catalog
+mixin catalog(heading, headingIsHidden, withPanel)
   section.catalog&attributes(attributes)
     .container
       .catalog__inner
-        h2.visually-hidden Каталог
-        .catalog__panel
-          .catalog__filter-openers
-            +button-alter('a', 'Все фильтры', '', '#!')(class='catalog__filter-opener-button button-alter--primary button-alter--small button-alter--with-icon button-alter--with-icon_filter')
-            +button-alter('a', 'Цена', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='price')
-            +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='size')
-          p.catalog__panel-text Найдено 100
-          ul.catalog__applied-filters
-            li.catalog__applied-filter Классический
-              button.catalog__applied-filter-reset-button
-                span.visually-hidden Удалить фильтр
-            li.catalog__applied-filter Цена от 13062 до 30078
-              button.catalog__applied-filter-reset-button
-                span.visually-hidden Удалить фильтр
-          ul.catalog__applied-options
-            li.catalog__applied-option Показывать: #[a.catalog__applied-option-link(href='#!') В наличии]
-          +catalog-sorting(class='catalog__sorting')
+        if headingIsHidden
+          h2.visually-hidden= heading
+        else
+          h2.catalog__heading.heading= heading
+        if withPanel
+          .catalog__panel
+            .catalog__filter-openers
+              +button-alter('a', 'Все фильтры', '', '#!')(class='catalog__filter-opener-button button-alter--primary button-alter--small button-alter--with-icon button-alter--with-icon_filter')
+              +button-alter('a', 'Цена', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='price')
+              +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='size')
+            p.catalog__panel-text Найдено 100
+            ul.catalog__applied-filters
+              li.catalog__applied-filter Классический
+                button.catalog__applied-filter-reset-button
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Цена от 13062 до 30078
+                button.catalog__applied-filter-reset-button
+                  span.visually-hidden Удалить фильтр
+            ul.catalog__applied-options
+              li.catalog__applied-option Показывать: #[a.catalog__applied-option-link(href='#!') В наличии]
+            +catalog-sorting(class='catalog__sorting')
         +products-list(products, 'xl')(class='catalog__list')
         +pagination(class='catalog__pagination')

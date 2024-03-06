@@ -1,0 +1,10 @@
+extends layout/layout
+
+block variables
+  - var title = 'Статья'
+  - var pageClass = 'article-page'
+
+block content
+  +back-link('Назад в блог', 'articles.html')
+  +article
+  +subscription-with-image

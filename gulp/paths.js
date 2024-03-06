@@ -35,7 +35,9 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/bannersr/*.{png,jpg}`,
+      `${pathSrc}/img/articles/article/*.{png,jpg}`,
+      `${pathSrc}/img/articles/brand/*.{png,jpg}`,
+      `${pathSrc}/img/products/*.{png,jpg}`,
     ],
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
@@ -61,10 +63,10 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/dev-index-user-navigation-popup.pug`,
-      `${pathSrc}/pug/dev-index-application-sent-modal.pug`,
-      `${pathSrc}/pug/dev-index-application-not-sent-modal.pug`,
-      `${pathSrc}/pug/dev-index-salon-modal.pug`,
+      `${pathSrc}/pug/brand.pug`,
+      `${pathSrc}/pug/article.pug`,
+      // `${pathSrc}/pug/dev-index-application-not-sent-modal.pug`,
+      // `${pathSrc}/pug/dev-index-salon-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
     watch: `${pathSrc}/pug/**/*.pug`,

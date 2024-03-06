@@ -1,13 +1,19 @@
 extends layout/layout
 
 block variables
-  - var title = 'Бренды'
-  - var pageClass = 'brands-page'
+  - var title = 'Бренд'
+  - var pageClass = 'brand-page'
+
+prepend styles
+  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
 
 block content
   +centered-breadcrumbs([
-      { text: 'Бренды' },
-    ])
-  +brands
-  +all-brands(brands, brandLinks)
-  +subscription-with-image
+    { text: 'Бренды', href: 'brands.html' },
+    { text: 'Calligaris' },
+  ])
+  +about-brand
+  +catalog('Товары бренда Calligaris')
+
+prepend scripts
+  script(src='vendor/swiper/swiper-bundle.min.js')

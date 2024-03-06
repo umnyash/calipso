@@ -1,0 +1,40 @@
+.article {
+  font: 500 14px/17px $main-font-family;
+}
+
+.article__header {
+  display: grid;
+  margin: 0 0 20px;
+  gap: 10px;
+  text-align: center;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+    gap: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}
+
+.article__heading {
+  margin: 0;
+}
+
+.article__date {
+  margin: 0;
+  font-size: 12px;
+  line-height: 14px;
+  color: var(--text-weak-color-2);
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
