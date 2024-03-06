@@ -18,15 +18,22 @@ block content
   +appointment
   +products('Акционные товары со скидкой', products, 'l')
   +advantages-cards
-  +terms-with-image
+  +terms-with-image(terms.fish)
   +articles(articles)
   +subscription-with-image
   +map-marker-template(true)
 
-
 append modals
-  +modal(class='modal--with_search modal--open')
-    +search-modal(class='modal__search')
+  +modal(class='modal--with_cities')
+    +cities(cities, true)(class='modal__cities')
+  +modal(class='modal--with_search')
+    +search-modal(true)(class='modal__search')
+  +modal(class='modal--with_alert modal--open')
+    +alert(
+      'Ошибка',
+      'Не удалось отправить заявку, попробуйте снова',
+      'Закрыть'
+    )(class='modal__alert alert--error')
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

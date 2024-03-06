@@ -69,3 +69,36 @@
     margin: 8px 0 0;
   }
 }
+
+
+.alert--error .alert__heading {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+
+  @media (min-width: $desktop-width) {
+    gap: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+
+  &::before {
+    content: "";
+    width: 24px;
+    height: 24px;
+    background: url("../img/icons.svg#error");
+
+    @media (min-width: $tablet-width) {
+      width: 40px;
+      height: 40px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}

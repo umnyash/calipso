@@ -4,6 +4,7 @@
   list-style: none;
   font: 500 14px/17px $main-font-family;
   color: var(--text-color);
+  background: var(--background-additional-color);
 
   @media (min-width: $tablet-width) {
     padding-top: 40px;
@@ -168,6 +169,10 @@
   color: inherit;
   background: transparent;
   cursor: pointer;
+
+  &--accent-2 {
+    color: var(--accent-color-1);
+  }
 
   &--with-arrow {
     padding-right: 44px;
@@ -450,6 +455,20 @@
 
     & > .site-navigation__bottom-list {
       display: block;
+    }
+  }
+}
+
+.site-navigation__panel--user .site-navigation__middle-link {
+  padding-left: 10px;
+}
+
+.site-navigation__top-link,
+.site-navigation__middle-link,
+.site-navigation__bottom-link {
+  @media (max-width: ($desktop-width - 1)) {
+    &:hover {
+      background: var(--background-color-dark-2);
     }
   }
 }

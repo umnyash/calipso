@@ -5,6 +5,7 @@ block variables
   - var pageClass = 'index-page'
   - var isHeaderTransparent = true
   - var isAuthorized = true
+  - var showUserNavigationPopup = true
 
 prepend styles
   link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
@@ -18,15 +19,16 @@ block content
   +appointment
   +products('Акционные товары со скидкой', products, 'l')
   +advantages-cards
-  +terms-with-image
+  +terms-with-image(terms.fish)
   +articles(articles)
   +subscription-with-image
   +map-marker-template(true)
 
-
 append modals
-  +modal(class='modal--with_search modal--open')
-    +search-modal(class='modal__search')
+  +modal(class='modal--with_cities')
+    +cities(cities, true)(class='modal__cities')
+  +modal(class='modal--with_search')
+    +search-modal(true)(class='modal__search')
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

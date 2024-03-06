@@ -61,10 +61,10 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/vacancies.pug`,
-      `${pathSrc}/pug/vacancy.pug`,
-      // `${pathSrc}/pug/dev-designers-cooperation-modal.pug`,
-      // `${pathSrc}/pug/dev-designers-application-sent-modal.pug`,
+      `${pathSrc}/pug/dev-index-user-navigation-popup.pug`,
+      `${pathSrc}/pug/dev-index-application-sent-modal.pug`,
+      `${pathSrc}/pug/dev-index-application-not-sent-modal.pug`,
+      `${pathSrc}/pug/dev-index-salon-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
     ],
     watch: `${pathSrc}/pug/**/*.pug`,
