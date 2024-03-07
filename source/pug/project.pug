@@ -1,20 +1,17 @@
 extends layout/layout
 
 block variables
-  - var title = 'О нас'
-  - var pageClass = 'about-page'
-  - var isHeaderTransparent = true
+  - var title = 'Проект'
+  - var pageClass = 'project-page'
 
 prepend styles
   link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
 
 block content
   +centered-breadcrumbs([
-    { text: 'О нас' },
-  ], true)(class='page__suspended-breadcrumbs')
-  +banner(banners.about)
-  +about
-  +members(members)
+    { text: 'Реализованные проекты', href: 'projects.html' },
+    { text: 'ЖК «Ард-хаус», Нижний Новгород' },
+  ])
 
 prepend scripts
   script(src='vendor/swiper/swiper-bundle.min.js')

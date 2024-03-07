@@ -1,23 +1,26 @@
 .raw-content {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 24px 15px;
-  align-content: start;
+  --row-gap: 24px;
+  --column-gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--row-gap) var(--column-gap);
   align-items: start;
   font: 400 14px/18px $main-font-family;
 
   @media (min-width: $tablet-width) {
-    gap: 40px 20px;
+    --row-gap: 40px;
+    --column-gap: 20px;
   }
 
   @media (min-width: $desktop-width) {
-    gap: 40px 30px;
+    --column-gap: 30px;
     font-size: 16px;
     line-height: 21px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    gap: 80px 40px;
+    --row-gap: 80px;
+    --column-gap: 40px;
     font-size: 22px;
     line-height: 28px;
   }
@@ -25,6 +28,11 @@
   /* Элементы */
   > * {
     margin: 0;
+  }
+
+  * {
+    box-sizing: border-box;
+    width: 100%;
   }
 
   h1 {
@@ -119,11 +127,16 @@
     }
   }
 
+  b {
+    font: inherit;
+    color: var(--accent-color-2);
+  }
+
   img {
+    align-self: stretch;
     display: block;
     width: 100%;
     max-width: 100%;
-    height: 100%;
     border-radius: 10px;
     object-fit: cover;
     object-position: center;
@@ -172,8 +185,8 @@
   }
   /* * * * * * * * * * * */
 
-  * {
-    grid-column: 1 / -1;
+  [class^="column-"] {
+    flex-grow: 1;
   }
 
   /* Минимальная высота изображений */
@@ -191,41 +204,91 @@
   }
   /* * * * * * * * * * * */
 
+  /* 1/2 + 1/2 */
   .column-1-6 {
-    grid-column: 1 / 7;
+    width: calc(50% - var(--column-gap) / 2);
+    margin: 0 auto 0 0;
   }
 
   .column-7-12 {
-    grid-column: 7 / 13;
+    width: calc(50% - var(--column-gap) / 2);
+    margin: 0 0 0 auto;
   }
 
+  /* * * * * * * * * * * */
+
+  /* center */
   .column-3-10 {
     @media (min-width: $laptop-width) {
-      grid-column: 3 / 11;
+      width: calc(((100% - 11 * var(--column-gap)) / 12 * 8) + (var(--column-gap) * 7));
+      margin: 0 auto;
+      flex-grow: 0;
     }
   }
+  /* * * * * * * * * * * */
 
+  /* 1/3 + 1/3 + 1/3 */
   .column-1-4 {
-    grid-column: 1 / 7;
-
-    @media (min-width: $laptop-width) {
-      grid-column: 1 / 5;
-    }
+    width: calc((100% - 2 * var(--column-gap)) / 3);
+    margin: 0 auto 0 0;
   }
 
   .column-5-8 {
-    grid-column: 7 / 13;
-
-    @media (min-width: $laptop-width) {
-      grid-column: 5 / 9;
-    }
+    width: calc((100% - 2 * var(--column-gap)) / 3);
+    margin: 0 auto;
   }
 
   .column-9-12 {
-    @media (min-width: $laptop-width) {
-      grid-column: 9 / 13;
+    @media (min-width: $tablet-width) {
+      width: calc((100% - 2 * var(--column-gap)) / 3);
+      margin: 0 0 0 auto;
     }
   }
+  /* * * * * * * * * * * */
+
+  /* Если для чего-то кроме изображения была задана колонка, то на планшетной
+  и мобильной ширине это будет заниматься всю ширину. В частоности, дивы с текстом
+  и одиночные абзацы. */
+  [class^="column-"]:not(img) {
+    @media (max-width: ($laptop-width - 1)) {
+      width: 100%;
+    }
+  }
+
+  /* Изображение, занимающее половину контейнера, на планшетной и мобильной ширине
+  будет занимать всю ширину. */
+
+  *:not(img) + img.column-7-12 {
+    @media (max-width: ($laptop-width - 1)) {
+      width: 100%;
+    }
+  }
+
+  /* 5/12 + 7/12 */
+  .column-1-5 {
+    @media (min-width: $tablet-width) {
+      width: calc(((100% - 11 * var(--column-gap)) / 12 * 5) + (var(--column-gap) * 4));
+      margin: 0 auto 0 0;
+    }
+  }
+
+  .column-6-12 {
+    @media (min-width: $tablet-width) {
+      width: calc(((100% - 11 * var(--column-gap)) / 12 * 7) + (var(--column-gap) * 6));
+      margin: 0 0 0 0 auto;
+    }
+  }
+  /* * * * * * * * * * * */
+
+  /* Вертикальное выравнивание */
+  .align-center {
+    align-self: center;
+  }
+
+  .align-bottom {
+    align-self: end;
+  }
+  /* * * * * * * * * * * */
 }
 
 /* Коррекция отступа для текстового контента в краийних колонках */
@@ -274,28 +337,92 @@
 
 /* Модификация для статьи о бренде */
 .raw-content--brand {
-  gap: 20px 15px;
+  --row-gap: 20px;
+  --column-gap: 15px;
 
   @media (min-width: $tablet-width) {
-    gap: 20px;
+    --column-gap: 20px;
     font-size: 16px;
     line-height: 21px;
   }
 
   @media (min-width: $desktop-width) {
-    gap: 40px 30px;
+    --row-gap: 40px;
+    --column-gap: 30px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    gap: 40px;
+    --column-gap: 40px;
     font-size: 22px;
     line-height: 28px;
   }
 
-  .column-1-6,
-  .column-7-12 {
-    @media (max-width: ($laptop-width - 1)) {
-      grid-column: 1 / -1;
+  div p {
+    @media (min-width: $wide-desktop-width) {
+      margin: 24px 0;
+    }
+  }
+}
+/* * * * * * * * * * * */
+
+/* Модификация для статьи о компании */
+.raw-content--about {
+  --row-gap: 20px;
+  --column-gap: 15px;
+
+  @media (min-width: $tablet-width) {
+    --column-gap: 20px;
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  @media (min-width: $desktop-width) {
+    --row-gap: 40px;
+    --column-gap: 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    --row-gap: 80px;
+    --column-gap: 40px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  h2 {
+    font: inherit;
+    font-size: 20px;
+    line-height: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    @media (min-width: $tablet-width) {
+      font-size: 24px;
+      line-height: 30px;
+    }
+
+    @media (min-width: $desktop-width) {
+      font-size: 30px;
+      line-height: 38px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      font-size: 38px;
+      line-height: 48px;
+    }
+  }
+
+  div h2 {
+    margin: 20px 0;
+
+    @media (min-width: $desktop-width) {
+      margin: 24px 0;
+    }
+  }
+
+  div h1,
+  div h2 {
+    @media (min-width: $wide-desktop-width) {
+      margin: 40px 0;
     }
   }
 

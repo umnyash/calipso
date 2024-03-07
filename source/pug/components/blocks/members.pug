@@ -1,0 +1,11 @@
+mixin members(members)
+  section.members&attributes(attributes)
+    .members__inner.container
+      h2.members__heading.heading Лица компании
+      ul.members__list
+        each member in members
+          li.members__item
+            .members__item-content
+              h3.members__item-heading!= member.heading
+              p.members__item-text!= member.text
+            img.members__item-image(src= member.image width='560' height='600' alt='Фото.' loading='lazy')

@@ -160,6 +160,7 @@
   }
 }
 
+.page__content > .banner + .about,
 .page__content > .banner + .terms-with-image {
   @media (max-width: ($desktop-width - 1)) {
     margin-top: 60px;

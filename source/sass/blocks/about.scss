@@ -1,0 +1,12 @@
+.about__inner {
+  display: grid;
+  gap: 100px;
+
+  @media (min-width: $desktop-width) {
+    gap: 120px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 140px;
+  }
+}

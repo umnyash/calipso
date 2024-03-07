@@ -1,0 +1,11 @@
+mixin blockquote(blockquote)
+  article.blockquote&attributes(attributes)
+    .blockquote__text-content
+      if blockquote.heading
+        h2.blockquote__heading.heading!= blockquote.heading
+      blockquote.blockquote__texts
+        each text in blockquote.texts
+          p.blockquote__text!= text
+      p.blockquote__author= blockquote.author
+    picture.blockquote__image-wrapper
+      img.blockquote__image(src= blockquote.image alt='photo' loading='lazy')

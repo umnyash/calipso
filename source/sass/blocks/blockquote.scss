@@ -1,0 +1,135 @@
+.blockquote {
+  display: grid;
+  gap: 20px;
+  font: 500 14px/17px $main-font-family;
+
+  @media (min-width: $laptop-width) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 30px;
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 40px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+
+.blockquote__text-content {
+  display: grid;
+  box-sizing: border-box;
+  padding: 24px;
+  border-radius: 10px;
+  gap: 20px;
+  align-content: center;
+  background: var(--background-additional-color);
+
+  @media (min-width: $desktop-width) {
+    padding: 40px;
+    border-radius: 16px;
+    gap: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 60px 66px 60px 60px;
+    gap: 40px;
+  }
+}
+
+.blockquote__heading {
+  margin: 0;
+}
+
+.blockquote__texts {
+  display: grid;
+  padding: 0;
+  border: none;
+  margin: 0;
+  gap: 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+}
+
+.blockquote__text {
+  margin: 0;
+}
+
+.blockquote__author {
+  margin: 0;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-weak-color);
+
+  @media (min-width: $desktop-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 24px;
+    line-height: 31px;
+  }
+}
+
+.blockquote__image-wrapper {
+  position: relative;
+  order: -1;
+  width: 100%;
+  aspect-ratio: 343 / 242;
+  max-height: 380px;
+
+  @media (min-width: $tablet-width) {
+    aspect-ratio: 720 / 380;
+    max-height: 500px;
+  }
+
+  @media (min-width: $laptop-width) {
+    aspect-ratio: auto;
+    height: 100%;
+    max-height: none;
+    min-height: 280px;
+  }
+}
+
+.blockquote__image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: left top;
+
+  @media (min-width: $desktop-width) {
+    border-radius: 16px;
+  }
+}
+
+
+.blockquote--alter {
+  @media (min-width: $laptop-width) {
+    grid-template-columns: 1fr 510px;
+  }
+
+  @media (min-width: $desktop-width) {
+    grid-template-columns: minmax(726px, 1010px) minmax(510px, 710px);
+  }
+
+  .blockquote__text-content {
+    @media (min-width: $wide-desktop-width) {
+      min-height: 600px;
+    }
+  }
+
+  .blockquote__image-wrapper {
+    @media (min-width: $laptop-width) {
+      order: 0;
+    }
+  }
+}

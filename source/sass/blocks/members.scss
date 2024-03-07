@@ -1,0 +1,141 @@
+.members {
+  font: 400 14px/18px $main-font-family;
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.members__heading {
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}
+
+.members__list {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 40px 15px;
+  align-items: start;
+
+  @media (min-width: $laptop-width) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 60px 30px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 80px 40px;
+  }
+}
+
+.members__item {
+  display: grid;
+  gap: 10px;
+
+  @media (min-width: $desktop-width) {
+    gap: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+}
+
+.members__item-content {
+  display: grid;
+  padding: 0 10px;
+  gap: 5px;
+
+  @media (min-width: $desktop-width) {
+    gap: 10px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 55px;
+  }
+}
+
+.members__item-heading {
+  margin: 0;
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+
+  @media (min-width: $tablet-width) {
+    padding: 0 24px 0 0;
+  }
+
+  @media (min-width: $laptop-width) {
+    padding: 0 72px 0 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 0 36px 0 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0;
+    font-size: 26px;
+    line-height: 31px;
+  }
+}
+
+.members__item-text {
+  margin: 0;
+  color: var(--text-weak-color);
+}
+
+.members__item-image {
+  order: -1;
+  justify-self: center;
+  display: block;
+  width: 100%;
+  max-width: 402px;
+  height: 368px;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center top;
+
+  @media (min-width: $desktop-width) {
+    max-width: none;
+    height: 432px;
+    border-radius: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    height: 600px;
+  }
+}
+
+.members__item:nth-child(3n - 1) .members__item-image {
+  height: 244px;
+
+  @media (min-width: $tablet-width) {
+    height: 250px;
+  }
+
+  @media (min-width: $desktop-width) {
+    height: 288px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    height: 400px;
+  }
+}
