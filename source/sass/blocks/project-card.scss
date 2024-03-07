@@ -1,0 +1,22 @@
+.project-card {
+  display: grid;
+  padding: 16px;
+  gap: 20px;
+  font: 400 14px/18px $main-font-family;
+  background: var(--background-additional-color);
+}
+
+.project-card__heading {
+  margin: 0 0 10px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.project-card__image {
+  order: -1;
+  height: 192px;
+  border-radius: 10px;
+}

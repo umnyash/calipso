@@ -287,3 +287,11 @@
     margin-top: 150px;
   }
 }
+
+.page__content > .not-found {
+  margin-top: 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-top: 40px;
+  }
+}

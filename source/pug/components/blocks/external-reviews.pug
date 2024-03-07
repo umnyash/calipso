@@ -1,5 +1,30 @@
 mixin external-reviews
   section.external-reviews&attributes(attributes)
     .external-reviews__inner.container
-      .external-reviews__heading.heading Посмотрите отзывы о нас на других площадках
+      h2.external-reviews__heading.heading Посмотрите отзывы о нас на других площадках
+      ul.external-reviews__list
+        li.external-reviews__item
+          a.external-reviews__link(href='#!' target='_blank' rel='noopener')
+            img.external-reviews__logo(src='img/browsers/yandex.svg' width='100' height='43' alt='Яндекс.')
+            p.external-reviews__rating
+              span.external-reviews__stars(role='img' aria-label='Звёздный рейтинг.')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star.external-reviews__star--half(src='img/icons.svg#star' width='24' height='24' alt='')
+              span.external-reviews__rating-value 4,8
+            p.external-reviews__count 6 отзывов
+        li.external-reviews__item
+          a.external-reviews__link(href='#!' target='_blank' rel='noopener')
+            img.external-reviews__logo(src='img/browsers/google.svg' width='100' height='43' alt='Google.')
+            p.external-reviews__rating
+              span.external-reviews__stars(role='img' aria-label='Звёздный рейтинг.')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star(src='img/icons.svg#star' width='24' height='24' alt='')
+                img.external-reviews__star.external-reviews__star--half(src='img/icons.svg#star' width='24' height='24' alt='')
+              span.external-reviews__rating-value 4,8
+            p.external-reviews__count 6 отзывов
       +button('a', 'Оставить отзыв', '', '#!')(class='external-reviews__button button--primary')

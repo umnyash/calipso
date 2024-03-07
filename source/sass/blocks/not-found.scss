@@ -1,0 +1,121 @@
+.not-found {
+  font: 500 14px/17px $main-font-family;
+  text-transform: uppercase;
+
+  @media (min-width: $tablet-width) {
+    font-weight: 600;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.not-found__inner {
+  display: grid;
+  padding: 20px 16px;
+  border-radius: 10px;
+  gap: 38px;
+  background: var(--background-additional-color);
+  align-items: center;
+
+  @media (min-width: $tablet-width) {
+    padding: 30px 32px 20px;
+    grid-template-columns: 1fr 40%;
+    gap: 56px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 30px 50px 20px;
+    border-radius: 16px;
+    grid-template-columns: 1fr 30%;
+    gap: 193px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 62px 112px 20px;
+    grid-template-columns: 1fr 29%;
+    gap: 332px;
+  }
+}
+
+.not-found__code {
+  margin: 0 0 10px;
+  font-size: 70px;
+  line-height: 77px;
+  font-weight: 600;
+  color: var(--accent-color-1);
+
+  @media (min-width: $tablet-width) {
+    font-size: 75px;
+    line-height: 83px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 100px;
+    line-height: 110px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 20px;
+    font-size: 160px;
+    line-height: 176px;
+  }
+}
+
+.not-found__text {
+  margin: 0 0 24px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 20px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 30px;
+  }
+}
+
+.not-found__button {
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    width: auto;
+  }
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 50px;
+  }
+}
+
+.not-found__image {
+  order: -1;
+  place-self: center;
+  width: 268px;
+  margin: 48px 0 0 13px;
+
+  @media (min-width: $tablet-width) {
+    width: 100%;
+    max-width: 380px;
+    margin: 15px 0 0 28px;
+  }
+
+  @media (min-width: $tablet-width) {
+    max-width: 524px;
+    margin: 0 0 0 10px;
+  }
+
+  @media (min-width: $tablet-width) {
+    max-width: 754px;
+    margin: 0;
+  }
+}

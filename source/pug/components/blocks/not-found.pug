@@ -1,0 +1,9 @@
+mixin not-found
+  .not-found&attributes(attributes)
+    .container
+      .not-found__inner
+        .not-found__text-content
+          .not-found__code 404
+          .not-found__text Упс, что-то пошло не&nbsp;так, пожалуйста, вернитесь на&nbsp;главную
+          +button('a', 'На главную', '', 'index.html')(class='not-found__button button--primary')
+        img.not-found__image(src='img/404.webp' alt='' loading='lazy')

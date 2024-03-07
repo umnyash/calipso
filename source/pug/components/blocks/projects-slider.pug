@@ -1,0 +1,10 @@
+mixin projects-slider
+  section.projects-slider&attributes(attributes)
+    .projects-slider__header
+      h2.projects-slider__heading.heading Ещё проекты
+      +slider-arrows(class='projects-slider__arrows')
+    .projects-slider__slider.swiper
+      ul.projects-slider__list.swiper-wrapper
+        each item in [0, 1, 2, 3]
+          li.projects-slider__item.swiper-slide
+            +project-card

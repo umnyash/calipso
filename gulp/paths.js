@@ -35,7 +35,7 @@ export default {
 
   createWebp: {
     src: [
-      `${pathSrc}/img/projects1/*.{png,jpg}`,
+      `${pathSrc}/img/404.png`,
       // `${pathSrc}/img/team/*.{png,jpg}`,
       // `${pathSrc}/img/banners/*.{png,jpg}`,
       // `${pathSrc}/img/articles/*.{png,jpg}`,
@@ -65,10 +65,10 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/projects.pug`,
-      `${pathSrc}/pug/horeca.pug`,
-      `${pathSrc}/pug/cooperation.pug`,
-      `${pathSrc}/pug/developers.pug`,
+      `${pathSrc}/pug/not-found.pug`,
+      // `${pathSrc}/pug/horeca.pug`,
+      // `${pathSrc}/pug/cooperation.pug`,
+      // `${pathSrc}/pug/developers.pug`,
       // `${pathSrc}/pug/article.pug`,
       // `${pathSrc}/pug/brand.pug`,
       // `${pathSrc}/pug/dev-index-application-not-sent-modal.pug`,
