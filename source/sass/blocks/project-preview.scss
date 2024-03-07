@@ -1,0 +1,246 @@
+.project-preview {
+  position: relative;
+  z-index: 0;
+  display: grid;
+  gap: 20px;
+  font: 400 14px/18px $main-font-family;
+  overflow: hidden;
+
+  @media (min-width: $desktop-width) {
+    min-height: 386px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    min-height: 540px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.project-preview__info {
+  display: grid;
+  box-sizing: border-box;
+  padding: 0 10px;
+
+  @media (min-width: $desktop-width) {
+    z-index: 1;
+    padding: 24px 40px;
+    align-content: end;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px 60px;
+  }
+}
+
+.project-preview__heading {
+  margin: 0 0 10px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 23px;
+    color: var(--text-alter-color);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 16px;
+    font-size: 26px;
+    line-height: 31px;
+  }
+}
+
+.project-preview__description {
+  display: grid;
+  gap: 20px;
+
+  @media (min-width: $desktop-width) {
+    gap: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 32px;
+  }
+}
+
+.project-preview__text {
+  margin: 0;
+  color: var(--text-weak-color);
+
+  @media (min-width: $desktop-width) {
+    color: var(--text-alter-color-3);
+  }
+}
+
+.project-preview__button {
+  @media (min-width: $desktop-width) {
+    justify-self: start;
+  }
+}
+
+.project-preview__image-wrapper {
+  position: relative;
+  z-index: 0;
+  order: -1;
+  height: 214px;
+  border-radius: 10px;
+  overflow: hidden;
+
+  @media (min-width: $tablet-width) {
+    height: 218px;
+  }
+
+  @media (min-width: $desktop-width) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.7) 31%, transparent 89%);
+      transform-origin: center bottom;
+      transition: transform 100ms;
+    }
+  }
+}
+
+.project-preview__image {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.product-preview__team {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1;
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  justify-content: flex-end;
+  align-items: center;
+
+  @media (min-width: $laptop-width) {
+    right: 40px;
+    bottom: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    right: 60px;
+    bottom: 40px;
+  }
+}
+
+.product-preview__team-item:not(:last-child) {
+  margin: 0 -8px 0 0;
+
+  &:first-child {
+    z-index: 10;
+  }
+
+  &:nth-child(2) {
+    z-index: 9;
+  }
+
+  &:nth-child(3) {
+    z-index: 7;
+  }
+
+  &:nth-child(4) {
+    z-index: 6;
+  }
+
+  &:nth-child(5) {
+    z-index: 5;
+  }
+
+  &:nth-child(6) {
+    z-index: 4;
+  }
+
+  &:nth-child(7) {
+    z-index: 3;
+  }
+
+  &:nth-child(8) {
+    z-index: 2;
+  }
+
+  &:nth-child(9) {
+    z-index: 1;
+  }
+}
+
+.product-preview__team-image {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  @media (min-width: $wide-desktop-width) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.project-preview--1 {
+  @media (min-width: $desktop-width) {
+    .project-preview__info {
+      transform: translateY(100%);
+    }
+
+    .project-preview__image-wrapper::after {
+      transform: scaleY(0);
+    }
+
+    &:hover,
+    &:focus-within {
+      .project-preview__info {
+        transform: none;
+      }
+
+      .project-preview__image-wrapper::after {
+        transform: scaleY(1);
+      }
+    }
+  }
+}
+
+.project-preview--2 {
+  @media (min-width: $desktop-width) {
+    .project-preview__description {
+      position: absolute;
+      top: 100%;
+    }
+
+    .project-preview__image-wrapper::after {
+      transform: scaleY(0.36);
+    }
+
+    &:hover,
+    &:focus-visible {
+      .project-preview__description {
+        position: static;
+        top: auto;
+      }
+
+      .project-preview__image-wrapper::after {
+        transform: none;
+      }
+    }
+  }
+}

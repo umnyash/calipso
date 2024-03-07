@@ -1,0 +1,17 @@
+mixin projects(heading, text, isMain, variant)
+  if isMain
+    .projects&attributes(attributes)
+      .projects__inner.container
+        header.projects__header
+          h1.projects__heading.heading= heading
+          p.projects__text Внезапно, стремящиеся вытеснить традиционное производство, нанотехнологии указаны как претенденты на роль ключевых факторов. Также как перспективное планирование не&nbsp;даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений. Но акционеры крупнейших компаний набирают популярность среди определенных слоев населения, а значит, должны быть преданы социально-демократической анафеме.
+        +projects-list(2, variant)(class='projects__list')
+        +pagination(true)(class='projects__pagination')
+  else
+    section.projects&attributes(attributes)
+      .projects__inner.container
+        header.projects__header
+          h2.projects__heading.heading= heading
+          if text
+            p.projects__text= text
+        +projects-list(3, variant)(class='projects__list')

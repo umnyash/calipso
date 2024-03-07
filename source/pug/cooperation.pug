@@ -1,0 +1,15 @@
+extends layout/layout
+
+block variables
+  - var title = 'Сотрудничество'
+  - var pageClass = 'cooperation-page'
+  - var isHeaderTransparent = true
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Сотрудничество' },
+  ], true)(class='page__suspended-breadcrumbs')
+  +banner(banners.cooperation)
+  +terms-with-image(terms.cooperation)
+  +projects('Жилые комплексы', 'Описание работ, клиентов, преимуществ', false, 1)
+  +members('<b class="accent">О нас</b> говорят', members)

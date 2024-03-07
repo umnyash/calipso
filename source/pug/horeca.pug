@@ -1,0 +1,17 @@
+extends layout/layout
+
+block variables
+  - var title = 'HoReCa'
+  - var pageClass = 'horeca-page'
+  - var isHeaderTransparent = true
+
+block content
+  +centered-breadcrumbs([
+    { text: 'HoReCa' },
+  ], true)(class='page__suspended-breadcrumbs')
+  +banner(banners.horeca)
+  +terms-with-image(terms.cooperation)
+  +projects('Рестораны', 'Описание работ, клиентов, преимуществ', false, 1)
+  +projects('Отели', 'Описание работ, клиентов, преимуществ', false, 1)
+  +projects('Кафе', 'Описание работ, клиентов, преимуществ', false, 1)
+  +members('<b class="accent">О нас</b> говорят', members)

@@ -1,0 +1,21 @@
+mixin project-preview(headingLevel, variant)
+  article.project-preview(class=`project-preview--${variant}`)&attributes(attributes)
+    .project-preview__info
+      case headingLevel
+        when 2
+          h2.project-preview__heading ЖК «Ард-хаус», Нижний Новгород
+        default
+          h3.project-preview__heading ЖК «Ард-хаус», Нижний Новгород
+      .project-preview__description
+        p.project-preview__text Удобство клиента у нас всегда на первом месте! Мало кто может похвастаться тем, что выезжает к клиенту на дом с каталогами и обивками, дает на примерку ковры или аксессуары.
+        +button('a', 'Подробнее', '', 'project.html')(class='project-preview__button button--primary')
+    .project-preview__image-wrapper
+      img.project-preview__image(src=`img/projects/project-${variant}.webp` width='860' height='540' alt='' loading='lazy')
+      if variant === 2
+        ul.product-preview__team
+          li.product-preview__team-item
+            img.product-preview__team-image(src='img/team/team-1.webp' width='60' height='60' alt='Фото.' loading='lazy')
+          li.product-preview__team-item
+            img.product-preview__team-image(src='img/team/team-2.webp' width='60' height='60' alt='Фото.' loading='lazy')
+          li.product-preview__team-item
+            img.product-preview__team-image(src='img/team/team-3.webp' width='60' height='60' alt='Фото.' loading='lazy')

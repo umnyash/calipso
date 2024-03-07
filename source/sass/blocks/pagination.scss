@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.pagination__item--prev {
+  margin: 0 auto 0 0;
+}
+
 .pagination__item--next {
   margin: 0 0 0 auto;
 }
@@ -47,4 +51,11 @@
   min-width: 36px;
   border: none;
   background: url("../img/icons.svg#controls_arrow") 100% 50% / 24px 24px no-repeat;
+}
+
+.pagination__link--prev {
+  min-width: 36px;
+  border: none;
+  background: url("../img/icons.svg#controls_arrow") 100% 50% / 24px 24px no-repeat;
+  transform: scaleX(-1);
 }

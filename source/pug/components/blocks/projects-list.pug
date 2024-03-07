@@ -1,0 +1,4 @@
+mixin projects-list(headingLevel, variant)
+  ul.projects-list&attributes(attributes)
+    each item in [0, 1, 2, 3]
+      +project-preview(headingLevel, variant)

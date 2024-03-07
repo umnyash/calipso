@@ -1,0 +1,11 @@
+extends layout/layout
+
+block variables
+  - var title = 'Проекты'
+  - var pageClass = 'projects-page'
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Реализованные проекты' },
+  ])
+  +projects('Реализованные проекты', '', true, 2)

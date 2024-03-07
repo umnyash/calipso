@@ -1,7 +1,7 @@
-mixin members(members)
+mixin members(heading, members)
   section.members&attributes(attributes)
     .members__inner.container
-      h2.members__heading.heading Лица компании
+      h2.members__heading.heading!= heading
       ul.members__list
         each member in members
           li.members__item

@@ -1,0 +1,15 @@
+extends layout/layout
+
+block variables
+  - var title = 'Застройщикам'
+  - var pageClass = 'developers-page'
+  - var isHeaderTransparent = true
+
+block content
+  +centered-breadcrumbs([
+    { text: 'Застройщикам' },
+  ], true)(class='page__suspended-breadcrumbs')
+  +banner(banners.developers)
+  +terms-with-image(terms.cooperation)
+  +projects('Совместные проекты', '', false, 2)
+  +members('<b class="accent">О нас</b> говорят', members)

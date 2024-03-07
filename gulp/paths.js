@@ -27,22 +27,23 @@ export default {
     dest: `${pathDest}/img`
   },
 
-  createWebp: {
-    src: `${pathSrc}/img/**/*.{png,jpg}`,
-    watch: `${pathSrc}/img/**/*.{png,jpg}`,
-    dest: `${pathDest}/img`
-  },
-
   // createWebp: {
-  //   src: [
-  //     `${pathSrc}/img/banners/*.{png,jpg}`,
-  //     `${pathSrc}/img/members/*.{png,jpg}`,
-  //     `${pathSrc}/img/articles/*.{png,jpg}`,
-  //     `${pathSrc}/img/blockquotes/*.{png,jpg}`,
-  //   ],
+  //   src: `${pathSrc}/img/**/*.{png,jpg}`,
   //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
   //   dest: `${pathDest}/img`
   // },
+
+  createWebp: {
+    src: [
+      `${pathSrc}/img/projects1/*.{png,jpg}`,
+      // `${pathSrc}/img/team/*.{png,jpg}`,
+      // `${pathSrc}/img/banners/*.{png,jpg}`,
+      // `${pathSrc}/img/articles/*.{png,jpg}`,
+      // `${pathSrc}/img/blockquotes/*.{png,jpg}`,
+    ],
+    watch: `${pathSrc}/img/**/*.{png,jpg}`,
+    dest: `${pathDest}/img`
+  },
 
   optimizeVector: {
     src: [
@@ -64,9 +65,12 @@ export default {
 
   processMarkup: {
     src: [
-      `${pathSrc}/pug/about.pug`,
-      `${pathSrc}/pug/article.pug`,
-      `${pathSrc}/pug/brand.pug`,
+      `${pathSrc}/pug/projects.pug`,
+      `${pathSrc}/pug/horeca.pug`,
+      `${pathSrc}/pug/cooperation.pug`,
+      `${pathSrc}/pug/developers.pug`,
+      // `${pathSrc}/pug/article.pug`,
+      // `${pathSrc}/pug/brand.pug`,
       // `${pathSrc}/pug/dev-index-application-not-sent-modal.pug`,
       // `${pathSrc}/pug/dev-index-salon-modal.pug`,
       `${pathSrc}/pug/dev-site-map.pug`,
