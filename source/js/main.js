@@ -25,6 +25,7 @@ import { initFileField } from './file-field.js';
 import { initFeed } from './feed.js';
 import { initVideoReiewsSlider } from './video-reviews-slider.js';
 import { initVideo } from './video.js';
+import { initProjectsSlider } from './projects-slider.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -46,13 +47,14 @@ document.querySelectorAll('.product-header__form-buttons').forEach(initProductHe
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
-document.querySelectorAll('.text-field--date').forEach(initDateField);
+document.querySelectorAll('.text-field--date2').forEach(initDateField);
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
 document.querySelectorAll('.reviews__list').forEach(initReviewsList);
 document.querySelectorAll('.file-field').forEach(initFileField);
 document.querySelectorAll('.feed').forEach(initFeed);
 document.querySelectorAll('.video-reviews').forEach(initVideoReiewsSlider);
 document.querySelectorAll('.video').forEach(initVideo);
+document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);

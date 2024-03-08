@@ -1,9 +1,27 @@
 .project-card {
   display: grid;
+  box-sizing: border-box;
   padding: 16px;
+  border-radius: 10px;
   gap: 20px;
   font: 400 14px/18px $main-font-family;
   background: var(--background-additional-color);
+
+  @media (min-width: $tablet-width) {
+    padding: 24px;
+    grid-template-columns: auto 1fr;
+  }
+
+  @media (min-width: $desktop-width) {
+    border-radius: 16px;
+    gap: 40px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 40px;
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
 
 .project-card__heading {
@@ -13,10 +31,90 @@
   line-height: 19px;
   font-weight: 500;
   text-transform: uppercase;
+
+  @media (min-width: $desktop-width) {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 20px;
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+.project-card__text-content {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.project-card__text {
+  margin: 0;
+  color: var(--text-weak-color);
+}
+
+.project-card__author {
+  display: grid;
+  margin: 24px 0 0;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+
+  @media (min-width: $tablet-width) {
+    align-self: end;
+    margin: 20px 0 0;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 24px 0 0;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 40px 0 0;
+    gap: 20px;
+    font-size: 22px;
+    line-height: 29px;
+  }
+}
+
+.project-card__author-image {
+  order: -1;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  @media (min-width: $wide-desktop-width) {
+    width: 60px;
+    height: 60px;
+  }
 }
 
 .project-card__image {
   order: -1;
   height: 192px;
   border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+
+  @media (min-width: $tablet-width) {
+    width: 250px;
+    height: 216px;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: 320px;
+    height: 216px;
+    border-radius: 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    width: 500px;
+    height: 344px;
+  }
 }

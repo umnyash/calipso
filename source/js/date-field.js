@@ -6,7 +6,7 @@ function initDateField(fieldElement) {
     dateFormat: 'yyyy-MM-dd',
     navTitles: {
       classes: 'text-field__calendar',
-      days: '<strong class="fff">yyyy</strong> <i>MMMM</i>',
+      days: '<span class="month">MMMM</span> <span class="year">yyyy</span>',
       weekends: [0, 6]
     },
     onSelect({ formattedDate }) {

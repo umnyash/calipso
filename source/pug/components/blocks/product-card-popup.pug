@@ -1,0 +1,7 @@
+mixin product-card-popup
+  .product-card-popup&attributes(attributes)
+    .product-card-popup__inner
+      button.product-card-popup__close-button(type='button')
+        span.visually-hidden Закрыть
+      +product-card(products[2])(class='product-card-popup__card product-card--popup')
+      a.product-card-popup__link(href='product.html') Подробнее

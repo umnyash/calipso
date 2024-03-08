@@ -1,0 +1,7 @@
+mixin member-card
+  article.member-card&attributes(attributes)
+    .member-card__text-content
+      h2.member-card__heading Маргарита Куляшова, дизайнер проекта
+      p.member-card__text В чем сила «Калипсо»? Мы постоянно проходим обучения и посещаем семинары у итальянских и российских производителей мебели, декора, текстиля. Мы знаем все о современных технологиях, материалах и о трендах дизайна.
+    img.member-card__image(src='img/members/member-1.webp' alt='Фото.')
+    +button('a', 'Записаться на консультацию', '', '#!')(class='member-card__button button--primary')

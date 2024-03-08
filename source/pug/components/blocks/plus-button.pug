@@ -1,0 +1,7 @@
+mixin plus-button(tag, text, type, href, target, rel)
+  if tag === 'button'
+    button.plus-button(type= type)&attributes(attributes)
+      span.visually-hidden= text
+  else if tag === 'a'
+    a.plus-button(href= href target= target rel= rel)&attributes(attributes)
+      span.visually-hidden= text

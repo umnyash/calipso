@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--row-gap) var(--column-gap);
-  align-items: start;
+  align-items: flex-start;
   font: 400 14px/18px $main-font-family;
 
   @media (min-width: $tablet-width) {
@@ -276,6 +276,15 @@
     @media (min-width: $tablet-width) {
       width: calc(((100% - 11 * var(--column-gap)) / 12 * 7) + (var(--column-gap) * 6));
       margin: 0 0 0 0 auto;
+    }
+  }
+  /* * * * * * * * * * * */
+
+  /* 8/12 + 4/12 */
+  .column-1-8 {
+    @media (min-width: $tablet-width) {
+      width: calc(((100% - 11 * var(--column-gap)) / 12 * 8) + (var(--column-gap) * 7));
+      margin: 0 auto 0 0;
     }
   }
   /* * * * * * * * * * * */

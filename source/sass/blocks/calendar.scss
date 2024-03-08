@@ -1,0 +1,53 @@
+.calendar {
+  width: 332px;
+  font: 500 14px/17px $main-font-family;
+  border: 1px solid #bfbfbf;
+  border-radius: 16px;
+  color: #050505;
+
+  @include main-shadow;
+}
+
+.air-datepicker-nav--title {
+  gap: 4px;
+  font-size: 16px;
+  line-height: 20px;
+
+  .year {
+    color: var(--accent-color-1);
+  }
+}
+
+.air-datepicker-nav {
+  border-bottom: none;
+  padding: 17px 33px 13px;
+}
+
+.air-datepicker-nav--action {
+  background: url("../img/icons.svg#controls_right-arrow-without-tail") 50% 50% / 20px 20px no-repeat;
+}
+
+.air-datepicker-nav--action[data-action="prev"] {
+  transform: scale(-1);
+}
+
+.air-datepicker-nav--action svg {
+  display: none;
+}
+
+.air-datepicker-body--day-name {
+  font: inherit;
+  color: #797979;
+}
+
+.air-datepicker--content {
+  padding: 0 40px;
+}
+
+.air-datepicker-body--day-names {
+  margin-bottom: 10px;
+}
+
+.air-datepicker-cell {
+  height: 36px;
+}

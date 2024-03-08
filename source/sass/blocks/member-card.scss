@@ -1,0 +1,76 @@
+.member-card {
+  display: grid;
+  font: 400 14px/18px $main-font-family;
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
+.member-card__text-content {
+  display: grid;
+  padding: 0 10px;
+  gap: 5px;
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 0 55px;
+    gap: 10px;
+  }
+}
+
+.member-card__heading {
+  margin: 0;
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 500;
+
+  @media (min-width: $desktop-width) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 26px;
+    line-height: 31px;
+  }
+}
+
+.member-card__text {
+  margin: 0;
+  color: var(--text-weak-color);
+}
+
+.member-card__image {
+  order: -1;
+  width: 100%;
+  height: 368px;
+  border-radius: 10px;
+  margin: 0 0 10px;
+  object-fit: cover;
+  object-position: center top;
+
+  @media (min-width: $desktop-width) {
+    height: 432px;
+    border-radius: 16px;
+    margin: 0 0 16px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    height: 600px;
+    margin: 0 0 20px;
+  }
+}
+
+.member-card__button {
+  margin: 20px 0 0;
+
+  @media (min-width: $desktop-width) {
+    margin: 20px 10px 0;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 40px 70px 0;
+  }
+}
