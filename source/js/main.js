@@ -47,7 +47,7 @@ document.querySelectorAll('.product-header__form-buttons').forEach(initProductHe
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
-document.querySelectorAll('.text-field--date2').forEach(initDateField);
+document.querySelectorAll('.text-field--date').forEach(initDateField);
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
 document.querySelectorAll('.reviews__list').forEach(initReviewsList);
 document.querySelectorAll('.file-field').forEach(initFileField);

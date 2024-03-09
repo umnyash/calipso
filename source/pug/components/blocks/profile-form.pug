@@ -39,7 +39,7 @@ mixin profile-form
       +text-field('Ваше отчество:', 'patronymic', 'text', '', 'Отчество', true)(class='profile-form__item profile-form__item--wide')
       +text-field('Ваш телефон:', 'phone', 'tel', '+7 (987) 688 66 65', 'Телефон', true, true, false, true)(class='profile-form__item profile-form__item--wide text-field--accent')
       +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='profile-form__item profile-form__item--wide')
-      +text-field('Ваша дата рождения:', 'birth-date', 'date', '', 'Дата рождения', true)(class='profile-form__item profile-form__item--wide text-field--date')
+      +text-field('Ваша дата рождения:', 'birth-date', 'date', '', 'Дата рождения', true)(class='profile-form__item profile-form__item--wide text-field--date text-field--date-in-profile-form')
     fieldset.profile-form__section
       legend.profile-form__section-heading Дополнительная информация
       +select(select)

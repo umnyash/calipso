@@ -43,7 +43,6 @@
   }
 }
 
-
 .text-field__control {
   box-sizing: border-box;
   width: 100%;
@@ -219,7 +218,6 @@
   @media (min-width: $wide-desktop-width) {
     width: 60px;
     margin-right: 24px;
-    // background-size: 24px 24px;
   }
 
   &::after {
@@ -273,7 +271,13 @@
     color: var(--text-weak-color);
     background: transparent;
     cursor: pointer;
+    outline: none;
 
+    &--active {
+      color: var(--text-color);
+    }
+
+    &:focus-visible,
     &:hover {
       color: var(--accent-color-1);
     }
@@ -296,30 +300,59 @@
     }
   }
 
-  .air-datepicker {
+  .text-field__calendar {
+    display: none;
     position: absolute;
-    top: calc(100% + 5px);
-    right: 50%;
     z-index: 1;
-    transform: translateX(50%);
 
-    @media (min-width: $tablet-width) {
-      top: calc(100% + 8px);
-      right: 0;
-      transform: none;
+    &--open {
+      display: block;
     }
+  }
+}
 
-    @media (min-width: $desktop-width) {
-      top: 50%;
-      right: auto;
-      left: calc(100% + 3px);
-      transform: translateY(-50%);
-    }
+.text-field--date-in-profile-form .text-field__calendar {
+  top: calc(100% + 5px);
+  right: 50%;
+  transform: translateX(50%);
 
-    @media (min-width: $wide-desktop-width) {
-      top: -74px;
-      left: 100%;
-      transform: none;
-    }
+  @media (min-width: $tablet-width) {
+    top: calc(100% + 8px);
+    right: 0;
+    transform: none;
+  }
+
+  @media (min-width: $laptop-width) {
+    top: -140px;
+    right: auto;
+    left: calc(100% + 3px);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    top: -74px;
+    left: 100%;
+  }
+}
+
+.text-field--date-in-modal-form .text-field__calendar {
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  @media (min-width: $tablet-width) {
+    bottom: calc(100% + 8px);
+    left: 0;
+    transform: none;
+  }
+
+  @media (min-width: $laptop-width) {
+    top: -140px;
+    bottom: auto;
+    left: calc(100% + 3px);
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    top: -74px;
+    left: 100%;
   }
 }

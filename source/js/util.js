@@ -4,6 +4,7 @@ export const isDownArrowEvent = (evt) => evt.code === KeyCode.DOWN_ARROW;
 export const isEscapeEvent = (evt) => evt.code === KeyCode.ESCAPE;
 export const isLeftArrowEvent = (evt) => evt.code === KeyCode.LEFT_ARROW;
 export const isRightArrowEvent = (evt) => evt.code === KeyCode.RIGHT_ARROW;
+export const isSpaceEvent = (evt) => evt.code === KeyCode.SPACE;
 
 export const getPaginationButtonCreator = (slideName = 'Слайд') => (index, className) => `
   <button class='${className}' type='button'>
