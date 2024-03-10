@@ -7,7 +7,7 @@ function initDateField(fieldElement) {
 
   const calendar = new AirDatepicker(fieldElement, { // eslint-disable-line
     classes: 'calendar text-field__calendar',
-    dateFormat: 'yyyy-MM-dd',
+    dateFormat: 'dd.MM.yyyy',
     navTitles: {
       classes: 'text-field__calendar',
       days: 'MMMM <span class="calendar__title-accent">yyyy</span>',
@@ -33,8 +33,8 @@ function initDateField(fieldElement) {
   }
 
   function openCalendar() {
-    setCalendarDate(fieldControlElement.value);
-    calendar.setViewDate(fieldControlElement.value || Date.now());
+    setCalendarDate(formatDateString(fieldControlElement.value));
+    calendar.setViewDate(formatDateString(fieldControlElement.value) || Date.now());
     calendar.setCurrentView('days');
     calendarElement.classList.add('text-field__calendar--open');
     document.addEventListener('click', onDocumentClickWhenCalendarOpened);
@@ -55,24 +55,29 @@ function initDateField(fieldElement) {
     }
   }
 
+  function formatDateString(string) {
+    return string.split('.').reverse().join('-');
+  }
+
   function onDocumentClickWhenCalendarOpened({ target }) {
-    if (!target.closest('.text-field--date')) {
+    if (!target.closest('.text-field--date') && !target.closest('.calendar__title-accent')) {
       closeCalendar();
     }
   }
 
-  fieldControlElement.addEventListener('change', () => {
+  fieldControlElement.addEventListener('input', () => {
     if (!fieldControlElement.value) {
       return;
     }
 
-    setCalendarDate(fieldControlElement.value);
+    const formattedControlValue = formatDateString(fieldControlElement.value);
+    setCalendarDate(formattedControlValue);
 
     if (!calendarElement.classList.contains('text-field__calendar--open')) {
       return;
     }
 
-    calendar.setViewDate(fieldControlElement.value);
+    calendar.setViewDate(formattedControlValue);
     calendar.setCurrentView('days');
   });
 
