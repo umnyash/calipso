@@ -81,6 +81,15 @@
     mask: url("../img/icons.svg#close");
   }
 
+  &:hover::after {
+    background: var(--accent-color-2);
+  }
+
+  &:active::after {
+    background: var(--accent-color-2);
+    transform: scale(0.9);
+  }
+
   @media (min-width: $tablet-width) {
     top: 24px;
     right: 24px;
