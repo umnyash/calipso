@@ -1,4 +1,4 @@
-mixin project
+mixin project(withPopup)
   article.project&attributes(attributes)
     .project__inner.container
       header.project__header
@@ -22,19 +22,31 @@ mixin project
           p.project__text Апартаменты отражают вайб американской классики, который очень близок бренду. Тем не менее арендаторам есть из чего выбрать: интерьеры выполнены в двух цветовых гаммах – светлой и тёмной. В светлых квартирах преобладают бежевые, фисташковые оттенки и светлый дуб с латунными деталями. В тёмных к бежевому присоединяются серые и коричневые тона, а также мебель в отделке из дуба венге с чёрной фурнитурой.
           .project__image-wrapper
             img.project__image(src='img/articles/project/project-4.webp' alt='' loading='lazy')
+            +pin(style='top: 67%; left: 22%;')
+            +pin(style='top: 75%; left: 34%;')
           p.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
         .project__column.project__column--7-12--wide
           .project__image-wrapper
             img.project__image(src='img/articles/project/project-5.webp' alt='' loading='lazy')
+            +pin(style='top: 37%; left: 66%;')
+            +pin(style='top: 52%; left: 40%;')
+              if withPopup
+                +product-card-popup(class='pin__popup')
+            +pin(style='top: 72%; left: 75%;')
           p.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
         .project__column.project__column--1-6
           .project__image-wrapper
             img.project__image(src='img/articles/project/project-6.webp' alt='' loading='lazy')
+            +pin(style='top: 53%; left: 16%;')
+            +pin(style='top: 78%; left: 65%;')
           p.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
         .project__column.project__column--7-12
           .project__image-wrapper
             img.project__image(src='img/articles/project/project-7.webp' alt='' loading='lazy')
+            +pin(style='top: 42%; left: 34%;')
+            +pin(style='top: 67%; left: 32%;')
+            +pin(style='top: 15%; left: 66%;')
           p.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
         .project__column.project__column--1-4

@@ -5,7 +5,7 @@ mixin product-card(product)
         a.product-card__link(href='product.html')= product.name
       p.product-card__signs= product.dimensions
     .product-card__prices
-      p.product-card__price(class= product.discount ? 'product-card__price--accent': '')= `${product.price} ₽`
+      p.product-card__price(class= product.discount ? 'accent': '')= `${product.price} ₽`
       if product.discount
         s.product-card__old-price= `${product.price} ₽`
         p.producr-card__discount= `-${product.discount}%`

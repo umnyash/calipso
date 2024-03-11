@@ -5,18 +5,40 @@
   height: 40px;
   padding: 0;
   border: none;
+  border-radius: 50%;
   place-items: center;
   background: var(--accent-color-1);
+
+  @media (min-width: $wide-desktop-width) {
+    width: 50px;
+    height: 50px;
+  }
 
   &::before {
     content: "";
     width: 20px;
     height: 20px;
-    background: url("../img/icons.svg#contols_big-plus");
+    background: url("../img/icons.svg#controls_big-plus");
     transition: transform $little-interaction-duration $little-interaction-timing-function;
+
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
-  &:hover::before {
-    transform: scale(1.1);
+  &:hover {
+    background: var(--accent-color-1-dark);
+
+    &::before {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    background: var(--accent-color-1-dark);
+    transform: scale(0.9);
+
+    @include main-shadow;
   }
 }

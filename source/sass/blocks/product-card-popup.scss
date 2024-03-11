@@ -1,0 +1,96 @@
+.product-card-popup {
+  @media (max-width: ($wide-tablet-width - 1)) {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: 100%;
+    place-items: center;
+    background: var(--overlay-color);
+    overflow-y: auto;
+  }
+}
+
+.product-card-popup__inner {
+  padding: 10px 10px 20px;
+  border-radius: 10px;
+  background: var(--background-additional-color);
+
+  @media (max-width: ($wide-desktop-width - 1)) {
+    padding: 10px 10px 16px;
+  }
+
+  @media (max-width: ($wide-tablet-width - 1)) {
+    padding: 24px;
+    margin: auto 0 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  @media (max-width: ($tablet-width - 1)) {
+    padding: 24px 16px;
+  }
+}
+
+.product-card-popup__close-button {
+  position: relative;
+  display: block;
+  padding: 0;
+  border: 0;
+  margin: 0 0 18px auto;
+  background: transparent;
+  cursor: pointer;
+
+  @media (max-width: ($tablet-width - 1)) {
+    margin: 0 0 9px auto;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -10px;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: currentColor;
+    mask: url("../img/icons.svg#close");
+  }
+
+  &:hover::after {
+    background: var(--accent-color-2);
+  }
+
+  &:active::after {
+    background: var(--accent-color-2);
+    transform: scale(0.9);
+  }
+
+  @media (min-width: $wide-tablet-width) {
+    display: none;
+  }
+}
+
+.product-card-popup__link {
+  display: block;
+  margin: 24px 0 0;
+  font: 600 14px/17px $main-font-family;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-color-1);
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: ($tablet-width - 1)) {
+    margin: 20px 0 0;
+    font-size: 12px;
+    line-height: 14px;
+  }
+
+  @media (min-width: $wide-tablet-width) {
+    display: none;
+  }
+}
