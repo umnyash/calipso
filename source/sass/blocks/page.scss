@@ -26,6 +26,10 @@
   grid-template-columns: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .page__site-header {
