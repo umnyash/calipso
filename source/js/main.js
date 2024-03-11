@@ -65,7 +65,7 @@ document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement)
 });
 
 document.querySelectorAll('.modal--with_review-gallery').forEach((modalElement) => {
-  initGalleryModal(modalElement, openModal, initGallery, '.review__slider');
+  initGalleryModal(modalElement, openModal, initGallery, '.review__slider .swiper');
 });
 
 /// Проверка модалки

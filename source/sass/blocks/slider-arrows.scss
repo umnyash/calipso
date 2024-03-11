@@ -35,6 +35,10 @@
   }
 }
 
+.slider-arrows__button.swiper-button-lock {
+  display: none;
+}
+
 .slider-arrows__button--prev {
   transform: scale(-1);
 }

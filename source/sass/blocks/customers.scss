@@ -1,0 +1,7 @@
+.customers__heading {
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+}
