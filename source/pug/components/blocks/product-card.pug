@@ -9,7 +9,7 @@ mixin product-card(product)
       if product.discount
         s.product-card__old-price= `${product.price} ₽`
         p.producr-card__discount= `-${product.discount}%`
-    .product-card__slider.swiper
+    a.product-card__slider.swiper(href='product.html')
       ul.product-card__slider-list.swiper-wrapper
         each image, index in product.images
           li.product-card__slider-item.swiper-slide

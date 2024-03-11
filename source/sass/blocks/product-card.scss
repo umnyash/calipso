@@ -125,6 +125,10 @@
   background: var(--background-additional-color);
   overflow: hidden;
 
+  &:hover {
+    @include main-shadow;
+  }
+
   @media (min-width: $wide-desktop-width) {
     margin: 0 0 21px;
   }
