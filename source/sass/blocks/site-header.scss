@@ -48,13 +48,13 @@
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: ($mobile-width - 1)) {
+  @media (max-width: (360px - 1)) {
     display: grid;
     grid-template-columns: auto auto;
     row-gap: 8px;
   }
 
-  @media (min-width: $mobile-width) {
+  @media (min-width: 360px) {
     display: flex;
     flex-wrap: wrap;
   }
@@ -63,7 +63,11 @@
 .site-header__logo {
   width: 113px;
   height: auto;
-  margin: 0 40px 0 0;
+  margin: 0 20px 0 0;
+
+  @media (min-width: $mobile-width) {
+    margin: 0 40px 0 0;
+  }
 
   @media (min-width: $tablet-width) {
     width: 145px;
