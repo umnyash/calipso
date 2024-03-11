@@ -41,7 +41,7 @@
   }
 }
 
-.folds__content {
+.faq-folds__content {
   padding: 0 $mobile-edge-indent 10px;
   color: var(--text-weak-color);
 
@@ -179,8 +179,4 @@
   &[aria-expanded="true"]::after {
     content: "Свернуть";
   }
-
-  // &::after {
-  //   content: "Развернуть";
-  // }
 }
