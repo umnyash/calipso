@@ -27,3 +27,7 @@ export const throttle = (callback, delay) => {
     }
   };
 };
+
+export function getDigitsFromString(string) {
+  return string.replace(/\D/g, '');
+}
