@@ -1,25 +1,25 @@
--
-  var buttons = [
-    {
-      label: '180*200',
-      name: 'size',
-      value: '180*200',
-    },
-    {
-      label: '190*200',
-      name: 'size',
-      value: '190*200',
-      isDisabled: true,
-    },
-    {
-      label: '200*220',
-      name: 'size',
-      value: '200*220',
-      isChecked: true,
-    },
-  ];
-
 mixin product-header
+  -
+    var buttons = [
+      {
+        label: '180*200',
+        name: 'size',
+        value: '180*200',
+      },
+      {
+        label: '190*200',
+        name: 'size',
+        value: '190*200',
+        isDisabled: true,
+      },
+      {
+        label: '200*220',
+        name: 'size',
+        value: '200*220',
+        isChecked: true,
+      },
+    ];
+
   header.product-header&attributes(attributes)
     .product-header__heading-wrapper
       h1.product-header__heading Chill
