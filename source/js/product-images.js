@@ -1,15 +1,15 @@
 import { DESKTOP_WIDTH_MEDIA_QUERY } from './const.js';
 import { getPaginationButtonCreator } from './util.js';
 
-const setSliderMode = (slider, params) => {
+function setSliderMode(slider, params) {
   slider.itself.classList.add(slider.modeClass, 'swiper');
   slider.list.classList.add('swiper-wrapper');
   slider.slides.forEach((row) => row.classList.add('swiper-slide'));
 
   slider.swiper = new Swiper(slider.itself, params); // eslint-disable-line
-};
+}
 
-const setSliderSimpleMode = (slider) => {
+function setSliderSimpleMode(slider) {
   setSliderMode(slider, {
     pagination: {
       el: slider.pagination,
@@ -19,9 +19,9 @@ const setSliderSimpleMode = (slider) => {
     },
     grabCursor: true,
   });
-};
+}
 
-const resetSliderMode = (slider) => {
+function resetSliderMode(slider) {
   slider?.swiper?.destroy(true, true);
   slider.itself.classList.remove('swiper');
   slider.list.classList.remove('swiper-wrapper');
@@ -35,7 +35,7 @@ const resetSliderMode = (slider) => {
   slider.pagination.innerHTML = '';
 
   slider.swiper = null;
-};
+}
 
 function initProductImages(productImagesElement) {
   const slider = {

@@ -1,8 +1,4 @@
-const getPaginationButtonCreator = (slideName = 'Слайд') => (index, className) => `
-  <button class='${className}' type='button'>
-    <span class='visually-hidden'>${slideName} ${index + 1}.</span>
-  </button>
-`;
+import { getPaginationButtonCreator } from './util.js';
 
 function initProductCard(productCardElement) {
   const sliderElement = productCardElement.querySelector('.product-card__slider');

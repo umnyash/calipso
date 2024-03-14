@@ -1,18 +1,40 @@
 import { KeyCode } from './const.js';
 
-export const isDownArrowEvent = (evt) => evt.code === KeyCode.DOWN_ARROW;
-export const isEscapeEvent = (evt) => evt.code === KeyCode.ESCAPE;
-export const isLeftArrowEvent = (evt) => evt.code === KeyCode.LEFT_ARROW;
-export const isRightArrowEvent = (evt) => evt.code === KeyCode.RIGHT_ARROW;
-export const isSpaceEvent = (evt) => evt.code === KeyCode.SPACE;
+export function isDownArrowEvent(evt) {
+  return evt.code === KeyCode.DOWN_ARROW;
+}
 
-export const getPaginationButtonCreator = (slideName = 'Слайд') => (index, className) => `
-  <button class='${className}' type='button'>
-    <span class='visually-hidden'>${slideName} ${index + 1}.</span>
-  </button>
-`;
+export function isEscapeEvent(evt) {
+  return evt.code === KeyCode.ESCAPE;
+}
 
-export const throttle = (callback, delay) => {
+export function isLeftArrowEvent(evt) {
+  return evt.code === KeyCode.LEFT_ARROW;
+}
+
+export function isRightArrowEvent(evt) {
+  return evt.code === KeyCode.RIGHT_ARROW;
+}
+
+export function isSpaceEvent(evt) {
+  return evt.code === KeyCode.SPACE;
+}
+
+// export const getPaginationButtonCreator = (slideName = 'Слайд') => (index, className) => `
+//   <button class='${className}' type='button'>
+//     <span class='visually-hidden'>${slideName} ${index + 1}.</span>
+//   </button>
+// `;
+
+export function getPaginationButtonCreator(slideName = 'Слайд') {
+  return (index, className) => `
+    <button class='${className}' type='button'>
+      <span class='visually-hidden'>${slideName} ${index + 1}.</span>
+    </button>
+  `;
+}
+
+export function throttle(callback, delay) {
   let lastTime = 0;
   let timeoutId;
 
@@ -26,7 +48,7 @@ export const throttle = (callback, delay) => {
       lastTime = now;
     }
   };
-};
+}
 
 export function getDigitsFromString(string) {
   return string.replace(/\D/g, '');

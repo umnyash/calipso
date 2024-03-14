@@ -2,14 +2,14 @@ import { isEscapeEvent } from './util.js';
 
 const openedModals = [];
 
-export const openModal = (modal) => {
+export function openModal(modal) {
   modal.classList.add('modal--open');
   openedModals.push(modal);
   document.addEventListener('keydown', onModalEscapeEvent);
   document.addEventListener('click', onModalClick);
-};
+}
 
-export const closeModal = (modal) => {
+export function closeModal(modal) {
   openedModals.pop();
   document.removeEventListener('keydown', onModalEscapeEvent);
   document.removeEventListener('click', onModalClick);
@@ -18,7 +18,7 @@ export const closeModal = (modal) => {
   if (modal.classList.contains('modal--alert')) {
     modal.remove();
   }
-};
+}
 
 function onModalEscapeEvent(evt) {
   if(!isEscapeEvent(evt)) {
