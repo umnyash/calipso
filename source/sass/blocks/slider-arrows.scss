@@ -35,6 +35,11 @@
   }
 }
 
+.slider-arrows__button.swiper-button-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 .slider-arrows__button.swiper-button-lock {
   display: none;
 }
