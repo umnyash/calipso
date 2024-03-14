@@ -257,6 +257,7 @@
   text-transform: uppercase;
   color: var(--accent-color-1);
   background: transparent;
+  cursor: pointer;
 
   @media (min-width: $wide-desktop-width) {
     gap: 10px;

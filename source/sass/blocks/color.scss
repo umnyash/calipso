@@ -5,6 +5,7 @@
   grid-template-columns: auto 1fr;
   place-items: center;
   gap: 10px;
+  cursor: pointer;
 
   &--bordered::after {
     content: "";

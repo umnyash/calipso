@@ -158,7 +158,6 @@
   text-transform: uppercase;
   color: var(--accent-color-1);
   background: transparent;
-  cursor: pointer;
 
   @media (max-width: ($tablet-width - 1)) {
     grid-column: 3 / 4;

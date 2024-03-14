@@ -53,6 +53,10 @@
   background: transparent;
   outline: none;
 
+  &:read-only {
+    cursor: default;
+  }
+
   &::placeholder {
     opacity: 1;
     color: var(--text-weak-color);

@@ -8,6 +8,7 @@
   border-radius: 50%;
   place-items: center;
   background: var(--accent-color-1);
+  cursor: pointer;
 
   @media (min-width: $wide-desktop-width) {
     width: 50px;
