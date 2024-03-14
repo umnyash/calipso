@@ -3,17 +3,17 @@ mixin account-tabs(heading)
     .taber&attributes(attributes)
       ul.taber__list.taber__list--wide
         li.taber__tab-wrapper
-          a.taber__tab(href='#account-tab-orders') Мои заказы
+          a.taber__tab(href='#orders') Мои заказы
         li.taber__tab-wrapper
-          a.taber__tab(href='#account-tab-profile') Профиль
+          a.taber__tab(href='#profile') Профиль
         li.taber__tab-wrapper
-          a.taber__tab(href='#account-tab-favorites') Избранное #[span.taber__tab-counter (24)]
-      section.taber__panel(id='account-tab-orders')
+          a.taber__tab(href='#favorites') Избранное #[span.taber__tab-counter (24)]
+      section.taber__panel
         h2.visually-hidden Мои заказы
         +orders-folds(orders)(class='taber__panel-orders-folds')
-      section.taber__panel(id='account-tab-profile')
+      section.taber__panel
         h2.visually-hidden Профиль
         +profile(class='taber__panel-profile-form')
-      section.taber__panel(id='account-tab-favorites')
+      section.taber__panel
         h2.visually-hidden Избранные
         +favorites-list(products.slice(0, 6))
