@@ -122,7 +122,7 @@
   text-decoration: none;
   color: inherit;
 
-  @media (max-width: ($desktop-width - 1)) {
+  @media (max-width: ($laptop-width - 1)) {
     display: none;
   }
 }
@@ -138,7 +138,7 @@
     margin: 0 0 0 auto;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $laptop-width) {
     margin: 0 0 0 5px;
   }
 }
@@ -182,11 +182,11 @@
     mask: url("../img/icons.svg#burger_close");
   }
 
-  @media (min-width: $mobile-width) and (max-width: ($desktop-width - 1)) {
+  @media (min-width: $mobile-width) and (max-width: ($laptop-width - 1)) {
     order: 1;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $laptop-width) {
     padding: 8px 20px;
     margin: 0 0 0 auto;
   }
@@ -199,7 +199,7 @@
 }
 
 .site-header__menu-button-text {
-  @media (max-width: ($desktop-width - 1)) {
+  @media (max-width: ($laptop-width - 1)) {
     @include visually-hidden;
   }
 }
@@ -212,7 +212,6 @@
     display: block;
   }
 }
-
 
 .site-header__user-navigation {
   position: absolute;

@@ -7,7 +7,7 @@
 }
 
 .shortcuts__item--phone {
-  @media (min-width: $desktop-width) {
+  @media (min-width: $laptop-width) {
     display: none;
   }
 }
