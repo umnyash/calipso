@@ -1,20 +1,10 @@
 .text-field {
   position: relative;
   display: inline-block;
-  font: 500 12px/14px $main-font-family;
+  font: 500 16px/20px $main-font-family;
 
   &--disabled {
     opacity: 0.4;
-  }
-
-  @media (min-width: $tablet-width) {
-    font-size: 14px;
-    line-height: 17px;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    font-size: 16px;
-    line-height: 19px;
   }
 }
 
@@ -46,7 +36,7 @@
 .text-field__control {
   box-sizing: border-box;
   width: 100%;
-  padding: 13px 9px 11px;
+  padding: 10px 9px 8px;
   border: none;
   font: inherit;
   color: inherit;
@@ -63,11 +53,11 @@
   }
 
   @media (min-width: $tablet-width) {
-    padding: 12px 23px 10px;
+    padding: 10px 23px 9px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    padding: 16px 23px 14px;
+    padding: 15px 23px 14px;
   }
 }
 
@@ -78,7 +68,6 @@
   padding: 0;
   border: none;
   place-items: center;
-  // background: transparent url("../img/icons.svg#close") 50% 50% / 20px 20px no-repeat;
   background: transparent;
   cursor: pointer;
 
