@@ -1,7 +1,7 @@
 .choices {
   border: none;
   border-radius: 8px;
-  font: 500 12px/14px $main-font-family;
+  font: 500 16px/20px $main-font-family;
 
   &.is-focused {
     @include main-shadow;
@@ -9,13 +9,13 @@
 
   @media (min-width: $tablet-width) {
     border-radius: 10px;
-    font-size: 14px;
-    line-height: 17px;
+    // font-size: 14px;
+    // line-height: 17px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    font-size: 16px;
-    line-height: 19px;
+    // font-size: 16px;
+    // line-height: 19px;
   }
 }
 
@@ -45,7 +45,8 @@
 .choices__inner.choices__inner.choices__inner {
   box-sizing: border-box;
   min-height: auto;
-  padding: 12px 40px 12px 9px;
+  // padding: 12px 40px 12px 9px;
+  padding: 10px 40px 8px 9px;
   border: 1px solid var(--border-color-dark);
   border-radius: 8px;
   font: inherit;
@@ -58,12 +59,14 @@
   }
 
   @media (min-width: $tablet-width) {
-    padding: 12px 60px 10px 23px;
+    // padding: 12px 60px 10px 23px;
+    padding: 10px 60px 9px 23px;
     border-radius: 10px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    padding: 16px 70px 14px 23px;
+    // padding: 16px 70px 14px 23px;
+    padding: 15px 70px 14px 23px;
   }
 }
 
@@ -78,6 +81,25 @@
 
 .choices__list--single.choices__list--single {
   padding: 0;
+}
+
+.choices__list.choices__list > input[name="search_terms"] {
+  padding: 10px 9px 8px;
+  font: inherit;
+  font-size: 16px;
+  line-height: 20px;
+
+  @media (min-width: $tablet-width) {
+    padding: 10px 23px 9px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding: 15px 23px 14px;
+  }
+}
+
+.choices__item.has-no-results {
+  color: var(--accent-color-2);
 }
 
 .choices__list--dropdown.choices__list--dropdown.choices__list--dropdown {
@@ -105,7 +127,6 @@
   }
 }
 
-
 .choices__list--dropdown .choices__list.choices__list {
   max-height: none;
 }
@@ -132,9 +153,3 @@
 .choices__list--dropdown .choices__placeholder {
   display: none;
 }
-
-// .choices.is-focused .choices__inner.choices__inner.choices__inner {
-//   border-color: var(--border-color);
-
-//   @include main-shadow;
-// }
