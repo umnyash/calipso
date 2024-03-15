@@ -11,10 +11,6 @@ function initGallery(productGalleryElement) {
     spaceBetween: 10,
     watchSlidesProgress: true,
     slidesPerView: 'auto',
-    navigation: {
-      prevEl: thumbnailsSliderPrevButtonElement,
-      nextEl: thumbnailsSliderNextButtonElement,
-    },
     breakpoints: {
       768: {
         slidesPerView: 3,
@@ -31,13 +27,13 @@ function initGallery(productGalleryElement) {
       crossFade: true
     },
     navigation: {
-      prevEl: prevButtonElement,
-      nextEl: nextButtonElement,
+      prevEl: [prevButtonElement, thumbnailsSliderPrevButtonElement],
+      nextEl: [nextButtonElement, thumbnailsSliderNextButtonElement],
     },
     thumbs: {
       swiper: thumbnailsSwiper,
       slideThumbActiveClass: 'gallery__thumbnails-slider-item--active',
-    }
+    },
   });
 }
 
