@@ -10,6 +10,7 @@ function initVideoReiewsSlider(reviewsElement) {
       prevEl: prevButtonElement,
       nextEl: nextButtonElement,
     },
+    watchSlidesProgress: true,
     breakpoints: {
       1346: {
         spaceBetween: 30,
