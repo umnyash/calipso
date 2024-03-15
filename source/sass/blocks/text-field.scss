@@ -86,7 +86,7 @@
     content: "";
     width: 20px;
     height: 20px;
-    background: #000000;
+    background: var(--text-color-dark);
     mask: url("../img/icons.svg#close");
   }
 
