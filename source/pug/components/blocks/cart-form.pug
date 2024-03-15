@@ -103,10 +103,9 @@ mixin cart-form(isCheckout, receivingMethod, promocodeStage)
         span.cart-form__info-total-price 27 000 ₽
       if isCheckout
         button.cart-form__promocode-button(type='button') Промокод
-        if promocodeStage === 0.5
-          .cart-form__promocode
-            +text-field('Ваши промокод:', 'promocode', 'text', '', 'Промокод', true)
-            +button('button', 'Применить', 'button')(class='cart-form__promocode-submit-button button--secondary')
+        .cart-form__promocode(class= promocodeStage === 0.5 ? '' : 'cart-form__promocode--hidden')
+          +text-field('Ваши промокод:', 'promocode', 'text', '', 'Промокод', true)
+          +button('button', 'Применить', 'button')(class='cart-form__promocode-submit-button button--secondary')
         +button('button', 'Подтверждаю заказ', 'submit')(class='cart-form__submit-button button--primary')
         small.cart-form__comment Подтверждая заказ, я соглашаюсь с #[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
       else

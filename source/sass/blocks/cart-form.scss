@@ -607,6 +607,12 @@
 .cart-form__promocode {
   display: grid;
   gap: 5px;
+
+  &--hidden {
+    @media (max-width: ($desktop-width - 1)) {
+      display: none;
+    }
+  }
 }
 
 .cart-form__promocode-button {

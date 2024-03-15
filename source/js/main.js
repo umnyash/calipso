@@ -27,6 +27,7 @@ import { initVideoReiewsSlider } from './video-reviews-slider.js';
 import { initVideo } from './video.js';
 import { initProjectsSlider } from './projects-slider.js';
 import { initTelField } from './tel-field.js';
+import { initCartForm } from './cart-form.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -57,6 +58,7 @@ document.querySelectorAll('.video-reviews').forEach(initVideoReiewsSlider);
 document.querySelectorAll('.video').forEach(initVideo);
 document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
+document.querySelectorAll('.cart-form').forEach(initCartForm);
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);
