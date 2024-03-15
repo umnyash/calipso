@@ -13,4 +13,4 @@ mixin premium-navigation
             a.premium-navigation__link(href='premium-category.html') Стили
           li.premium-navigation__item
             a.premium-navigation__link(href='premium-category.html') Бренды
-        a.premium-navigation__catalog-link(href='catalog.html') Весь каталог
+        a.premium-navigation__catalog-link(href= pageClass === 'premium-catalog-page' ? false : 'premium-catalog.html') Весь каталог

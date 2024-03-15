@@ -153,5 +153,9 @@
 
 .premium-navigation__catalog-link {
   text-decoration: none;
-  color: inherit;
+  color: var(--text-weak-color-light-2);
+
+  &[href] {
+    color: inherit;
+  }
 }
