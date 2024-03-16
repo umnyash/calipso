@@ -21,7 +21,7 @@ function initGallery(productGalleryElement) {
     }
   });
 
-  new Swiper(sliderElement, { // eslint-disable-line
+  const mainSlider = new Swiper(sliderElement, { // eslint-disable-line
     effect: 'fade',
     fadeEffect: {
       crossFade: true
@@ -35,6 +35,8 @@ function initGallery(productGalleryElement) {
       slideThumbActiveClass: 'gallery__thumbnails-slider-item--active',
     },
   });
+
+  return mainSlider;
 }
 
 export { initGallery };

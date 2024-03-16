@@ -33,7 +33,7 @@ append modals
       'Закрыть'
     )(class='modal__alert')
   +modal(class='modal--with_gallery modal--with_product-gallery')
-    +gallery(productGallery.concat(productGallery, productGallery))(class='modal__gallery')
+    +gallery(productGallery.concat(productGallery, productGallery).slice(0, 5))(class='modal__gallery')
   +modal(class='modal--with_cart')
     +cart-modal(class='modal__cart')
 
