@@ -1,0 +1,16 @@
+mixin text-field-with-list(label, name, type, value, placeholder, isRequired, isReadonly, isDisabled, isWithEditButton)
+  .text-field.text-field--with-list&attributes(attributes)
+    label.text-field__inner
+      span.visually-hidden= label
+      span.text-field__control-wrapper
+        input.text-field__control(name= name, type= type === 'date' ? 'text' : type, value= value ? value : false, maxlength = type === 'tel' ? '18' : type === 'date' ? '10' : false, placeholder= placeholder, required= isRequired ? true : false, readonly= isReadonly ? true : false, disabled= isDisabled ? true : false)
+        button.text-field__clear-button(type='button')
+          span.visually-hidden Очистить
+    ul.text-field__data-list
+      li.text-field__data-option
+        a.text-field__data-link(href='#!') Москва
+      li.text-field__data-option
+        a.text-field__data-link(href='#!') Санкт-Петербург
+      li.text-field__data-option
+        a.text-field__data-link(href='#!') Нижний Новгород
+    block

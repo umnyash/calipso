@@ -15,7 +15,6 @@ import { initGalleryModal } from './gallery-modal.js';
 import { openModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
-import { initSelect } from './select.js';
 import { initFolds, toggleFoldState } from './folds.js';
 import { initDateField } from './date-field.js';
 import { initScrollContainer } from './scroll-container.js';
@@ -29,6 +28,7 @@ import { initProjectsSlider } from './projects-slider.js';
 import { initTelField } from './tel-field.js';
 import { initCartForm } from './cart-form.js';
 import { initAllBrands } from './all-brand.js';
+import { initTextFieldWithList } from './text-field-with-list.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -48,7 +48,6 @@ document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);
 document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
-document.querySelectorAll('.select').forEach(initSelect);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date').forEach(initDateField);
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
@@ -61,6 +60,7 @@ document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.cart-form').forEach(initCartForm);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
+document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);

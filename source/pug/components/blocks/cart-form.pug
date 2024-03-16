@@ -59,7 +59,7 @@ mixin cart-form(isCheckout, receivingMethod, promocodeStage)
             li.cart-form__radiobuttons-list-item
               +checker('Доставка', false, 'receiving-method', 'radio', 'delivery', true)
           if receivingMethod === 'delivery'
-            +select(select)
+            +text-field-with-list('Ваша город:', 'city', 'text', '', 'Город', true)
             +text-field('Ваша улица:', 'street', 'text', '', 'Улица', true)
             +text-field('Ваш дом:', 'house', 'text', '', 'Дом', true)
             +text-field('Ваша квартира/офис:', 'apartment-office', 'text', '', 'Квартира/Офис', true)

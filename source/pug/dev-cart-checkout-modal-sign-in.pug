@@ -4,9 +4,6 @@ block variables
   - var title = 'Корзина'
   - var pageClass = 'cart-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/choices/choices.min.css')
-
 block content
   +back-link('Вернуться к покупкам', 'catalog.html')
   +page-heading('Оформление заказа')
@@ -16,6 +13,3 @@ block content
 append modals
   +modal(class='modal--with_form modal--open')
     +sign-in-modal-form(class='modal__form')
-
-prepend scripts
-  script(src='vendor/choices/choices.min.js')

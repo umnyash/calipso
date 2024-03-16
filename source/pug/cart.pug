@@ -4,14 +4,8 @@ block variables
   - var title = 'Корзина'
   - var pageClass = 'cart-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/choices/choices.min.css')
-
 block content
   +back-link('Вернуться к покупкам', 'catalog.html')
   +page-heading('Корзина')
   +cart-form
   +map-marker-template
-
-prepend scripts
-  script(src='vendor/choices/choices.min.js')

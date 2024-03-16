@@ -42,7 +42,7 @@ mixin profile-form
       +text-field('Ваша дата рождения:', 'birth-date', 'date', '', 'Дата рождения', true)(class='profile-form__item profile-form__item--wide text-field--date text-field--date-in-profile-form')
     fieldset.profile-form__section
       legend.profile-form__section-heading Дополнительная информация
-      +select(select)
+      +text-field-with-list('Ваша город:', 'city', 'text', '', 'Город', true)(class='profile-form__item profile-form__item--wide')
       +text-field('Ваша улица:', 'street', 'text', '', 'Улица', true)
       +text-field('Ваш дом:', 'house', 'text', '', 'Дом', true)
       +text-field('Ваша квартира/офис:', 'apartment-office', 'text', '', 'Квартира/Офис', true)
