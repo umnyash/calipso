@@ -15,7 +15,7 @@ export function closeModal(modal) {
   document.removeEventListener('click', onModalClick);
   modal.classList.remove('modal--open');
 
-  if (modal.classList.contains('modal--alert')) {
+  if (modal.classList.contains('modal--with_alert')) {
     modal.remove();
   }
 }

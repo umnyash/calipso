@@ -27,8 +27,14 @@ export default {
     dest: `${pathDest}/img`
   },
 
+  // createWebp: {
+  //   src: `${pathSrc}/img/**/*.{png,jpg}`,
+  //   watch: `${pathSrc}/img/**/*.{png,jpg}`,
+  //   dest: `${pathDest}/img`
+  // },
+
   createWebp: {
-    src: `${pathSrc}/img/**/*.{png,jpg}`,
+    src: `${pathSrc}/never/**/*.{png,jpg}`,
     watch: `${pathSrc}/img/**/*.{png,jpg}`,
     dest: `${pathDest}/img`
   },
@@ -45,8 +51,18 @@ export default {
     dest: `${pathDest}/img`
   },
 
+  // processMarkup: {
+  //   src: `${pathSrc}/pug/*.pug`,
+  //   watch: `${pathSrc}/pug/**/*.pug`,
+  //   dest: pathDest,
+  // },
+
   processMarkup: {
-    src: `${pathSrc}/pug/*.pug`,
+    src: [
+      `${pathSrc}/pug/account.pug`,
+      `${pathSrc}/pug/dev-cart-checkout-delivery-promo-entered-unauthorized.pug`,
+      `${pathSrc}/pug/dev-site-map.pug`,
+    ],
     watch: `${pathSrc}/pug/**/*.pug`,
     dest: pathDest,
   },

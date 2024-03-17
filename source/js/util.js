@@ -26,6 +26,13 @@ export function isSpaceEvent(evt) {
 //   </button>
 // `;
 
+export function createElementByString(template) {
+  const newElement = document.createElement('div');
+  newElement.innerHTML = template;
+
+  return newElement.firstElementChild;
+}
+
 export function getPaginationButtonCreator(slideName = 'Слайд') {
   return (index, className) => `
     <button class='${className}' type='button'>

@@ -1,15 +1,13 @@
-mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, isDisabled, isWithEditButton)
+mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, isDisabled, isWithEditButton, maxLength)
   .text-field&attributes(attributes)
     label.text-field__inner
       span.visually-hidden= label
       span.text-field__control-wrapper
-        input.text-field__control(name= name, type= type === 'date' ? 'text' : type, value= value ? value : false, maxlength = type === 'tel' ? '18' : type === 'date' ? '10' : false, placeholder= placeholder, required= isRequired ? true : false, readonly= isReadonly ? true : false, disabled= isDisabled ? true : false)
-        if type === 'email' || type === 'search'
+        input.text-field__control(name= name, type= type === 'date' ? 'text' : type, value= value ? value : false, maxlength = maxLength ? maxLength : type === 'tel' ? '18' : type === 'date' ? '10' : false, placeholder= placeholder, required= isRequired ? true : false, readonly= isReadonly ? true : false, disabled= isDisabled ? true : false)
+        if !isReadonly
           button.text-field__clear-button(type='button')
             span.visually-hidden Очистить
         if type === 'date'
-          button.text-field__clear-button(type='button')
-            span.visually-hidden Очистить
           button.text-field__calendar-button(type='button' aria-hidden='true')
             span.visually-hidden Показать окно выбора даты
         if isWithEditButton

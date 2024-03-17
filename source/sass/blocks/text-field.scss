@@ -267,11 +267,11 @@
   }
 }
 
-.text-field--error .text-field__control-wrapper {
+.text-field.invalid .text-field__control-wrapper {
   border-color: var(--accent-color-2);
 }
 
-.text-field__error-text {
+.text-field .prompt-text {
   margin: 5px 0 0;
   color: var(--accent-color-2);
 }
@@ -415,10 +415,6 @@
     border-radius: 16px;
     margin: 10px 0;
   }
-}
-
-.text-field__data-option {
-
 }
 
 .text-field__data-link {

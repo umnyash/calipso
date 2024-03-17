@@ -34,13 +34,18 @@
 }
 
 .alert__heading {
-  margin: 0;
+  margin: 0 48px 0 0;
   text-transform: uppercase;
   font: 500 16px/19px $main-font-family;
 
   @media (min-width: $tablet-width) {
+    margin: 0 60px 0 0;
     font-size: 20px;
     line-height: 24px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin: 0 48px 0 0;
   }
 
   @media (min-width: $wide-desktop-width) {

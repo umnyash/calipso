@@ -29,6 +29,9 @@ import { initTelField } from './tel-field.js';
 import { initCartForm } from './cart-form.js';
 import { initAllBrands } from './all-brand.js';
 import { initTextFieldWithList } from './text-field-with-list.js';
+import { initProfileForm } from './profile-form.js';
+import { sendData } from './api.js';
+import { showAlert } from './alert.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -61,6 +64,9 @@ document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.cart-form').forEach(initCartForm);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
 document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
+document.querySelectorAll('.profile-form').forEach((formElement) => {
+  initProfileForm(formElement, sendData, openModal, showAlert);
+});
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);

@@ -47,11 +47,11 @@
   }
 }
 
-.textarea--error .textarea__control {
+.textarea.invalid .textarea__control {
   border-color: var(--accent-color-2);
 }
 
-.textarea__error-text {
+.textarea .prompt-text {
   margin: 5px 0 0;
   color: var(--accent-color-2);
 }
