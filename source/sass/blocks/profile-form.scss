@@ -18,15 +18,22 @@
 }
 
 .profile-form__section {
-  display: grid;
-  padding: 24px $mobile-edge-indent;
+  padding: 0;
   border: none;
   margin: 0 (-$mobile-edge-indent) 10px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 20px;
+  }
+}
+
+.profile-form__section-inner {
+  display: grid;
+  padding: 24px $mobile-edge-indent;
   gap: 8px 10px;
   background: var(--background-additional-color);
 
   @media (min-width: $tablet-width) {
-    margin: 0 0 20px;
     grid-template-columns: 1fr 1fr;
     padding: 24px;
     border-radius: 10px;
