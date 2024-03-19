@@ -19,6 +19,7 @@
   display: grid;
   padding: 10px 0 20px;
   grid-template-columns: 1fr auto;
+
   gap: 20px;
   grid-auto-flow: dense;
   align-items: center;
@@ -84,12 +85,11 @@
 }
 
 .premium-navigation__logo-text {
-  display: grid;
+  display: flex;
   padding: 5px 9px 3px;
   border: 1px solid currentColor;
   border-radius: 5px;
   gap: 10px;
-  grid-auto-flow: column;
   align-items: center;
 
   &::after {
@@ -154,6 +154,7 @@
 .premium-navigation__catalog-link {
   text-decoration: none;
   color: var(--text-weak-color-light-2);
+  white-space: nowrap;
 
   &[href] {
     color: inherit;

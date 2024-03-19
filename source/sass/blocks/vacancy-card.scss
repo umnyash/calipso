@@ -90,8 +90,7 @@
 }
 
 .vacancy-card__link {
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
   gap: 5px;
   align-items: center;
   font-size: 12px;

@@ -28,7 +28,6 @@
   }
 
   @media (min-width: $desktop-width) {
-    // grid-template-columns: 540px 1fr;
     grid-template-columns: minmax(540px, 750px) minmax(618px, 860px);
     grid-template-rows: auto auto 1fr;
     justify-content: space-between;
@@ -40,10 +39,6 @@
     gap: 80px 150px;
   }
 }
-
-// .delivery__section {
-//   dis
-// }
 
 .delivery__section-heading {
   margin: 0 0 10px;
@@ -88,7 +83,7 @@
 
 .delivery__payment-item {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: auto 1fr;
   gap: 5px;
   justify-content: start;
   align-items: center;

@@ -15,11 +15,12 @@ mixin product-card(product)
           li.product-card__slider-item.swiper-slide
             img.product-card__image(src= image srcset= `${product.images2x[index]} 2x` alt='' loading='lazy')
       p.product-card__slider-pagination
-    .product-card__labels
-      if product.isPremium
-        p.product-card__premium-label
-          span.product-card__premium-label-text Premium
-      p.product-card__label В наличии
-      p.product-card__like-button-wrapper
-        +like-button(class=`product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}`)
+    .product-card__labels-wrapper
+      .product-card__labels
+        if product.isPremium
+          p.product-card__premium-label
+            span.product-card__premium-label-text Premium
+        p.product-card__label В наличии
+        p.product-card__like-button-wrapper
+          +like-button(class=`product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}`)
     a.product-card__brand(href='#!') Бренд #[span.product-card__brand-name= product.brand]

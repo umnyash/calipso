@@ -1,6 +1,7 @@
 .link {
-  display: inline-grid;
-  grid-template-columns: 1fr auto;
+  // display: inline-grid;
+  // grid-template-columns: 1fr auto;
+  display: flex;
   gap: 5px;
   align-items: center;
   font: 600 12px/14px $main-font-family;
@@ -64,8 +65,6 @@
 }
 
 .link--back {
-  grid-template-columns: auto 1fr;
-
   &::after {
     order: -1;
     transform: scaleX(-1);

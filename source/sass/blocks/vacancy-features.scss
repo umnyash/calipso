@@ -14,7 +14,7 @@
 
 .vacancy-features__item {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: auto 1fr;
   gap: 5px;
   justify-content: start;
   align-items: center;
