@@ -2,9 +2,9 @@ mixin review-modal-form
   form.modal-form(action='https://echo.htmlacademy.ru' method='post' enctype='multipart/form-data' target='_blank')&attributes(attributes)
     h2.modal-form__heading Оставить отзыв
     fieldset.modal-form__section
-      +text-field('Ваши ФИО:', 'name', 'text', '', 'ФИО', true)
-      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)
-      +textarea('Ваш отзыв:', 'text', '', 'Напишите ваш отзыв', true)(class='modal-form__textarea')
+      +text-field('Ваши ФИО:', 'name', 'text', '', 'ФИО', true)(class='modal-form__item modal-form__item--name')
+      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='modal-form__item modal-form__item--email')
+      +textarea('Ваш отзыв:', 'text', '', 'Напишите ваш отзыв', true)(class='modal-form__item modal-form__item--comment modal-form__textarea')
       +file-field(class='modal-form__file-field')
     fieldset.modal-form__footer
       .modal-form__footer-checkboxes

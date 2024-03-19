@@ -4,9 +4,6 @@ block variables
   - var title = 'Сертификаты'
   - var pageClass = 'certificates-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'Сертификаты' },
@@ -14,6 +11,3 @@ block content
   +certificates
   +centered-certificates-form
   +subscription-with-image
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

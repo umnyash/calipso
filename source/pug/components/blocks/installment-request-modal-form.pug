@@ -2,10 +2,10 @@ mixin installment-request-modal-form
   form.modal-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
     h2.modal-form__heading Заполните заявку на рассрочку
     fieldset.modal-form__section
-      +text-field('Ваши ФИО:', 'name', 'text', '', 'ФИО', true)
-      +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)
-      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)
-      +textarea('Параметры:', 'text', '', 'Параметры', true)(class='modal-form__textarea')
+      +text-field('Ваши ФИО:', 'name', 'text', '', 'ФИО', true)(class='modal-form__item modal-form__item--name')
+      +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='modal-form__item modal-form__item--phone')
+      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='modal-form__item modal-form__item--email')
+      +textarea('Параметры:', 'text', '', 'Параметры', true)(class='modal-form__item modal-form__item--comment modal-form__textarea')
     fieldset.modal-form__footer
       +button('button', 'Заказать', 'submit')(class='modal-form__submit-button button--primary')
       small.modal-form__comment Нажимая на кнопку «Заказать», вы даете #[a.modal-form__comment-link(href='#!' target='_blank' rel='noopener') согласие на обработку персональных данных]

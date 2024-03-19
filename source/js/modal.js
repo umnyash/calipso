@@ -11,9 +11,13 @@ export function openModal(modal) {
 
 export function closeModal(modal) {
   openedModals.pop();
-  document.removeEventListener('keydown', onModalEscapeEvent);
-  document.removeEventListener('click', onModalClick);
+
   modal.classList.remove('modal--open');
+
+  if (!openedModals.length) {
+    document.removeEventListener('keydown', onModalEscapeEvent);
+    document.removeEventListener('click', onModalClick);
+  }
 
   if (modal.classList.contains('modal--with_alert')) {
     modal.remove();
@@ -30,7 +34,7 @@ function onModalEscapeEvent(evt) {
 }
 
 function onModalClick({ target }) {
-  if (!target.classList.contains('modal') && !target.classList.contains('modal__close-button')) {
+  if (!target.classList.contains('modal') && !target.classList.contains('modal__close-button') && !target.classList.contains('alert__button')) {
     return;
   }
 

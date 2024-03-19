@@ -3,6 +3,10 @@
   padding: 24px 16px;
   background: var(--background-additional-color);
 
+  &--error {
+    animation: shake 0.6s;
+  }
+
   @media (min-width: $tablet-width) {
     padding: 24px;
     border-radius: 10px;
@@ -50,7 +54,7 @@
   }
 }
 
-.feedback-form__textarea {
+.feedback-form__textarea .textarea__control {
   height: 90px;
 
   @media (min-width: $wide-desktop-width) {

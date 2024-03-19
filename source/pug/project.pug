@@ -4,9 +4,6 @@ block variables
   - var title = 'Проект'
   - var pageClass = 'project-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'Реализованные проекты', href: 'projects.html' },
@@ -15,6 +12,3 @@ block content
   +project
   +centered-blockquote
   +projects-slider
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

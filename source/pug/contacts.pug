@@ -4,9 +4,6 @@ block variables
   - var title = 'Контакты'
   - var pageClass = 'contacts-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
       { text: 'Контакты' },
@@ -16,5 +13,6 @@ block content
   +appointment
   +map-marker-template(true)
 
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')
+append modals
+  +modal(class='modal--with_form' data-modal='salon')
+    +salon-modal-form(class='modal__form')

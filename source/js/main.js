@@ -12,10 +12,11 @@ import { initCatalogSorting } from './catalog-sorting.js';
 import { initProductImages } from './product-images.js';
 import { initGallery } from './gallery.js';
 import { initGalleryModal } from './gallery-modal.js';
-import { openModal } from './modal.js';
+import { openModal, closeModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
 import { initFolds, toggleFoldState } from './folds.js';
+import { setInputDateMask } from './input-date-mask.js';
 import { initDateField } from './date-field.js';
 import { initScrollContainer } from './scroll-container.js';
 import { initCatalogFiltersModal } from './catalog-filters-modal.js';
@@ -32,6 +33,16 @@ import { initTextFieldWithList } from './text-field-with-list.js';
 import { initProfileForm } from './profile-form.js';
 import { sendData } from './api.js';
 import { showAlert } from './alert.js';
+import { initSimpleModalForm } from './simple-modal-form.js';
+import { initCooperationModal } from './cooperation-modal.js';
+import { initFeedbackModal } from './feedback-modal.js';
+import { initSalonModal } from './salon-modal.js';
+import { initOneClickModal } from './one-click-modal.js';
+import { initInstallmentRequestModal } from './installment-request-modal.js';
+import { initProductQuestionModal } from './product-question-modal.js';
+import { initReviewModal } from './review-modal.js';
+import { initSubscriptionForm } from './subscription-form.js';
+import { initFeedbackForm } from './feedback-form.js';
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -52,7 +63,9 @@ document.querySelectorAll('.product-images').forEach(initProductImages);
 document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
 document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.folds').forEach(initFolds);
-document.querySelectorAll('.text-field--date').forEach(initDateField);
+document.querySelectorAll('.text-field--date').forEach((fieldElement) => {
+  initDateField(fieldElement, setInputDateMask);
+});
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
 document.querySelectorAll('.reviews__list').forEach(initReviewsList);
 document.querySelectorAll('.file-field').forEach(initFileField);
@@ -66,6 +79,34 @@ document.querySelectorAll('.all-brands').forEach(initAllBrands);
 document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
 document.querySelectorAll('.profile-form').forEach((formElement) => {
   initProfileForm(formElement, sendData, openModal, showAlert);
+});
+document.querySelectorAll('.feedback-form').forEach((formElement) => {
+  initFeedbackForm(formElement, sendData, openModal, showAlert);
+});
+document.querySelectorAll('.subscription__form').forEach((formElement) => {
+  initSubscriptionForm(formElement, sendData, openModal, showAlert);
+});
+
+document.querySelectorAll('[data-modal="cooperation"]').forEach((modalElement) => {
+  initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="feedback"]').forEach((modalElement) => {
+  initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="salon"]').forEach((modalElement) => {
+  initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="installment-request"]').forEach((modalElement) => {
+  initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="product-question"]').forEach((modalElement) => {
+  initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="one-click"]').forEach((modalElement) => {
+  initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+});
+document.querySelectorAll('[data-modal="review"]').forEach((modalElement) => {
+  initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
 });
 
 document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {

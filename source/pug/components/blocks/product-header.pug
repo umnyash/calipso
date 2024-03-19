@@ -36,7 +36,7 @@ mixin product-header
           +radiobutton(button)
       fieldset.product-header__form-buttons
         +button('button', 'Добавить в корзину', 'submit')(class='product-header__form-submit-button button--primary')
-        +button('a', 'Купить в 1 клик', '', '#!')(class='product-header__form-secondary-button button--simple')
+        +button('a', 'Купить в 1 клик', '', '#')(class='product-header__form-secondary-button button--simple' data-modal-opener='one-click')
     ul.product-header__navigation
       li.product-header__navigation-item
         a.product-header__navigation-link(href='#product-characteristics') Описание и характеристики
@@ -45,12 +45,12 @@ mixin product-header
       li.product-header__navigation-item
         a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#!') О гарантии
       li.product-header__navigation-item
-        a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#!') Возможна рассрочка, уточните#[br.hidden.hidden--wd] у&nbsp;менеджера
+        a.product-header__navigation-link.product-header__navigation-link--with-arrow(href='#' data-modal-opener='installment-request') Возможна рассрочка, уточните#[br.hidden.hidden--wd] у&nbsp;менеджера
     ul.product-header__links
       li
         a.product-header__link(href='files/recipe.pdf' download) Скачать 3D модель .pdf
       li
-        a.product-header__link(href='#!') Задать вопрос по товару
+        a.product-header__link(href='#' data-modal-opener='product-question') Задать вопрос по товару
     a.product-header__brand(href='#!')
       img.product-header__brand-logo(src='img/product-brands/calligaris.svg' width='218' height='42' alt='')
     +share(class='product-header__share')

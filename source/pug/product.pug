@@ -4,9 +4,6 @@ block variables
   - var title = 'Продукт'
   - var pageClass = 'product-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
       { text: 'Premium', href: 'premium-catalog.html' },
@@ -20,11 +17,11 @@ block content
   +features
 
 append modals
-  +modal(class='modal--with_form')
+  +modal(class='modal--with_form' data-modal='one-click')
     +one-click-modal-form(class='modal__form')
-  +modal(class='modal--with_form')
+  +modal(class='modal--with_form' data-modal='installment-request')
     +installment-request-modal-form(class='modal__form')
-  +modal(class='modal--with_form')
+  +modal(class='modal--with_form' data-modal='product-question')
     +product-question-modal-form(class='modal__form')
   +modal(class='modal--with_alert')
     +alert(
@@ -36,6 +33,3 @@ append modals
     +gallery(productGallery.concat(productGallery, productGallery).slice(0, 5))(class='modal__gallery')
   +modal(class='modal--with_cart')
     +cart-modal(class='modal__cart')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

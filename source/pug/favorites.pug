@@ -4,14 +4,8 @@ block variables
   - var title = 'Избранное'
   - var pageClass = 'favorites-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
       { text: 'Избранное' },
     ])
   +favorites(products.slice(0, 6))
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

@@ -4,9 +4,6 @@ block variables
   - var title = 'Категории'
   - var pageClass = 'categories-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'Категории' },
@@ -15,6 +12,3 @@ block content
   +centered-navigation-list
   +products('Хит', products)
   +subscription-with-image
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

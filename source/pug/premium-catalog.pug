@@ -4,9 +4,6 @@ block variables
   - var title = 'Premium'
   - var pageClass = 'premium-catalog-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'Каталог', href: 'catalog.html' },
@@ -28,6 +25,3 @@ block content
   )(class='links--big')
   +product-tags
   +subscription-with-image
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

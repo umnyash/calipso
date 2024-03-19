@@ -6,9 +6,6 @@ block variables
   - var isHeaderTransparent = true
   - var isAuthorized = true
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +banners(banners)
   +navigation-tabs
@@ -34,6 +31,3 @@ append modals
       'Наш менеджер свяжется с вами',
       'Закрыть'
     )(class='modal__alert')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

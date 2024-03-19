@@ -5,9 +5,6 @@ block variables
   - var pageClass = 'about-page'
   - var isHeaderTransparent = true
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'О нас' },
@@ -16,5 +13,6 @@ block content
   +about
   +members('Лица компании', members)
 
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')
+append modals
+  +modal(class='modal--with_form' data-modal='feedback')
+    +feedback-modal-form(class='modal__form')

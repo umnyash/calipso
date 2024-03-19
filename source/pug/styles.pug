@@ -4,9 +4,6 @@ block variables
   - var title = 'Стили'
   - var pageClass = 'styles-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
       { text: 'Стили' },
@@ -14,6 +11,3 @@ block content
   +links('Стили', styles)
   +products('Вы смотрели', products)
   +subscription-with-image
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

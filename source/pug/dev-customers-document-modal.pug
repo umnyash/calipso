@@ -4,9 +4,6 @@ block variables
   - var title = 'Покупателям'
   - var pageClass = 'contacts-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
       { text: 'Покупателям' },
@@ -16,6 +13,3 @@ block content
 append modals
   +modal(class='modal--with_document modal--open')
     +document-modal(class='modal__document')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

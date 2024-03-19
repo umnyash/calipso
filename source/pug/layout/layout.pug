@@ -11,8 +11,9 @@ html.page(class= pageClass lang='ru')
     link(rel='preload' href='fonts/mulish-cyrillic.woff2' as='font' type='font/woff2' crossorigin)
     link(rel='preload' href='fonts/mulish-latin.woff2' as='font' type='font/woff2' crossorigin)
     link(rel='preload' href='fonts/mulish-latin-ext.woff2' as='font' type='font/woff2' crossorigin)
-    block styles
-      link(rel='stylesheet' href='css/style.min.css')
+    link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
+    link(rel='stylesheet' href='vendor/air-datepicker/air-datepicker.css')
+    link(rel='stylesheet' href='css/style.min.css')
     script(src='https://api-maps.yandex.ru/v3/?apikey=e6c045b8-c60b-415c-82d4-b4adf6e237da&lang=ru_RU')
     title= title
     link(rel='icon' href='favicon.ico')
@@ -29,5 +30,7 @@ html.page(class= pageClass lang='ru')
       if pageClass !== 'cart-page'
         +site-footer
     block modals
-    block scripts
-      script(src='js/script.min.js')
+    script(src='vendor/swiper/swiper-bundle.min.js')
+    script(src='vendor/air-datepicker/air-datepicker.js')
+    script(src='vendor/pristine/pristine.min.js')
+    script(src='js/script.min.js')

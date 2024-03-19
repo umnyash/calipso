@@ -4,13 +4,7 @@ block variables
   - var title = 'Корзина'
   - var pageClass = 'cart-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +back-link('Вернуться к покупкам', 'catalog.html')
   +placeholder('Корзина', 'Здесь пока нет товаров', 'Перейти к покупкам', 'catalog.html')
   +products('Вы смотрели', products, 'l')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

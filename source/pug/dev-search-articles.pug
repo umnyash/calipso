@@ -4,15 +4,9 @@ block variables
   - var title = 'Поиск'
   - var pageClass = 'category-page'
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +centered-breadcrumbs([
     { text: 'Поиск' },
   ])
   +search
   +articles(articles, 'search-result')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

@@ -6,9 +6,6 @@ block variables
   - var isHeaderTransparent = true
   - var isAuthorized = true
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +banners(banners)
   +navigation-tabs
@@ -23,9 +20,5 @@ block content
   +subscription-with-image
   +map-marker-template(true)
 
-
 append modals
   +city-popup
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')

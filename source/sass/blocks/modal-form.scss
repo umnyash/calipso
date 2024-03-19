@@ -109,7 +109,7 @@
   }
 }
 
-.modal-form__textarea {
+.modal-form__textarea .textarea__control {
   height: 90px;
 
   @media (min-width: $wide-desktop-width) {

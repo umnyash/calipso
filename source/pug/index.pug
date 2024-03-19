@@ -6,9 +6,6 @@ block variables
   - var isHeaderTransparent = true
   - var isAuthorized = true
 
-prepend styles
-  link(rel='stylesheet' href='vendor/swiper/swiper-bundle.min.css')
-
 block content
   +banners(banners)
   +navigation-tabs
@@ -28,6 +25,5 @@ append modals
     +cities(cities, true)(class='modal__cities')
   +modal(class='modal--with_search')
     +search-modal(true)(class='modal__search')
-
-prepend scripts
-  script(src='vendor/swiper/swiper-bundle.min.js')
+  +modal(class='modal--with_form' data-modal='salon')
+    +salon-modal-form(class='modal__form')

@@ -4,5 +4,5 @@ mixin appointment
       .appointment__text-content
         h2.appointment__heading.heading.heading--small Хотите увидеть и&nbsp;прикоснуться к&nbsp;прекрасному?
         p.appointment__text Н.Новгород, Варварская улица, 7
-        +button('a', 'Записаться', '', '#!')(class='appointment__button button--primary')
+        +button('a', 'Записаться', '', '#')(class='appointment__button button--primary' data-modal-opener='salon')
       +map(class='appointment__map')

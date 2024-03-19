@@ -27,4 +27,4 @@ mixin external-reviews
                 img.external-reviews__star.external-reviews__star--half(src='img/icons.svg#star' width='24' height='24' alt='')
               span.external-reviews__rating-value 4,8
             p.external-reviews__count 6 отзывов
-      +button('a', 'Оставить отзыв', '', '#!')(class='external-reviews__button button--primary')
+      +button('a', 'Оставить отзыв', '', '#')(class='external-reviews__button button--primary' data-modal-opener='review')

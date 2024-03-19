@@ -5,6 +5,7 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
   const surnameFieldElement = formElement.querySelector('.profile-form__item--surname .text-field__control');
   const patronymicFieldElement = formElement.querySelector('.profile-form__item--patronymic .text-field__control');
   const emailFieldElement = formElement.querySelector('.profile-form__item--email .text-field__control');
+  const dateFieldElement = formElement.querySelector('.profile-form__item--date .text-field__control');
   const cityFieldElement = formElement.querySelector('.profile-form__item--city .text-field__control');
   const streetFieldElement = formElement.querySelector('.profile-form__item--street .text-field__control');
   const houseFieldElement = formElement.querySelector('.profile-form__item--house .text-field__control');
@@ -27,9 +28,37 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
   emailFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
   emailFieldElement.dataset.pristineEmailMessage = 'Введите корректный e-mail адрес.';
 
+  dateFieldElement.pattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+  dateFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+  dateFieldElement.dataset.pristinePatternMessage = 'Введите дату в формате дд.мм.гггг';
+
   cityFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
   streetFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
   houseFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+
+  function getAllFieldValues() {
+    const values = [];
+
+    formElement.querySelectorAll('input').forEach((fieldElement) => {
+      if (fieldElement.type === 'checkbox') {
+        values.push(fieldElement.checked);
+      } else {
+        values.push(fieldElement.value.trim());
+      }
+    });
+
+    return values;
+  }
+
+  let currentFieldValues = getAllFieldValues();
+
+  function isFieldValuesChanged() {
+    const newFieldValues = getAllFieldValues();
+    const newValuesString = newFieldValues.join();
+    const currentValuesString = currentFieldValues.join();
+
+    return currentValuesString !== newValuesString;
+  }
 
   const pristine = new Pristine(formElement, { // eslint-disable-line
     classTo: 'profile-form__item',
@@ -47,11 +76,18 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
       const textFieldControlElement = textFieldElement.querySelector('.text-field__control');
       textFieldControlElement.value = '';
       textFieldControlElement.focus();
+      textFieldControlElement.dispatchEvent(new Event('input', {
+        bubbles: true,
+      }));
     }
   });
 
   formElement.addEventListener('change', () => {
     formElement.classList.remove('profile-form--error');
+  });
+
+  formElement.addEventListener('input', () => {
+    submitButtonElement.disabled = !isFieldValuesChanged();
   });
 
   formElement.addEventListener('submit', (evt) => {
@@ -67,6 +103,7 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
         actionUrl,
         new FormData(evt.target),
         () => {
+          currentFieldValues = getAllFieldValues();
           showAlert(openModal, {
             heading: 'Данные успешно обновлены',
           });
@@ -74,8 +111,8 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
         () => {
           showAlert(openModal, {
             status: 'error',
-            heading: 'Не удалось обновить данные',
-            text: 'Проверьте подключение к интернету.'
+            heading: 'Ошибка',
+            text: 'Не удалось обновить данные, попробуйте снова.'
           });
         },
         () => {

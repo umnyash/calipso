@@ -6,7 +6,7 @@ mixin subscription
       li.subscription__list-item Последние тенденции Европейских выставок
       li.subscription__list-item Специальные предложения по&nbsp;нашему ассортименту товаров
       li.subscription__list-item Полезные статьи об&nbsp;эволюции материалов в&nbsp;интерьере
-    form.subscription-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')
-      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='form__item')
-      +button('button', 'Подписаться', 'submit')(class='button--primary')
-    small.subscription__comment Нажимая кнопку «Подписаться», вы даете #[a.subscription__comment-link(href='#!' target='_blank' rel='noopener') согласие на обработку персональных данных]
+    form.subscription__form(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+      +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='subscription__form-item')
+      +button('button', 'Подписаться', 'submit')(class='subscription__form-submit-button button--primary')
+      small.subscription__form-comment Нажимая кнопку «Подписаться», вы даете #[a.subscription__form-comment-link(href='#!' target='_blank' rel='noopener') согласие на обработку персональных данных]

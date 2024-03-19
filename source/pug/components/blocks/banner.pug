@@ -8,4 +8,4 @@ mixin banner(banner)
     .banner__content
       h2.banner__heading!= banner.heading
       p.banner__text!= banner.text
-      +button('a', banner.link, '', banner.href)(class='banner__button button--primary')
+      +button('a', banner.link, '', banner.href)(class='banner__button button--primary' data-modal-opener= banner.modalOpener ? banner.modalOpener : false)

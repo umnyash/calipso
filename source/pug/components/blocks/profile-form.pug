@@ -39,7 +39,7 @@ mixin profile-form
       +text-field('Ваше отчество:', 'patronymic', 'text', '', 'Отчество', true, false, false, false, 30)(class='profile-form__item profile-form__item--patronymic profile-form__item--wide')
       +text-field('Ваш телефон:', 'phone', 'tel', '+7 (987) 688 66 65', 'Телефон', true, true, false, true)(class='profile-form__item profile-form__item--wide text-field--accent')
       +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='profile-form__item profile-form__item--email profile-form__item--wide')
-      +text-field('Ваша дата рождения:', 'birth-date', 'date', '', 'Дата рождения')(class='profile-form__item profile-form__item--wide text-field--date text-field--date-in-profile-form')
+      +text-field('Ваша дата рождения:', 'birth-date', 'date', '', 'Дата рождения')(class='profile-form__item profile-form__item--wide profile-form__item--date text-field--date text-field--date-in-profile-form')
     fieldset.profile-form__section
       legend.profile-form__section-heading Дополнительная информация
       +text-field-with-list('Ваша город:', 'city', 'text', '', 'Город', true)(class='profile-form__item profile-form__item--city profile-form__item--wide')
@@ -49,4 +49,4 @@ mixin profile-form
       +text-field('Ваш подъезд:', 'entrance', 'text', '', 'Подъезд')
     fieldset.profile-form__footer
       +checker('Получать рекламную рассылку', false, 'subscribe', 'checkbox', 'yes', true)(class='profile-form__checkbox')
-      +button('button', 'Применить', 'submit')(class='profile-form__submit-button button--primary')
+      +button('button', 'Применить', 'submit')(class='profile-form__submit-button button--primary' disabled)
