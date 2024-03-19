@@ -13,28 +13,46 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
   const submitButtonElement = formElement.querySelector('.profile-form__submit-button');
   const actionUrl = formElement.getAttribute('action');
 
-  nameFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
-  nameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  nameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  if (nameFieldElement) {
+    nameFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
+    nameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+    nameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  }
 
-  surnameFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
-  surnameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  surnameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  if (surnameFieldElement) {
+    surnameFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
+    surnameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+    surnameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  }
 
-  patronymicFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
-  patronymicFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  patronymicFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  if (patronymicFieldElement) {
+    patronymicFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
+    patronymicFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+    patronymicFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
+  }
 
-  emailFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  emailFieldElement.dataset.pristineEmailMessage = 'Введите корректный e-mail адрес.';
+  if (emailFieldElement) {
+    emailFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+    emailFieldElement.dataset.pristineEmailMessage = 'Введите корректный e-mail адрес.';
+  }
 
-  dateFieldElement.pattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
-  dateFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  dateFieldElement.dataset.pristinePatternMessage = 'Введите дату в формате дд.мм.гггг';
+  if (dateFieldElement) {
+    dateFieldElement.pattern = /^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}$/;
+    dateFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+    dateFieldElement.dataset.pristinePatternMessage = 'Введите дату в формате дд.мм.гггг';
+  }
 
-  cityFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  streetFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-  houseFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+  if (cityFieldElement) {
+    cityFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+  }
+
+  if (streetFieldElement) {
+    streetFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+  }
+
+  if (houseFieldElement) {
+    houseFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
+  }
 
   function getAllFieldValues() {
     const values = [];

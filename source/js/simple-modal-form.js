@@ -13,19 +13,19 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
   const commentFieldElement = modalElement.querySelector('.modal-form__item--comment .textarea__control');
 
   if (nameFieldElement) {
-    nameFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
+    nameFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
     nameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
     nameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
   }
 
   if (surnameFieldElement) {
-    surnameFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
+    surnameFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
     surnameFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
     surnameFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
   }
 
   if (patronymicFieldElement) {
-    patronymicFieldElement.pattern = /^[a-zа-яЁё -]+$/i;
+    patronymicFieldElement.setAttribute('data-pristine-pattern', '/^[a-zа-яЁё -]+$/i');
     patronymicFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
     patronymicFieldElement.dataset.pristinePatternMessage = 'Допустимы только буквы, дефисы и пробелы.';
   }
