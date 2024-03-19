@@ -9,7 +9,7 @@
 .account__phone {
   display: grid;
   margin: 0 0 20px;
-  grid-auto-flow: column;
+  grid-template-columns: auto 1fr;
   gap: 5px;
   justify-content: start;
   align-items: center;

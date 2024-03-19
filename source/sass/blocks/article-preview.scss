@@ -25,13 +25,19 @@
 }
 
 .article-preview__label {
+  position: absolute;
   z-index: 1;
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
-  place-self: start start;
+  top: 10px;
+  left: 10px;
+  // grid-row: 1 / 2;
+  // grid-column: 1 / 2;
+  // place-self: start start;
+  box-sizing: border-box;
+  max-width: calc(100% - 20px);
   padding: 5px 10px;
   border-radius: 5px;
-  margin: 10px 0 0 10px;
+  // margin: 10px 0 0 10px;
+  margin: 0;
   font-size: 12px;
   line-height: 14px;
   color: var(--accent-color-1);
