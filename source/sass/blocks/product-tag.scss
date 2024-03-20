@@ -6,6 +6,7 @@
   padding: 20px 24px;
   border-radius: 10px;
   place-items: end start;
+  overflow: hidden;
 
   &--in-stock {
     background: var(--background-special-color-1);
@@ -28,6 +29,15 @@
   z-index: 1;
   text-decoration: none;
   color: var(--text-color);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .product-tag__image-wrapper {
