@@ -1,6 +1,6 @@
 mixin feedback-modal-form
   form.modal-form(action='https://echo.htmlacademy.ru' method='post' enctype='multipart/form-data' target='_blank')&attributes(attributes)
-    h2.modal-form__heading Обратная связь
+    h2.modal-form__heading Оставить заявку
     fieldset.modal-form__section
       +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='modal-form__item modal-form__item--name')
       +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='modal-form__item modal-form__item--phone')
