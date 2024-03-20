@@ -201,6 +201,10 @@
 
 .modal__cities {
   max-height: 100vh;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .modal--with_search {
@@ -254,6 +258,10 @@
 .modal__cart {
   height: 100%;
   max-height: 100vh;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
 
 .modal--with_document {
@@ -290,6 +298,10 @@
   .modal__document {
     height: 100%;
     max-height: 100vh;
+
+    @supports (height: 100dvh) {
+      height: 100dvh;
+    }
   }
 }
 
@@ -327,4 +339,8 @@
 .modal__catalog-filters {
   height: 100%;
   max-height: 100vh;
+
+  @supports (height: 100dvh) {
+    height: 100dvh;
+  }
 }
