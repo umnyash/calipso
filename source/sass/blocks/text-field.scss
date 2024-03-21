@@ -41,7 +41,13 @@
   font: inherit;
   color: inherit;
   background: transparent;
+  appearance: textfield;
   outline: none;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
 
   &:read-only {
     cursor: default;
