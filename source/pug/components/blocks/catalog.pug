@@ -20,8 +20,9 @@ mixin catalog(heading, headingIsHidden, withPanel)
               li.catalog__applied-filter Цена от 13062 до 30078
                 button.catalog__applied-filter-reset-button
                   span.visually-hidden Удалить фильтр
-            ul.catalog__applied-options
-              li.catalog__applied-option Показывать: #[a.catalog__applied-option-link(href='#!') В наличии]
+              li.catalog__applied-filter В наличии
+                button.catalog__applied-filter-reset-button
+                  span.visually-hidden Удалить фильтр
             +catalog-sorting(class='catalog__sorting')
         +products-list(products, 'xl')(class='catalog__list')
         +pagination(class='catalog__pagination')

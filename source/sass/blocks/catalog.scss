@@ -155,65 +155,65 @@
   }
 }
 
-.catalog__applied-options {
-  grid-column: 1 / -1;
-  padding: 0;
-  margin: 22px 0 0;
-  list-style: none;
+// .catalog__applied-options {
+//   grid-column: 1 / -1;
+//   padding: 0;
+//   margin: 22px 0 0;
+//   list-style: none;
 
-  @media (min-width: $desktop-width) {
-    margin: 23px 0 0;
-    font-size: 16px;
-    line-height: 20px;
-  }
+//   @media (min-width: $desktop-width) {
+//     margin: 23px 0 0;
+//     font-size: 16px;
+//     line-height: 20px;
+//   }
 
-  @media (min-width: $wide-desktop-width) {
-    margin: 28px 0 0;
-    font-size: 22px;
-    line-height: 28px;
-  }
-}
+//   @media (min-width: $wide-desktop-width) {
+//     margin: 28px 0 0;
+//     font-size: 22px;
+//     line-height: 28px;
+//   }
+// }
 
-.catalog__applied-option {
-  display: inline-grid;
-  grid-auto-flow: column;
-  gap: 10px;
-  align-items: baseline;
+// .catalog__applied-option {
+//   display: inline-grid;
+//   grid-auto-flow: column;
+//   gap: 10px;
+//   align-items: baseline;
 
-  @media (min-width: $wide-desktop-width) {
-    gap: 20px;
-  }
-}
+//   @media (min-width: $wide-desktop-width) {
+//     gap: 20px;
+//   }
+// }
 
-.catalog__applied-option-link {
-  position: relative;
-  text-decoration: none;
-  color: var(--accent-color-1);
+// .catalog__applied-option-link {
+//   position: relative;
+//   text-decoration: none;
+//   color: var(--accent-color-1);
 
-  &::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: -1px;
-    left: 0;
-    height: 1px;
-    background: currentColor;
-  }
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     right: 0;
+//     bottom: -1px;
+//     left: 0;
+//     height: 1px;
+//     background: currentColor;
+//   }
 
-  @media (min-width: $desktop-width) {
-    font-size: 14px;
-    line-height: 17px;
+//   @media (min-width: $desktop-width) {
+//     font-size: 14px;
+//     line-height: 17px;
 
-    &::after {
-      bottom: -3px;
-    }
-  }
+//     &::after {
+//       bottom: -3px;
+//     }
+//   }
 
-  @media (min-width: $wide-desktop-width) {
-    font-size: 20px;
-    line-height: 25px;
-  }
-}
+//   @media (min-width: $wide-desktop-width) {
+//     font-size: 20px;
+//     line-height: 25px;
+//   }
+// }
 
 .catalog__sorting {
   grid-column: -2 / -1;
