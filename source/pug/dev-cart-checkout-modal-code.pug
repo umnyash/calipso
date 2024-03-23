@@ -5,9 +5,7 @@ block variables
   - var pageClass = 'cart-page'
 
 block content
-  +back-link('Вернуться к покупкам', 'catalog.html')
-  +page-heading('Оформление заказа')
-  +cart-form(true, 'delivery', 1)
+  +cart('checkout', true)
   +map-marker-template
 
 append modals

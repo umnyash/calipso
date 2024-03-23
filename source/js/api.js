@@ -7,7 +7,7 @@ export const sendData = async (url, body, onSuccess, onFail, onFinally) => {
     if (!response.ok) {
       throw new Error(`${response.status} – ${response.statusText}`);
     }
-    onSuccess();
+    onSuccess(response);
   } catch {
     onFail();
   } finally {

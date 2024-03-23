@@ -17,7 +17,6 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
 
   if (phoneFieldElement) {
     phoneFieldElement.dataset.pristineRequiredMessage = 'Заполните это поле.';
-    phoneFieldElement.dataset.pristineEmailMessage = 'Введите корректный номер телефона.';
   }
 
   if (emailFieldElement) {

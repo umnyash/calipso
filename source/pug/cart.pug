@@ -3,9 +3,8 @@ extends layout/layout
 block variables
   - var title = 'Корзина'
   - var pageClass = 'cart-page'
+  - var isAuthorized = true
 
 block content
-  +back-link('Вернуться к покупкам', 'catalog.html')
-  +page-heading('Корзина')
-  +cart-form
+  +cart
   +map-marker-template

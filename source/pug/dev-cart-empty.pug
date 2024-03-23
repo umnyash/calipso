@@ -5,6 +5,5 @@ block variables
   - var pageClass = 'cart-page'
 
 block content
-  +back-link('Вернуться к покупкам', 'catalog.html')
-  +placeholder('Корзина', 'Здесь пока нет товаров', 'Перейти к покупкам', 'catalog.html')
+  +cart('empty')
   +products('Вы смотрели', products, 'l')

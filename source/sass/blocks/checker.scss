@@ -1,5 +1,5 @@
 .checker__inner {
-  display: grid;
+  display: inline-grid;
   grid-template-columns: auto 1fr;
   align-items: center;
 }
@@ -36,6 +36,10 @@
   &:disabled {
     opacity: 0.3;
   }
+}
+
+.checker__control:enabled + .checker__label {
+  cursor: pointer;
 }
 
 .checker__control[type="checkbox"] {

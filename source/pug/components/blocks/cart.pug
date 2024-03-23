@@ -1,0 +1,16 @@
+mixin cart(state, isPromocodeApplied)
+  - var heading = state === 'checkout' ? 'Оформление заказа' : 'Корзина';
+
+  .cart&attributes(attributes)
+    +back-link('Вернуться к покупкам', 'catalog.html')(class='cart__back-link')
+    case state
+      when 'empty'
+        +placeholder('Корзина', 'Здесь пока нет товаров', 'Перейти к покупкам', 'catalog.html')
+      when 'result'
+        +cart-result
+      when 'checkout'
+        +page-heading(heading)(class='cart__heading')
+        +cart-form(true, isPromocodeApplied)(class='cart__form')
+      default
+        +page-heading(heading)(class='cart__heading')
+        +cart-form(false, isPromocodeApplied)(class='cart__form')

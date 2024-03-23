@@ -27,7 +27,6 @@ import { initVideoReiewsSlider } from './video-reviews-slider.js';
 import { initVideo } from './video.js';
 import { initProjectsSlider } from './projects-slider.js';
 import { initTelField } from './tel-field.js';
-import { initCartForm } from './cart-form.js';
 import { initAllBrands } from './all-brand.js';
 import { initTextFieldWithList } from './text-field-with-list.js';
 import { initProfileForm } from './profile-form.js';
@@ -43,6 +42,11 @@ import { initProductQuestionModal } from './product-question-modal.js';
 import { initReviewModal } from './review-modal.js';
 import { initSubscriptionForm } from './subscription-form.js';
 import { initFeedbackForm } from './feedback-form.js';
+import { initCart } from './cart.js';
+
+document.querySelectorAll('.cart').forEach((cartElement) => {
+  initCart(cartElement, sendData, openModal, showAlert);
+});
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -74,7 +78,6 @@ document.querySelectorAll('.video-reviews').forEach(initVideoReiewsSlider);
 document.querySelectorAll('.video').forEach(initVideo);
 document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
-document.querySelectorAll('.cart-form').forEach(initCartForm);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
 document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
 document.querySelectorAll('.profile-form').forEach((formElement) => {

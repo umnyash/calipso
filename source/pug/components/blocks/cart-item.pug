@@ -3,7 +3,7 @@ mixin cart-item(product, isInForm)
     h3.cart-item__heading
       a.cart-item__link(href='product.html') Кресло Chill, розово-серый
     if isInForm
-      +checker('Кресло Chill', true, 'products', 'checkbox', 'Chair Chill', true)(class='cart-item__checkbox')
+      +checker('Кресло Chill', true, 'products', 'checkbox', 'Chair Chill')(class='cart-item__checkbox')
       +delete-button(class='cart-item__delete-button')
     img.cart-item__image(src='img/products/product-4-1.webp' srcset='img/products/product-4-1@2x.webp 2x' alt='')
     dl.cart-item__list

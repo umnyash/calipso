@@ -68,7 +68,9 @@
 }
 
 .page__content:last-child {
-  padding-bottom: 100px;
+  @media (min-width: $laptop-width) {
+    padding-bottom: 100px;
+  }
 
   @media (min-width: $desktop-width) {
     padding-bottom: 120px;
@@ -90,7 +92,8 @@
 .page__content > .back-link,
 .page__content > .back-link + *,
 .page__content > .centered-breadcrumbs,
-.page__content > .centered-breadcrumbs + * {
+.page__content > .centered-breadcrumbs + *,
+.page__content > .cart {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {
