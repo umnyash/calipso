@@ -13,8 +13,6 @@ block content
   +video-reviews(videoReviews.concat(videoReviews))
 
 append modals
-  +modal(class='modal--with_gallery modal--with_review-gallery')
-    +gallery(reviewGallery.concat(reviewGallery), true)(class='modal__gallery')
   +modal(class='modal--with_form' data-modal='review')
     +review-modal-form(class='modal__form')
   +modal(class='modal--with_alert modal--open')

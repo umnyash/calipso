@@ -1,11 +1,6 @@
 .feed {
   display: grid;
   grid-template-columns: 100%;
-  // gap: 10px;
-
-  @media (min-width: $wide-desktop-width) {
-    // gap: 20px;
-  }
 }
 
 .feed__slider {

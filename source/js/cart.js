@@ -196,7 +196,7 @@ class Cart {
         new FormData(evt.target),
         (response) => {
           this.formElement.reset();
-          const data = response.json;
+          const data = response.json();
           const orderNumber = data.number || '45678'; // В orderNumber нужно записать номер заказа
           this.showResult(orderNumber);
         },

@@ -2,7 +2,7 @@ import { createElementByString } from './util.js';
 
 function showAlert(openModal, alert) {
   const modalString = `
-    <div class="modal modal--with_alert modal--open">
+    <div class="modal modal--with_alert">
       <div class="modal__inner">
         <button class="modal__close-button" type="button">
           <span class="visually-hidden">Закрыть</span>

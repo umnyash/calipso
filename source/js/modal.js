@@ -19,7 +19,7 @@ export function closeModal(modal) {
     document.removeEventListener('click', onModalClick);
   }
 
-  if (modal.classList.contains('modal--with_alert')) {
+  if (modal.classList.contains('modal--with_alert') || modal.classList.contains('modal--with_review-gallery')) {
     modal.remove();
   }
 }

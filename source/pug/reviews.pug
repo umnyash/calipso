@@ -13,13 +13,5 @@ block content
   +video-reviews(videoReviews.concat(videoReviews))
 
 append modals
-  +modal(class='modal--with_gallery modal--with_review-gallery')
-    +gallery(reviewGallery.concat(reviewGallery), true)(class='modal__gallery')
   +modal(class='modal--with_form' data-modal='review')
     +review-modal-form(class='modal__form')
-  +modal(class='modal--with_alert')
-    +alert(
-      'Спасибо, что оценили нашу работу',
-      'Ваш отзыв будет проверен модератором сайта,<br class="hidden hidden--m-t-d"> и&nbsp;опубликован в течение 2 рабочих дней',
-      'Закрыть'
-    )(class='modal__alert')

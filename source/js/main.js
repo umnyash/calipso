@@ -11,7 +11,7 @@ import { initNavigationShortcuts } from './navigation-shortcuts.js';
 import { initCatalogSorting } from './catalog-sorting.js';
 import { initProductImages } from './product-images.js';
 import { initGallery } from './gallery.js';
-import { initGalleryModal } from './gallery-modal.js';
+import { initStaticGalleryModal } from './static-gallery-modal.js';
 import { openModal, closeModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
 import { initStickyCartInfo } from './sticky-cart-info.js';
@@ -30,7 +30,7 @@ import { initTelField } from './tel-field.js';
 import { initAllBrands } from './all-brand.js';
 import { initTextFieldWithList } from './text-field-with-list.js';
 import { initProfileForm } from './profile-form.js';
-import { sendData } from './api.js';
+import { sendData, getData } from './api.js';
 import { showAlert } from './alert.js';
 import { initSimpleModalForm } from './simple-modal-form.js';
 import { initCooperationModal } from './cooperation-modal.js';
@@ -43,9 +43,14 @@ import { initReviewModal } from './review-modal.js';
 import { initSubscriptionForm } from './subscription-form.js';
 import { initFeedbackForm } from './feedback-form.js';
 import { initCart } from './cart.js';
+import { GalleryModal } from './gallery-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
+});
+
+document.querySelectorAll('.reviews__list').forEach((listElement) => {
+  initReviewsList(listElement, getData, GalleryModal, initGallery, initVideo, openModal, showAlert);
 });
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
@@ -71,7 +76,6 @@ document.querySelectorAll('.text-field--date').forEach((fieldElement) => {
   initDateField(fieldElement, setInputDateMask);
 });
 document.querySelectorAll('.scroll-container').forEach(initScrollContainer);
-document.querySelectorAll('.reviews__list').forEach(initReviewsList);
 document.querySelectorAll('.file-field').forEach(initFileField);
 document.querySelectorAll('.feed').forEach(initFeed);
 document.querySelectorAll('.video-reviews').forEach(initVideoReiewsSlider);
@@ -117,25 +121,5 @@ document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement)
 });
 
 document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement) => {
-  initGalleryModal(modalElement, openModal, initGallery, '.product__images');
+  initStaticGalleryModal(modalElement, openModal, initGallery, '.product__images');
 });
-
-document.querySelectorAll('.modal--with_review-gallery').forEach((modalElement) => {
-  initGalleryModal(modalElement, openModal, initGallery, '.review__slider .swiper');
-});
-
-/// Проверка модалки
-const modal = document.querySelector('[data-modal="product-question"]');
-const modalOpener = document.querySelector('[data-modal-opener="product-question"]');
-
-if (modal && modalOpener) {
-  modalOpener.addEventListener('click', (evt) => {
-    evt.preventDefault();
-    modal.classList.add('modal--open');
-  });
-
-  modal.querySelector('.modal__close-button').addEventListener('click', (evt) => {
-    evt.preventDefault();
-    modal.classList.remove('modal--open');
-  });
-}
