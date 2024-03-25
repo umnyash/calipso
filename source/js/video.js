@@ -14,6 +14,16 @@ function initVideo(videoElement) {
     playButtonWrapperElement.classList.remove('video__play-button-wrapper--hidden');
     posterElement.classList.remove('video__poster--hidden');
   });
+
+  playerElement.addEventListener('play', () => {
+    document.querySelectorAll('video').forEach((video) => {
+      if (video === playerElement) {
+        return;
+      }
+
+      video.pause();
+    });
+  });
 }
 
 export { initVideo };

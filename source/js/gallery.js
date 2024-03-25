@@ -7,6 +7,8 @@ function initGallery(productGalleryElement) {
   const thumbnailsSliderPrevButtonElement = productGalleryElement.querySelector('.gallery__thumbnails-slider .slider-arrows__button--prev');
   const thumbnailsSliderNextButtonElement = productGalleryElement.querySelector('.gallery__thumbnails-slider .slider-arrows__button--next');
 
+  const videoElements = sliderElement.querySelectorAll('video');
+
   const thumbnailsSwiper = new Swiper(thumbnailsSliderElement, { // eslint-disable-line
     spaceBetween: 10,
     watchSlidesProgress: true,
@@ -36,7 +38,7 @@ function initGallery(productGalleryElement) {
     },
     on: {
       slideChange: () => {
-        sliderElement.querySelectorAll('video').forEach((video) => video.pause());
+        videoElements.forEach((video) => video.pause());
       }
     }
   });
