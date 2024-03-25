@@ -23,13 +23,11 @@ append modals
     +installment-request-modal-form(class='modal__form')
   +modal(class='modal--with_form' data-modal='product-question')
     +product-question-modal-form(class='modal__form')
-  +modal(class='modal--with_alert')
-    +alert(
-      'Заявка успешно отправлена',
-      'Наш менеджер свяжется с вами в течении 3 рабочих дней',
-      'Закрыть'
-    )(class='modal__alert')
   +modal(class='modal--with_gallery modal--with_product-gallery')
     +gallery(productGallery.concat(productGallery, productGallery).slice(0, 5))(class='modal__gallery')
   +modal(class='modal--with_cart')
     +cart-modal(class='modal__cart')
+  +modal(class='modal--with_document' data-modal='delivery-document')
+    +delivery-document-modal(class='modal__document')
+  +modal(class='modal--with_document' data-modal='guarantee-document')
+    +guarantee-document-modal(class='modal__document')

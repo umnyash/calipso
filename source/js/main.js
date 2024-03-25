@@ -44,6 +44,7 @@ import { initSubscriptionForm } from './subscription-form.js';
 import { initFeedbackForm } from './feedback-form.js';
 import { initCart } from './cart.js';
 import { GalleryModal } from './gallery-modal.js';
+import { initDocumentModal } from './document-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
@@ -122,4 +123,8 @@ document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement)
 
 document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement) => {
   initStaticGalleryModal(modalElement, openModal, initGallery, '.product__images');
+});
+
+document.querySelectorAll('[data-modal$="-document"]').forEach((modalElement) => {
+  initDocumentModal(modalElement, openModal);
 });
