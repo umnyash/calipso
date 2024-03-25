@@ -33,8 +33,9 @@
   width: 24px;
   height: 24px;
   margin: 0 0 5px;
-  background: url("../img/icons.svg#controls_left-arrow");
+  background: url("../img/icons.svg#controls_arrow");
   cursor: pointer;
+  transform: scaleX(-1);
 
   @media (min-width: $tablet-width) {
     margin: 0 0 10px;

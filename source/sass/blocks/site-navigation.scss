@@ -72,7 +72,8 @@
     width: 16px;
     height: 16px;
     background: currentColor;
-    mask: url("../img/icons.svg#controls_left-arrow");
+    mask: url("../img/icons.svg#controls_arrow");
+    transform: scaleX(-1);
   }
 }
 
