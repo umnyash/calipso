@@ -1,7 +1,13 @@
 import customizationFile from '../vendor/yandex-map/customization.json';
 
-async function initMap(element) {
-  const COORDINATES = [37.588144, 55.733842];
+async function initMap(mapElement) {
+  const COORDINATES = [44.008906, 56.323592];
+  const containerElement = mapElement.querySelector('.map__inner');
+
+  setTimeout(() => {
+    containerElement.classList.remove('map__inner--hidden');
+  }, 6000);
+
   await ymaps3.ready; // eslint-disable-line
 
   const {
@@ -12,7 +18,7 @@ async function initMap(element) {
   } = ymaps3; // eslint-disable-line
 
   const map = new YMap(
-    element,
+    containerElement,
     {
       location: {
         center: COORDINATES,

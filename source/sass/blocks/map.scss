@@ -1,5 +1,29 @@
 .map {
+  position: relative;
+  z-index: 0;
   border-radius: 16px;
   background: var(--background-color-dark);
   overflow: hidden;
+
+  &::after {
+    content: "";
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    z-index: -1;
+    width: 60px;
+    height: 60px;
+    border: 10px solid var(--border-color-light);
+    border-radius: 50%;
+    border-right-color: transparent;
+    animation: button-spinner 1000ms linear infinite;
+  }
+}
+
+.map__inner {
+  height: 100%;
+
+  &--hidden {
+    visibility: hidden;
+  }
 }
