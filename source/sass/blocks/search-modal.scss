@@ -24,10 +24,8 @@
 }
 
 .search-modal__inner {
-  @media (min-width: $desktop-width) {
-    max-width: 834px;
-    margin: 0 auto;
-  }
+  max-width: 834px;
+  margin: 0 auto;
 
   @media (min-width: $wide-desktop-width) {
     max-width: 1160px;
