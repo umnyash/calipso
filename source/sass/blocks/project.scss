@@ -32,8 +32,21 @@
   margin: 0;
 }
 
-.project__small-text {
+.project figure {
+  display: grid;
+  padding: 0;
+  border: none;
+  margin: 0;
+  gap: 10px;
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px;
+  }
+}
+
+.project figcaption {
   padding: 0 10px;
+  font: inherit;
   font-size: 12px;
   line-height: 16px;
   color: var(--text-weak-color);
@@ -67,7 +80,7 @@
   }
 }
 
-.project__column .project__image-wrapper + .project__text {
+.project__column figure + .project__text {
   margin: 20px 0 0;
 
   @media (min-width: $wide-desktop-width) {
@@ -75,15 +88,7 @@
   }
 }
 
-.project__column .project__image-wrapper + .project__small-text {
-  margin: 10px 0 0;
-
-  @media (min-width: $wide-desktop-width) {
-    margin: 20px 0 0;
-  }
-}
-
-.project__column .project__text + .project__image-wrapper {
+.project__column .project__text + figure {
   margin: 20px 0 0;
 
   @media (min-width: $desktop-width) {
@@ -95,10 +100,29 @@
   }
 }
 
-.project__column .project__small-text + .project__image-wrapper {
-  @media (min-width: $tablet-width) {
-    margin-top: 20px;
+.project__column:first-child .project__text:only-child {
+  max-width: 618px;
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 860px;
   }
+}
+
+.project__column:last-child .project__text:only-child {
+  max-width: 618px;
+
+  @media (min-width: $tablet-width) {
+    margin: 0 0 0 auto;
+    text-align: right;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 860px;
+  }
+}
+
+.project__column figure + figure {
+  margin-top: 20px;
 
   @media (min-width: $desktop-width) {
     margin: 30px 0 0;
@@ -111,19 +135,32 @@
 
 .project__grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 40px 20px;
+  row-gap: 40px;
 
   @media (min-width: $tablet-width) {
-    gap: 60px 20px;
+    row-gap: 60px;
   }
 
   @media (min-width: $desktop-width) {
-    gap: 120px 30px;
+    row-gap: 120px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    gap: 140px 40px;
+    row-gap: 140px;
+  }
+}
+
+.project__row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
+
+  @media (min-width: $desktop-width) {
+    column-gap: 30px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 24px 40px;
   }
 }
 
