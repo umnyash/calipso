@@ -34,6 +34,11 @@ function initGallery(productGalleryElement) {
       swiper: thumbnailsSwiper,
       slideThumbActiveClass: 'gallery__thumbnails-slider-item--active',
     },
+    on: {
+      slideChange: () => {
+        sliderElement.querySelectorAll('video').forEach((video) => video.pause());
+      }
+    }
   });
 
   return mainSlider;

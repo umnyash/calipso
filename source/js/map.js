@@ -6,7 +6,7 @@ async function initMap(mapElement) {
 
   setTimeout(() => {
     containerElement.classList.remove('map__inner--hidden');
-  }, 6000);
+  }, 8000);
 
   await ymaps3.ready; // eslint-disable-line
 
