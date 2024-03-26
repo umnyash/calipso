@@ -3,35 +3,20 @@
   z-index: 2;
   top: 0;
   left: 0;
-  display: grid;
+  display: none;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   grid-template-columns: 100%;
-  // padding: 20px 0;
   place-items: center;
-
   background: var(--overlay-color);
   overflow-y: auto;
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    opacity $modal-closing-duration ease-in,
-    visibility $modal-closing-duration ease-in;
+  animation: appearance $modal-opening-duration ease-out;
 }
-
-// .modal__alert {
-//   max-width: 460px;
-
-//   @media (min-width: $laptop-width) {
-//     max-width: 780px;
-//   }
-// }
 
 .modal__inner {
   position: relative;
-  transform: scale(0.8);
-  transition: transform $modal-closing-duration ease-in;
+  animation: growing $modal-opening-duration ease-out;
 }
 
 .modal--error .modal__inner {
@@ -95,16 +80,11 @@
 }
 
 .modal--open {
-  opacity: 1;
-  visibility: visible;
-  transition:
-    opacity $modal-opening-duration ease-out,
-    visibility $modal-opening-duration ease-out;
+  display: grid;
+}
 
-  .modal__inner {
-    transform: scale(1);
-    transition: transform $modal-opening-duration ease-out;
-  }
+.modal--closing {
+  animation: disappearance $modal-closing-duration ease-in;
 }
 
 .modal--with_form .modal__inner {

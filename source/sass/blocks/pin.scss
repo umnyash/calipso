@@ -15,6 +15,12 @@
   right: 0;
   bottom: calc(100% + 50px);
   width: 280px;
+  transform-origin: right bottom;
+  animation: appearance $modal-opening-duration ease-out, growing $modal-opening-duration ease-out;
+
+  &--closing {
+    animation: disappearance $modal-closing-duration ease-in;
+  }
 
   @media (max-width: ($wide-desktop-width - 1)) {
     right: 20px;

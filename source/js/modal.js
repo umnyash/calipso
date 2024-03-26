@@ -1,5 +1,6 @@
 import { isEscapeEvent } from './util.js';
 
+const MODAL_DISAPPEARANCE_TIME = 100;
 const openedModals = [];
 
 export function openModal(modal) {
@@ -10,18 +11,23 @@ export function openModal(modal) {
 }
 
 export function closeModal(modal) {
+  modal.classList.add('modal--closing');
   openedModals.pop();
 
-  modal.classList.remove('modal--open');
 
   if (!openedModals.length) {
     document.removeEventListener('keydown', onModalEscapeEvent);
     document.removeEventListener('click', onModalClick);
   }
 
-  if (modal.classList.contains('modal--with_alert') || modal.classList.contains('modal--with_review-gallery')) {
-    modal.remove();
-  }
+  setTimeout(() => {
+    modal.classList.remove('modal--open');
+    modal.classList.remove('modal--closing');
+
+    if (modal.classList.contains('modal--with_alert') || modal.classList.contains('modal--with_review-gallery')) {
+      modal.remove();
+    }
+  }, MODAL_DISAPPEARANCE_TIME);
 }
 
 function onModalEscapeEvent(evt) {
