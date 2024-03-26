@@ -1,4 +1,4 @@
-mixin pin
-  .pin&attributes(attributes)
-    +plus-button('button', 'Показать карточку товара', 'button')
+mixin pin(isActive)
+  .pin(class= isActive ? 'pin--active' : '')&attributes(attributes)
+    +plus-button('button', 'Показать карточку товара', 'button')(class= isActive ? 'plus-button--active' : '')
     block

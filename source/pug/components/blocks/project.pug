@@ -39,7 +39,7 @@ mixin project(withPopup)
               .project__image-wrapper
                 img.project__image(src='img/articles/project/project-5.webp' alt='' loading='lazy')
                 +pin(style='top: 37%; left: 66%;')
-                +pin(style='top: 52%; left: 40%;' class= withPopup ? 'pin--active' : '')
+                +pin(withPopup)(style='top: 52%; left: 40%;')
                   if withPopup
                     +product-card-popup(class='pin__popup')
                 +pin(style='top: 72%; left: 75%;')

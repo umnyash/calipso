@@ -30,16 +30,17 @@
 
   &:hover {
     background: var(--accent-color-1-dark);
-
-    &::before {
-      transform: scale(1.1);
-    }
   }
 
   &:active {
     background: var(--accent-color-1-dark);
-    transform: scale(0.9);
 
     @include main-shadow;
+  }
+}
+
+.plus-button--active {
+  &::before {
+    transform: rotate(45deg);
   }
 }

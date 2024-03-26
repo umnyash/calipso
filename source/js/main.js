@@ -45,6 +45,7 @@ import { initFeedbackForm } from './feedback-form.js';
 import { initCart } from './cart.js';
 import { GalleryModal } from './gallery-modal.js';
 import { initDocumentModal } from './document-modal.js';
+import { initProject } from './project.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
@@ -127,4 +128,8 @@ document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement)
 
 document.querySelectorAll('[data-modal$="-document"]').forEach((modalElement) => {
   initDocumentModal(modalElement, openModal);
+});
+
+document.querySelectorAll('.project').forEach((projetcElement) => {
+  initProject(projetcElement, getData, initProductCard, openModal, showAlert);
 });
