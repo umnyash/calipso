@@ -15,8 +15,8 @@
   right: 0;
   bottom: calc(100% + 50px);
   width: 280px;
-  transform-origin: right bottom;
-  animation: appearance $modal-opening-duration ease-out, growing $modal-opening-duration ease-out;
+  // transform-origin: right bottom;
+  animation: appearance $modal-opening-duration ease-out;
 
   &--closing {
     animation: disappearance $modal-closing-duration ease-in;
@@ -30,9 +30,17 @@
 
   @media (max-width: ($wide-tablet-width - 1)) {
     position: fixed;
-    right: 0;
+    right: 0  !important; // stylelint-disable-line
     bottom: 0;
+    left: auto !important; // stylelint-disable-line
     width: 100%;
     height: 100%;
+  }
+}
+
+.product-card-popup__inner {
+  @media (min-width: $wide-tablet-width) {
+    transform-origin: right bottom;
+    animation: growing $modal-opening-duration ease-out;
   }
 }
