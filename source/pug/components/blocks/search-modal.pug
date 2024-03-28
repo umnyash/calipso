@@ -1,28 +1,28 @@
 mixin search-modal(isEmpty)
-  section.search-modal&attributes(attributes)
+  section.search-modal(class= isEmpty ? '' : 'search-modal--with-result')&attributes(attributes)
     .search-modal__inner
       h2.visually-hidden Поиск по сайту
       +search-form('Поиск', 'query', 'Поиск')(class='search-modal__form')
-      if isEmpty
-        ul.search-modal__popular-list
-          li.search-modal__popular-list-item
-            a.search-modal__popular-list-link(href='#!') Диван
-          li.search-modal__popular-list-item
-            a.search-modal__popular-list-link(href='#!') Кровать - диван
-          li.search-modal__popular-list-item
-            a.search-modal__popular-list-link(href='#!') Стул для гостинной
-          li.search-modal__popular-list-item
-            a.search-modal__popular-list-link(href='#!') Стол
-          li.search-modal__popular-list-item
-            a.search-modal__popular-list-link(href='#!') Calligaris
-      else
-        section.search-modal__result-group
-          header.search-modal__result-group-header
-            h3.search-modal__result-group-heading По вашему запросу найдены «Товары»
-            a.search-modal__result-group__link.link.link--small(href='search.html') Ещё результаты
-          +products-list(products.slice(0, 4), 'xs')(class='search-modal__result-group-list')
-        section.search-modal__result-group
-          header.search-modal__result-group-header
-            h3.search-modal__result-group-heading По вашему запросу найдены «Статьи»
-            a.search-modal__result-group__link.link.link--small(href='search.html') Ещё результаты
-          +articles-list(articles.slice(0, 4), 's')(class='search-modal__result-group-list')
+      ul.search-modal__popular-list
+        li.search-modal__popular-list-item
+          a.search-modal__popular-list-link(href='#') Диван
+        li.search-modal__popular-list-item
+          a.search-modal__popular-list-link(href='#') Кровать - диван
+        li.search-modal__popular-list-item
+          a.search-modal__popular-list-link(href='#') Стул для гостиной
+        li.search-modal__popular-list-item
+          a.search-modal__popular-list-link(href='#') Стол
+        li.search-modal__popular-list-item
+          a.search-modal__popular-list-link(href='#') Calligaris
+      .search-modal__result
+        if !isEmpty
+          section.search-modal__result-group
+            header.search-modal__result-group-header
+              h3.search-modal__result-group-heading По вашему запросу найдены «Товары»
+              a.search-modal__result-group__link.link.link--small(href='search.html') Ещё результаты
+            +products-list(products.slice(0, 4), 'xs')(class='search-modal__result-group-list')
+          section.search-modal__result-group
+            header.search-modal__result-group-header
+              h3.search-modal__result-group-heading По вашему запросу найдены «Статьи»
+              a.search-modal__result-group__link.link.link--small(href='search.html') Ещё результаты
+            +articles-list(articles.slice(0, 4), 's')(class='search-modal__result-group-list')

@@ -46,6 +46,9 @@ import { initCart } from './cart.js';
 import { GalleryModal } from './gallery-modal.js';
 import { initDocumentModal } from './document-modal.js';
 import { initProject } from './project.js';
+import { initSearchModal } from './search-modal.js';
+import { createProductCardTemplate } from './product-card-tempate.js';
+import { createArticlePreviewTemplate } from './article-preview-tempate.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
@@ -131,5 +134,9 @@ document.querySelectorAll('[data-modal$="-document"]').forEach((modalElement) =>
 });
 
 document.querySelectorAll('.project').forEach((projetcElement) => {
-  initProject(projetcElement, getData, initProductCard, openModal, showAlert);
+  initProject(projetcElement, getData, createProductCardTemplate, initProductCard, openModal, showAlert);
+});
+
+document.querySelectorAll('[data-modal="search"]').forEach((modalElement) => {
+  initSearchModal(modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
 });

@@ -15,7 +15,6 @@
   right: 0;
   bottom: calc(100% + 50px);
   width: 280px;
-  // transform-origin: right bottom;
   animation: appearance $modal-opening-duration ease-out;
 
   &--closing {

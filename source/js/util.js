@@ -41,6 +41,16 @@ export function getPaginationButtonCreator(slideName = 'Слайд') {
   `;
 }
 
+export function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
 export function throttle(callback, delay) {
   let lastTime = 0;
   let timeoutId;

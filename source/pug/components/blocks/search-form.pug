@@ -1,3 +1,3 @@
 mixin search-form(label, name, placeholder)
-  form.search-form(action='https://echo.htmlacademy.ru' method='post' target='_blank')&attributes(attributes)
+  form.search-form(action='https://echo.htmlacademy.ru' method='get' target='_blank')&attributes(attributes)
     +text-field(label, name, 'search', '', placeholder, true)(class='search-form__field text-field--big text-field--alter text-field--search')
