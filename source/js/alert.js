@@ -10,7 +10,7 @@ function showAlert(openModal, alert) {
         <section class="alert modal__alert ${(alert.status === 'error') ? 'alert--error' : ''}">
           <h2 class="alert__heading">${alert.heading}</h2>
           ${alert.text ? `<p class="alert__text">${alert.text}</p>` : ''}
-          <button class="button alert__button button--secondary" type="button">Закрыть</button>
+          <button class="button alert__button button--secondary" type="button">${alert.buttonText || 'Закрыть'}</button>
         </section>
       </div>
     </div>
