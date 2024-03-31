@@ -1,6 +1,5 @@
 class Cart {
   #cartElement = null;
-  #sendData = null;
   #openModal = null;
   #showAlert = null;
   #heading = null;
@@ -17,15 +16,32 @@ class Cart {
 
   #pristine = null;
 
-  constructor({ cartElement, sendData, openModal, showAlert }) {
+  constructor({ cartElement, openModal, showAlert }) {
     this.#cartElement = cartElement;
-    this.#sendData = sendData;
     this.#openModal = openModal;
     this.#showAlert = showAlert;
 
     this.formElement = this.#cartElement.querySelector('.cart-form');
     this.#heading = this.#cartElement.querySelector('.page-heading .heading');
   }
+
+  #sendData = async (url, body, onSuccess, onFail, onFinally) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body,
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status} – ${response.statusText}`);
+      }
+      const data = await response.json();
+      onSuccess(data);
+    } catch(err) {
+      onFail();
+    } finally {
+      onFinally();
+    }
+  };
 
   #goToCheckout = () => {
     this.formElement.classList.add('cart-form--checkout');
@@ -182,8 +198,10 @@ class Cart {
     evt.preventDefault();
 
     const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
-    const actionUrl = this.formElement.getAttribute('action');
     const isValid = this.#pristine.validate();
+
+    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
+    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
 
     if (isValid) {
       this.#submitButton1Element.disabled = true;
@@ -194,10 +212,9 @@ class Cart {
       this.#sendData(
         actionUrl,
         new FormData(evt.target),
-        (response) => {
+        (data) => {
           this.formElement.reset();
-          const data = response.json();
-          const orderNumber = data.number || '45678'; // В orderNumber нужно записать номер заказа
+          const orderNumber = data.number || '45678'; // Нужно будет удалить "|| '45678'"
           this.showResult(orderNumber);
         },
         () => {
@@ -239,8 +256,8 @@ class Cart {
   }
 }
 
-function initCart(cartElement, sendData, openModal, showAlert) {
-  const cart = new Cart({cartElement, sendData, openModal, showAlert});
+function initCart(cartElement, openModal, showAlert) {
+  const cart = new Cart({cartElement, openModal, showAlert});
 
   if (cart.formElement) {
     cart.initForm();

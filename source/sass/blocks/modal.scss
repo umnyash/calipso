@@ -3,7 +3,7 @@
   z-index: 2;
   top: 0;
   left: 0;
-  display: none;
+  display: grid;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
@@ -11,12 +11,12 @@
   place-items: center;
   background: var(--overlay-color);
   overflow-y: auto;
-  // animation: appearance $modal-opening-duration ease-out;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal__inner {
   position: relative;
-  // animation: growing $modal-opening-duration ease-out;
 }
 
 .modal--error .modal__inner {
@@ -80,7 +80,8 @@
 }
 
 .modal--open {
-  display: grid;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal--opening {

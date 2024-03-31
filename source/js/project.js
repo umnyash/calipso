@@ -2,7 +2,7 @@ import { WIDE_TABLET_WIDTH_MEDIA_QUERY } from './const.js';
 import { createElementByString } from './util.js';
 
 const productMockData = {
-  id: '1234',
+  id: '1',
   title: 'Тумба Mock',
   isPremium: true,
   isFavorite: false,
@@ -59,9 +59,24 @@ function closeAllActivePins(pinElements) {
   });
 }
 
-function initProject(projectElement, getData, createProductCardTemplate, initProductCard, openModal, showAlert) {
+function initProject(projectElement, createProductCardTemplate, initProductCard, openModal, showAlert) {
   const MIN_INDENT_FROM_WINDOW_EDGE = 100;
   const pinElements = projectElement.querySelectorAll('.pin');
+
+  const getData = async(url, onSuccess, onFail, onFinally) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`${response.status} – ${response.statusText}`);
+      }
+      const data = await response.json();
+      onSuccess(data);
+    } catch(err) {
+      onFail();
+    } finally {
+      onFinally();
+    }
+  };
 
   projectElement.addEventListener('click', (evt) => {
     const pinButtonElement = evt.target.closest('.plus-button');
@@ -76,12 +91,14 @@ function initProject(projectElement, getData, createProductCardTemplate, initPro
         closeAllActivePins(pinElements);
 
         pinButtonElement.disabled = true;
-        const actionUrl = 'https://echo.htmlacademy.ru'; // url можно будет модифицировать. Например, добавив id товара из дата-атрибута элемента pin.
+
+        const productId = pinElement.dataset.productId;
+        const actionUrl = `https://fakestoreapi.com/products/${productId}`;
 
         getData(
           actionUrl,
           (data) => {
-            const productData = data || productMockData;
+            const productData = data && productMockData; // Нужно будет удалить "&& productMockData"
             const popupElement = createElementByString(createProductCardPopupTemplate(productData, createProductCardTemplate, 'product-card--popup'));
             initProductCard(popupElement.querySelector('.product-card'));
             pinElement.append(popupElement);

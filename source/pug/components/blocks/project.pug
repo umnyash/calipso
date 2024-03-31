@@ -31,18 +31,18 @@ mixin project(withPopup)
             figure
               .project__image-wrapper
                 img.project__image(src='img/articles/project/project-4.webp' alt='' loading='lazy')
-                +pin(style='top: 67%; left: 22%;')
-                +pin(style='top: 75%; left: 34%;')
+                +pin(style='top: 67%; left: 22%;' data-product-id='1')
+                +pin(style='top: 75%; left: 34%;' data-product-id='1')
               figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
           .project__column.project__column--7-12--wide
             figure
               .project__image-wrapper
                 img.project__image(src='img/articles/project/project-5.webp' alt='' loading='lazy')
-                +pin(style='top: 37%; left: 66%;')
-                +pin(withPopup)(style='top: 52%; left: 40%;')
+                +pin(style='top: 37%; left: 66%;' data-product-id='1')
+                +pin(withPopup)(style='top: 52%; left: 40%;' data-product-id='1')
                   if withPopup
                     +product-card-popup(class='pin__popup')
-                +pin(style='top: 72%; left: 75%;')
+                +pin(style='top: 72%; left: 75%;' data-product-id='1')
               figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
         .project__row
@@ -50,16 +50,16 @@ mixin project(withPopup)
             figure
               .project__image-wrapper
                 img.project__image(src='img/articles/project/project-6.webp' alt='' loading='lazy')
-                +pin(style='top: 53%; left: 16%;')
-                +pin(style='top: 78%; left: 65%;')
+                +pin(style='top: 53%; left: 16%;' data-product-id='1')
+                +pin(style='top: 78%; left: 65%;' data-product-id='1')
               figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
           .project__column.project__column--7-12
             figure
               .project__image-wrapper
                 img.project__image(src='img/articles/project/project-7.webp' alt='' loading='lazy')
-                +pin(style='top: 42%; left: 34%;')
-                +pin(style='top: 67%; left: 32%;')
-                +pin(style='top: 15%; left: 66%;')
+                +pin(style='top: 42%; left: 34%;' data-product-id='1')
+                +pin(style='top: 67%; left: 32%;' data-product-id='1')
+                +pin(style='top: 15%; left: 66%;' data-product-id='1')
               figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
         .project__row

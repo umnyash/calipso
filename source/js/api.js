@@ -7,24 +7,8 @@ export async function sendData(url, body, onSuccess = () => {}, onFail = () => {
     if (!response.ok) {
       throw new Error(`${response.status} – ${response.statusText}`);
     }
-    // const data = await response.json();
     onSuccess();
-  } catch {
-    onFail();
-  } finally {
-    onFinally();
-  }
-}
-
-export async function getData(url, onSuccess = () => {}, onFail = () => {}, onFinally = () => {}) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`${response.status} – ${response.statusText}`);
-    }
-    // const data = await response.json();
-    onSuccess();
-  } catch {
+  } catch(err) {
     onFail();
   } finally {
     onFinally();

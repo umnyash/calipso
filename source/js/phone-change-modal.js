@@ -51,7 +51,7 @@ class PhoneChangeModal {
       }
       const data = await response.json();
       onSuccess(data);
-    } catch {
+    } catch(err) {
       onFail();
     } finally {
       onFinally();

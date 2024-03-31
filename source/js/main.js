@@ -30,7 +30,7 @@ import { initTelField } from './tel-field.js';
 import { initAllBrands } from './all-brand.js';
 import { initTextFieldWithList } from './text-field-with-list.js';
 import { initProfileForm } from './profile-form.js';
-import { sendData, getData } from './api.js';
+import { sendData } from './api.js';
 import { showAlert } from './alert.js';
 import { initSimpleModalForm } from './simple-modal-form.js';
 import { initCooperationModal } from './cooperation-modal.js';
@@ -53,11 +53,11 @@ import { initPhoneChangeModal } from './phone-change-modal.js';
 import { initSignInModal } from './sign-in-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
-  initCart(cartElement, sendData, openModal, showAlert);
+  initCart(cartElement, openModal, showAlert);
 });
 
 document.querySelectorAll('.reviews__list').forEach((listElement) => {
-  initReviewsList(listElement, getData, GalleryModal, initGallery, initVideo, openModal, showAlert);
+  initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal, showAlert);
 });
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
@@ -136,11 +136,11 @@ document.querySelectorAll('[data-modal$="-document"]').forEach((modalElement) =>
 });
 
 document.querySelectorAll('.project').forEach((projetcElement) => {
-  initProject(projetcElement, getData, createProductCardTemplate, initProductCard, openModal, showAlert);
+  initProject(projetcElement, createProductCardTemplate, initProductCard, openModal, showAlert);
 });
 
 document.querySelectorAll('[data-modal="search"]').forEach((modalElement) => {
-  initSearchModal(modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
+  initSearchModal(modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
 });
 
 document.querySelectorAll('[data-modal="phone-change"]').forEach((modalElement) => {

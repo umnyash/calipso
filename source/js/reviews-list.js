@@ -34,7 +34,6 @@ const mockReviewGalleryData = [
 
 class ReviewsList {
   #listElement = null;
-  #getData = null;
   #galleryModal = null;
   #initGallery = null;
   #initVideo = null;
@@ -42,15 +41,29 @@ class ReviewsList {
   #showAlert = null;
   #reviewTextWrapperElements = null;
 
-  constructor({ listElement, getData, galleryModal, initGallery, initVideo, openModal, showAlert }) {
+  constructor({ listElement, galleryModal, initGallery, initVideo, openModal, showAlert }) {
     this.#listElement = listElement;
-    this.#getData = getData;
     this.#galleryModal = galleryModal;
     this.#initGallery = initGallery;
     this.#initVideo = initVideo;
     this.#openModal = openModal;
     this.#showAlert = showAlert;
   }
+
+  #getData = async(url, onSuccess, onFail, onFinally) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`${response.status} – ${response.statusText}`);
+      }
+      const data = await response.json();
+      onSuccess(data);
+    } catch(err) {
+      onFail();
+    } finally {
+      onFinally();
+    }
+  };
 
   updateReviewsTextWrappersList = () => {
     this.#reviewTextWrapperElements = this.#listElement.querySelectorAll('.review__text-wrapper');
@@ -93,19 +106,15 @@ class ReviewsList {
       feedSliderListElement.classList.add('no-click');
       const feedSliderItemElementNumber = Array.from(feedSliderListElement.children).indexOf(feedSliderItemElement);
 
-      // Теоретически id отзыва может быть записан в дата-атрибуте.
-      // При клике можно определять на какой именно отзыв кликнули и получить его id.
-      // Затем использовать этот Id для запроса фотографий и видео.
-
-      // const review = feedSliderItemElement.closest('.review');
-      // const reviewId = review.dataset.id;
-      const actionUrl = 'https://echo.htmlacademy.ru'; // `https://echo.htmlacademy.ru/reviews/reviewId`
+      const review = feedSliderItemElement.closest('.review');
+      const reviewId = review.dataset.id;
+      const actionUrl = `https://fakestoreapi.com/products/${reviewId}`;
 
       this.#getData(
         actionUrl,
         (data) => {
           const galleryModal = new this.#galleryModal({
-            content: data || mockReviewGalleryData,
+            content: data && mockReviewGalleryData, // Нужно будет удалить "&& mockReviewGalleryData"
             openModal: this.#openModal,
             initGallery: this.#initGallery,
             initVideo: this.#initVideo,
@@ -135,8 +144,8 @@ class ReviewsList {
   };
 }
 
-function initReviewsList(listElement, getData, galleryModal, initGallery, initVideo, openModal, showAlert) {
-  const reviewsList = new ReviewsList({ listElement, getData, galleryModal, initGallery, initVideo, openModal, showAlert });
+function initReviewsList(listElement, galleryModal, initGallery, initVideo, openModal, showAlert) {
+  const reviewsList = new ReviewsList({ listElement, galleryModal, initGallery, initVideo, openModal, showAlert });
   reviewsList.init();
 
   return reviewsList;

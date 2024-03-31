@@ -113,7 +113,6 @@ const searchResultMockData = {
 class SearchModal {
   #maxListItemsCount = 4;
   #modalElement = null;
-  #getData = null;
   #openModal = null;
   #modalContentElement = null;
   #controlElement = null;
@@ -123,14 +122,44 @@ class SearchModal {
   #initProductCard = null;
   #createArticlePreviewTemplate = null;
 
-  constructor({ modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate }) {
+  constructor({ modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate }) {
     this.#modalElement = modalElement;
     this.#openModal = openModal;
-    this.#getData = getData;
     this.#createProductCardTemplate = createProductCardTemplate;
     this.#initProductCard = initProductCard;
     this.#createArticlePreviewTemplate = createArticlePreviewTemplate;
   }
+
+  #getData = async(url, onSuccess, onFail, onFinally) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`${response.status} – ${response.statusText}`);
+      }
+      const data = await response.json();
+      onSuccess(data);
+    } catch(err) {
+      onFail();
+    } finally {
+      onFinally();
+    }
+  };
+
+  #sendData = async (url, body, onSuccess, onFail) => {
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body,
+      });
+      if (!response.ok) {
+        throw new Error(`${response.status} – ${response.statusText}`);
+      }
+      const data = await response.json();
+      onSuccess(data);
+    } catch(err) {
+      onFail();
+    }
+  };
 
   #onModalClick = (evt) => {
     const clearButton = evt.target.closest('.text-field__clear-button');
@@ -177,13 +206,15 @@ class SearchModal {
     }
 
     this.#modalContentElement.classList.add('search-modal--with-result');
-    const actionUrl = this.#formElement.getAttribute('action');
+    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
+    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
 
-    this.#getData(
+    this.#sendData(
       actionUrl,
+      new FormData(this.#formElement),
       (data) => {
         this.#resultElement.innerHTML = '';
-        const searchResult = data || searchResultMockData;
+        const searchResult = data && searchResultMockData;
 
         if (!searchResult.products.length && !searchResult.articles.length) {
           this.#resultElement.insertAdjacentHTML('beforeend', '<p class="search-modal__result-placeholder">По вашему запросу ничего не найдено</p>');
@@ -253,8 +284,8 @@ class SearchModal {
   };
 }
 
-function initSearchModal(modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate) {
-  const searchModal = new SearchModal({ modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate });
+function initSearchModal(modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate) {
+  const searchModal = new SearchModal({ modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate });
 
   searchModal.init();
 
