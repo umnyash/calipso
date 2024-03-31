@@ -49,6 +49,7 @@ import { initProject } from './project.js';
 import { initSearchModal } from './search-modal.js';
 import { createProductCardTemplate } from './product-card-tempate.js';
 import { createArticlePreviewTemplate } from './article-preview-tempate.js';
+import { initPhoneChangeModal } from './phone-change-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
@@ -139,4 +140,8 @@ document.querySelectorAll('.project').forEach((projetcElement) => {
 
 document.querySelectorAll('[data-modal="search"]').forEach((modalElement) => {
   initSearchModal(modalElement, openModal, getData, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
+});
+
+document.querySelectorAll('[data-modal="phone-change"]').forEach((modalElement) => {
+  initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
 });

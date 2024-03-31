@@ -11,13 +11,5 @@ block content
   +account
 
 append modals
-  +modal(class='modal--with_form')
-    +phone-modal-form(class='modal__form')
-  +modal(class='modal--with_alert')
-    +alert(
-      'Телефон успешно изменен',
-      false,
-      'Принять'
-    )(class='modal__alert')
-  +modal(class='modal--with_form')
-    +code-modal-form(true)(class='modal__form')
+  +modal(class='modal--with_form' data-modal='phone-change')
+    +phone-change-modal-form(class='modal__form')

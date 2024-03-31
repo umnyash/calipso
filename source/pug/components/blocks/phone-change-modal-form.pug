@@ -1,0 +1,19 @@
+mixin phone-change-modal-form
+  .modal-form&attributes(attributes)
+    form.modal-form__form.modal-form__form--code-request(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+      h2.modal-form__heading Введите номер мобильного телефона
+      fieldset.modal-form__section
+        +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='modal-form__item modal-form__item--tel')
+      fieldset.modal-form__footer
+        +button('button', 'Получить код', 'submit')(class='modal-form__submit-button button--primary')
+    form.moda-form__form.modal-form__form--code-sending.modal-form__form--hidden(action='https://echo.htmlacademy.ru' method='post' target='_blank')
+      a.modal-form__back-button(href='#')
+        span.visually-hidden Назад
+      h2.modal-form__heading Введите код подтверждения
+      p.modal-form__lead Мы отправили SMS-сообщение с&nbsp;кодом подтверждения на&nbsp;номер #[span.modal-form__phone-text +7 964 563 73 37]
+      fieldset.modal-form__section
+        +text-field('Код подтверждения:', 'code', 'number', '', 'Код подтверждения', true)(class='modal-form__item modal-form__item--code')
+      fieldset.modal-form__footer
+        p.modal-form__footer-text.modal-form__footer-text--resend-code Повторный запрос кода доступен через #[span.modal-form__footer-text-timer 55]&nbsp;сек.
+        button.modal-form__footer-button.modal-form__footer-button--resend-code(type='button') Отправить повторно
+        +button('button', 'Подтвердить', 'submit')(class='modal-form__submit-button button--primary')

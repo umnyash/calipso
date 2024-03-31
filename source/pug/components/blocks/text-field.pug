@@ -11,5 +11,5 @@ mixin text-field(label, name, type, value, placeholder, isRequired, isReadonly, 
           button.text-field__calendar-button(type='button' aria-hidden='true')
             span.visually-hidden Показать окно выбора даты
         if isWithEditButton
-          button.text-field__edit-button(type='button') Изменить номер
+          button.text-field__edit-button(type='button' data-modal-opener='phone-change') Изменить номер
     block

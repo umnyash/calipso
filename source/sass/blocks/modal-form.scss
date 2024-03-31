@@ -28,6 +28,10 @@
   }
 }
 
+.modal-form__form--hidden {
+  display: none;
+}
+
 .modal-form__back-button {
   display: inline-block;
   width: 24px;
@@ -98,6 +102,10 @@
   }
 }
 
+.modal-form__phone-text {
+  white-space: nowrap;
+}
+
 .modal-form__section {
   display: grid;
   padding: 0;
@@ -158,6 +166,7 @@
 
 .modal-form__footer-button {
   box-sizing: border-box;
+  padding: 0;
   border: none;
   margin: 0 0 16px;
   font: inherit;
@@ -167,11 +176,12 @@
   background: transparent;
   cursor: pointer;
 
-  &:hover {
+  &:enabled:hover {
     opacity: 0.8;
   }
 
-  &:active {
+  &:enabled:active,
+  &:disabled {
     opacity: 0.4;
   }
 
