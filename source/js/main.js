@@ -50,6 +50,7 @@ import { initSearchModal } from './search-modal.js';
 import { createProductCardTemplate } from './product-card-tempate.js';
 import { createArticlePreviewTemplate } from './article-preview-tempate.js';
 import { initPhoneChangeModal } from './phone-change-modal.js';
+import { initSignInModal } from './sign-in-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, sendData, openModal, showAlert);
@@ -144,4 +145,8 @@ document.querySelectorAll('[data-modal="search"]').forEach((modalElement) => {
 
 document.querySelectorAll('[data-modal="phone-change"]').forEach((modalElement) => {
   initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
+});
+
+document.querySelectorAll('[data-modal="sign-in"]').forEach((modalElement) => {
+  initSignInModal(modalElement, openModal, closeModal, showAlert);
 });

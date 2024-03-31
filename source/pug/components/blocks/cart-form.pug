@@ -13,7 +13,7 @@ mixin cart-form(isCheckout, isPromocodeApplied)
       .cart-form__section-inner
         legend.cart-form__section-heading Заполните информацию о себе
         if !isAuthorized
-          p.cart-form__message Войдите в личный кабинет #[a.cart-form__message-link(href='#!') Войти]
+          p.cart-form__message Войдите в личный кабинет #[a.cart-form__message-link(href='#' data-modal-opener='sign-in') Войти]
         +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--name cart-form__item--wide')
         +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='cart-form__item cart-form__item--phone cart-form__item--wide')
         +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='cart-form__item cart-form__item--email cart-form__item--wide')

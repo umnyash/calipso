@@ -17,6 +17,7 @@ export function openModal(modal) {
 }
 
 export function closeModal(modal) {
+  modal.classList.remove('modal--error');
   modal.classList.add('modal--closing');
   openedModals.pop();
 

@@ -1,4 +1,4 @@
-class PhoneChangeModal {
+class SignInModal {
   #submitButtonPendingStateClass = 'button--pending';
   #requestCodeTimeInterval = 5; // Нужно увеличить интервал между запросами кода по номеру телефона
   #timer = 0;
@@ -6,9 +6,6 @@ class PhoneChangeModal {
   #openModal = null;
   #closeModal = null;
   #showAlert = null;
-
-  #externalPhoneFieldElement = null;
-  #externalPhoneTextElement = null;
 
   #codeRequestFormElement = null;
   #codeRequestFormSubmitButton = null;
@@ -217,25 +214,10 @@ class PhoneChangeModal {
         actionUrl,
         new FormData(evt.target),
         () => {
-          const newPhoneNumber = this.#phoneFieldElement.value;
-
           this.#codeRequestFormElement.reset();
           this.#codeSendingFormElement.reset();
           this.close();
           this.goToCodeRequestForm();
-
-          this.#showAlert(this.#openModal, {
-            heading: 'Телефон успешно изменен',
-            buttonText: 'Принять'
-          });
-
-          if (this.#externalPhoneFieldElement) {
-            this.#externalPhoneFieldElement.value = newPhoneNumber;
-          }
-
-          if (this.#externalPhoneTextElement) {
-            this.#externalPhoneTextElement.textContent = newPhoneNumber;
-          }
         },
         () => {
           this.#showAlert(this.#openModal, {
@@ -261,9 +243,6 @@ class PhoneChangeModal {
   };
 
   init() {
-    this.#externalPhoneFieldElement = document.querySelector('.profile-form__item--phone .text-field__control');
-    this.#externalPhoneTextElement = document.querySelector('.account__phone');
-
     this.#codeRequestFormElement = this.#modalElement.querySelector('.modal-form__form--code-request');
     this.#codeRequestFormSubmitButton = this.#codeRequestFormElement.querySelector('.modal-form__submit-button');
     this.#phoneFieldElement = this.#codeRequestFormElement.querySelector('.modal-form__item--tel .text-field__control');
@@ -286,17 +265,17 @@ class PhoneChangeModal {
     this.#codeSendingFormElement.addEventListener('submit', this.#onCodeSendingFormSubmit);
     this.#resendCodeButtonElement.addEventListener('click', this.#onResendCodeButtonClick);
 
-    document.querySelectorAll('[data-modal-opener="phone-change"]').forEach((openerElement) => {
+    document.querySelectorAll('[data-modal-opener="sign-in"]').forEach((openerElement) => {
       openerElement.addEventListener('click', this.#onOpenerElementClick);
     });
   }
 }
 
-function initPhoneChangeModal(modalElement, openModal, closeModal, showAlert) {
-  const phoneChangeModal = new PhoneChangeModal({ modalElement, openModal, closeModal, showAlert});
+function initSignInModal(modalElement, openModal, closeModal, showAlert) {
+  const phoneChangeModal = new SignInModal({ modalElement, openModal, closeModal, showAlert});
   phoneChangeModal.init();
 
   return phoneChangeModal;
 }
 
-export { initPhoneChangeModal };
+export { initSignInModal };
