@@ -1,13 +1,19 @@
 import { isEscapeEvent } from './util.js';
 
+const MODAL_APPEARANCE_TIME = 300;
 const MODAL_DISAPPEARANCE_TIME = 100;
 const openedModals = [];
 
 export function openModal(modal) {
   modal.classList.add('modal--open');
+  modal.classList.add('modal--opening');
   openedModals.push(modal);
   document.addEventListener('keydown', onModalEscapeEvent);
   document.addEventListener('click', onModalClick);
+
+  setTimeout(() => {
+    modal.classList.remove('modal--opening');
+  }, MODAL_APPEARANCE_TIME);
 }
 
 export function closeModal(modal) {

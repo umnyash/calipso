@@ -11,12 +11,12 @@
   place-items: center;
   background: var(--overlay-color);
   overflow-y: auto;
-  animation: appearance $modal-opening-duration ease-out;
+  // animation: appearance $modal-opening-duration ease-out;
 }
 
 .modal__inner {
   position: relative;
-  animation: growing $modal-opening-duration ease-out;
+  // animation: growing $modal-opening-duration ease-out;
 }
 
 .modal--error .modal__inner {
@@ -81,6 +81,14 @@
 
 .modal--open {
   display: grid;
+}
+
+.modal--opening {
+  animation: appearance $modal-opening-duration ease-out;
+
+  .modal__inner {
+    animation: growing $modal-opening-duration ease-out;
+  }
 }
 
 .modal--closing {
