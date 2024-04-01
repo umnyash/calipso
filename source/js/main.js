@@ -52,6 +52,7 @@ import { createArticlePreviewTemplate } from './article-preview-tempate.js';
 import { initPhoneChangeModal } from './phone-change-modal.js';
 import { initSignInModal } from './sign-in-modal.js';
 import { initUserNavigation } from './user-navigation.js';
+import { initCitiesModal } from './cities-modal.js';
 
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, openModal, showAlert);
@@ -153,3 +154,7 @@ document.querySelectorAll('[data-modal="sign-in"]').forEach((modalElement) => {
 });
 
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
+
+document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
+  initCitiesModal(modalElement);
+});
