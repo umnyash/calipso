@@ -215,15 +215,28 @@
 
 .site-header__user-navigation {
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: calc(100% + 38px);
   right: $tablet-edge-indent;
-  display: none;
   width: 300px;
   margin: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top center;
+  transform: scale(0.8);
+  transition-property: opacity, transform, visibility;
+  transition-duration: $modal-closing-duration;
+  transition-timing-function: ease-in;
 
   &--open {
-    display: block;
+    transition-duration: $modal-opening-duration;
+    transition-timing-function: ease-out;
+
+    @media (min-width: $tablet-width) {
+      opacity: 1;
+      transform: scale(1);
+      visibility: visible;
+    }
   }
 
   @media (min-width: $desktop-width) {
@@ -242,8 +255,10 @@
   }
 }
 
-.page__site-header--expand .site-header__user-navigation {
-  display: none;
+.page__site-header--hidden .site-header__user-navigation  {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
 }
 
 .site-header__inner--transparent .site-header__user-navigation {

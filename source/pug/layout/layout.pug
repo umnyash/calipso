@@ -30,6 +30,10 @@ html.page(class= pageClass lang='ru')
       if pageClass !== 'cart-page'
         +site-footer
     block modals
+      +modal(class='modal--with_form' data-modal='sign-in')
+        +sign-in-modal-form(class='modal__form')
+      +modal(class='modal--with_search' data-modal='search')
+        +search-modal(true)(class='modal__search')
     script(src='vendor/swiper/swiper-bundle.min.js')
     script(src='vendor/air-datepicker/air-datepicker.js')
     script(src='vendor/pristine/pristine.min.js')

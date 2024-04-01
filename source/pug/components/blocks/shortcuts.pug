@@ -11,7 +11,7 @@ mixin shortcuts
         span.visually-hidden Избранное
         span.shortcuts__notification.notification-badge 4
     li.shortcuts__item.shortcuts__item--user
-      a.shortcuts__link.shortcuts__link--user(href='#!')
+      a.shortcuts__link.shortcuts__link--user(href='#' data-modal-opener= isAuthorized ? false : 'sign-in')
         span.visually-hidden Профиль
     li.shortcuts__item
       a.shortcuts__link.shortcuts__link--cart(href='cart.html')

@@ -47,10 +47,10 @@ mixin site-navigation
             a.site-navigation__top-link.site-navigation__top-link--with-arrow.site-navigation__top-link--location(href='dev-index-cities.html') Нижний Новгород
           if isAuthorized
             li
-              a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow.site-navigation__top-link--user.site-navigation__top-link--accent-2(href='#sn-user') Пользователь 1234
+              a.site-navigation__top-link.site-navigation__top-link--opener.site-navigation__top-link--with-arrow.site-navigation__top-link--user.site-navigation__top-link--accent-2(href='#' data-panel-id='sn-user') Пользователь 1234
           else
             li
-              a.site-navigation__top-link.site-navigation__top-link--with-arrow.site-navigation__top-link--user(href='dev-cart-checkout-modal-sign-in.html') Войти/Зарегистрироваться
+              a.site-navigation__top-link.site-navigation__top-link--with-arrow.site-navigation__top-link--user(href='#' data-modal-opener='sign-in') Войти/Зарегистрироваться
           li
             a.site-navigation__top-link.site-navigation__top-link--favorites(href='favorites.html') Избранное
         .site-navigation__contacts

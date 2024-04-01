@@ -102,6 +102,7 @@ class ReviewsList {
     }
 
     if (feedSliderItemElement) {
+      evt.preventDefault();
       const feedSliderListElement = feedSliderItemElement.parentElement;
       feedSliderListElement.classList.add('no-click');
       const feedSliderItemElementNumber = Array.from(feedSliderListElement.children).indexOf(feedSliderItemElement);
