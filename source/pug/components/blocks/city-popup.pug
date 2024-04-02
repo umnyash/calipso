@@ -4,6 +4,6 @@ mixin city-popup
       p.popup__text Ваш город: #[span.popup__text--big Нижний Новгород]
     .popup__actions
       +button('a', 'Верно', '', '#!')(class='popup__button button--primary')
-      +button('a', 'Нет, другой', '', '#!')(class='popup__button button--secondary')
+      +button('a', 'Нет, другой', '', '#!')(class='popup__button button--secondary' data-modal-opener='cities')
     button.popup__close-button
       span.visually-hidden Закрыть

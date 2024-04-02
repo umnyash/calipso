@@ -65,7 +65,7 @@
     margin-right: (-$mobile-edge-indent);
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $laptop-width) {
     max-height: 272px;
   }
 

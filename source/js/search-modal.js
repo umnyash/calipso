@@ -130,21 +130,6 @@ class SearchModal {
     this.#createArticlePreviewTemplate = createArticlePreviewTemplate;
   }
 
-  #getData = async(url, onSuccess, onFail, onFinally) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`${response.status} – ${response.statusText}`);
-      }
-      const data = await response.json();
-      onSuccess(data);
-    } catch(err) {
-      onFail();
-    } finally {
-      onFinally();
-    }
-  };
-
   #sendData = async (url, body, onSuccess, onFail) => {
     try {
       const response = await fetch(url, {

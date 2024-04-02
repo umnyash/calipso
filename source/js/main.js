@@ -156,5 +156,5 @@ document.querySelectorAll('[data-modal="sign-in"]').forEach((modalElement) => {
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 
 document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
-  initCitiesModal(modalElement);
+  initCitiesModal(modalElement, initScrollContainer, openModal);
 });
