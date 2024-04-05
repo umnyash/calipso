@@ -87,10 +87,7 @@ class ReviewsList {
     });
   };
 
-  #onWindowResize = () => {
-    const throttledFunction = throttle(this.#setReviewsTextWrappersMode, 500);
-    throttledFunction();
-  };
+  #onWindowResize = throttle(this.#setReviewsTextWrappersMode, 500);
 
   #onListClick = (evt) => {
     const toggleButtonElement = evt.target.closest('.review__toggle-button');
