@@ -125,7 +125,7 @@ document.querySelectorAll('[data-modal="review"]').forEach((modalElement) => {
   initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
 });
 
-document.querySelectorAll('.modal--with_catalog-filters').forEach((modalElement) => {
+document.querySelectorAll('[data-modal="catalog-filters"]').forEach((modalElement) => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);
 });
 

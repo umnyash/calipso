@@ -179,7 +179,7 @@
   }
 }
 
-.catalog-filters__folds-value {
+.catalog-filters__folds-value-label {
   font-size: 14px;
   line-height: 17px;
   font-weight: 500;
@@ -191,7 +191,7 @@
   }
 }
 
-.catalog-filters__folds-item.folds__item--open .catalog-filters__folds-value {
+.catalog-filters__folds-item.folds__item--open .catalog-filters__folds-value-label {
   display: none;
 }
 

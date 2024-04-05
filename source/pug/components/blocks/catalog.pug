@@ -14,15 +14,6 @@ mixin catalog(heading, headingIsHidden, withPanel)
               +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='size')
             p.catalog__panel-text Найдено 100
             ul.catalog__applied-filters
-              li.catalog__applied-filter Классический
-                button.catalog__applied-filter-reset-button
-                  span.visually-hidden Удалить фильтр
-              li.catalog__applied-filter Цена от 13062 до 30078
-                button.catalog__applied-filter-reset-button
-                  span.visually-hidden Удалить фильтр
-              li.catalog__applied-filter В наличии
-                button.catalog__applied-filter-reset-button
-                  span.visually-hidden Удалить фильтр
             +catalog-sorting(class='catalog__sorting')
         +products-list(products, 'xl')(class='catalog__list')
         +pagination(class='catalog__pagination')

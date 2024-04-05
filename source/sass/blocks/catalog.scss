@@ -99,6 +99,10 @@
   flex-wrap: wrap;
   gap: 10px 20px;
 
+  &:empty {
+    display: none;
+  }
+
   @media (min-width: $wide-desktop-width) {
     margin: 24px 0 0;
     gap: 10px 30px;

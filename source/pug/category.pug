@@ -13,3 +13,7 @@ block content
   +catalog('Каталог', true, true)(class='catalog--bordered')
   +products('Вы смотрели', products)
   +subscription-with-image
+
+append modals
+  +modal(class='modal--with_catalog-filters' data-modal='catalog-filters')
+    +catalog-filters(class='modal__catalog-filters')

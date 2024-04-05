@@ -6,24 +6,25 @@ mixin catalog-filters
       .catalog-filters__scroll-container-inner.swiper-wrapper
         .catalog-filters__scroll-container-content.swiper-slide
           ul.catalog-filters__folds.folds
-            li.catalog-filters__folds-item.folds__item
+            li.catalog-filters__folds-item.catalog-filters__folds-item--range.folds__item(data-range-name='Цена')
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button' data-fold-name='price') Цена, ₽
-                  span.catalog-filters__folds-value Цена от 4990 до 125900
+                  span.catalog-filters__folds-value-label
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
-                    +number-range('price', [4990, 125900])
-            li.catalog-filters__folds-item.folds__item
+                    +number-range('price', ['', ''])
+            li.catalog-filters__folds-item.catalog-filters__folds-item--checkers.folds__item
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button') Тип
+                  span.catalog-filters__folds-value-label
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
                     .catalog-filter__box
                       ul.catalog-filter__box-list
                         li.catalog-filter__box-list-item
-                          +checker('Диван', false, 'type', 'checkbox', 'sofa', true)(class='checker--big')
+                          +checker('Диван', false, 'type', 'checkbox', 'sofa')(class='checker--big')
                         li.catalog-filter__box-list-item
                           +checker('Угловой диван', false, 'type', 'checkbox', 'corner-sofa')(class='checker--big')
                         li.catalog-filter__box-list-item
@@ -37,17 +38,34 @@ mixin catalog-filters
                       button.catalog-filter__box-toggle-button(type='button')
                         span.catalog-filter__box-toggle-button-text Показать все
                         span.catalog-filter__box-toggle-button-expand-text Показать меньше
-            li.catalog-filters__folds-item.folds__item
+            li.catalog-filters__folds-item.catalog-filters__folds-item--range.folds__item(data-range-name='Ширина')
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button' data-fold-name='size') Ширина, см
+                  span.catalog-filters__folds-value-label
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
-                    +number-range('width', [122, 206])
-            li.catalog-filters__folds-item.folds__item
+                    +number-range('width', ['', ''])
+            li.catalog-filters__folds-item.catalog-filters__folds-item--range.folds__item(data-range-name='Длина')
+              h3.catalog-filters__folds-heading
+                button.catalog-filters__folds-button.folds__button(type='button') Длина, см
+                  span.catalog-filters__folds-value-label
+              .folds__content-wrapper
+                .folds__content
+                  fieldset.catalog-filter__section
+                    +number-range('length', ['', ''])
+            li.catalog-filters__folds-item.catalog-filters__folds-item--range.folds__item(data-range-name='Высота')
+              h3.catalog-filters__folds-heading
+                button.catalog-filters__folds-button.folds__button(type='button') Высота, см
+                  span.catalog-filters__folds-value-label
+              .folds__content-wrapper
+                .folds__content
+                  fieldset.catalog-filter__section
+                    +number-range('height', ['', ''])
+            li.catalog-filters__folds-item.catalog-filters__folds-item--checkers.folds__item
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button') Цвет
-                  span.catalog-filters__folds-value Желтый
+                  span.catalog-filters__folds-value-label
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
@@ -60,7 +78,7 @@ mixin catalog-filters
                         li.catalog-filter__box-list-item
                           +color('Голубой', 'blue', 'img/colors/blue.webp')
                         li.catalog-filter__box-list-item
-                          +color('Желтый', 'yellow', 'img/colors/yellow.webp', false)
+                          +color('Желтый', 'yellow', 'img/colors/yellow.webp')
                         li.catalog-filter__box-list-item
                           +color('Красный', 'red', 'img/colors/red.webp')
                         li.catalog-filter__box-list-item
@@ -68,16 +86,17 @@ mixin catalog-filters
                       button.catalog-filter__box-toggle-button(type='button')
                         span.catalog-filter__box-toggle-button-text Показать все
                         span.catalog-filter__box-toggle-button-expand-text Показать меньше
-            li.catalog-filters__folds-item.folds__item
+            li.catalog-filters__folds-item.catalog-filters__folds-item--checkers.folds__item
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button') Страна
+                  span.catalog-filters__folds-value-label
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
                     .catalog-filter__box
                       ul.catalog-filter__box-list
                         li.catalog-filter__box-list-item
-                          +checker('Россия', false, 'country', 'checkbox', 'russia', true)(class='checker--big')
+                          +checker('Россия', false, 'country', 'checkbox', 'russia')(class='checker--big')
                         li.catalog-filter__box-list-item
                           +checker('Италия', false, 'country', 'checkbox', 'italy')(class='checker--big')
                         li.catalog-filter__box-list-item
@@ -91,20 +110,6 @@ mixin catalog-filters
                       button.catalog-filter__box-toggle-button(type='button')
                         span.catalog-filter__box-toggle-button-text Показать все
                         span.catalog-filter__box-toggle-button-expand-text Показать меньше
-            li.catalog-filters__folds-item.folds__item
-              h3.catalog-filters__folds-heading
-                button.catalog-filters__folds-button.folds__button(type='button') Длина, см
-              .folds__content-wrapper
-                .folds__content
-                  fieldset.catalog-filter__section
-                    +number-range('length', [122, 285])
-            li.catalog-filters__folds-item.folds__item
-              h3.catalog-filters__folds-heading
-                button.catalog-filters__folds-button.folds__button(type='button') Высота, см
-              .folds__content-wrapper
-                .folds__content
-                  fieldset.catalog-filter__section
-                    +number-range('height', [122, 285])
           fieldset.catalog-filter__section.catalog-filter__section--checkboxes
             +checker('В наличии', false, 'in-stock', 'checkbox', 'on')(class='checker--big')
             +checker('SALE', false, 'sale', 'checkbox', 'on')(class='checker--big')
