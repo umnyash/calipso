@@ -92,14 +92,19 @@
 .page__content > .back-link,
 .page__content > .back-link + *,
 .page__content > .centered-breadcrumbs,
-.page__content > .centered-breadcrumbs + *,
-.page__content > .cart {
+.page__content > .centered-breadcrumbs + * {
   margin-top: 20px;
 
   @media (min-width: $desktop-width) {
     margin-top: 40px;
   }
 }
+
+.page__content > .cart {
+  height: 100%;
+  margin-top: 0;
+}
+
 
 .page__content .page__suspended-breadcrumbs {
   position: absolute;

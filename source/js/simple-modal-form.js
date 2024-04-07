@@ -106,6 +106,7 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
   document.querySelectorAll(`[data-modal-opener="${modalName}"]`).forEach((openerElement) => {
     openerElement.addEventListener('click', (evt) => {
       evt.preventDefault();
+      pristine.reset();
       modalElement.classList.remove('modal--error');
 
       openModal(modalElement);

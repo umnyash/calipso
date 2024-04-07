@@ -14,7 +14,6 @@ import { initGallery } from './gallery.js';
 import { initStaticGalleryModal } from './static-gallery-modal.js';
 import { openModal, closeModal } from './modal.js';
 import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
-import { initStickyCartInfo } from './sticky-cart-info.js';
 import { initFolds, toggleFoldState } from './folds.js';
 import { setInputDateMask } from './input-date-mask.js';
 import { initDateField } from './date-field.js';
@@ -79,7 +78,6 @@ document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcu
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);
 document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
-document.querySelectorAll('.cart-form__info').forEach(initStickyCartInfo);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date').forEach((fieldElement) => {
   initDateField(fieldElement, setInputDateMask);

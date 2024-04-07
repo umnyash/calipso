@@ -132,8 +132,9 @@ class CatalogFiltersModal {
       if (overHeight > 0) {
         const shift = Math.min(overHeight, foldButtonElement.offsetTop);
         this.#swiper.setTranslate(-shift);
-        setTimeout(() => this.#swiper.updateSlides(), 300);
       }
+
+      setTimeout(() => this.#swiper.update(), 300);
     }
   };
 
@@ -144,9 +145,9 @@ class CatalogFiltersModal {
     if (boxToggleButtonElement) {
       const boxElement = boxToggleButtonElement.closest('.catalog-filter__box');
       boxElement.classList.toggle('catalog-filter__box--expand');
-      setTimeout(() => this.#swiper.updateSlides(), 300);
+      setTimeout(() => this.#swiper.update(), 300);
     } else if (foldToggleButtonElement) {
-      setTimeout(() => this.#swiper.updateSlides(), 300);
+      setTimeout(() => this.#swiper.update(), 300);
     }
   };
 

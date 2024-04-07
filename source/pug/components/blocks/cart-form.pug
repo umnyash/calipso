@@ -1,59 +1,60 @@
 mixin cart-form(isCheckout, isPromocodeApplied)
   form.cart-form(action='https://echo.htmlacademy.ru' method='post' target='_blank' class= isCheckout ? 'cart-form--checkout' : '')&attributes(attributes)
-    .cart-form__buttons
-      button.cart-form__choose-all-button(type='button') Выбрать все
-      button.cart-form__delete-selected-button(type='button') Удалить выбранные
-    fieldset.cart-form__products
-      ul.cart-form__products-list
-        li.cart-form__products-item
-          +cart-item(products[0], true)
-        li.cart-form__products-item
-          +cart-item(products[2], true)
-    fieldset.cart-form__section.cart-form__section--checkout
-      .cart-form__section-inner
-        legend.cart-form__section-heading Заполните информацию о себе
-        if !isAuthorized
-          p.cart-form__message Войдите в личный кабинет #[a.cart-form__message-link(href='#' data-modal-opener='sign-in') Войти]
-        +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--name cart-form__item--wide')
-        +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='cart-form__item cart-form__item--phone cart-form__item--wide')
-        +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='cart-form__item cart-form__item--email cart-form__item--wide')
-    fieldset.cart-form__section.cart-form__section--checkout
-      .cart-form__section-inner
-        legend.cart-form__section-heading Выберите способ доставки
-        ul.cart-form__radiobuttons-list.cart-form__radiobuttons-list--receiving
-          li.cart-form__radiobuttons-list-item
-            +checker('Самовывоз', false, 'receiving-method', 'radio', 'pickup')(class='cart-form__receiving-radiobutton cart-form__receiving-radiobutton--pickup')
-          li.cart-form__radiobuttons-list-item
-            +checker('Доставка', false, 'receiving-method', 'radio', 'delivery', true)(class='cart-form__receiving-radiobutton cart-form__receiving-radiobutton--delivery')
-        .cart-form__section-inner-group.cart-form__section-inner-group--delivery
-          +text-field-with-list('Ваша город:', 'city', 'text', '', 'Город', true)(class='cart-form__item cart-form__item--city')
-          +text-field('Ваша улица:', 'street', 'text', '', 'Улица', true)(class='cart-form__item cart-form__item--street')
-          +text-field('Ваш дом:', 'house', 'text', '', 'Дом', true)(class='cart-form__item cart-form__item--house')
-          +text-field('Ваша квартира/офис:', 'apartment-office', 'text', '', 'Квартира/Офис')
-          +text-field('Ваш подъезд:', 'entrance', 'text', '', 'Подъезд')
-          +checker('Лифт', false, 'elevator', 'checkbox')(class='cart-form__single-checkbox')
-          +textarea('Ваш комментарий:', 'comment', '', 'Комментарий', false, false, false, 1000)(class='cart-form__delivery-textarea')
-          small.cart-form__section-comment Курьер доставляет вам товар, а вы тщательно осматриваете заказ, после чего производите оплату.#[br.hidden.hidden--m-t] Курьер предоставит вам товарный и&nbsp;кассовый чек.
-        .cart-form__section-inner-group.cart-form__section-inner-group--pickup.cart-form__section-inner-group--hidden
-          +map(class='cart-form__map')
-          +contacts-list(contacts.pickup)(class='cart-form__contacts-list contacts-list--alter')
-          +textarea('Ваш комментарий:', 'comment', '', 'Комментарий', false, false, false, 1000)(class='cart-form__pickup-textarea')
-    fieldset.cart-form__section.cart-form__section--checkout
-      .cart-form__section-inner
-        legend.cart-form__section-heading Выберите способ оплаты
-        ul.cart-form__radiobuttons-list.cart-form__radiobuttons-list--column
-          li.cart-form__radiobuttons-list-item
-            +checker('Наличными в салоне', false, 'payment-method', 'radio', 'cash-in-salon', true)
-          li.cart-form__radiobuttons-list-item
-            +checker('Банковской картой в салоне', false, 'payment-method', 'radio', 'bank-card-in-salon')
-          li.cart-form__radiobuttons-list-item
-            +checker('Оплата при доставке', false, 'payment-method', 'radio', 'on-delivery')
-          li.cart-form__radiobuttons-list-item
-            +checker('Банковской картой online', false, 'payment-method', 'radio', 'bank-card-online')
-            small.cart-form__radiobuttons-list-item-comment Ссылка для оплаты будет направлена на ваш e-mail после подтверждения заказа менеджером салона
-        .cart-form__section-submit
-          +button('button', 'Подтверждаю заказ', 'submit')(class='cart-form__section-submit-button button--primary')
-          small.cart-form__comment Подтверждая заказ, я соглашаюсь с #[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
+    .cart-form__main-column
+      .cart-form__buttons
+        button.cart-form__choose-all-button(type='button') Выбрать все
+        button.cart-form__delete-selected-button(type='button') Удалить выбранные
+      fieldset.cart-form__products
+        ul.cart-form__products-list
+          li.cart-form__products-item
+            +cart-item(products[0], true)
+          //- li.cart-form__products-item
+          //-   +cart-item(products[2], true)
+      fieldset.cart-form__section.cart-form__section--checkout
+        .cart-form__section-inner
+          legend.cart-form__section-heading Заполните информацию о себе
+          if !isAuthorized
+            p.cart-form__message Войдите в личный кабинет #[a.cart-form__message-link(href='#' data-modal-opener='sign-in') Войти]
+          +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--name cart-form__item--wide')
+          +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='cart-form__item cart-form__item--phone cart-form__item--wide')
+          +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='cart-form__item cart-form__item--email cart-form__item--wide')
+      fieldset.cart-form__section.cart-form__section--checkout
+        .cart-form__section-inner
+          legend.cart-form__section-heading Выберите способ доставки
+          ul.cart-form__radiobuttons-list.cart-form__radiobuttons-list--receiving
+            li.cart-form__radiobuttons-list-item
+              +checker('Самовывоз', false, 'receiving-method', 'radio', 'pickup')(class='cart-form__receiving-radiobutton cart-form__receiving-radiobutton--pickup')
+            li.cart-form__radiobuttons-list-item
+              +checker('Доставка', false, 'receiving-method', 'radio', 'delivery', true)(class='cart-form__receiving-radiobutton cart-form__receiving-radiobutton--delivery')
+          .cart-form__section-inner-group.cart-form__section-inner-group--delivery
+            +text-field-with-list('Ваша город:', 'city', 'text', '', 'Город', true)(class='cart-form__item cart-form__item--city')
+            +text-field('Ваша улица:', 'street', 'text', '', 'Улица', true)(class='cart-form__item cart-form__item--street')
+            +text-field('Ваш дом:', 'house', 'text', '', 'Дом', true)(class='cart-form__item cart-form__item--house')
+            +text-field('Ваша квартира/офис:', 'apartment-office', 'text', '', 'Квартира/Офис')
+            +text-field('Ваш подъезд:', 'entrance', 'text', '', 'Подъезд')
+            +checker('Лифт', false, 'elevator', 'checkbox')(class='cart-form__single-checkbox')
+            +textarea('Ваш комментарий:', 'comment', '', 'Комментарий', false, false, false, 1000)(class='cart-form__delivery-textarea')
+            small.cart-form__section-comment Курьер доставляет вам товар, а вы тщательно осматриваете заказ, после чего производите оплату.#[br.hidden.hidden--m-t] Курьер предоставит вам товарный и&nbsp;кассовый чек.
+          .cart-form__section-inner-group.cart-form__section-inner-group--pickup.cart-form__section-inner-group--hidden
+            +map(class='cart-form__map')
+            +contacts-list(contacts.pickup)(class='cart-form__contacts-list contacts-list--alter')
+            +textarea('Ваш комментарий:', 'comment', '', 'Комментарий', false, false, false, 1000)(class='cart-form__pickup-textarea')
+      fieldset.cart-form__section.cart-form__section--checkout
+        .cart-form__section-inner
+          legend.cart-form__section-heading Выберите способ оплаты
+          ul.cart-form__radiobuttons-list.cart-form__radiobuttons-list--column
+            li.cart-form__radiobuttons-list-item
+              +checker('Наличными в салоне', false, 'payment-method', 'radio', 'cash-in-salon', true)
+            li.cart-form__radiobuttons-list-item
+              +checker('Банковской картой в салоне', false, 'payment-method', 'radio', 'bank-card-in-salon')
+            li.cart-form__radiobuttons-list-item
+              +checker('Оплата при доставке', false, 'payment-method', 'radio', 'on-delivery')
+            li.cart-form__radiobuttons-list-item
+              +checker('Банковской картой online', false, 'payment-method', 'radio', 'bank-card-online')
+              small.cart-form__radiobuttons-list-item-comment Ссылка для оплаты будет направлена на ваш e-mail после подтверждения заказа менеджером салона
+          .cart-form__section-submit
+            +button('button', 'Подтверждаю заказ', 'submit')(class='cart-form__section-submit-button button--primary')
+            small.cart-form__comment Подтверждая заказ, я соглашаюсь с #[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
     .cart-form__info(class= isCheckout ? 'cart-form__info--checkout' : '')
       p.cart-form__info-products 2 товара
         span.cart-form__info-products-price 30 000 ₽

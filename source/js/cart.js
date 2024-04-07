@@ -1,9 +1,12 @@
+import { throttle } from './util.js';
+
 class Cart {
   #cartElement = null;
   #openModal = null;
   #showAlert = null;
   #heading = null;
 
+  #box = null;
   formElement = null;
   #infoElement = null;
   #promocodeElement = null;
@@ -112,6 +115,19 @@ class Cart {
     });
   };
 
+  #toggleCartInfoStickiness = () => {
+    const isPageScrolledDown = this.#box.scrollHeight - this.#box.scrollTop === this.#box.clientHeight;
+
+    if (!isPageScrolledDown) {
+      this.#infoElement.classList.add('cart-form__info--sticked');
+    } else {
+      this.#infoElement.classList.remove('cart-form__info--sticked');
+    }
+  };
+
+  #onBoxScroll = throttle(this.#toggleCartInfoStickiness, 100);
+  #onWindowResize = throttle(this.#toggleCartInfoStickiness, 100);
+
   #onFormClick = (evt) => {
     const checkoutLink = evt.target.closest('.cart-form__checkout-link');
     const promocodeToggleButtonElement = evt.target.closest('.cart-form__promocode-button');
@@ -122,6 +138,7 @@ class Cart {
     if (checkoutLink) {
       evt.preventDefault();
       this.#goToCheckout();
+      this.#toggleCartInfoStickiness();
       return;
     }
 
@@ -238,6 +255,7 @@ class Cart {
   };
 
   initForm() {
+    this.#box = document.querySelector('.page__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
     this.#chooseAllProductsButtonElement = this.formElement.querySelector('.cart-form__choose-all-button');
     this.#receivingRadiobuttonsElement = this.formElement.querySelector('.cart-form__radiobuttons-list--receiving');
@@ -253,6 +271,10 @@ class Cart {
     this.formElement.addEventListener('change', this.#onFormChange);
     this.#receivingRadiobuttonsElement.addEventListener('change', this.#onReceivingRadiobuttonsChange);
     this.formElement.addEventListener('submit', this.#onFormSubmit);
+    this.#box.addEventListener('scroll', this.#onBoxScroll);
+    window.addEventListener('resize', this.#onWindowResize);
+
+    this.#toggleCartInfoStickiness();
   }
 }
 
