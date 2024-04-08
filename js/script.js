@@ -226,7 +226,8 @@ class Cart {
   #openModal = null;
   #showAlert = null;
   #heading = null;
-  #box = null;
+  #boxElement = null;
+  #cartInnerElement = null;
   formElement = null;
   #infoElement = null;
   #promocodeElement = null;
@@ -271,12 +272,12 @@ class Cart {
     this.#heading.textContent = 'Оформление заказа';
   };
   #clearCart = () => {
-    this.#cartElement.querySelector('.cart__heading').remove();
+    this.#cartInnerElement.querySelector('.cart__heading').remove();
     this.formElement.remove();
   };
   showResult = orderNumber => {
     this.#clearCart();
-    this.#cartElement.insertAdjacentHTML('beforeend', `
+    this.#cartInnerElement.insertAdjacentHTML('beforeend', `
       <div class="cart-result">
         <div class="cart-result__inner container">
           <h1 class="cart-result__heading heading">Заказ № ${orderNumber} успешно оформлен!</h1>
@@ -324,7 +325,7 @@ class Cart {
     });
   };
   #toggleCartInfoStickiness = () => {
-    const isPageScrolledDown = this.#box.scrollHeight - this.#box.scrollTop === this.#box.clientHeight;
+    const isPageScrolledDown = this.#boxElement.scrollHeight - this.#boxElement.scrollTop === this.#boxElement.clientHeight;
     if (!isPageScrolledDown) {
       this.#infoElement.classList.add('cart-form__info--sticked');
     } else {
@@ -441,7 +442,8 @@ class Cart {
     }
   };
   initForm() {
-    this.#box = document.querySelector('.page__inner');
+    this.#boxElement = document.querySelector('.page__inner');
+    this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
     this.#chooseAllProductsButtonElement = this.formElement.querySelector('.cart-form__choose-all-button');
     this.#receivingRadiobuttonsElement = this.formElement.querySelector('.cart-form__radiobuttons-list--receiving');
@@ -456,7 +458,7 @@ class Cart {
     this.formElement.addEventListener('change', this.#onFormChange);
     this.#receivingRadiobuttonsElement.addEventListener('change', this.#onReceivingRadiobuttonsChange);
     this.formElement.addEventListener('submit', this.#onFormSubmit);
-    this.#box.addEventListener('scroll', this.#onBoxScroll);
+    this.#boxElement.addEventListener('scroll', this.#onBoxScroll);
     window.addEventListener('resize', this.#onWindowResize);
     this.#toggleCartInfoStickiness();
   }
