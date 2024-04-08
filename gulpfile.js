@@ -8,14 +8,14 @@ import mode from './gulp/mode.js';
 import browser from 'browser-sync';
 
 // Tasks
-import processStyles from './gulp/tasks/processStyles.js';
-import copyAssets from './gulp/tasks/copyAssets.js';
-import createVectorStack from './gulp/tasks/createVectorStack.js';
-import createWebp from './gulp/tasks/createWebp.js';
-import deleteBuild from './gulp/tasks/deleteBuild.js';
-import optimizeVector from './gulp/tasks/optimizeVector.js';
-import processMarkup from './gulp/tasks/processMarkup.js';
-import processScripts from './gulp/tasks/processScripts.js';
+import processStyles from './gulp/tasks/process-styles.js';
+import copyAssets from './gulp/tasks/copy-assets.js';
+import createVectorStack from './gulp/tasks/create-vector-stack.js';
+import createWebp from './gulp/tasks/create-webp.js';
+import deleteBuild from './gulp/tasks/delete-build.js';
+import optimizeVector from './gulp/tasks/optimize-vector.js';
+import processMarkup from './gulp/tasks/process-markup.js';
+import processScripts from './gulp/tasks/process-scripts.js';
 
 export function startServer (done) {
   browser.init({

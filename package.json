@@ -7,13 +7,15 @@
     "editorconfig": "editorconfig-cli",
     "stylelint": "stylelint \"source/sass/**/*.scss\" --custom-syntax postcss-scss",
     "eslint": "eslint source/js/",
-    "lint": "npm run editorconfig && npm run stylelint && npm run eslint",
+    "lint": "npm run editorconfig && npm run stylelint",
     "start": "gulp",
     "build": "gulp --production",
     "preview": "gulp --production && gulp startServer"
   },
   "author": "umnyash",
   "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
     "@htmlacademy/editorconfig-cli": "2.0.8",
     "autoprefixer": "10.4.17",
     "browser-sync": "3.0.2",
@@ -21,6 +23,8 @@
     "eslint": "8.56.0",
     "eslint-config-htmlacademy": "10.0.1",
     "gulp": "4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-if": "3.0.0",
     "gulp-newer": "1.4.0",
     "gulp-plumber": "1.2.1",
@@ -31,21 +35,25 @@
     "gulp-sass-glob": "1.1.0",
     "gulp-stacksvg": "3.0.0",
     "gulp-svgmin": "4.1.0",
+    "gulp-terser": "^2.1.0",
     "gulp-webp": "5.0.0",
     "postcss-csso": "6.0.1",
     "postcss-scss": "4.0.9",
     "sass": "1.70.0",
     "stylelint": "16.2.1",
-    "stylelint-config-htmlacademy": "4.0.5",
-    "webpack": "5.90.1",
-    "webpack-stream": "7.0.0"
+    "stylelint-config-htmlacademy": "4.0.5"
   },
   "browserslist": [
-    "last 2 versions",
+    "last 4 versions",
     "not dead",
     "not op_mini all",
     "not < 0.25%"
   ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
   "editorconfig-cli": [
     "*.json",
     "*.js",

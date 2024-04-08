@@ -1,39 +1,34 @@
-import { KeyCode } from './const.js';
-
-export function isDownArrowEvent(evt) {
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * util.js
+ */
+function isDownArrowEvent(evt) {
   return evt.code === KeyCode.DOWN_ARROW;
 }
 
-export function isEscapeEvent(evt) {
+function isEscapeEvent(evt) {
   return evt.code === KeyCode.ESCAPE;
 }
 
-export function isLeftArrowEvent(evt) {
+function isLeftArrowEvent(evt) {
   return evt.code === KeyCode.LEFT_ARROW;
 }
 
-export function isRightArrowEvent(evt) {
+function isRightArrowEvent(evt) {
   return evt.code === KeyCode.RIGHT_ARROW;
 }
 
-export function isSpaceEvent(evt) {
+function isSpaceEvent(evt) {
   return evt.code === KeyCode.SPACE;
 }
 
-// export const getPaginationButtonCreator = (slideName = 'Слайд') => (index, className) => `
-//   <button class='${className}' type='button'>
-//     <span class='visually-hidden'>${slideName} ${index + 1}.</span>
-//   </button>
-// `;
-
-export function createElementByString(template) {
+function createElementByString(template) {
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
 
   return newElement.firstElementChild;
 }
 
-export function getPaginationButtonCreator(slideName = 'Слайд') {
+function getPaginationButtonCreator(slideName = 'Слайд') {
   return (index, className) => `
     <button class='${className}' type='button'>
       <span class='visually-hidden'>${slideName} ${index + 1}.</span>
@@ -41,7 +36,7 @@ export function getPaginationButtonCreator(slideName = 'Слайд') {
   `;
 }
 
-export function debounce (callback, timeoutDelay = 500) {
+function debounce (callback, timeoutDelay = 500) {
   let timeoutId;
 
   return (...rest) => {
@@ -51,7 +46,7 @@ export function debounce (callback, timeoutDelay = 500) {
   };
 }
 
-export function throttle(callback, delay) {
+function throttle(callback, delay) {
   let lastTime = 0;
   let timeoutId;
 
@@ -67,6 +62,7 @@ export function throttle(callback, delay) {
   };
 }
 
-export function getDigitsFromString(string) {
+function getDigitsFromString(string) {
   return string.replace(/\D/g, '');
 }
+/* * * * * * * * * * * * * * * * * * * * * * * */

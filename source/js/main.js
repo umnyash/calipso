@@ -1,58 +1,6 @@
-import { initSiteHeader } from './site-header.js';
-import { initPremiumBrandsSlider } from './premium-brands-slider.js';
-import { initSelectionSlider } from './selection-slider.js';
-import { initTaber } from './taber.js';
-import { initFilterSlider } from './filter.js';
-import { initBanners } from './banners.js';
-import { initMap } from './map.js';
-import { initProductCard } from './product-card.js';
-import { initProducts } from './products.js';
-import { initNavigationShortcuts } from './navigation-shortcuts.js';
-import { initCatalogSorting } from './catalog-sorting.js';
-import { initProductImages } from './product-images.js';
-import { initGallery } from './gallery.js';
-import { initStaticGalleryModal } from './static-gallery-modal.js';
-import { openModal, closeModal } from './modal.js';
-import { initProductHeaderStickyFormButtons } from './product-header-sticky-form-buttons.js';
-import { initFolds, toggleFoldState } from './folds.js';
-import { setInputDateMask } from './input-date-mask.js';
-import { initDateField } from './date-field.js';
-import { initScrollContainer } from './scroll-container.js';
-import { initCatalogFiltersModal } from './catalog-filters-modal.js';
-import { initReviewsList } from './reviews-list.js';
-import { initFileField } from './file-field.js';
-import { initFeed } from './feed.js';
-import { initVideoReiewsSlider } from './video-reviews-slider.js';
-import { initVideo } from './video.js';
-import { initProjectsSlider } from './projects-slider.js';
-import { initTelField } from './tel-field.js';
-import { initAllBrands } from './all-brand.js';
-import { initTextFieldWithList } from './text-field-with-list.js';
-import { initProfileForm } from './profile-form.js';
-import { sendData } from './api.js';
-import { showAlert } from './alert.js';
-import { initSimpleModalForm } from './simple-modal-form.js';
-import { initCooperationModal } from './cooperation-modal.js';
-import { initFeedbackModal } from './feedback-modal.js';
-import { initSalonModal } from './salon-modal.js';
-import { initOneClickModal } from './one-click-modal.js';
-import { initInstallmentRequestModal } from './installment-request-modal.js';
-import { initProductQuestionModal } from './product-question-modal.js';
-import { initReviewModal } from './review-modal.js';
-import { initSubscriptionForm } from './subscription-form.js';
-import { initFeedbackForm } from './feedback-form.js';
-import { initCart } from './cart.js';
-import { GalleryModal } from './gallery-modal.js';
-import { initDocumentModal } from './document-modal.js';
-import { initProject } from './project.js';
-import { initSearchModal } from './search-modal.js';
-import { createProductCardTemplate } from './product-card-tempate.js';
-import { createArticlePreviewTemplate } from './article-preview-tempate.js';
-import { initPhoneChangeModal } from './phone-change-modal.js';
-import { initSignInModal } from './sign-in-modal.js';
-import { initUserNavigation } from './user-navigation.js';
-import { initCitiesModal } from './cities-modal.js';
-
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * main.js
+ */
 document.querySelectorAll('.cart').forEach((cartElement) => {
   initCart(cartElement, openModal, showAlert);
 });
@@ -156,3 +104,4 @@ document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
   initCitiesModal(modalElement, initScrollContainer, openModal);
 });
+/* * * * * * * * * * * * * * * * * * * * * * * */
