@@ -8,8 +8,8 @@ mixin cart-form(isCheckout, isPromocodeApplied)
         ul.cart-form__products-list
           li.cart-form__products-item
             +cart-item(products[0], true)
-          //- li.cart-form__products-item
-          //-   +cart-item(products[2], true)
+          li.cart-form__products-item
+            +cart-item(products[2], true)
       fieldset.cart-form__section.cart-form__section--checkout
         .cart-form__section-inner
           legend.cart-form__section-heading Заполните информацию о себе
