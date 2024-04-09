@@ -125,11 +125,11 @@
   }
 }
 
-.checkbox--error .checker__control {
+.checker.invalid .checker__control {
   border-color: var(--accent-color-2);
 }
 
-.checkbox__error-text {
+.checker .prompt-text {
   margin: 5px 0 0;
   font: 500 12px/14px $main-font-family;
   color: var(--accent-color-2);
