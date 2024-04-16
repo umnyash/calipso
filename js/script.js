@@ -1437,30 +1437,27 @@ async function initMap(mapElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * modal.js
  */
-const MODAL_APPEARANCE_TIME = 300;
 const MODAL_DISAPPEARANCE_TIME = 100;
 const openedModals = [];
 function openModal(modal) {
-  modal.classList.add('modal--open');
-  modal.classList.add('modal--opening');
+  modal.classList.remove('modal--hidden');
   openedModals.push(modal);
   document.addEventListener('keydown', onModalEscapeEvent);
   document.addEventListener('click', onModalClick);
   setTimeout(() => {
-    modal.classList.remove('modal--opening');
-  }, MODAL_APPEARANCE_TIME);
+    modal.classList.add('modal--open');
+  }, 100);
 }
 function closeModal(modal) {
   modal.classList.remove('modal--error');
-  modal.classList.add('modal--closing');
+  modal.classList.remove('modal--open');
   openedModals.pop();
   if (!openedModals.length) {
     document.removeEventListener('keydown', onModalEscapeEvent);
     document.removeEventListener('click', onModalClick);
   }
   setTimeout(() => {
-    modal.classList.remove('modal--open');
-    modal.classList.remove('modal--closing');
+    modal.classList.add('modal--hidden');
     if (modal.classList.contains('modal--with_alert') || modal.classList.contains('modal--with_review-gallery')) {
       modal.remove();
     }
