@@ -1473,7 +1473,7 @@ function onModalEscapeEvent(evt) {
 function onModalClick({
   target
 }) {
-  if (!target.classList.contains('modal') && !target.classList.contains('modal__close-button') && !target.classList.contains('alert__button')) {
+  if (!target.classList.contains('modal__close-button') && !target.classList.contains('alert__button')) {
     return;
   }
   closeModal(openedModals[openedModals.length - 1]);
