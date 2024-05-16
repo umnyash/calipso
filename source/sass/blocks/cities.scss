@@ -74,6 +74,31 @@
   }
 }
 
+.cities__scroll-container--popular {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+  z-index: 2;
+  background: var(--background-additional-color);
+}
+
+.cities__scroll-container--hidden {
+  visibility: hidden;
+}
+
+.cities__scroll-container-wrapper--found {
+  position: relative;
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+}
+
+.cities__scroll-container--found {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .cities__scroll-container-scrollbar.cities__scroll-container-scrollbar {
   width: 6px;
   background: var(--background-color-dark);
@@ -125,15 +150,31 @@
   }
 }
 
+.cities__list--hidden {
+  visibility: hidden;
+}
+
 .cities__link {
   text-decoration: none;
   color: inherit;
-
-  &:hover {
-    color: var(--accent-color-2);
-  }
 }
 
-.cities__link-part {
+.cities__list--popular .cities__link:hover {
+  color: var(--accent-color-2);
+}
+
+.cities__list--found .cities__link {
   color: var(--text-weak-color-light);
+
+  .cities__link-part {
+    color: var(--text-color);
+
+    &::after {
+      content: "\0020";
+    }
+  }
+
+  &:hover .cities__link-part {
+    color: var(--accent-color-2);
+  }
 }
