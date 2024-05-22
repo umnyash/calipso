@@ -22,6 +22,7 @@ document.querySelectorAll('.banners').forEach(initBanners);
 document.querySelectorAll('.map').forEach(initMap);
 document.querySelectorAll('.product-card').forEach(initProductCard);
 document.querySelectorAll('.products').forEach(initProducts);
+document.querySelectorAll('.articles--with-slider').forEach(initArticlesSlider);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);

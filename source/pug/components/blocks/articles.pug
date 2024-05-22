@@ -38,6 +38,17 @@ mixin articles(articles, type)
           h2.visually-hidden Статьи
           +articles-list(articles, 'm')(class='articles__list')
           +pagination(class='articles__pagination')
+    when 'slider'
+      section.articles.articles--with-slider&attributes(attributes)
+        .articles__inner
+          .articles__header
+            h2.visually-hidden Блог компании
+            +filter(articlesFilter, true)(class='articles__filter')
+            +slider-arrows(class='articles__slider-arrows')
+          .articles__slider.swiper
+            ul.articles__slider-list.swiper-wrapper
+              each article in articles
+                +article-preview(article, 'm')(class='articles__slider-item swiper-slide')
     default
       section.articles&attributes(attributes)
         .articles__inner
