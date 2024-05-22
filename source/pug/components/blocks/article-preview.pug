@@ -1,8 +1,14 @@
 mixin article-preview(article, size)
-  li.article-preview(class= size ? `article-preview--size_${size}` : '')&attributes(attributes)
+  li.article-preview(class= size ? `article-preview--size_${size}` : '' data-tag= article.tag)&attributes(attributes)
     h3.article-preview__heading
-      a.article-preview__link(href='#!')!= article.heading
-    p.article-preview__label= article.label
+      a.article-preview__link(href='article.html')!= article.heading
+    case article.tag
+      when 'blog'
+        p.article-preview__label Блог
+      when 'news'
+        p.article-preview__label Новость
+      when 'press'
+        p.article-preview__label Пресса о нас
     picture.article-preview__image-wrapper
       img.article-preview__image(src= article.image srcset= `${article.image2x} 2x` alt='' loading='lazy')
     time.article-preview__date(datetime='2023-05-10') 10 мая 2023
