@@ -10,7 +10,7 @@ block content
       { text: 'Комоды и тумбы', href: 'premium-category.html' },
       { text: 'Комод Chill' },
     ])
-  +product({status: 'arrival-expected', isPremium: true})
+  +product({status: 'in-stock'})
   +products('С этим товаром покупают', products, 'l')
   +products('Похожие товары', products, 'l')
   +products('Вы смотрели', products)
@@ -23,11 +23,11 @@ append modals
     +installment-request-modal-form(class='modal__form')
   +modal(class='modal--with_form modal--hidden' data-modal='product-question')
     +product-question-modal-form(class='modal__form')
-  +modal(class='modal--with_alert modal--hidden')
-    +alert(
-      'Заявка успешно отправлена',
-      'Наш менеджер свяжется с вами в течении 3 рабочих дней',
-      'Закрыть'
-    )(class='modal__alert')
-  +modal(class='modal--with_gallery modal--with_product-gallery modal--open')
-    +gallery(productGallery.concat(productGallery, productGallery))(class='modal__gallery')
+  +modal(class='modal--with_gallery modal--with_product-gallery modal--hidden')
+    +gallery(productGallery.concat(productGallery, productGallery).slice(0, 5))(class='modal__gallery')
+  +modal(class='modal--with_cart modal--hidden')
+    +cart-modal(class='modal__cart')
+  +modal(class='modal--with_document modal--hidden' data-modal='delivery-document')
+    +delivery-document-modal(class='modal__document')
+  +modal(class='modal--with_document modal--hidden' data-modal='guarantee-document')
+    +guarantee-document-modal(class='modal__document')

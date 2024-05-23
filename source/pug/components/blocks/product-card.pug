@@ -20,7 +20,13 @@ mixin product-card(product)
         if product.isPremium
           p.product-card__premium-label
             span.product-card__premium-label-text Premium
-        p.product-card__label В наличии
+        case product.status
+          when 'in-stock'
+            p.product-card__label.product-card__label--in-stock В&nbsp; наличии
+          when 'arrival-expected'
+            p.product-card__label.product-card__label--arrival-expected Ожидает&nbsp; поступления
+          when 'to-order'
+            p.product-card__label.product-card__label--to-order Под&nbsp; заказ
         p.product-card__like-button-wrapper
           +like-button(class=`product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}`)
     a.product-card__brand(href='#!') Бренд #[span.product-card__brand-name= product.brand]

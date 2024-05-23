@@ -219,6 +219,7 @@
   display: flex;
   justify-content: flex-end;
   gap: 5px;
+  align-items: flex-start;
 
   * {
     visibility: visible;
@@ -231,6 +232,18 @@
   margin: 0;
   color: var(--text-weak-color-dark);
   background: var(--background-color-dark);
+
+  &--in-stock {
+    color: var(--accent-color-1);
+  }
+
+  &--arrival-expected {
+    color: var(--special-color);
+  }
+
+  &--to-order {
+    color: var(--accent-color-2);
+  }
 
   @media (min-width: $wide-desktop-width) {
     padding: 7px 20px 6px;

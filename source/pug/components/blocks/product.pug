@@ -1,7 +1,16 @@
-mixin product
+mixin product(product)
   article.product&attributes(attributes)
     .product__inner.container
       +product-images(class='product__images')
       +product-header(class='product__header')
-      p.product__status.product__status--4 Ожидается поступление
+      if product.isPremium
+        p.product__premium-label
+          span.product__premium-label-text Premium
+      case product.status
+        when 'in-stock'
+          p.product__status.product__status--in-stock В&nbsp; наличии
+        when 'arrival-expected'
+          p.product__status.product__status--arrival-expected Ожидает&nbsp; поступления
+        when 'to-order'
+          p.product__status.product__status--to-order Под&nbsp; заказ
       +product-characteristics(class='product__characteristics')
