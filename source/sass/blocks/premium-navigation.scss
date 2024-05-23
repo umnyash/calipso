@@ -41,7 +41,6 @@
     padding: 20px 40px;
     border-radius: 16px;
     gap: 20px 140px;
-    // background: var(--background-alter-color);
   }
 }
 
@@ -147,8 +146,15 @@
 }
 
 .premium-navigation__link {
+  display: block;
+  padding: 4px 0 3px;
+  border-bottom: 1px solid transparent;
   text-decoration: none;
   color: inherit;
+
+  &--active {
+    border-bottom-color: currentColor;
+  }
 }
 
 .premium-navigation__catalog-link {
