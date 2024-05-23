@@ -5,3 +5,15 @@
     margin: 0 0 24px;
   }
 }
+
+.customers__navigation {
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}

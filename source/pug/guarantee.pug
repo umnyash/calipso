@@ -1,0 +1,11 @@
+extends layout/layout
+
+block variables
+  - var title = 'Гарантия'
+  - var pageClass = 'guarantee-page'
+
+block content
+  +centered-breadcrumbs([
+      { text: 'Покупателям (гарантия)' },
+    ])
+  +customers('guarantee')

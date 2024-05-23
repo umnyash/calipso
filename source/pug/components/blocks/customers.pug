@@ -1,26 +1,38 @@
-mixin customers(heading)
+-
+  var customersSubNavigationLinks = [
+    {
+      text: 'Доставка, оплата, сборка',
+      href: 'delivery-and-payment.html',
+      page: 'delivery-and-payment-page'
+    },
+    {
+      text: 'Гарантия',
+      href: 'guarantee.html',
+      page: 'guarantee-page'
+    },
+    {
+      text: 'Условия оферты',
+      href: 'offer-terms.html',
+      page: 'offer-terms-page'
+    },
+    {
+      text: 'Уход за мебелью',
+      href: 'exploitation.html',
+      page: 'exploitation-page'
+    },
+  ]
+
+mixin customers(theme)
   section.customers&attributes(attributes)
     .container
-      h2.customers__heading.heading Покупателям
-      .taber
-        ul.taber__list
-          li.taber__tab-wrapper
-            a.taber__tab(href='#customers-tab-delivery') Доставка, оплата, сборка
-          li.taber__tab-wrapper
-            a.taber__tab(href='#customers-tab-guarantee') Гарантия
-          li.taber__tab-wrapper
-            a.taber__tab(href='#customers-tab-offer-terms') Условия оферты
-          li.taber__tab-wrapper
-            a.taber__tab(href='#customers-tab-exploitation') Уход за мебелью
-        section.taber__panel(id='customers-tab-delivery')
-          h3.visually-hidden Доставка, оплата, сборка
+      h1.customers__heading.heading Покупателям
+      +sub-navigation(customersSubNavigationLinks)(class='customers__navigation')
+      case theme
+        when 'delivery-and-payment'
           +delivery
-        section.taber__panel
-          h3.visually-hidden Гарантия
+        when 'guarantee'
           +guarantee
-        section.taber__panel
-          h3.visually-hidden Условия оферты
+        when 'offer-terms'
           +offer-terms
-        section.taber__panel
-          h3.visually-hidden Уход за мебелью
+        when 'exploitation'
           +exploitation

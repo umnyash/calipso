@@ -1,0 +1,8 @@
+mixin sub-navigation__item({text, href, page})
+  li.sub-navigation__item
+    a.sub-navigation__link(href= !(pageClass === page) && href class= (pageClass === page) && 'sub-navigation__link--current')&attributes(attributes)= text
+
+mixin sub-navigation(links)
+  ul.sub-navigation&attributes(attributes)
+    each link in links
+      +sub-navigation__item(link)

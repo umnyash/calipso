@@ -1,14 +1,14 @@
 extends layout/layout
 
 block variables
-  - var title = 'Покупателям'
-  - var pageClass = 'contacts-page'
+  - var title = 'Условия оферты'
+  - var pageClass = 'offer-terms-page'
 
 block content
   +centered-breadcrumbs([
-      { text: 'Покупателям' },
+      { text: 'Покупателям (условия оферты)' },
     ])
-  +customers
+  +customers('offer-terms')
 
 append modals
   +modal(class='modal--with_document modal--hidden' data-modal='offer-terms-document')
