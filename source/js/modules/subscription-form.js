@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * subscription-form.js
  */
-function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
+function initSubscriptionForm(formElement, sendData, openModal, showAlert, onSubscriptionFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const emailFieldElement = formElement.querySelector('.subscription__form-item .text-field__control');
   const submitButtonElement = formElement.querySelector('.subscription__form-submit-button');
@@ -17,6 +17,14 @@ function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
     errorTextTag: 'p',
     errorTextClass: 'prompt-text',
   });
+
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Вы подписались',
+    });
+  };
+
+  const successCb = onSubscriptionFormSuccessSubmit ?? successDefaultCb;
 
   formElement.addEventListener('click', (evt) => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
@@ -41,11 +49,9 @@ function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
       sendData(
         actionUrl,
         new FormData(evt.target),
-        () => {
+        (data) => {
           formElement.reset();
-          showAlert(openModal, {
-            heading: 'Вы подписались',
-          });
+          successCb(data);
         },
         () => {
           showAlert(openModal, {

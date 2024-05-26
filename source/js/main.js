@@ -46,8 +46,13 @@ document.querySelectorAll('.profile-form').forEach((formElement) => {
 document.querySelectorAll('.feedback-form').forEach((formElement) => {
   initFeedbackForm(formElement, sendData, openModal, showAlert);
 });
+
 document.querySelectorAll('.subscription__form').forEach((formElement) => {
-  initSubscriptionForm(formElement, sendData, openModal, showAlert);
+  const cb = (typeof onSubscriptionFormSuccessSubmit !== 'undefined')
+    ? onSubscriptionFormSuccessSubmit
+    : null;
+
+  initSubscriptionForm(formElement, sendData, openModal, showAlert, cb);
 });
 
 document.querySelectorAll('[data-modal="cooperation"]').forEach((modalElement) => {
