@@ -330,3 +330,9 @@
     }
   }
 }
+
+.cart-item--checkout {
+  .cart-item__checkbox {
+    visibility: hidden;
+  }
+}

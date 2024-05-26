@@ -22,6 +22,10 @@
     line-height: 20px;
   }
 
+  @media (min-width: 1400px) {
+    grid-template-columns: $desktop-edge-indent 2fr 1fr $desktop-edge-indent;
+  }
+
   @media (min-width: $wide-desktop-width) {
     grid-template-columns: 1fr 1160px ($centerer-max-width - 1160px) 1fr;
     font-size: 22px;
@@ -99,10 +103,6 @@
     background-color: var(--accent-color-1);
   }
 
-  // &--active {
-  //   pointer-events: none;
-  // }
-
   @media (min-width: $tablet-width) {
     margin: 0 0 0 24px;
     gap: 10px;
@@ -170,6 +170,10 @@
   border-radius: 10px;
   background: var(--background-additional-color);
 
+  &--hidden {
+    display: none;
+  }
+
   @media (min-width: $tablet-width) {
     padding: 24px;
   }
@@ -202,8 +206,14 @@
   display: none;
 }
 
-.cart-form--checkout .cart-form__section--checkout {
-  display: block;
+.cart-form--checkout {
+  .cart-form__buttons {
+    display: none;
+  }
+
+  .cart-form__section--checkout {
+    display: block;
+  }
 }
 
 .cart-form__products + .cart-form__section {
@@ -496,6 +506,7 @@
 
 .cart-form__radiobuttons-list-item-comment {
   display: block;
+  max-width: 614px;
   margin: 5px 0 0 34px;
   font-size: 12px;
   line-height: 14px;
@@ -510,22 +521,6 @@
   @media (min-width: $wide-desktop-width) {
     font-size: 16px;
     line-height: 19px;
-  }
-}
-
-.cart-form__section-submit {
-  @media (max-width: ($laptop-width - 1)) {
-    display: none;
-  }
-
-  @media (min-width: $laptop-width) {
-    display: grid;
-    max-width: 345px;
-    margin: 16px 0 0;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    max-width: 480px;
   }
 }
 
@@ -695,11 +690,23 @@
   text-transform: uppercase;
   color: var(--accent-color-1);
   background: transparent;
+  cursor: pointer;
 }
 
 .cart-form__info--checkout {
   .cart-form__promocode {
     display: grid;
+  }
+
+  .cart-form__comment--submit-button {
+    display: block;
+    grid-column: 1 / -1;
+  }
+
+  .cart-form__submit-button {
+    grid-column: 1 / -1;
+    display: block;
+    margin: 10px 0 0;
   }
 
   @media (max-width: ($laptop-width - 1)) {
@@ -748,17 +755,6 @@
       display: none;
     }
 
-    .cart-form__submit-button {
-      grid-column: 1 / -1;
-      display: block;
-      margin: 10px 0 0;
-    }
-
-    .cart-form__comment--submit-button {
-      display: block;
-      grid-column: 1 / -1;
-    }
-
     .cart-form__info-products-price {
       display: none;
     }
@@ -786,6 +782,16 @@
     .cart-form__promocode {
       margin: 12px 0 0;
     }
+
+    .cart-form__comment--submit-button {
+      order: 2;
+      margin-top: 6px;
+    }
+
+    .cart-form__submit-button {
+      order: 2;
+      margin-top: 19px;
+    }
   }
 
   @media (min-width: $wide-desktop-width) {
@@ -798,7 +804,8 @@
     }
 
     .cart-form__info-total {
-      margin: 24px 0 0;
+      margin: 40px 0 0;
+      align-items: center;
     }
 
     .cart-form__info-total-price {

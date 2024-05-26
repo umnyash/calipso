@@ -2,6 +2,7 @@
  * cart.js
  */
 class Cart {
+  #siteHeaderElement = null;
   #cartElement = null;
   #openModal = null;
   #showAlert = null;
@@ -16,9 +17,10 @@ class Cart {
   #receivingDeliveryGroupElement = null;
   #receivingPickupGroupElement = null;
   #chooseAllProductsButtonElement = null;
-  #submitButton1Element = null;
-  #submitButton2Element = null;
+  #submitButtonElement = null;
   #checkoutLinkElement = null;
+  #formCheckoutSection = null;
+  #cartItemElements = null;
 
   #pristine = null;
 
@@ -53,6 +55,23 @@ class Cart {
     this.formElement.classList.add('cart-form--checkout');
     this.#infoElement.classList.add('cart-form__info--checkout');
     this.#heading.textContent = 'Оформление заказа';
+
+    this.#cartItemElements.forEach((cartItemElement) => {
+      const isChecked = cartItemElement.querySelector('input[type="checkbox"]').checked;
+
+      if (isChecked) {
+        cartItemElement.classList.add('cart-item--checkout');
+      } else {
+        cartItemElement.parentElement.classList.add('cart-form__products-item--hidden');
+      }
+    });
+
+    setTimeout(() => {
+      this.#boxElement.scrollTo({
+        top: this.#formCheckoutSection.offsetTop - this.#siteHeaderElement.offsetHeight,
+        behavior: 'smooth',
+      });
+    }, 100);
   };
 
   #clearCart = () => {
@@ -236,10 +255,8 @@ class Cart {
     const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
 
     if (isValid) {
-      this.#submitButton1Element.disabled = true;
-      this.#submitButton1Element.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      this.#submitButton2Element.disabled = true;
-      this.#submitButton2Element.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
+      this.#submitButtonElement.disabled = true;
+      this.#submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
 
       this.#sendData(
         actionUrl,
@@ -257,19 +274,23 @@ class Cart {
           });
         },
         () => {
-          this.#submitButton1Element.disabled = false;
-          this.#submitButton1Element.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-          this.#submitButton2Element.disabled = false;
-          this.#submitButton2Element.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
+          this.#submitButtonElement.disabled = false;
+          this.#submitButtonElement.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
         }
       );
     } else {
-      this.formElement.classList.remove('feedback-form--error');
-      setTimeout(() => this.formElement.classList.add('feedback-form--error'), 50);
+      const firstInvalidFormItem = this.formElement.querySelector('.invalid');
+      firstInvalidFormItem.querySelector('input').focus();
+
+      this.#boxElement.scrollTo({
+        top: firstInvalidFormItem.offsetTop - this.#siteHeaderElement.offsetHeight,
+        behavior: 'smooth',
+      });
     }
   };
 
   initForm() {
+    this.#siteHeaderElement = document.querySelector('.site-header')
     this.#boxElement = document.querySelector('.page__inner');
     this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
@@ -278,9 +299,10 @@ class Cart {
     this.#receivingDeliveryGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--delivery');
     this.#receivingPickupGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--pickup');
     this.#promocodeElement = this.#infoElement.querySelector('.cart-form__promocode');
-    this.#submitButton1Element = this.formElement.querySelector('.cart-form__submit-button');
-    this.#submitButton2Element = this.formElement.querySelector('.cart-form__section-submit-button');
+    this.#submitButtonElement = this.formElement.querySelector('.cart-form__submit-button');
     this.#checkoutLinkElement = this.formElement.querySelector('.cart-form__checkout-link');
+    this.#formCheckoutSection = this.formElement.querySelector('.cart-form__section--checkout');
+    this.#cartItemElements = this.formElement.querySelectorAll('.cart-item');
 
     this.#setValidationTexts();
     this.#initPristine();

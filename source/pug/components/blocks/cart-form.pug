@@ -60,9 +60,6 @@ mixin cart-form(isCheckout, isPromocodeApplied)
             li.cart-form__radiobuttons-list-item
               +checker('Банковской картой online', false, 'payment-method', 'radio', 'bank-card-online')
               small.cart-form__radiobuttons-list-item-comment Ссылка для оплаты будет направлена на ваш e-mail после подтверждения заказа менеджером салона
-          .cart-form__section-submit
-            +button('button', 'Подтверждаю заказ', 'submit')(class='cart-form__section-submit-button button--primary')
-            small.cart-form__comment Подтверждая заказ, я соглашаюсь с #[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
     .cart-form__info(class= isCheckout ? 'cart-form__info--checkout' : '')
       p.cart-form__info-products 2 товара
         span.cart-form__info-products-price 30 000 ₽
