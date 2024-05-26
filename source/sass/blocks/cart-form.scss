@@ -99,9 +99,9 @@
     background-color: var(--accent-color-1);
   }
 
-  &--active {
-    pointer-events: none;
-  }
+  // &--active {
+  //   pointer-events: none;
+  // }
 
   @media (min-width: $tablet-width) {
     margin: 0 0 0 24px;

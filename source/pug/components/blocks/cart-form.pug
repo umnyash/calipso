@@ -10,6 +10,14 @@ mixin cart-form(isCheckout, isPromocodeApplied)
             +cart-item(products[0], true)
           li.cart-form__products-item
             +cart-item(products[2], true)
+          li.cart-form__products-item
+            +cart-item(products[3], true)
+          li.cart-form__products-item
+            +cart-item(products[4], true)
+          li.cart-form__products-item
+            +cart-item(products[5], true)
+          li.cart-form__products-item
+            +cart-item(products[6], true)
       fieldset.cart-form__section.cart-form__section--checkout
         .cart-form__section-inner
           legend.cart-form__section-heading Заполните информацию о себе
@@ -77,5 +85,5 @@ mixin cart-form(isCheckout, isPromocodeApplied)
       +button('button', 'Подтверждаю заказ', 'submit')(class='cart-form__submit-button button--primary')
       small.cart-form__comment.cart-form__comment--submit-button Подтверждая заказ, я соглашаюсь с #[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') условиями Политики конфиденциальности]
 
-      +button('a', 'Оформить заказ', '', '#!')(class='cart-form__checkout-link button--primary')
+      +button('button', 'Оформить заказ', 'button')(class='cart-form__checkout-link button--primary')
       small.cart-form__comment.cart-form__comment--checkout-link Нажимая на кнопку «Оформить заказ», вы даете согласие на&nbsp;#[a.cart-form__comment-link(href='#!' target='_blank' rel='noopener') обработку своих персональных данных]

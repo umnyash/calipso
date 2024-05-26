@@ -1,7 +1,7 @@
 mixin cart-item(product, isInForm)
   .cart-item(class= isInForm ? 'cart-item--in-form' : '')&attributes(attributes)
     h3.cart-item__heading
-      a.cart-item__link(href='product.html') Кресло Chill, розово-серый
+      a.cart-item__link(href='product.html' target='_blank') Кресло Chill, розово-серый
     if isInForm
       +checker('Кресло Chill', true, 'products', 'checkbox', 'Chair Chill')(class='cart-item__checkbox')
       +delete-button(class='cart-item__delete-button')

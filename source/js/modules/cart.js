@@ -18,6 +18,7 @@ class Cart {
   #chooseAllProductsButtonElement = null;
   #submitButton1Element = null;
   #submitButton2Element = null;
+  #checkoutLinkElement = null;
 
   #pristine = null;
 
@@ -41,7 +42,7 @@ class Cart {
       }
       const data = await response.json();
       onSuccess(data);
-    } catch(err) {
+    } catch (err) {
       onFail();
     } finally {
       onFinally();
@@ -151,8 +152,10 @@ class Cart {
 
     if (chooseAllProductsButtonElement) {
       const cartItemCheckboxElements = this.formElement.querySelectorAll('.cart-item__checkbox .checker__control');
+      let isButtonActive = chooseAllProductsButtonElement.classList.contains('cart-form__choose-all-button--active');
+
       cartItemCheckboxElements.forEach((checkboxElement) => {
-        checkboxElement.checked = true;
+        checkboxElement.checked = !isButtonActive;
         checkboxElement.dispatchEvent(new Event('input', {
           bubbles: true,
         }));
@@ -160,7 +163,7 @@ class Cart {
           bubbles: true,
         }));
       });
-      this.#chooseAllProductsButtonElement.classList.add('cart-form__choose-all-button--active');
+      this.#chooseAllProductsButtonElement.classList.toggle('cart-form__choose-all-button--active', !isButtonActive);
       return;
     }
 
@@ -195,11 +198,21 @@ class Cart {
     }
   };
 
+  #checkCartItems = () => {
+    const cartItemCheckboxElements = this.formElement.querySelectorAll('.cart-item__checkbox .checker__control');
+    const checkedCartItems = Array.from(cartItemCheckboxElements).filter((checkboxElement) => checkboxElement.checked);
+
+    const isAllChecked = cartItemCheckboxElements.length === checkedCartItems.length;
+
+    this.#chooseAllProductsButtonElement.classList.toggle('cart-form__choose-all-button--active', isAllChecked);
+    this.#checkoutLinkElement.disabled = !checkedCartItems.length;
+  };
+
   #onFormChange = (evt) => {
     const cartItemCheckboxElement = evt.target.closest('.cart-item__checkbox');
 
     if (cartItemCheckboxElement) {
-      this.#chooseAllProductsButtonElement.classList.remove('cart-form__choose-all-button--active');
+      this.#checkCartItems();
     }
   };
 
@@ -267,6 +280,7 @@ class Cart {
     this.#promocodeElement = this.#infoElement.querySelector('.cart-form__promocode');
     this.#submitButton1Element = this.formElement.querySelector('.cart-form__submit-button');
     this.#submitButton2Element = this.formElement.querySelector('.cart-form__section-submit-button');
+    this.#checkoutLinkElement = this.formElement.querySelector('.cart-form__checkout-link');
 
     this.#setValidationTexts();
     this.#initPristine();
@@ -277,12 +291,13 @@ class Cart {
     this.#boxElement.addEventListener('scroll', this.#onBoxScroll);
     window.addEventListener('resize', this.#onWindowResize);
 
+    this.#checkCartItems();
     this.#toggleCartInfoStickiness();
   }
 }
 
 function initCart(cartElement, openModal, showAlert) {
-  const cart = new Cart({cartElement, openModal, showAlert});
+  const cart = new Cart({ cartElement, openModal, showAlert });
 
   if (cart.formElement) {
     cart.initForm();
