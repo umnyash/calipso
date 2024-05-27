@@ -21,6 +21,12 @@ function initStaticGalleryModal(modalElement, openModal, initGallery, openerElem
         gallerySlider.slideTo(listItemNumber, 0);
       }
       openModal(modalElement);
+
+      if (gallerySlider) {
+        setTimeout(() => {
+          gallerySlider.update();
+        }, 100)
+      }
     });
   });
 }
