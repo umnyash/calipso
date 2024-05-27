@@ -59,10 +59,7 @@ class CitiesModal {
     const observer = new MutationObserver(() => {
       this.#popularCitiesSwiper.update();
       this.#foundCitiesSwiper.update();
-      console.log('changeDOM')
     });
-
-    console.log(this.#foundCitiesListElement)
 
     observer.observe(this.#foundCitiesListElement, {
       subtree: true,

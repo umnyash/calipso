@@ -85,6 +85,10 @@ document.querySelectorAll('.modal--with_product-gallery').forEach((modalElement)
   initStaticGalleryModal(modalElement, openModal, initGallery, '.product__images');
 });
 
+document.querySelectorAll('.modal--with_selection-gallery').forEach((modalElement) => {
+  initStaticGalleryModal(modalElement, openModal, initGallery, '.selection__slider-list');
+});
+
 document.querySelectorAll('[data-modal$="-document"]').forEach((modalElement) => {
   initDocumentModal(modalElement, openModal);
 });

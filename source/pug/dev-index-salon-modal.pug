@@ -21,7 +21,7 @@ block content
   +map-marker-template(true)
 
 append modals
-  +modal(class='modal--with_cities modal--hidden')
-    +cities(cities, true)(class='modal__cities')
+  +modal(class='modal--with_gallery modal--with_selection-gallery modal--hidden')
+    +selection-gallery(class='modal__gallery')
   +modal(class='modal--with_form modal--open' data-modal='salon')
     +salon-modal-form(class='modal__form')

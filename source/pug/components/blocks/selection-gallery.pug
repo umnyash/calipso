@@ -1,0 +1,19 @@
+mixin selection-gallery
+  .gallery&attributes(attributes)
+    .gallery__inner
+      .gallery__slider
+        +slider-arrows(class='gallery__slider-arrows slider-arrows--with-background')
+        .gallery__slider-wrapper.swiper
+          ul.gallery__slider-list.swiper-wrapper
+            each number in [1, 2, 3, 4, 5]
+              li.gallery__slider-item.swiper-slide
+                picture.gallery__image-wrapper
+                  img.gallery__image(src=`img/selection/${number}-big.webp` srcset=`img/selection/${number}-big@2x.webp 2x`  alt='' loading='lazy')
+      .gallery__thumbnails-slider
+        +slider-arrows(class='gallery__thumbnails-slider-arrows')
+        .gallery__thumbnails-slider-wrapper.swiper
+          ul.gallery__thumbnails-slider-list.swiper-wrapper
+            each number in [1, 2, 3, 4, 5]
+              li.gallery__thumbnails-slider-item.swiper-slide
+                picture.gallery__image-wrapper
+                  img.gallery__thumbnails-image(src=`img/selection/${number}-big.webp` srcset=`img/selection/${number}-big@2x.webp 2x`  alt='' loading='lazy')

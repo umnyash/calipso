@@ -14,10 +14,6 @@
 
 .selection__header {
   margin: 0 0 10px;
-
-  // @media (min-width: $tablet-width) {
-  //   margin: 0 0 20px;
-  // }
 }
 
 .selection__header-inner {
@@ -190,20 +186,29 @@
   }
 }
 
+.selection__link {
+  overflow: hidden;
+  border-radius: 10px;
+
+  &:hover .selection__image-wrapper {
+    transform: scale(1.03);
+  }
+
+  @media (min-width: $desktop-width) {
+    border-radius: 16px;
+  }
+}
+
 .selection__image-wrapper {
   display: block;
   width: 100%;
+  transition: transform 200ms ease-out;
 }
 
 .selection__image {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
   object-fit: cover;
   object-position: center;
-
-  @media (min-width: $desktop-width) {
-    border-radius: 16px;
-  }
 }
