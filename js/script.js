@@ -160,7 +160,12 @@ async function sendData(url, body, onSuccess = () => {}, onFail = () => {}, onFi
     if (!response.ok) {
       throw new Error(`${response.status} – ${response.statusText}`);
     }
-    onSuccess();
+    try {
+      const data = await response.json();
+      onSuccess(data);
+    } catch (err) {
+      onSuccess();
+    }
   } catch (err) {
     onFail();
   } finally {
@@ -275,6 +280,7 @@ function initBanners(bannersElement) {
  * cart.js
  */
 class Cart {
+  #siteHeaderElement = null;
   #cartElement = null;
   #openModal = null;
   #showAlert = null;
@@ -288,8 +294,10 @@ class Cart {
   #receivingDeliveryGroupElement = null;
   #receivingPickupGroupElement = null;
   #chooseAllProductsButtonElement = null;
-  #submitButton1Element = null;
-  #submitButton2Element = null;
+  #submitButtonElement = null;
+  #checkoutLinkElement = null;
+  #formCheckoutSection = null;
+  #cartItemElements = null;
   #pristine = null;
   constructor({
     cartElement,
@@ -323,6 +331,20 @@ class Cart {
     this.formElement.classList.add('cart-form--checkout');
     this.#infoElement.classList.add('cart-form__info--checkout');
     this.#heading.textContent = 'Оформление заказа';
+    this.#cartItemElements.forEach(cartItemElement => {
+      const isChecked = cartItemElement.querySelector('input[type="checkbox"]').checked;
+      if (isChecked) {
+        cartItemElement.classList.add('cart-item--checkout');
+      } else {
+        cartItemElement.parentElement.classList.add('cart-form__products-item--hidden');
+      }
+    });
+    setTimeout(() => {
+      this.#boxElement.scrollTo({
+        top: this.#formCheckoutSection.offsetTop - this.#siteHeaderElement.offsetHeight,
+        behavior: 'smooth'
+      });
+    }, 100);
   };
   #clearCart = () => {
     this.#cartInnerElement.querySelector('.cart__heading').remove();
@@ -405,8 +427,9 @@ class Cart {
     }
     if (chooseAllProductsButtonElement) {
       const cartItemCheckboxElements = this.formElement.querySelectorAll('.cart-item__checkbox .checker__control');
+      let isButtonActive = chooseAllProductsButtonElement.classList.contains('cart-form__choose-all-button--active');
       cartItemCheckboxElements.forEach(checkboxElement => {
-        checkboxElement.checked = true;
+        checkboxElement.checked = !isButtonActive;
         checkboxElement.dispatchEvent(new Event('input', {
           bubbles: true
         }));
@@ -414,7 +437,7 @@ class Cart {
           bubbles: true
         }));
       });
-      this.#chooseAllProductsButtonElement.classList.add('cart-form__choose-all-button--active');
+      this.#chooseAllProductsButtonElement.classList.toggle('cart-form__choose-all-button--active', !isButtonActive);
       return;
     }
     if (textFieldClearButtonElement) {
@@ -443,10 +466,17 @@ class Cart {
       }
     }
   };
+  #checkCartItems = () => {
+    const cartItemCheckboxElements = this.formElement.querySelectorAll('.cart-item__checkbox .checker__control');
+    const checkedCartItems = Array.from(cartItemCheckboxElements).filter(checkboxElement => checkboxElement.checked);
+    const isAllChecked = cartItemCheckboxElements.length === checkedCartItems.length;
+    this.#chooseAllProductsButtonElement.classList.toggle('cart-form__choose-all-button--active', isAllChecked);
+    this.#checkoutLinkElement.disabled = !checkedCartItems.length;
+  };
   #onFormChange = evt => {
     const cartItemCheckboxElement = evt.target.closest('.cart-item__checkbox');
     if (cartItemCheckboxElement) {
-      this.#chooseAllProductsButtonElement.classList.remove('cart-form__choose-all-button--active');
+      this.#checkCartItems();
     }
   };
   #onReceivingRadiobuttonsChange = ({
@@ -469,10 +499,8 @@ class Cart {
     const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
 
     if (isValid) {
-      this.#submitButton1Element.disabled = true;
-      this.#submitButton1Element.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      this.#submitButton2Element.disabled = true;
-      this.#submitButton2Element.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
+      this.#submitButtonElement.disabled = true;
+      this.#submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
       this.#sendData(actionUrl, new FormData(evt.target), data => {
         this.formElement.reset();
         const orderNumber = data.number || '45678'; // Нужно будет удалить "|| '45678'"
@@ -484,17 +512,20 @@ class Cart {
           text: 'Не удалось отправить сообщение, попробуйте снова.'
         });
       }, () => {
-        this.#submitButton1Element.disabled = false;
-        this.#submitButton1Element.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-        this.#submitButton2Element.disabled = false;
-        this.#submitButton2Element.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
+        this.#submitButtonElement.disabled = false;
+        this.#submitButtonElement.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
       });
     } else {
-      this.formElement.classList.remove('feedback-form--error');
-      setTimeout(() => this.formElement.classList.add('feedback-form--error'), 50);
+      const firstInvalidFormItem = this.formElement.querySelector('.invalid');
+      firstInvalidFormItem.querySelector('input').focus();
+      this.#boxElement.scrollTo({
+        top: firstInvalidFormItem.offsetTop - this.#siteHeaderElement.offsetHeight,
+        behavior: 'smooth'
+      });
     }
   };
   initForm() {
+    this.#siteHeaderElement = document.querySelector('.site-header');
     this.#boxElement = document.querySelector('.page__inner');
     this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
@@ -503,8 +534,10 @@ class Cart {
     this.#receivingDeliveryGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--delivery');
     this.#receivingPickupGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--pickup');
     this.#promocodeElement = this.#infoElement.querySelector('.cart-form__promocode');
-    this.#submitButton1Element = this.formElement.querySelector('.cart-form__submit-button');
-    this.#submitButton2Element = this.formElement.querySelector('.cart-form__section-submit-button');
+    this.#submitButtonElement = this.formElement.querySelector('.cart-form__submit-button');
+    this.#checkoutLinkElement = this.formElement.querySelector('.cart-form__checkout-link');
+    this.#formCheckoutSection = this.formElement.querySelector('.cart-form__section--checkout');
+    this.#cartItemElements = this.formElement.querySelectorAll('.cart-item');
     this.#setValidationTexts();
     this.#initPristine();
     this.formElement.addEventListener('click', this.#onFormClick);
@@ -513,6 +546,7 @@ class Cart {
     this.formElement.addEventListener('submit', this.#onFormSubmit);
     this.#boxElement.addEventListener('scroll', this.#onBoxScroll);
     window.addEventListener('resize', this.#onWindowResize);
+    this.#checkCartItems();
     this.#toggleCartInfoStickiness();
   }
 }
@@ -774,7 +808,7 @@ class CitiesModal {
   #initScrollContainer = null;
   #openModal = null;
   #formElement = null;
-  #listWrapperElement = null;
+  #foundCitiesListElement = null;
   #popularCitiesScrollContainerElement = null;
   #foundCitiesScrollContainerElement = null;
   #popularCitiesSwiper = null;
@@ -809,7 +843,7 @@ class CitiesModal {
   };
   init() {
     this.#formElement = this.#modalElement.querySelector('.cities__form');
-    this.#listWrapperElement = this.#modalElement.querySelector('.cities__list-wrapper');
+    this.#foundCitiesListElement = this.#modalElement.querySelector('.cities__list--found');
     this.#popularCitiesScrollContainerElement = this.#modalElement.querySelector('.cities__scroll-container--popular');
     this.#foundCitiesScrollContainerElement = this.#modalElement.querySelector('.cities__scroll-container--found');
     this.#popularCitiesSwiper = this.#initScrollContainer(this.#popularCitiesScrollContainerElement);
@@ -818,8 +852,10 @@ class CitiesModal {
     const observer = new MutationObserver(() => {
       this.#popularCitiesSwiper.update();
       this.#foundCitiesSwiper.update();
+      console.log('changeDOM');
     });
-    observer.observe(this.#listWrapperElement, {
+    console.log(this.#foundCitiesListElement);
+    observer.observe(this.#foundCitiesListElement, {
       subtree: true,
       characterData: true,
       attributes: true,
@@ -3252,6 +3288,11 @@ function initStaticGalleryModal(modalElement, openModal, initGallery, openerElem
         gallerySlider.slideTo(listItemNumber, 0);
       }
       openModal(modalElement);
+      if (gallerySlider) {
+        setTimeout(() => {
+          gallerySlider.update();
+        }, 100);
+      }
     });
   });
 }
@@ -3260,7 +3301,7 @@ function initStaticGalleryModal(modalElement, openModal, initGallery, openerElem
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * subscription-form.js
  */
-function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
+function initSubscriptionForm(formElement, sendData, openModal, showAlert, onSubscriptionFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const emailFieldElement = formElement.querySelector('.subscription__form-item .text-field__control');
   const submitButtonElement = formElement.querySelector('.subscription__form-submit-button');
@@ -3274,6 +3315,13 @@ function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
     errorTextTag: 'p',
     errorTextClass: 'prompt-text'
   });
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Вы подписались'
+    });
+  }
+  ;
+  const successCb = onSubscriptionFormSuccessSubmit ?? successDefaultCb;
   formElement.addEventListener('click', evt => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     if (textFieldClearButtonElement) {
@@ -3289,11 +3337,9 @@ function initSubscriptionForm(formElement, sendData, openModal, showAlert) {
     if (isValid) {
       submitButtonElement.disabled = true;
       submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      sendData(actionUrl, new FormData(evt.target), () => {
+      sendData(actionUrl, new FormData(evt.target), data => {
         formElement.reset();
-        showAlert(openModal, {
-          heading: 'Вы подписались'
-        });
+        successCb(data);
       }, () => {
         showAlert(openModal, {
           status: 'error',
@@ -3629,7 +3675,8 @@ document.querySelectorAll('.feedback-form').forEach(formElement => {
   initFeedbackForm(formElement, sendData, openModal, showAlert);
 });
 document.querySelectorAll('.subscription__form').forEach(formElement => {
-  initSubscriptionForm(formElement, sendData, openModal, showAlert);
+  const cb = typeof onSubscriptionFormSuccessSubmit !== 'undefined' ? onSubscriptionFormSuccessSubmit : null;
+  initSubscriptionForm(formElement, sendData, openModal, showAlert, cb);
 });
 document.querySelectorAll('[data-modal="cooperation"]').forEach(modalElement => {
   initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
