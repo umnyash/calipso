@@ -21,6 +21,10 @@ mixin orders-folds(orders)
           button.orders-folds__button.folds__button(type='button' aria-expanded= order.status === 'awaiting-payment' ? 'true' : 'false')
             span.orders-folds__button-open-text Свернуть
             span.orders-folds__button-close-text Развернуть
+          if order.status === 'awaiting-payment'
+            .orders-folds__actions
+              +button('a', 'Оплатить', '', '#')(class='button--primary')
+              +button('a', 'Отменить заказ', '', '#')(class='button--secondary')
         .orders-folds__content-wrapper.folds__content-wrapper
           .orders-folds__content.folds__content
             ul.orders-folds__list

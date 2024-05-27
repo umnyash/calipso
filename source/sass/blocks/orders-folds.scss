@@ -228,6 +228,27 @@
   }
 }
 
+.orders-folds__actions {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300, 1fr));
+  gap: 8px 16px;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $laptop-width) {
+    display: flex;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    flex-direction: row-reverse;
+    column-gap: 20px;
+    justify-content: flex-end;
+  }
+}
+
 .orders-folds__list {
   display: grid;
   padding: 0;
