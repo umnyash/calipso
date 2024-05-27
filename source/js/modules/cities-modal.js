@@ -7,7 +7,7 @@ class CitiesModal {
   #openModal = null;
 
   #formElement = null;
-  #listWrapperElement = null;
+  #foundCitiesListElement = null;
 
   #popularCitiesScrollContainerElement = null;
   #foundCitiesScrollContainerElement = null;
@@ -47,7 +47,7 @@ class CitiesModal {
 
   init() {
     this.#formElement = this.#modalElement.querySelector('.cities__form');
-    this.#listWrapperElement = this.#modalElement.querySelector('.cities__list-wrapper');
+    this.#foundCitiesListElement = this.#modalElement.querySelector('.cities__list--found');
 
     this.#popularCitiesScrollContainerElement = this.#modalElement.querySelector('.cities__scroll-container--popular');
     this.#foundCitiesScrollContainerElement = this.#modalElement.querySelector('.cities__scroll-container--found');
@@ -59,9 +59,12 @@ class CitiesModal {
     const observer = new MutationObserver(() => {
       this.#popularCitiesSwiper.update();
       this.#foundCitiesSwiper.update();
+      console.log('changeDOM')
     });
 
-    observer.observe(this.#listWrapperElement, {
+    console.log(this.#foundCitiesListElement)
+
+    observer.observe(this.#foundCitiesListElement, {
       subtree: true,
       characterData: true,
       attributes: true,

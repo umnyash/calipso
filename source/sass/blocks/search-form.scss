@@ -1,3 +1,7 @@
 .search-form__field {
   width: 100%;
 }
+
+.search-form .text-field__control:not(:placeholder-shown) + .text-field__clear-button {
+  display: grid;
+}
