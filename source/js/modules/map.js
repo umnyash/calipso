@@ -5,9 +5,8 @@ async function initMap(mapElement) {
   const COORDINATES = [44.008906, 56.323592];
   const containerElement = mapElement.querySelector('.map__inner');
 
-  setTimeout(() => {
-    containerElement.classList.remove('map__inner--hidden');
-  }, 8000);
+  containerElement.classList.remove('map__inner--hidden');
+  containerElement.style.filter = 'grayscale(1)';
 
   await ymaps3.ready;
 
@@ -28,10 +27,7 @@ async function initMap(mapElement) {
     }
   );
 
-  map.addChild(new YMapDefaultSchemeLayer({
-    customization: customizationFile,
-  }));
-
+  map.addChild(new YMapDefaultSchemeLayer());
   map.addChild(new YMapDefaultFeaturesLayer());
 
   const markerElement = document
@@ -47,6 +43,15 @@ async function initMap(mapElement) {
     markerElement
   );
 
-  map.addChild(marker);
+  const timerId = setInterval(() => {
+    const canvasElement = mapElement.querySelector('canvas');
+
+    if (canvasElement) {
+      clearInterval(timerId);
+      canvasElement.style.filter = 'grayscale(1)';
+      containerElement.style.filter = '';
+      map.addChild(marker);
+    }
+  }, 1000);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
