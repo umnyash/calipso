@@ -153,4 +153,7 @@ document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
   initCitiesModal(modalElement, initScrollContainer, openModal);
 });
+
+document.querySelectorAll('.document-actions__button--print').forEach(initButtonPrintPdf);
+
 /* * * * * * * * * * * * * * * * * * * * * * * */

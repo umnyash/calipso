@@ -49,3 +49,27 @@
     mask: url("../img/icons.svg#file_print");
   }
 }
+
+.document-actions__button--pending {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    box-sizing: border-box;
+    width: 80%;
+    height: 80%;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    background: transparent;
+    opacity: 0.6;
+    animation: button-spinner 600ms linear infinite;
+  }
+
+  &::after {
+    opacity: 0;
+  }
+}
