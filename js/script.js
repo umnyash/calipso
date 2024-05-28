@@ -276,6 +276,23 @@ function initBanners(bannersElement) {
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
+function initButtonPrintPdf(buttonElement) {
+  const documentUrl = buttonElement.dataset.url;
+  buttonElement.addEventListener('click', () => {
+    buttonElement.disabled = true;
+    buttonElement.classList.add('document-actions__button--pending');
+    const iframeElement = document.createElement('iframe');
+    iframeElement.style.display = 'none';
+    iframeElement.addEventListener('load', () => {
+      iframeElement.contentWindow.print();
+      buttonElement.classList.remove('document-actions__button--pending');
+      buttonElement.disabled = false;
+    });
+    iframeElement.src = documentUrl;
+    document.body.appendChild(iframeElement);
+  });
+}
+
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * cart.js
  */
@@ -878,7 +895,7 @@ function initCitiesModal(modalElement, initScrollContainer, openModal) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * cooperation-modal.js
  */
-function initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onCooperationFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Спасибо! Ваша заявка успешно отправлена',
@@ -890,7 +907,7 @@ function initCooperationModal(modalElement, sendData, openModal, closeModal, sho
       text: 'Не удалось отправить заявку, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onCooperationFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -1023,7 +1040,7 @@ function initFeed(feedElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * feedback-form.js
  */
-function initFeedbackForm(formElement, sendData, openModal, showAlert) {
+function initFeedbackForm(formElement, sendData, openModal, showAlert, onFeedbackFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const nameFieldElement = formElement.querySelector('.feedback-form__item--name .text-field__control');
   const emailFieldElement = formElement.querySelector('.feedback-form__item--email .text-field__control');
@@ -1053,6 +1070,13 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
     errorTextTag: 'p',
     errorTextClass: 'prompt-text'
   });
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Спасибо за обратную связь!'
+    });
+  }
+  ;
+  const successCb = onFeedbackFormSuccessSubmit ?? successDefaultCb;
   formElement.addEventListener('click', evt => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     if (textFieldClearButtonElement) {
@@ -1068,11 +1092,9 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
     if (isValid) {
       submitButtonElement.disabled = true;
       submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      sendData(actionUrl, new FormData(evt.target), () => {
+      sendData(actionUrl, new FormData(evt.target), data => {
         formElement.reset();
-        showAlert(openModal, {
-          heading: 'Спасибо за обратную связь!'
-        });
+        successCb(data);
       }, () => {
         showAlert(openModal, {
           status: 'error',
@@ -1094,7 +1116,7 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * feedback-modal.js
  */
-function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onFeedbackFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -1106,7 +1128,7 @@ function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAl
       text: 'Не удалось отправить заявку, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onFeedbackFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -1457,7 +1479,7 @@ function setInputDateMask(inputElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * installment-request-modal.js
  */
-function initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onInstallmentRequestFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -1469,7 +1491,7 @@ function initInstallmentRequestModal(modalElement, sendData, openModal, closeMod
       text: 'Не удалось отправить заявку, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onInstallmentRequestFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -1573,7 +1595,7 @@ function initNavigationShortcuts(navigationShortcutsElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * one-click-modal.js
  */
-function initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onOneClickFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -1585,7 +1607,7 @@ function initOneClickModal(modalElement, sendData, openModal, closeModal, showAl
       text: 'Не удалось отправить заявку, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onOneClickFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -2010,7 +2032,7 @@ function initProductImages(productImagesElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * product-question-modal.js
  */
-function initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onProductQuestionFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Ваш вопрос успешно отправлен',
@@ -2022,7 +2044,7 @@ function initProductQuestionModal(modalElement, sendData, openModal, closeModal,
       text: 'Не удалось отправить вопрос, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onProductQuestionFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -2322,7 +2344,7 @@ function initProjectsSlider(sliderElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * review-modal.js
  */
-function initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onReviewFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Спасибо, что оценили нашу работу',
@@ -2334,7 +2356,7 @@ function initReviewModal(modalElement, sendData, openModal, closeModal, showAler
       text: 'Не удалось отправить отзыв, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onReviewFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -2479,7 +2501,7 @@ function initReviewsList(listElement, galleryModal, initGallery, initVideo, open
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * salon-modal.js
  */
-function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onSalonFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -2491,7 +2513,7 @@ function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert
       text: 'Не удалось отправить заявку, попробуйте снова.'
     }
   };
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onSalonFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3034,7 +3056,7 @@ function initSignInModal(modalElement, openModal, closeModal, showAlert) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * simple-modal-form.js
  */
-function initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert) {
+function initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const modalName = modalElement.dataset.modal;
   const formElement = modalElement.querySelector('.modal__form');
@@ -3085,6 +3107,11 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
     errorTextTag: 'p',
     errorTextClass: 'prompt-text'
   });
+  function successDefaultCb() {
+    showAlert(openModal, alert.success);
+  }
+  ;
+  const successCb = onFormSuccessSubmit ?? successDefaultCb;
   formElement.addEventListener('click', evt => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     if (textFieldClearButtonElement) {
@@ -3100,9 +3127,9 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
     if (isValid) {
       submitButtonElement.disabled = true;
       submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      sendData(actionUrl, new FormData(evt.target), () => {
+      sendData(actionUrl, new FormData(evt.target), data => {
         closeModal(modalElement);
-        showAlert(openModal, alert.success);
+        successCb(data);
         formElement.reset();
       }, () => {
         closeModal(modalElement);
@@ -3675,32 +3702,40 @@ document.querySelectorAll('.profile-form').forEach(formElement => {
   initProfileForm(formElement, sendData, openModal, showAlert);
 });
 document.querySelectorAll('.feedback-form').forEach(formElement => {
-  initFeedbackForm(formElement, sendData, openModal, showAlert);
+  const cb = typeof onFeedbackFormSuccessSubmit !== 'undefined' ? onFeedbackFormSuccessSubmit : null;
+  initFeedbackForm(formElement, sendData, openModal, showAlert, cb);
 });
 document.querySelectorAll('.subscription__form').forEach(formElement => {
   const cb = typeof onSubscriptionFormSuccessSubmit !== 'undefined' ? onSubscriptionFormSuccessSubmit : null;
   initSubscriptionForm(formElement, sendData, openModal, showAlert, cb);
 });
 document.querySelectorAll('[data-modal="cooperation"]').forEach(modalElement => {
-  initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onCooperationFormSuccessSubmit !== 'undefined' ? onCooperationFormSuccessSubmit : null;
+  initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="feedback"]').forEach(modalElement => {
-  initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onFeedbackFormSuccessSubmit !== 'undefined' ? onFeedbackFormSuccessSubmit : null;
+  initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="salon"]').forEach(modalElement => {
-  initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onSalonFormSuccessSubmit !== 'undefined' ? onSalonFormSuccessSubmit : null;
+  initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="installment-request"]').forEach(modalElement => {
-  initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onInstallmentRequestFormSuccessSubmit !== 'undefined' ? onInstallmentRequestFormSuccessSubmit : null;
+  initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="product-question"]').forEach(modalElement => {
-  initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onProductQuestionFormSuccessSubmit !== 'undefined' ? onProductQuestionFormSuccessSubmit : null;
+  initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="one-click"]').forEach(modalElement => {
-  initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onOneClickFormSuccessSubmit !== 'undefined' ? onOneClickFormSuccessSubmit : null;
+  initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="review"]').forEach(modalElement => {
-  initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = typeof onReviewFormSuccessSubmit !== 'undefined' ? onReviewFormSuccessSubmit : null;
+  initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="catalog-filters"]').forEach(modalElement => {
   initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState);
@@ -3730,4 +3765,6 @@ document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 document.querySelectorAll('[data-modal="cities"]').forEach(modalElement => {
   initCitiesModal(modalElement, initScrollContainer, openModal);
 });
+document.querySelectorAll('.document-actions__button--print').forEach(initButtonPrintPdf);
+
 /* * * * * * * * * * * * * * * * * * * * * * * */
