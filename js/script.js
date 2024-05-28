@@ -852,9 +852,7 @@ class CitiesModal {
     const observer = new MutationObserver(() => {
       this.#popularCitiesSwiper.update();
       this.#foundCitiesSwiper.update();
-      console.log('changeDOM');
     });
-    console.log(this.#foundCitiesListElement);
     observer.observe(this.#foundCitiesListElement, {
       subtree: true,
       characterData: true,
@@ -1481,9 +1479,8 @@ function initInstallmentRequestModal(modalElement, sendData, openModal, closeMod
 async function initMap(mapElement) {
   const COORDINATES = [44.008906, 56.323592];
   const containerElement = mapElement.querySelector('.map__inner');
-  setTimeout(() => {
-    containerElement.classList.remove('map__inner--hidden');
-  }, 8000);
+  containerElement.classList.remove('map__inner--hidden');
+  containerElement.style.filter = 'grayscale(1)';
   await ymaps3.ready;
   const {
     YMap,
@@ -1497,15 +1494,21 @@ async function initMap(mapElement) {
       zoom: 15
     }
   });
-  map.addChild(new YMapDefaultSchemeLayer({
-    customization: customizationFile
-  }));
+  map.addChild(new YMapDefaultSchemeLayer());
   map.addChild(new YMapDefaultFeaturesLayer());
   const markerElement = document.querySelector('#map-marker-template').content.querySelector('.map-marker').cloneNode(true);
   const marker = new YMapMarker({
     coordinates: COORDINATES
   }, markerElement);
-  map.addChild(marker);
+  const timerId = setInterval(() => {
+    const canvasElement = mapElement.querySelector('canvas');
+    if (canvasElement) {
+      clearInterval(timerId);
+      canvasElement.style.filter = 'grayscale(1)';
+      containerElement.style.filter = '';
+      map.addChild(marker);
+    }
+  }, 1000);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3704,6 +3707,9 @@ document.querySelectorAll('[data-modal="catalog-filters"]').forEach(modalElement
 });
 document.querySelectorAll('.modal--with_product-gallery').forEach(modalElement => {
   initStaticGalleryModal(modalElement, openModal, initGallery, '.product__images');
+});
+document.querySelectorAll('.modal--with_selection-gallery').forEach(modalElement => {
+  initStaticGalleryModal(modalElement, openModal, initGallery, '.selection__slider-list');
 });
 document.querySelectorAll('[data-modal$="-document"]').forEach(modalElement => {
   initDocumentModal(modalElement, openModal);
