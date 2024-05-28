@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * installment-request-modal.js
  */
-function initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onInstallmentRequestFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -14,6 +14,6 @@ function initInstallmentRequestModal(modalElement, sendData, openModal, closeMod
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onInstallmentRequestFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

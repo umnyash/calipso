@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * one-click-modal.js
  */
-function initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onOneClickFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -14,6 +14,6 @@ function initOneClickModal(modalElement, sendData, openModal, closeModal, showAl
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onOneClickFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

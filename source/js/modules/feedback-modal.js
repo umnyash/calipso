@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * feedback-modal.js
  */
-function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onFeedbackFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -14,6 +14,6 @@ function initFeedbackModal(modalElement, sendData, openModal, closeModal, showAl
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onFeedbackFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

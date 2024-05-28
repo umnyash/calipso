@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * simple-modal-form.js
  */
-function initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert) {
+function initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const modalName = modalElement.dataset.modal;
   const formElement = modalElement.querySelector('.modal__form');
@@ -63,6 +63,12 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
     errorTextClass: 'prompt-text',
   });
 
+  function successDefaultCb() {
+    showAlert(openModal, alert.success);
+  };
+
+  const successCb = onFormSuccessSubmit ?? successDefaultCb;
+
   formElement.addEventListener('click', (evt) => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
 
@@ -86,9 +92,9 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
       sendData(
         actionUrl,
         new FormData(evt.target),
-        () => {
+        (data) => {
           closeModal(modalElement);
-          showAlert(openModal, alert.success);
+          successCb(data);
           formElement.reset();
         },
         () => {

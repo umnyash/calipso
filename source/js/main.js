@@ -43,8 +43,13 @@ document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithLis
 document.querySelectorAll('.profile-form').forEach((formElement) => {
   initProfileForm(formElement, sendData, openModal, showAlert);
 });
+
 document.querySelectorAll('.feedback-form').forEach((formElement) => {
-  initFeedbackForm(formElement, sendData, openModal, showAlert);
+  const cb = (typeof onFeedbackFormSuccessSubmit !== 'undefined')
+    ? onFeedbackFormSuccessSubmit
+    : null;
+
+  initFeedbackForm(formElement, sendData, openModal, showAlert, cb);
 });
 
 document.querySelectorAll('.subscription__form').forEach((formElement) => {
@@ -56,25 +61,59 @@ document.querySelectorAll('.subscription__form').forEach((formElement) => {
 });
 
 document.querySelectorAll('[data-modal="cooperation"]').forEach((modalElement) => {
-  initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onCooperationFormSuccessSubmit !== 'undefined')
+    ? onCooperationFormSuccessSubmit
+    : null;
+
+  initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="feedback"]').forEach((modalElement) => {
-  initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onFeedbackFormSuccessSubmit !== 'undefined')
+    ? onFeedbackFormSuccessSubmit
+    : null;
+
+  initFeedbackModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="salon"]').forEach((modalElement) => {
-  initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onSalonFormSuccessSubmit !== 'undefined')
+    ? onSalonFormSuccessSubmit
+    : null;
+
+  initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="installment-request"]').forEach((modalElement) => {
-  initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onInstallmentRequestFormSuccessSubmit !== 'undefined')
+    ? onInstallmentRequestFormSuccessSubmit
+    : null;
+
+  initInstallmentRequestModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="product-question"]').forEach((modalElement) => {
-  initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onProductQuestionFormSuccessSubmit !== 'undefined')
+    ? onProductQuestionFormSuccessSubmit
+    : null;
+
+  initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="one-click"]').forEach((modalElement) => {
-  initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onOneClickFormSuccessSubmit !== 'undefined')
+    ? onOneClickFormSuccessSubmit
+    : null;
+
+  initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
+
 document.querySelectorAll('[data-modal="review"]').forEach((modalElement) => {
-  initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm);
+  const cb = (typeof onReviewFormSuccessSubmit !== 'undefined')
+    ? onReviewFormSuccessSubmit
+    : null;
+
+  initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 
 document.querySelectorAll('[data-modal="catalog-filters"]').forEach((modalElement) => {

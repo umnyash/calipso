@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * review-modal.js
  */
-function initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initReviewModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onReviewFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Спасибо, что оценили нашу работу',
@@ -14,6 +14,6 @@ function initReviewModal(modalElement, sendData, openModal, closeModal, showAler
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onReviewFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

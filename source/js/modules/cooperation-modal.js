@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * cooperation-modal.js
  */
-function initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initCooperationModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onCooperationFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Спасибо! Ваша заявка успешно отправлена',
@@ -14,6 +14,6 @@ function initCooperationModal(modalElement, sendData, openModal, closeModal, sho
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onCooperationFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

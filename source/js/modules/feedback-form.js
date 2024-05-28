@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * feedback-form.js
  */
-function initFeedbackForm(formElement, sendData, openModal, showAlert) {
+function initFeedbackForm(formElement, sendData, openModal, showAlert, onFeedbackFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
 
   const nameFieldElement = formElement.querySelector('.feedback-form__item--name .text-field__control');
@@ -39,6 +39,14 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
     errorTextClass: 'prompt-text',
   });
 
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Спасибо за обратную связь!',
+    });
+  };
+
+  const successCb = onFeedbackFormSuccessSubmit ?? successDefaultCb;
+
   formElement.addEventListener('click', (evt) => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
 
@@ -62,11 +70,9 @@ function initFeedbackForm(formElement, sendData, openModal, showAlert) {
       sendData(
         actionUrl,
         new FormData(evt.target),
-        () => {
+        (data) => {
           formElement.reset();
-          showAlert(openModal, {
-            heading: 'Спасибо за обратную связь!',
-          });
+          successCb(data);
         },
         () => {
           showAlert(openModal, {

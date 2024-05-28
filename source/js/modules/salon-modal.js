@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * salon-modal.js
  */
-function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onSalonFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Заявка успешно отправлена',
@@ -14,6 +14,6 @@ function initSalonModal(modalElement, sendData, openModal, closeModal, showAlert
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onSalonFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */

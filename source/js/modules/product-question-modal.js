@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * product-question-modal.js
  */
-function initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm) {
+function initProductQuestionModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onProductQuestionFormSuccessSubmit) {
   const alert = {
     success: {
       heading: 'Ваш вопрос успешно отправлен',
@@ -14,6 +14,6 @@ function initProductQuestionModal(modalElement, sendData, openModal, closeModal,
     },
   };
 
-  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert);
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onProductQuestionFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
