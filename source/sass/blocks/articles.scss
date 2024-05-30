@@ -28,6 +28,19 @@
   }
 }
 
+.articles__links {
+  grid-column: 2 / 3;
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin: 0 0 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin: 0 0 40px;
+  }
+}
+
 .articles__filter {
   grid-column: 1 / -1;
   margin: 0 0 20px;

@@ -23,13 +23,33 @@
     ],
   };
 
+  var articlesSubNavigationLinks = [
+    {
+      text: 'Все',
+      href: '#',
+      page: 'articles-page',
+    },
+    {
+      text: 'Блог',
+      href: '#',
+    },
+    {
+      text: 'Новости',
+      href: '#',
+    },
+    {
+      text: 'Пресса о нас',
+      href: '#',
+    },
+  ]
+
 mixin articles(articles, type)
   case type
     when 'main'
       .articles&attributes(attributes)
         .articles__inner
           h1.articles__heading.heading Блог компании
-          +filter(articlesFilter, true)(class='articles__filter')
+          +sub-navigation(articlesSubNavigationLinks)(class='articles__links')
           +articles-list(articles, 'm')(class='articles__list')
           +pagination(class='articles__pagination')
     when 'search-result'
