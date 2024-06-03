@@ -6,7 +6,7 @@ document.querySelectorAll('.cart').forEach((cartElement) => {
 });
 
 document.querySelectorAll('.reviews__list').forEach((listElement) => {
-  initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal, showAlert);
+  initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal);
 });
 
 document.querySelectorAll('.site-header').forEach(initSiteHeader);

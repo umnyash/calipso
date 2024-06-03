@@ -11,7 +11,40 @@ block content
   +external-reviews
   +reviews(reviews)
   +video-reviews(videoReviews.concat(videoReviews))
-
+  script.
+    const reviewsGalleryData = {
+      'bx_651765591_40': [
+        {
+          type: 'video',
+          src: 'files/video.mp4',
+          posterSrc: 'img/reviews/review-1.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-1.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-2.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-3.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-1.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-2.webp',
+        },
+        {
+          type: 'image',
+          src: 'img/reviews/review-3.webp',
+        },
+      ],
+    };
 append modals
   +modal(class='modal--with_form modal--hidden' data-modal='review')
     +review-modal-form(class='modal__form')

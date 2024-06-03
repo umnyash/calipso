@@ -39,32 +39,15 @@ class ReviewsList {
   #initGallery = null;
   #initVideo = null;
   #openModal = null;
-  #showAlert = null;
   #reviewTextWrapperElements = null;
 
-  constructor({ listElement, galleryModal, initGallery, initVideo, openModal, showAlert }) {
+  constructor({ listElement, galleryModal, initGallery, initVideo, openModal }) {
     this.#listElement = listElement;
     this.#galleryModal = galleryModal;
     this.#initGallery = initGallery;
     this.#initVideo = initVideo;
     this.#openModal = openModal;
-    this.#showAlert = showAlert;
   }
-
-  #getData = async(url, onSuccess, onFail, onFinally) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`${response.status} – ${response.statusText}`);
-      }
-      const data = await response.json();
-      onSuccess(data);
-    } catch(err) {
-      onFail();
-    } finally {
-      onFinally();
-    }
-  };
 
   updateReviewsTextWrappersList = () => {
     this.#reviewTextWrapperElements = this.#listElement.querySelectorAll('.review__text-wrapper');
@@ -106,31 +89,15 @@ class ReviewsList {
       const feedSliderItemElementNumber = Array.from(feedSliderListElement.children).indexOf(feedSliderItemElement);
 
       const review = feedSliderItemElement.closest('.review');
-      const reviewId = review.dataset.id;
-      const actionUrl = `https://fakestoreapi.com/products/${reviewId}`;
 
-      this.#getData(
-        actionUrl,
-        (data) => {
-          const galleryModal = new this.#galleryModal({
-            content: data && mockReviewGalleryData, // Нужно будет удалить "&& mockReviewGalleryData"
-            openModal: this.#openModal,
-            initGallery: this.#initGallery,
-            initVideo: this.#initVideo,
-          });
-          galleryModal.open(feedSliderItemElementNumber);
-        },
-        () => {
-          this.#showAlert(this.#openModal, {
-            status: 'error',
-            heading: 'Ошибка',
-            text: 'Не удалось загрузить данные, попробуйте снова.'
-          });
-        },
-        () => {
-          feedSliderListElement.classList.remove('no-click');
-        }
-      );
+      const galleryModal = new this.#galleryModal({
+        content: reviewsGalleryData[review.dataset.id],
+        openModal: this.#openModal,
+        initGallery: this.#initGallery,
+        initVideo: this.#initVideo,
+      });
+      galleryModal.open(feedSliderItemElementNumber);
+      feedSliderListElement.classList.remove('no-click');
     }
   };
 
@@ -143,8 +110,8 @@ class ReviewsList {
   };
 }
 
-function initReviewsList(listElement, galleryModal, initGallery, initVideo, openModal, showAlert) {
-  const reviewsList = new ReviewsList({ listElement, galleryModal, initGallery, initVideo, openModal, showAlert });
+function initReviewsList(listElement, galleryModal, initGallery, initVideo, openModal) {
+  const reviewsList = new ReviewsList({ listElement, galleryModal, initGallery, initVideo, openModal });
   reviewsList.init();
 
   return reviewsList;
