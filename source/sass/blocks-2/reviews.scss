@@ -36,6 +36,8 @@
 
 .reviews__item {
   display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
   padding: 0 0 10px;
 
   @media (min-width: $desktop-width) {
