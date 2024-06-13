@@ -1,16 +1,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * product-header-sticky-form-buttons.js
  */
-function initProductHeaderStickyFormButtons(buttonsWrapperElement) {
+function initProductHeaderStickyActionButtons(buttonsWrapperElement) {
   const box = document.querySelector('.page__inner');
 
   const onBoxScroll = () => {
     const isPageScrolledDown = box.scrollHeight - box.scrollTop === box.clientHeight;
 
     if (!isPageScrolledDown) {
-      buttonsWrapperElement.classList.add('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.add('product-header__action-buttons--sticked');
     } else {
-      buttonsWrapperElement.classList.remove('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.remove('product-header__action-buttons--sticked');
     }
   };
 

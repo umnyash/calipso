@@ -26,7 +26,7 @@ document.querySelectorAll('.articles--with-slider').forEach(initArticlesSlider);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);
-document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
+document.querySelectorAll('.product-header__action-buttons').forEach(initProductHeaderStickyActionButtons);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date').forEach((fieldElement) => {
   initDateField(fieldElement, setInputDateMask);

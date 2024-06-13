@@ -37,6 +37,7 @@
 
 .product__header {
   grid-area: header;
+  z-index: 2;
   margin: 0 0 40px;
 
   @media (min-width: $desktop-width) {
