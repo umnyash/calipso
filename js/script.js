@@ -1240,7 +1240,7 @@ function createGalleryModalTemplate(content) {
                     <li class="gallery__slider-item swiper-slide">
                       ${file.type === 'video' ? `
                         <div class="video gallery__video">
-                          <video class="video__player" src="${file.src}" controls="controls"></video>
+                          <video class="video__player" src="${file.src}" playsinline controls></video>
                           <img class="video__poster" src="${file.posterSrc}" alt="" loading="lazy">
                           <div class="video__play-button-wrapper">
                             <button class="video__play-button"><span class="visually-hidden">Воспроизвести</span></button>
