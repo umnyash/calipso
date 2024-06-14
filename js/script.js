@@ -10,6 +10,7 @@ const KeyCode = Object.freeze({
   LEFT_ARROW: 'ArrowLeft',
   RIGHT_ARROW: 'ArrowRight',
   DOWN_ARROW: 'ArrowDown',
+  UP_ARROW: 'ArrowUp',
   SPACE: 'Space',
   ESCAPE: 'Escape'
 });
@@ -32,6 +33,9 @@ function isRightArrowEvent(evt) {
 }
 function isSpaceEvent(evt) {
   return evt.code === KeyCode.SPACE;
+}
+function isUpArrowEvent(evt) {
+  return evt.code === KeyCode.UP_ARROW;
 }
 function createElementByString(template) {
   const newElement = document.createElement('div');
@@ -1958,14 +1962,14 @@ function initProductCard(productCardElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * product-header-sticky-form-buttons.js
  */
-function initProductHeaderStickyFormButtons(buttonsWrapperElement) {
+function initProductHeaderStickyActionButtons(buttonsWrapperElement) {
   const box = document.querySelector('.page__inner');
   const onBoxScroll = () => {
     const isPageScrolledDown = box.scrollHeight - box.scrollTop === box.clientHeight;
     if (!isPageScrolledDown) {
-      buttonsWrapperElement.classList.add('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.add('product-header__action-buttons--sticked');
     } else {
-      buttonsWrapperElement.classList.remove('product-header__form-buttons--sticked');
+      buttonsWrapperElement.classList.remove('product-header__action-buttons--sticked');
     }
   };
   box.addEventListener('scroll', throttle(onBoxScroll, 100));
@@ -2392,37 +2396,20 @@ class ReviewsList {
   #initGallery = null;
   #initVideo = null;
   #openModal = null;
-  #showAlert = null;
   #reviewTextWrapperElements = null;
   constructor({
     listElement,
     galleryModal,
     initGallery,
     initVideo,
-    openModal,
-    showAlert
+    openModal
   }) {
     this.#listElement = listElement;
     this.#galleryModal = galleryModal;
     this.#initGallery = initGallery;
     this.#initVideo = initVideo;
     this.#openModal = openModal;
-    this.#showAlert = showAlert;
   }
-  #getData = async (url, onSuccess, onFail, onFinally) => {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`${response.status} – ${response.statusText}`);
-      }
-      const data = await response.json();
-      onSuccess(data);
-    } catch (err) {
-      onFail();
-    } finally {
-      onFinally();
-    }
-  };
   updateReviewsTextWrappersList = () => {
     this.#reviewTextWrapperElements = this.#listElement.querySelectorAll('.review__text-wrapper');
   };
@@ -2455,26 +2442,14 @@ class ReviewsList {
       feedSliderListElement.classList.add('no-click');
       const feedSliderItemElementNumber = Array.from(feedSliderListElement.children).indexOf(feedSliderItemElement);
       const review = feedSliderItemElement.closest('.review');
-      const reviewId = review.dataset.id;
-      const actionUrl = `https://fakestoreapi.com/products/${reviewId}`;
-      this.#getData(actionUrl, data => {
-        const galleryModal = new this.#galleryModal({
-          content: data && mockReviewGalleryData,
-          // Нужно будет удалить "&& mockReviewGalleryData"
-          openModal: this.#openModal,
-          initGallery: this.#initGallery,
-          initVideo: this.#initVideo
-        });
-        galleryModal.open(feedSliderItemElementNumber);
-      }, () => {
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось загрузить данные, попробуйте снова.'
-        });
-      }, () => {
-        feedSliderListElement.classList.remove('no-click');
+      const galleryModal = new this.#galleryModal({
+        content: reviewsGalleryData[review.dataset.id],
+        openModal: this.#openModal,
+        initGallery: this.#initGallery,
+        initVideo: this.#initVideo
       });
+      galleryModal.open(feedSliderItemElementNumber);
+      feedSliderListElement.classList.remove('no-click');
     }
   };
   init = () => {
@@ -2484,14 +2459,13 @@ class ReviewsList {
     this.#listElement.addEventListener('click', this.#onListClick);
   };
 }
-function initReviewsList(listElement, galleryModal, initGallery, initVideo, openModal, showAlert) {
+function initReviewsList(listElement, galleryModal, initGallery, initVideo, openModal) {
   const reviewsList = new ReviewsList({
     listElement,
     galleryModal,
     initGallery,
     initVideo,
-    openModal,
-    showAlert
+    openModal
   });
   reviewsList.init();
   return reviewsList;
@@ -3443,8 +3417,25 @@ function initTaber(taber, idPrefix) {
     }
     switchTab(currentTabElement, tabElement);
   });
+  const desktopWidthMediaQueryList = window.matchMedia(DESKTOP_WIDTH_MEDIA_QUERY);
   listElement.addEventListener('keydown', evt => {
     const index = tabElements.indexOf(evt.target);
+    if (taber.classList.contains('taber--vertical') && desktopWidthMediaQueryList.matches) {
+      if (!isDownArrowEvent(evt) && !isRightArrowEvent(evt) && !isUpArrowEvent(evt)) {
+        return;
+      }
+      evt.preventDefault();
+      if (isRightArrowEvent(evt)) {
+        panelElements[index].focus();
+      } else {
+        const newIndex = isUpArrowEvent(evt) ? index - 1 : index + 1;
+        if (!tabElements[newIndex]) {
+          return;
+        }
+        switchTab(evt.target, tabElements[newIndex]);
+      }
+      return;
+    }
     if (!isDownArrowEvent(evt) && !isLeftArrowEvent(evt) && !isRightArrowEvent(evt)) {
       return;
     }
@@ -3667,7 +3658,7 @@ document.querySelectorAll('.cart').forEach(cartElement => {
   initCart(cartElement, openModal, showAlert);
 });
 document.querySelectorAll('.reviews__list').forEach(listElement => {
-  initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal, showAlert);
+  initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal);
 });
 document.querySelectorAll('.site-header').forEach(initSiteHeader);
 document.querySelectorAll('.premium-brands__slider').forEach(initPremiumBrandsSlider);
@@ -3684,7 +3675,7 @@ document.querySelectorAll('.articles--with-slider').forEach(initArticlesSlider);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
 document.querySelectorAll('.catalog-sorting').forEach(initCatalogSorting);
 document.querySelectorAll('.product-images').forEach(initProductImages);
-document.querySelectorAll('.product-header__form-buttons').forEach(initProductHeaderStickyFormButtons);
+document.querySelectorAll('.product-header__action-buttons').forEach(initProductHeaderStickyActionButtons);
 document.querySelectorAll('.folds').forEach(initFolds);
 document.querySelectorAll('.text-field--date').forEach(fieldElement => {
   initDateField(fieldElement, setInputDateMask);
