@@ -21,6 +21,10 @@ function isSpaceEvent(evt) {
   return evt.code === KeyCode.SPACE;
 }
 
+function isUpArrowEvent(evt) {
+  return evt.code === KeyCode.UP_ARROW;
+}
+
 function createElementByString(template) {
   const newElement = document.createElement('div');
   newElement.innerHTML = template;
@@ -36,7 +40,7 @@ function getPaginationButtonCreator(slideName = 'Слайд') {
   `;
 }
 
-function debounce (callback, timeoutDelay = 500) {
+function debounce(callback, timeoutDelay = 500) {
   let timeoutId;
 
   return (...rest) => {

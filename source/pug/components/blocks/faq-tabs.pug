@@ -1,0 +1,19 @@
+mixin faq-tabs(heading)
+  .faq-tabs&attributes(attributes)
+    .taber.taber--vertical&attributes(attributes)
+      ul.taber__list
+        li.taber__tab-wrapper
+          a.taber__tab(href='#faq-tab-delivery') По доставке
+        li.taber__tab-wrapper.taber__tab-wrapper--guarantee
+          a.taber__tab(href='#faq-tab-guarantee') Какие гарантии?
+        li.taber__tab-wrapper
+          a.taber__tab(href='#faq-tab-selection') По выбору мебели
+      section.taber__panel
+        h2.visually-hidden По доставке
+        +faq-folds('delivery')(class='taber__panel-faq-folds')
+      section.taber__panel
+        h2.visually-hidden Какие гарантии?
+        +faq-folds('guarantee')(class='taber__panel-faq-folds')
+      section.taber__panel
+        h2.visually-hidden По выбору мебели
+        +faq-folds('selection')(class='taber__panel-faq-folds')

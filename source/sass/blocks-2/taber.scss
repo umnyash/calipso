@@ -93,6 +93,14 @@
   }
 }
 
+.taber__panel-faq-folds {
+  margin: 0 (-$mobile-edge-indent);
+
+  @media (min-width: $tablet-width) {
+    margin: 0;
+  }
+}
+
 .taber__panel-profile-form {
   max-width: 834px;
 
@@ -122,6 +130,79 @@
 
     @media (min-width: $wide-desktop-width) {
       min-width: 360px;
+    }
+  }
+}
+
+.taber--vertical {
+  @media (min-width: $desktop-width) {
+    display: grid;
+    grid-template-columns: 294px 1fr;
+    align-items: start;
+    column-gap: 108px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    grid-template-columns: 408px 1fr;
+    column-gap: 152px;
+  }
+
+  .taber__list {
+    @media (min-width: $tablet-width) {
+      gap: 10px;
+    }
+
+    @media (min-width: $desktop-width) {
+      row-gap: 12px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      row-gap: 20px;
+    }
+  }
+
+  .taber__tab-wrapper {
+    @media (min-width: $desktop-width) {
+      width: 100%;
+    }
+  }
+
+  .taber__tab {
+    @media (min-width: $desktop-width) {
+      padding: 6px 20px 4px;
+      border: none;
+      border-radius: 10px;
+      justify-content: start;
+      font-size: 16px;
+      line-height: 19px;
+      color: var(--text-color);
+      background: transparent;
+
+      &:hover {
+        color: var(--accent-color-1);
+        background: var(--accent-color-1-light);
+      }
+
+      &:active {
+        color: var(--accent-color-1);
+        background: var(--accent-color-1-light);
+
+        @include main-shadow;
+      }
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      padding: 11px 20px 9px;
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+
+  .taber__tab--active {
+    @media (min-width: $desktop-width) {
+      color: var(--accent-color-1);
+      background: var(--accent-color-1-light);
+      pointer-events: none;
     }
   }
 }

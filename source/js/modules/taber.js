@@ -68,8 +68,32 @@ function initTaber(taber, idPrefix) {
     switchTab(currentTabElement, tabElement);
   });
 
+  const desktopWidthMediaQueryList = window.matchMedia(DESKTOP_WIDTH_MEDIA_QUERY);
+
   listElement.addEventListener('keydown', (evt) => {
     const index = tabElements.indexOf(evt.target);
+
+    if (taber.classList.contains('taber--vertical') && desktopWidthMediaQueryList.matches) {
+      if (!isDownArrowEvent(evt) && !isRightArrowEvent(evt) && !isUpArrowEvent(evt)) {
+        return;
+      }
+
+      evt.preventDefault();
+
+      if (isRightArrowEvent(evt)) {
+        panelElements[index].focus();
+      } else {
+        const newIndex = isUpArrowEvent(evt) ? index - 1 : index + 1;
+
+        if (!tabElements[newIndex]) {
+          return;
+        }
+
+        switchTab(evt.target, tabElements[newIndex]);
+      }
+
+      return;
+    }
 
     if (!isDownArrowEvent(evt) && !isLeftArrowEvent(evt) && !isRightArrowEvent(evt)) {
       return;

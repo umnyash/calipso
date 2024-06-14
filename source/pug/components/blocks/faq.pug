@@ -1,27 +1,5 @@
--
-  var faqFilter = {
-    name: 'topic',
-    variants: [
-      {
-        label: 'По доставке',
-        value: 'delivery',
-        isChecked: true,
-      },
-      {
-        label: 'Какие гарантии?',
-        value: 'guarantee',
-        className: 'filter__item--guarantee',
-      },
-      {
-        label: 'По выбору мебели',
-        value: 'selection',
-      },
-    ],
-  };
-
 mixin faq
   .faq&attributes(attributes)
     .faq__inner.container
       h1.faq__heading.heading Вопрос-ответ
-      +filter(faqFilter)(class='faq__filter filter--alter')
-      +faq-folds(class='faq__folds')
+      +faq-tabs(class='faq__tabs')

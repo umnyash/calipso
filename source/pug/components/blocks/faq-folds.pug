@@ -1,9 +1,16 @@
-mixin faq-folds
+-
+  var faqQuestion = {
+    delivery: 'Как доставляется мебель?',
+    guarantee: 'Как считается срок гарантии?',
+    selection: 'Как выбрать мебель?',
+  }
+
+mixin faq-folds(topic)
   ul.faq-folds.folds&attributes(attributes)
     each val, index in [1, 2, 3, 4, 5, 6]
       li.faq-folds__item.folds__item(class= index === 0 ? 'folds__item--open' : false)
         h2.faq-folds__heading
-          button.faq-folds__button.folds__button(type='button' aria-expanded= index === 0 ? 'true' : 'false') Как доставляется мебель?
+          button.faq-folds__button.folds__button(type='button' aria-expanded= index === 0 ? 'true' : 'false')= faqQuestion[topic]
         .faq-folds__content-wrapper.folds__content-wrapper
           .faq-folds__content.folds__content
             p Внезапно, стремящиеся вытеснить традиционное производство, нанотехнологии указаны как претенденты на роль ключевых факторов. Также как перспективное планирование не даёт нам иного выбора, кроме определения экономической целесообразности принимаемых решений. Но акционеры крупнейших компаний набирают популярность среди определенных слоев населения, а значит, должны быть преданы социально-демократической анафеме.
