@@ -1241,14 +1241,14 @@ function createGalleryModalTemplate(content) {
                       ${file.type === 'video' ? `
                         <div class="video gallery__video">
                           <video class="video__player" src="${file.src}" playsinline controls></video>
-                          <img class="video__poster" src="${file.posterSrc}" alt="" loading="lazy">
+                          <img class="video__poster" src="${file.posterSrc}" alt="">
                           <div class="video__play-button-wrapper">
                             <button class="video__play-button"><span class="visually-hidden">Воспроизвести</span></button>
                           </div>
                         </div>
                       ` : `
                         <picture class="gallery__image-wrapper">
-                          <img class="gallery__image" src="${file.src}" alt="" loading="lazy">
+                          <img class="gallery__image" src="${file.src}" alt="">
                         </picture>
                       `}
                     </li>
@@ -1275,7 +1275,7 @@ function createGalleryModalTemplate(content) {
                         </div>
                       ` : `
                         <picture class="gallery__image-wrapper">
-                          <img class="gallery__thumbnails-image" src="${file.src}" alt="" loading="lazy"/>
+                          <img class="gallery__thumbnails-image" src="${file.src}" alt=""/>
                         </picture>
                       `}
                     </li>
