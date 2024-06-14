@@ -3669,7 +3669,7 @@ document.querySelectorAll('.taber').forEach((taber, index) => {
 document.querySelectorAll('.filter__slider').forEach(initFilterSlider);
 document.querySelectorAll('.banners').forEach(initBanners);
 document.querySelectorAll('.map').forEach(initMap);
-document.querySelectorAll('.product-card').forEach(initProductCard);
+// document.querySelectorAll('.product-card').forEach(initProductCard);
 document.querySelectorAll('.products').forEach(initProducts);
 document.querySelectorAll('.articles--with-slider').forEach(initArticlesSlider);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
