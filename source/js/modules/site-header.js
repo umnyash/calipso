@@ -12,6 +12,7 @@ function initSiteHeader(headerElement) {
     toggleButtonElement.ariaExpanded = toggleButtonElement.ariaExpanded === 'true' ? 'false' : 'true';
     navigationElement.classList.toggle('site-header__navigation--open');
     headerElement.classList.toggle('page__site-header--expand');
+    togglePageScroll();
   });
 
   const groupsElement = navigationElement.querySelector('.site-navigation__panels');

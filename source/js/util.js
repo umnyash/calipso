@@ -1,6 +1,12 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * util.js
  */
+const pageInnerElement = document.querySelector('.page__inner');
+
+function togglePageScroll() {
+  pageInnerElement.classList.toggle('scroll-lock');
+}
+
 function isDownArrowEvent(evt) {
   return evt.code === KeyCode.DOWN_ARROW;
 }
