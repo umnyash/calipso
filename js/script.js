@@ -20,6 +20,9 @@ const KeyCode = Object.freeze({
  * util.js
  */
 const pageInnerElement = document.querySelector('.page__inner');
+function togglePageScroll() {
+  pageInnerElement.classList.toggle('scroll-lock');
+}
 function isDownArrowEvent(evt) {
   return evt.code === KeyCode.DOWN_ARROW;
 }
@@ -72,9 +75,6 @@ function throttle(callback, delay) {
 }
 function getDigitsFromString(string) {
   return string.replace(/\D/g, '');
-}
-function togglePageScroll() {
-  pageInnerElement.classList.toggle('scroll-lock');
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
