@@ -22,7 +22,6 @@
   box-sizing: border-box;
   height: 100vh;
   grid-template-rows: auto 1fr auto;
-  // grid-template-rows: 1fr auto;
   grid-template-columns: 100%;
   overflow-y: auto;
   scroll-behavior: smooth;
@@ -34,7 +33,7 @@
 
 .page__site-header {
   position: sticky;
-  z-index: 2;
+  z-index: 3;
   top: 0;
   transition: transform 300ms;
 
