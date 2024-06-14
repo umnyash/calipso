@@ -19,6 +19,7 @@ const KeyCode = Object.freeze({
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * util.js
  */
+const pageInnerElement = document.querySelector('.page__inner');
 function isDownArrowEvent(evt) {
   return evt.code === KeyCode.DOWN_ARROW;
 }
@@ -71,6 +72,9 @@ function throttle(callback, delay) {
 }
 function getDigitsFromString(string) {
   return string.replace(/\D/g, '');
+}
+function togglePageScroll() {
+  pageInnerElement.classList.toggle('scroll-lock');
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3141,6 +3145,7 @@ function initSiteHeader(headerElement) {
     toggleButtonElement.ariaExpanded = toggleButtonElement.ariaExpanded === 'true' ? 'false' : 'true';
     navigationElement.classList.toggle('site-header__navigation--open');
     headerElement.classList.toggle('page__site-header--expand');
+    togglePageScroll();
   });
   const groupsElement = navigationElement.querySelector('.site-navigation__panels');
   const backButtonElement = navigationElement.querySelector('.site-navigation__back-button');
@@ -3669,7 +3674,7 @@ document.querySelectorAll('.taber').forEach((taber, index) => {
 document.querySelectorAll('.filter__slider').forEach(initFilterSlider);
 document.querySelectorAll('.banners').forEach(initBanners);
 document.querySelectorAll('.map').forEach(initMap);
-// document.querySelectorAll('.product-card').forEach(initProductCard);
+document.querySelectorAll('.product-card').forEach(initProductCard);
 document.querySelectorAll('.products').forEach(initProducts);
 document.querySelectorAll('.articles--with-slider').forEach(initArticlesSlider);
 document.querySelectorAll('.navigation-shortcuts').forEach(initNavigationShortcuts);
