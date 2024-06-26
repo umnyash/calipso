@@ -1,11 +1,36 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * cart.js
  */
+
+function showCartResult({ heading, text, buttonText, buttonHref }) {
+  const cartInnerElement = document.querySelector('.cart__inner');
+
+  cartInnerElement.querySelector('.cart__heading').remove();
+  cartInnerElement.querySelector('.cart__form').remove();
+
+  cartInnerElement.insertAdjacentHTML('beforeend', `
+    <div class="cart-result">
+      <div class="cart-result__inner container">
+        <h1 class="cart-result__heading heading">${heading}</h1>
+        <p class="cart-result__text">${text}</p>
+        <a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>
+      </div>
+    </div>
+  `);
+}
+
+function resetCartForm() {
+  const formElement = document.querySelector('.cart-form');
+  formElement.reset();
+}
+
 class Cart {
   #siteHeaderElement = null;
   #cartElement = null;
   #openModal = null;
   #showAlert = null;
+  #onCartFormSuccessSubmit = null;
+  #onCartFormErrorSubmit = null;
   #heading = null;
 
   #boxElement = null;
@@ -25,11 +50,12 @@ class Cart {
 
   #pristine = null;
 
-  constructor({ cartElement, openModal, showAlert }) {
+  constructor({ cartElement, openModal, showAlert, onCartFormSuccessSubmit, onCartFormErrorSubmit }) {
     this.#cartElement = cartElement;
     this.#openModal = openModal;
     this.#showAlert = showAlert;
-
+    this.#onCartFormSuccessSubmit = onCartFormSuccessSubmit;
+    this.#onCartFormErrorSubmit = onCartFormErrorSubmit;
     this.formElement = this.#cartElement.querySelector('.cart-form');
     this.#heading = this.#cartElement.querySelector('.page-heading .heading');
   }
@@ -43,10 +69,11 @@ class Cart {
       if (!response.ok) {
         throw new Error(`${response.status} – ${response.statusText}`);
       }
+
       const data = await response.json();
       onSuccess(data);
     } catch (err) {
-      onFail();
+      onFail(err);
     } finally {
       onFinally();
     }
@@ -80,13 +107,14 @@ class Cart {
     this.formElement.remove();
   };
 
-  showResult = (orderNumber) => {
+  showResult = ({ heading, text, buttonText, buttonHref }) => {
     this.#clearCart();
     this.#cartInnerElement.insertAdjacentHTML('beforeend', `
       <div class="cart-result">
         <div class="cart-result__inner container">
-          <h1 class="cart-result__heading heading">Заказ № ${orderNumber} успешно оформлен!</h1>
-          <p class="cart-result__text">Уведомления о&nbsp;заказе будут приходить на&nbsp;почту. Более подробно следить за&nbsp;состоянием заказа вы&nbsp;сможете через личный кабинет:</p><a class="button cart-result__button button--primary" href="#!">Войти в личный кабинет</a>
+          <h1 class="cart-result__heading heading">${heading}</h1>
+          <p class="cart-result__text">${text}</p>
+          <a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>
         </div>
       </div>
     `);
@@ -250,14 +278,31 @@ class Cart {
     }
   };
 
+  #successDefaultCb = () => {
+    resetCartForm();
+    showCartResult({
+      heading: 'Heading',
+      text: 'text',
+      buttonText: 'button',
+      buttonHref: '#',
+    })
+  };
+
+  #errorDefaultCb = () => {
+    this.#showAlert(this.#openModal, {
+      status: 'error',
+      heading: 'Ошибка',
+      text: 'Текст ошибки.'
+    });
+  }
+
   #onFormSubmit = (evt) => {
     evt.preventDefault();
 
     const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
     const isValid = this.#pristine.validate();
 
-    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
-    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
+    const actionUrl = this.formElement.getAttribute('action');
 
     if (isValid) {
       this.#submitButtonElement.disabled = true;
@@ -267,16 +312,12 @@ class Cart {
         actionUrl,
         new FormData(evt.target),
         (data) => {
-          this.formElement.reset();
-          const orderNumber = data.number || '45678'; // Нужно будет удалить "|| '45678'"
-          this.showResult(orderNumber);
+          const successCb = this.#onCartFormSuccessSubmit ?? this.#successDefaultCb;
+          successCb(data);
         },
-        () => {
-          this.#showAlert(this.#openModal, {
-            status: 'error',
-            heading: 'Ошибка',
-            text: 'Не удалось отправить сообщение, попробуйте снова.'
-          });
+        (err) => {
+          const errorCb = this.#onCartFormErrorSubmit ?? this.#errorDefaultCb;
+          errorCb(err);
         },
         () => {
           this.#submitButtonElement.disabled = false;
@@ -324,8 +365,8 @@ class Cart {
   }
 }
 
-function initCart(cartElement, openModal, showAlert) {
-  const cart = new Cart({ cartElement, openModal, showAlert });
+function initCart(cartElement, openModal, showAlert, onCartFormSuccessSubmit, onCartFormErrorSubmit) {
+  const cart = new Cart({ cartElement, openModal, showAlert, onCartFormSuccessSubmit, onCartFormErrorSubmit });
 
   if (cart.formElement) {
     cart.initForm();

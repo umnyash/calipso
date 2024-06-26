@@ -1,8 +1,35 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * main.js
  */
+
+function onCartFormErrorSubmit(err) {
+  showAlert(openModal, {
+    status: 'error',
+    heading: 'Ошибка',
+    text: 'Не удалось отправить сообщение, попробуйте снова.'
+  });
+}
+
+function onCartFormSuccessSubmit(data) {
+  resetCartForm();
+  showCartResult({
+    heading: 'Заказ успешно оформлен',
+    text: 'Уведомления о заказе будут приходить на почту.',
+    buttonText: 'Войти в личный кабинет',
+    buttonHref: '#',
+  })
+}
+
 document.querySelectorAll('.cart').forEach((cartElement) => {
-  initCart(cartElement, openModal, showAlert);
+  const successCb = (typeof onCartFormSuccessSubmit !== 'undefined')
+    ? onCartFormSuccessSubmit
+    : null;
+
+  const errorCb = (typeof onCartFormErrorSubmit !== 'undefined')
+    ? onCartFormErrorSubmit
+    : null;
+
+  initCart(cartElement, openModal, showAlert, successCb, errorCb);
 });
 
 document.querySelectorAll('.reviews__list').forEach((listElement) => {
