@@ -26,7 +26,7 @@ mixin cart-form(isCheckout, isPromocodeApplied)
           +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='cart-form__item cart-form__item--name cart-form__item--wide')
           +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='cart-form__item cart-form__item--phone cart-form__item--wide')
           +text-field('Ваш e-mail:', 'email', 'email', '', 'E-mail', true)(class='cart-form__item cart-form__item--email cart-form__item--wide')
-      fieldset.cart-form__section.cart-form__section--checkout
+      fieldset.cart-form__section.cart-form__section--receiving.cart-form__section--checkout
         .cart-form__section-inner
           legend.cart-form__section-heading Выберите способ доставки
           ul.cart-form__radiobuttons-list.cart-form__radiobuttons-list--receiving

@@ -13,6 +13,7 @@ class Cart {
   formElement = null;
   #infoElement = null;
   #promocodeElement = null;
+  #receivingSectionInnerElement = null;
   #receivingRadiobuttonsElement = null;
   #receivingDeliveryGroupElement = null;
   #receivingPickupGroupElement = null;
@@ -238,10 +239,14 @@ class Cart {
   #onReceivingRadiobuttonsChange = ({ target }) => {
     if (target.closest('.cart-form__receiving-radiobutton--pickup')) {
       this.#receivingPickupGroupElement.classList.remove('cart-form__section-inner-group--hidden');
-      this.#receivingDeliveryGroupElement.classList.add('cart-form__section-inner-group--hidden');
+      this.#receivingDeliveryGroupElement.remove();
+
+      this.#initPristine();
     } else {
       this.#receivingPickupGroupElement.classList.add('cart-form__section-inner-group--hidden');
-      this.#receivingDeliveryGroupElement.classList.remove('cart-form__section-inner-group--hidden');
+
+      this.#receivingSectionInnerElement.appendChild(this.#receivingDeliveryGroupElement);
+      this.#initPristine();
     }
   };
 
@@ -295,9 +300,10 @@ class Cart {
     this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
     this.#chooseAllProductsButtonElement = this.formElement.querySelector('.cart-form__choose-all-button');
-    this.#receivingRadiobuttonsElement = this.formElement.querySelector('.cart-form__radiobuttons-list--receiving');
-    this.#receivingDeliveryGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--delivery');
-    this.#receivingPickupGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--pickup');
+    this.#receivingSectionInnerElement = this.formElement.querySelector('.cart-form__section--receiving .cart-form__section-inner');
+    this.#receivingRadiobuttonsElement = this.#receivingSectionInnerElement.querySelector('.cart-form__radiobuttons-list--receiving');
+    this.#receivingDeliveryGroupElement = this.#receivingSectionInnerElement.querySelector('.cart-form__section-inner-group--delivery');
+    this.#receivingPickupGroupElement = this.#receivingSectionInnerElement.querySelector('.cart-form__section-inner-group--pickup');
     this.#promocodeElement = this.#infoElement.querySelector('.cart-form__promocode');
     this.#submitButtonElement = this.formElement.querySelector('.cart-form__submit-button');
     this.#checkoutLinkElement = this.formElement.querySelector('.cart-form__checkout-link');
