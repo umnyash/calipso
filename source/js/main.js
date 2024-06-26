@@ -66,7 +66,6 @@ document.querySelectorAll('.video').forEach(initVideo);
 document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
-document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
 document.querySelectorAll('.profile-form').forEach((formElement) => {
   initProfileForm(formElement, sendData, openModal, showAlert);
 });
