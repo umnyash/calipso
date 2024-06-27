@@ -148,10 +148,6 @@ document.querySelectorAll('[data-modal="search"]').forEach((modalElement) => {
   initSearchModal(modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
 });
 
-document.querySelectorAll('[data-modal="phone-change"]').forEach((modalElement) => {
-  initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
-});
-
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 
 document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
@@ -163,7 +159,13 @@ document.querySelectorAll('.document-actions__button--print').forEach(initButton
 const signInModalElement = document.querySelector('[data-modal="sign-in"]');
 let signInModal;
 if (signInModalElement) {
-  signInModal = initSignInModal(signInModalElement, openModal, closeModal, showAlert);
+  signInModal = initSignInModal(signInModalElement, openModal, closeModal);
+}
+
+const phoneChangeModalElement = document.querySelector('[data-modal="phone-change"]');
+let phoneChangeModal;
+if (phoneChangeModalElement) {
+  phoneChangeModal = initPhoneChangeModal(phoneChangeModalElement, openModal, closeModal);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * */

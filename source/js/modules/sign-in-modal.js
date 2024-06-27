@@ -8,7 +8,6 @@ class SignInModal {
   #modalElement = null;
   #openModal = null;
   #closeModal = null;
-  #showAlert = null;
 
   #codeRequestFormElement = null;
   #codeRequestFormSubmitButton = null;
@@ -32,11 +31,10 @@ class SignInModal {
   #onCodeSendingFormSuccessSubmit = null;
   #onCodeSendingFormErrorSubmit = null;
 
-  constructor({ modalElement, openModal, closeModal, showAlert }) {
+  constructor({ modalElement, openModal, closeModal }) {
     this.#modalElement = modalElement;
     this.#openModal = openModal;
     this.#closeModal = closeModal;
-    this.#showAlert = showAlert;
   }
 
   setRequestCodeTimeInterval = (seconds) => {
@@ -237,19 +235,19 @@ class SignInModal {
     this.open();
   };
 
-  setCodeRequestSubmitHandlers = (onSuccess, onError) => {
+  setCodeRequestSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeRequestFormSuccessSubmit = onSuccess;
-    this.#onCodeRequestFormErrorSubmit = onError;
+    this.#onCodeRequestFormErrorSubmit = onFail;
   }
 
-  setCodeReRequestSubmitHandlers = (onSuccess, onError) => {
+  setCodeReRequestSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeReRequestFormSuccessSubmit = onSuccess;
-    this.#onCodeReRequestFormErrorSubmit = onError;
+    this.#onCodeReRequestFormErrorSubmit = onFail;
   }
 
-  setCodeSendingSubmitHandlers = (onSuccess, onError) => {
+  setCodeSendingSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeSendingFormSuccessSubmit = onSuccess;
-    this.#onCodeSendingFormErrorSubmit = onError;
+    this.#onCodeSendingFormErrorSubmit = onFail;
   }
 
   init() {
@@ -281,8 +279,8 @@ class SignInModal {
   }
 }
 
-function initSignInModal(modalElement, openModal, closeModal, showAlert) {
-  const signInModal = new SignInModal({ modalElement, openModal, closeModal, showAlert });
+function initSignInModal(modalElement, openModal, closeModal) {
+  const signInModal = new SignInModal({ modalElement, openModal, closeModal });
   signInModal.init();
 
   return signInModal;
