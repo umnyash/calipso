@@ -142,7 +142,7 @@ class SearchModal {
       }
       const data = await response.json();
       onSuccess(data);
-    } catch(err) {
+    } catch (err) {
       onFail();
     }
   };
@@ -192,17 +192,16 @@ class SearchModal {
     }
 
     this.#modalContentElement.classList.add('search-modal--with-result');
-    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
-    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
+    const actionUrl = this.#formElement.getAttribute('action');
 
     this.#sendData(
       actionUrl,
       new FormData(this.#formElement),
       (data) => {
         this.#resultElement.innerHTML = '';
-        const searchResult = data && searchResultMockData;
+        const searchResult = data && [];
 
-        if (!searchResult.products.length && !searchResult.articles.length) {
+        if (!searchResult?.products?.length && !searchResult?.articles?.length) {
           this.#resultElement.insertAdjacentHTML('beforeend', '<p class="search-modal__result-placeholder">По вашему запросу ничего не найдено</p>');
           return;
         }
