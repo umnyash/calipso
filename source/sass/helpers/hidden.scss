@@ -11,16 +11,6 @@
     }
   }
 
-  // &--m-l-d {
-  //   @media (max-width: ($tablet-width - 1)) {
-  //     display: none;
-  //   }
-
-  //   @media (min-width: $laptop-width) {
-  //     display: none;
-  //   }
-  // }
-
   &--m-t-d {
     @media (max-width: ($wide-desktop-width - 1)) {
       display: none;

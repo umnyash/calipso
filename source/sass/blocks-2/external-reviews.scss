@@ -29,10 +29,6 @@
 .external-reviews__heading {
   grid-column: 1 / -1;
   margin: 0;
-
-  @media (min-width: $desktop-width) {
-    // margin: 0 0 24px;
-  }
 }
 
 .external-reviews__list {
