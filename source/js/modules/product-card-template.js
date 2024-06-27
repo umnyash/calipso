@@ -31,7 +31,7 @@ function createProductCardTemplate(product, modificators) {
         <ul class="product-card__slider-list swiper-wrapper">
           ${product.images.map((image, index) => `
             <li class="product-card__slider-item swiper-slide">
-              <img class="product-card__image" src="${image}" srcset="${product.images2x[index]} 2x" alt="" loading="lazy"/>
+              <img class="product-card__image" src="${image}" alt="" loading="lazy"/>
             </li>
           `).join('')}
         </ul>

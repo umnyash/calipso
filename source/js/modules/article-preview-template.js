@@ -17,7 +17,7 @@ function createArticlePreviewTemplate(article, modificators) {
       </h3>
       <p class="article-preview__label">${article.type}</p>
       <picture class="article-preview__image-wrapper">
-        <img class="article-preview__image" src="${article.image}" srcset="${article.image2x} 2x" alt="" loading="lazy"/>
+        <img class="article-preview__image" src="${article.image}" alt="" loading="lazy"/>
       </picture>
       <time class="article-preview__date" datetime="${article.date}">${date}</time>
     </li>
