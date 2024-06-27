@@ -199,7 +199,7 @@ function createArticlePreviewTemplate(article, modificators) {
       </h3>
       <p class="article-preview__label">${article.type}</p>
       <picture class="article-preview__image-wrapper">
-        <img class="article-preview__image" src="${article.image}" srcset="${article.image2x} 2x" alt="" loading="lazy"/>
+        <img class="article-preview__image" src="${article.image}" alt="" loading="lazy"/>
       </picture>
       <time class="article-preview__date" datetime="${article.date}">${date}</time>
     </li>
@@ -1967,7 +1967,7 @@ function createProductCardTemplate(product, modificators) {
         <ul class="product-card__slider-list swiper-wrapper">
           ${product.images.map((image, index) => `
             <li class="product-card__slider-item swiper-slide">
-              <img class="product-card__image" src="${image}" srcset="${product.images2x[index]} 2x" alt="" loading="lazy"/>
+              <img class="product-card__image" src="${image}" alt="" loading="lazy"/>
             </li>
           `).join('')}
         </ul>
@@ -2584,7 +2584,6 @@ const searchResultMockData = {
       height: '60'
     },
     images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
-    images2x: ['img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp'],
     href: 'product.html',
     brand: 'Calligaris',
     brandHref: 'brand.html'
@@ -2602,7 +2601,6 @@ const searchResultMockData = {
       height: '60'
     },
     images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
-    images2x: ['img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp'],
     href: 'product.html',
     brand: 'Calligaris',
     brandHref: 'brand.html'
@@ -2620,7 +2618,6 @@ const searchResultMockData = {
       height: '60'
     },
     images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
-    images2x: ['img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp'],
     href: 'product.html',
     brand: 'Calligaris',
     brandHref: 'brand.html'
@@ -2638,7 +2635,6 @@ const searchResultMockData = {
       height: '60'
     },
     images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
-    images2x: ['img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp', 'img/products/product-1@2x.webp'],
     href: 'product.html',
     brand: 'Calligaris',
     brandHref: 'brand.html'
@@ -2656,7 +2652,6 @@ const searchResultMockData = {
       height: '60'
     },
     images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
-    images2x: ['img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp', 'img/products/product-2@2x.webp'],
     href: 'product.html',
     brand: 'Calligaris',
     brandHref: 'brand.html'
