@@ -152,10 +152,6 @@ document.querySelectorAll('[data-modal="phone-change"]').forEach((modalElement) 
   initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
 });
 
-document.querySelectorAll('[data-modal="sign-in"]').forEach((modalElement) => {
-  initSignInModal(modalElement, openModal, closeModal, showAlert);
-});
-
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 
 document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
@@ -163,5 +159,11 @@ document.querySelectorAll('[data-modal="cities"]').forEach((modalElement) => {
 });
 
 document.querySelectorAll('.document-actions__button--print').forEach(initButtonPrintPdf);
+
+const signInModalElement = document.querySelector('[data-modal="sign-in"]');
+let signInModal;
+if (signInModalElement) {
+  signInModal = initSignInModal(signInModalElement, openModal, closeModal, showAlert);
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * */

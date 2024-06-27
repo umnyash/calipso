@@ -3,7 +3,7 @@
  */
 class SignInModal {
   #submitButtonPendingStateClass = 'button--pending';
-  #requestCodeTimeInterval = 5; // Нужно увеличить интервал между запросами кода по номеру телефона
+  #requestCodeTimeInterval = 60; // Нужно увеличить интервал между запросами кода по номеру телефона
   #timer = 0;
   #modalElement = null;
   #openModal = null;
@@ -25,11 +25,22 @@ class SignInModal {
   #resendCodeTextElement = null;
   #resendCodeTextTimerElement = null;
 
+  #onCodeRequestFormSuccessSubmit = null;
+  #onCodeRequestFormErrorSubmit = null;
+  #onCodeReRequestFormSuccessSubmit = null;
+  #onCodeReRequestFormErrorSubmit = null;
+  #onCodeSendingFormSuccessSubmit = null;
+  #onCodeSendingFormErrorSubmit = null;
+
   constructor({ modalElement, openModal, closeModal, showAlert }) {
     this.#modalElement = modalElement;
     this.#openModal = openModal;
     this.#closeModal = closeModal;
     this.#showAlert = showAlert;
+  }
+
+  setRequestCodeTimeInterval = (seconds) => {
+    this.#requestCodeTimeInterval = seconds;
   }
 
   close = () => {
@@ -39,6 +50,14 @@ class SignInModal {
   open = () => {
     this.#openModal(this.#modalElement);
   };
+
+  resetCodeRequestForm = () => {
+    this.#codeRequestFormElement.reset();
+  }
+
+  resetCodeSendingForm = () => {
+    this.#codeSendingFormElement.reset();
+  }
 
   sendData = async (url, body, onSuccess, onFail, onFinally) => {
     try {
@@ -51,8 +70,8 @@ class SignInModal {
       }
       const data = await response.json();
       onSuccess(data);
-    } catch(err) {
-      onFail();
+    } catch (err) {
+      onFail(err);
     } finally {
       onFinally();
     }
@@ -64,7 +83,7 @@ class SignInModal {
   }
 
   #initPristine = () => {
-    this.#codeRequestFormPristine = new Pristine(this.#codeRequestFormElement , {
+    this.#codeRequestFormPristine = new Pristine(this.#codeRequestFormElement, {
       classTo: 'modal-form__item',
       errorClass: 'invalid',
       errorTextParent: 'modal-form__item',
@@ -72,7 +91,7 @@ class SignInModal {
       errorTextClass: 'prompt-text',
     });
 
-    this.#codeSendingFormPristine = new Pristine(this.#codeSendingFormElement , {
+    this.#codeSendingFormPristine = new Pristine(this.#codeSendingFormElement, {
       classTo: 'modal-form__item',
       errorClass: 'invalid',
       errorTextParent: 'modal-form__item',
@@ -87,21 +106,23 @@ class SignInModal {
   };
 
   startWaitingForResend = () => {
-    this.#timer = this.#requestCodeTimeInterval;
-    this.#resendCodeTextTimerElement.textContent = this.#timer;
-
-    const timerId = setInterval(() => {
-      this.#timer--;
+    if (this.#timer <= 0) {
+      this.#timer = this.#requestCodeTimeInterval;
       this.#resendCodeTextTimerElement.textContent = this.#timer;
 
-      if (this.#timer <= 0) {
-        clearInterval(timerId);
-        this.finishWaitingForResend();
-      }
-    }, 1000);
+      const timerId = setInterval(() => {
+        this.#timer--;
+        this.#resendCodeTextTimerElement.textContent = this.#timer;
 
-    this.#resendCodeButtonElement.remove();
-    this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+        if (this.#timer <= 0) {
+          clearInterval(timerId);
+          this.finishWaitingForResend();
+        }
+      }, 1000);
+
+      this.#resendCodeButtonElement.remove();
+      this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+    }
   };
 
   goToCodeRequestForm = () => {
@@ -139,36 +160,30 @@ class SignInModal {
   #onCodeRequestFormSubmit = (evt) => {
     evt.preventDefault();
 
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
-    const isValid = this.#codeRequestFormPristine.validate();
-
-    if (isValid) {
-      this.#codeRequestFormSubmitButton.disabled = true;
-      this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
-
-      this.sendData(
-        actionUrl,
-        new FormData(evt.target),
-        () => {
-          this.goToCodeSendingForm();
-        },
-        () => {
-          this.close();
-
-          this.#showAlert(this.#openModal, {
-            status: 'error',
-            heading: 'Ошибка',
-            text: 'Не удалось получить код, попробуйте снова.'
-          });
-        },
-        () => {
-          this.#codeRequestFormSubmitButton.disabled = false;
-          this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
-        }
-      );
+    if (this.#timer > 0) {
+      this.goToCodeSendingForm();
     } else {
-      this.#modalElement.classList.remove('modal--error');
-      setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      const actionUrl = this.#codeRequestFormElement.getAttribute('action');
+      const isValid = this.#codeRequestFormPristine.validate();
+
+      if (isValid) {
+        this.#codeRequestFormSubmitButton.disabled = true;
+        this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
+
+        this.sendData(
+          actionUrl,
+          new FormData(evt.target),
+          this.#onCodeRequestFormSuccessSubmit,
+          this.#onCodeRequestFormErrorSubmit,
+          () => {
+            this.#codeRequestFormSubmitButton.disabled = false;
+            this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
+          }
+        );
+      } else {
+        this.#modalElement.classList.remove('modal--error');
+        setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      }
     }
   };
 
@@ -177,25 +192,13 @@ class SignInModal {
     evt.preventDefault();
 
     this.#resendCodeButtonElement.disabled = true;
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
+    const actionUrl = this.#codeRequestFormElement.getAttribute('action');
 
     this.sendData(
       actionUrl,
       new FormData(this.#codeRequestFormElement),
-      () => {
-        this.startWaitingForResend();
-
-        this.#showAlert(this.#openModal, {
-          heading: 'Код отправлен повторно',
-        });
-      },
-      () => {
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось получить код, попробуйте снова.'
-        });
-      },
+      this.#onCodeReRequestFormSuccessSubmit,
+      this.#onCodeReRequestFormErrorSubmit,
       () => {
         this.#resendCodeButtonElement.disabled = false;
       }
@@ -206,7 +209,7 @@ class SignInModal {
   #onCodeSendingFormSubmit = (evt) => {
     evt.preventDefault();
 
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
+    const actionUrl = this.#codeSendingFormElement.getAttribute('action');
     const isValid = this.#codeSendingFormPristine.validate();
 
     if (isValid) {
@@ -216,19 +219,8 @@ class SignInModal {
       this.sendData(
         actionUrl,
         new FormData(evt.target),
-        () => {
-          this.#codeRequestFormElement.reset();
-          this.#codeSendingFormElement.reset();
-          this.close();
-          this.goToCodeRequestForm();
-        },
-        () => {
-          this.#showAlert(this.#openModal, {
-            status: 'error',
-            heading: 'Ошибка',
-            text: 'Не удалось подтвердить код, попробуйте снова.'
-          });
-        },
+        this.#onCodeSendingFormSuccessSubmit,
+        this.#onCodeSendingFormErrorSubmit,
         () => {
           this.#codeSendingFormSubmitButton.disabled = false;
           this.#codeSendingFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
@@ -244,6 +236,21 @@ class SignInModal {
     evt.preventDefault();
     this.open();
   };
+
+  setCodeRequestSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeRequestFormErrorSubmit = onError;
+  }
+
+  setCodeReRequestSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeReRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeReRequestFormErrorSubmit = onError;
+  }
+
+  setCodeSendingSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeSendingFormSuccessSubmit = onSuccess;
+    this.#onCodeSendingFormErrorSubmit = onError;
+  }
 
   init() {
     this.#codeRequestFormElement = this.#modalElement.querySelector('.modal-form__form--code-request');
@@ -275,9 +282,9 @@ class SignInModal {
 }
 
 function initSignInModal(modalElement, openModal, closeModal, showAlert) {
-  const phoneChangeModal = new SignInModal({ modalElement, openModal, closeModal, showAlert});
-  phoneChangeModal.init();
+  const signInModal = new SignInModal({ modalElement, openModal, closeModal, showAlert });
+  signInModal.init();
 
-  return phoneChangeModal;
+  return signInModal;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
