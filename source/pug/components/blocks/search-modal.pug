@@ -2,7 +2,7 @@ mixin search-modal(isEmpty)
   section.search-modal(class= isEmpty ? '' : 'search-modal--with-result')&attributes(attributes)
     .search-modal__inner
       h2.visually-hidden Поиск по сайту
-      +search-form('Поиск', 'query', 'Поиск')(class='search-modal__form')
+      +search-form('Поиск', 'query', 'Поиск', true)(class='search-modal__form')
       ul.search-modal__popular-list
         li.search-modal__popular-list-item
           a.search-modal__popular-list-link(href='#') Диван

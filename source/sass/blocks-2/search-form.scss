@@ -1,7 +1,45 @@
+.search-form {
+  position: relative;
+}
+
 .search-form__field {
   width: 100%;
 }
 
 .search-form .text-field__control:not(:placeholder-shown) + .text-field__clear-button {
   display: grid;
+}
+
+.search-form__submit-button {
+  position: absolute;
+  top: 0;
+  right: 24px;
+  bottom: 0;
+  padding: 0;
+  border: none;
+  color: var(--text-weak-color-light);
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-color);
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    width: 24px;
+    height: 24px;
+    background: currentColor;
+    mask: url("../img/icons.svg#shortcuts_search");
+
+    @media (min-width: $wide-desktop-width) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.search-form--with-submit-button .text-field--search .text-field__control-wrapper::after {
+  visibility: hidden;
 }
