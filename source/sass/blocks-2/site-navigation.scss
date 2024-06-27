@@ -278,8 +278,8 @@
 
 .site-navigation__middle-list > .site-navigation__item {
   @media (min-width: $laptop-width) {
-    display: inline-block;
     padding-bottom: 40px;
+    break-inside: avoid;
   }
 
   @media (min-width: $wide-desktop-width) {
