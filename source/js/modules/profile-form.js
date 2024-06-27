@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * profile-form.js
  */
-function initProfileForm(formElement, sendData, openModal, showAlert) {
+function initProfileForm(formElement, sendData, openModal, showAlert, onProfileFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
 
   const nameFieldElement = formElement.querySelector('.profile-form__item--name .text-field__control');
@@ -111,6 +111,14 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
     submitButtonElement.disabled = !isFieldValuesChanged();
   });
 
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Данные успешно обновлены',
+    });
+  };
+
+  const successCb = onProfileFormSuccessSubmit ?? successDefaultCb;
+
   formElement.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
@@ -123,11 +131,9 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
       sendData(
         actionUrl,
         new FormData(evt.target),
-        () => {
+        (data) => {
           currentFieldValues = getAllFieldValues();
-          showAlert(openModal, {
-            heading: 'Данные успешно обновлены',
-          });
+          successCb(data);
         },
         () => {
           showAlert(openModal, {

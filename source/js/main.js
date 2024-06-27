@@ -48,8 +48,13 @@ document.querySelectorAll('.video').forEach(initVideo);
 document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
+
 document.querySelectorAll('.profile-form').forEach((formElement) => {
-  initProfileForm(formElement, sendData, openModal, showAlert);
+  const successCb = (typeof onProfileFormSuccessSubmit !== 'undefined')
+    ? onProfileFormSuccessSubmit
+    : null;
+
+  initProfileForm(formElement, sendData, openModal, showAlert, successCb);
 });
 
 document.querySelectorAll('.feedback-form').forEach((formElement) => {
