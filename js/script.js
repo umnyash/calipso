@@ -1675,12 +1675,11 @@ function initOneClickModal(modalElement, sendData, openModal, closeModal, showAl
  */
 class PhoneChangeModal {
   #submitButtonPendingStateClass = 'button--pending';
-  #requestCodeTimeInterval = 5; // Нужно увеличить интервал между запросами кода по номеру телефона
+  #requestCodeTimeInterval = 60;
   #timer = 0;
   #modalElement = null;
   #openModal = null;
   #closeModal = null;
-  #showAlert = null;
   #externalPhoneFieldElement = null;
   #externalPhoneTextElement = null;
   #codeRequestFormElement = null;
@@ -1696,22 +1695,44 @@ class PhoneChangeModal {
   #resendCodeButtonElement = null;
   #resendCodeTextElement = null;
   #resendCodeTextTimerElement = null;
+  #onCodeRequestFormSuccessSubmit = null;
+  #onCodeRequestFormErrorSubmit = null;
+  #onCodeReRequestFormSuccessSubmit = null;
+  #onCodeReRequestFormErrorSubmit = null;
+  #onCodeSendingFormSuccessSubmit = null;
+  #onCodeSendingFormErrorSubmit = null;
   constructor({
     modalElement,
     openModal,
-    closeModal,
-    showAlert
+    closeModal
   }) {
     this.#modalElement = modalElement;
     this.#openModal = openModal;
     this.#closeModal = closeModal;
-    this.#showAlert = showAlert;
   }
+  setRequestCodeTimeInterval = seconds => {
+    this.#requestCodeTimeInterval = seconds;
+  };
   close = () => {
     this.#closeModal(this.#modalElement);
   };
   open = () => {
     this.#openModal(this.#modalElement);
+  };
+  setExternalPhone = phoneNumber => {
+    if (this.#externalPhoneFieldElement) {
+      this.#externalPhoneFieldElement.value = phoneNumber;
+    }
+    if (this.#externalPhoneTextElement) {
+      this.#externalPhoneTextElement.textContent = phoneNumber;
+    }
+  };
+  getPhoneFieldValue = () => this.#phoneFieldElement.value;
+  resetCodeRequestForm = () => {
+    this.#codeRequestFormElement.reset();
+  };
+  resetCodeSendingForm = () => {
+    this.#codeSendingFormElement.reset();
   };
   sendData = async (url, body, onSuccess, onFail, onFinally) => {
     try {
@@ -1725,7 +1746,7 @@ class PhoneChangeModal {
       const data = await response.json();
       onSuccess(data);
     } catch (err) {
-      onFail();
+      onFail(err);
     } finally {
       onFinally();
     }
@@ -1755,18 +1776,20 @@ class PhoneChangeModal {
     this.#resendCodeTextElement.remove();
   };
   startWaitingForResend = () => {
-    this.#timer = this.#requestCodeTimeInterval;
-    this.#resendCodeTextTimerElement.textContent = this.#timer;
-    const timerId = setInterval(() => {
-      this.#timer--;
+    if (this.#timer <= 0) {
+      this.#timer = this.#requestCodeTimeInterval;
       this.#resendCodeTextTimerElement.textContent = this.#timer;
-      if (this.#timer <= 0) {
-        clearInterval(timerId);
-        this.finishWaitingForResend();
-      }
-    }, 1000);
-    this.#resendCodeButtonElement.remove();
-    this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+      const timerId = setInterval(() => {
+        this.#timer--;
+        this.#resendCodeTextTimerElement.textContent = this.#timer;
+        if (this.#timer <= 0) {
+          clearInterval(timerId);
+          this.finishWaitingForResend();
+        }
+      }, 1000);
+      this.#resendCodeButtonElement.remove();
+      this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+    }
   };
   goToCodeRequestForm = () => {
     this.#codeRequestFormElement.classList.remove('modal-form__form--hidden');
@@ -1798,27 +1821,22 @@ class PhoneChangeModal {
   // Обработчик отправки формы запроса кода
   #onCodeRequestFormSubmit = evt => {
     evt.preventDefault();
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
-    const isValid = this.#codeRequestFormPristine.validate();
-    if (isValid) {
-      this.#codeRequestFormSubmitButton.disabled = true;
-      this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
-      this.sendData(actionUrl, new FormData(evt.target), () => {
-        this.goToCodeSendingForm();
-      }, () => {
-        this.close();
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось получить код, попробуйте снова.'
-        });
-      }, () => {
-        this.#codeRequestFormSubmitButton.disabled = false;
-        this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
-      });
+    if (this.#timer > 0) {
+      this.goToCodeSendingForm();
     } else {
-      this.#modalElement.classList.remove('modal--error');
-      setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      const actionUrl = this.#codeRequestFormElement.getAttribute('action');
+      const isValid = this.#codeRequestFormPristine.validate();
+      if (isValid) {
+        this.#codeRequestFormSubmitButton.disabled = true;
+        this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
+        this.sendData(actionUrl, new FormData(evt.target), this.#onCodeRequestFormSuccessSubmit, this.#onCodeRequestFormErrorSubmit, () => {
+          this.#codeRequestFormSubmitButton.disabled = false;
+          this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
+        });
+      } else {
+        this.#modalElement.classList.remove('modal--error');
+        setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      }
     }
   };
 
@@ -1826,20 +1844,8 @@ class PhoneChangeModal {
   #onResendCodeButtonClick = evt => {
     evt.preventDefault();
     this.#resendCodeButtonElement.disabled = true;
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
-
-    this.sendData(actionUrl, new FormData(this.#codeRequestFormElement), () => {
-      this.startWaitingForResend();
-      this.#showAlert(this.#openModal, {
-        heading: 'Код отправлен повторно'
-      });
-    }, () => {
-      this.#showAlert(this.#openModal, {
-        status: 'error',
-        heading: 'Ошибка',
-        text: 'Не удалось получить код, попробуйте снова.'
-      });
-    }, () => {
+    const actionUrl = this.#codeRequestFormElement.getAttribute('action');
+    this.sendData(actionUrl, new FormData(this.#codeRequestFormElement), this.#onCodeReRequestFormSuccessSubmit, this.#onCodeReRequestFormErrorSubmit, () => {
       this.#resendCodeButtonElement.disabled = false;
     });
   };
@@ -1847,34 +1853,12 @@ class PhoneChangeModal {
   // Обработчик отправки формы подтверждения
   #onCodeSendingFormSubmit = evt => {
     evt.preventDefault();
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
+    const actionUrl = this.#codeSendingFormElement.getAttribute('action');
     const isValid = this.#codeSendingFormPristine.validate();
     if (isValid) {
       this.#codeSendingFormSubmitButton.disabled = true;
       this.#codeSendingFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
-      this.sendData(actionUrl, new FormData(evt.target), () => {
-        const newPhoneNumber = this.#phoneFieldElement.value;
-        this.#codeRequestFormElement.reset();
-        this.#codeSendingFormElement.reset();
-        this.close();
-        this.goToCodeRequestForm();
-        this.#showAlert(this.#openModal, {
-          heading: 'Телефон успешно изменен',
-          buttonText: 'Принять'
-        });
-        if (this.#externalPhoneFieldElement) {
-          this.#externalPhoneFieldElement.value = newPhoneNumber;
-        }
-        if (this.#externalPhoneTextElement) {
-          this.#externalPhoneTextElement.textContent = newPhoneNumber;
-        }
-      }, () => {
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось подтвердить код, попробуйте снова.'
-        });
-      }, () => {
+      this.sendData(actionUrl, new FormData(evt.target), this.#onCodeSendingFormSuccessSubmit, this.#onCodeSendingFormErrorSubmit, () => {
         this.#codeSendingFormSubmitButton.disabled = false;
         this.#codeSendingFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
       });
@@ -1886,6 +1870,18 @@ class PhoneChangeModal {
   #onOpenerElementClick = evt => {
     evt.preventDefault();
     this.open();
+  };
+  setCodeRequestSubmitHandlers = (onSuccess, onFail) => {
+    this.#onCodeRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeRequestFormErrorSubmit = onFail;
+  };
+  setCodeReRequestSubmitHandlers = (onSuccess, onFail) => {
+    this.#onCodeReRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeReRequestFormErrorSubmit = onFail;
+  };
+  setCodeSendingSubmitHandlers = (onSuccess, onFail) => {
+    this.#onCodeSendingFormSuccessSubmit = onSuccess;
+    this.#onCodeSendingFormErrorSubmit = onFail;
   };
   init() {
     this.#externalPhoneFieldElement = document.querySelector('.profile-form__item--phone .text-field__control');
@@ -1912,12 +1908,11 @@ class PhoneChangeModal {
     });
   }
 }
-function initPhoneChangeModal(modalElement, openModal, closeModal, showAlert) {
+function initPhoneChangeModal(modalElement, openModal, closeModal) {
   const phoneChangeModal = new PhoneChangeModal({
     modalElement,
     openModal,
-    closeModal,
-    showAlert
+    closeModal
   });
   phoneChangeModal.init();
   return phoneChangeModal;
@@ -2139,7 +2134,7 @@ function initProducts(productsElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * profile-form.js
  */
-function initProfileForm(formElement, sendData, openModal, showAlert) {
+function initProfileForm(formElement, sendData, openModal, showAlert, onProfileFormSuccessSubmit) {
   const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
   const nameFieldElement = formElement.querySelector('.profile-form__item--name .text-field__control');
   const surnameFieldElement = formElement.querySelector('.profile-form__item--surname .text-field__control');
@@ -2227,17 +2222,22 @@ function initProfileForm(formElement, sendData, openModal, showAlert) {
   formElement.addEventListener('input', () => {
     submitButtonElement.disabled = !isFieldValuesChanged();
   });
+  function successDefaultCb() {
+    showAlert(openModal, {
+      heading: 'Данные успешно обновлены'
+    });
+  }
+  ;
+  const successCb = onProfileFormSuccessSubmit ?? successDefaultCb;
   formElement.addEventListener('submit', evt => {
     evt.preventDefault();
     const isValid = pristine.validate();
     if (isValid) {
       submitButtonElement.disabled = true;
       submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
-      sendData(actionUrl, new FormData(evt.target), () => {
+      sendData(actionUrl, new FormData(evt.target), data => {
         currentFieldValues = getAllFieldValues();
-        showAlert(openModal, {
-          heading: 'Данные успешно обновлены'
-        });
+        successCb(data);
       }, () => {
         showAlert(openModal, {
           status: 'error',
@@ -2748,13 +2748,11 @@ class SearchModal {
       return;
     }
     this.#modalContentElement.classList.add('search-modal--with-result');
-    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
-    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
-
+    const actionUrl = this.#formElement.getAttribute('action');
     this.#sendData(actionUrl, new FormData(this.#formElement), data => {
       this.#resultElement.innerHTML = '';
-      const searchResult = data && searchResultMockData;
-      if (!searchResult.products.length && !searchResult.articles.length) {
+      const searchResult = data && [];
+      if (!searchResult?.products?.length && !searchResult?.articles?.length) {
         this.#resultElement.insertAdjacentHTML('beforeend', '<p class="search-modal__result-placeholder">По вашему запросу ничего не найдено</p>');
         return;
       }
@@ -2853,7 +2851,6 @@ class SignInModal {
   #modalElement = null;
   #openModal = null;
   #closeModal = null;
-  #showAlert = null;
   #codeRequestFormElement = null;
   #codeRequestFormSubmitButton = null;
   #codeRequestFormPristine = null;
@@ -2876,13 +2873,11 @@ class SignInModal {
   constructor({
     modalElement,
     openModal,
-    closeModal,
-    showAlert
+    closeModal
   }) {
     this.#modalElement = modalElement;
     this.#openModal = openModal;
     this.#closeModal = closeModal;
-    this.#showAlert = showAlert;
   }
   setRequestCodeTimeInterval = seconds => {
     this.#requestCodeTimeInterval = seconds;
@@ -3036,17 +3031,17 @@ class SignInModal {
     evt.preventDefault();
     this.open();
   };
-  setCodeRequestSubmitHandlers = (onSuccess, onError) => {
+  setCodeRequestSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeRequestFormSuccessSubmit = onSuccess;
-    this.#onCodeRequestFormErrorSubmit = onError;
+    this.#onCodeRequestFormErrorSubmit = onFail;
   };
-  setCodeReRequestSubmitHandlers = (onSuccess, onError) => {
+  setCodeReRequestSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeReRequestFormSuccessSubmit = onSuccess;
-    this.#onCodeReRequestFormErrorSubmit = onError;
+    this.#onCodeReRequestFormErrorSubmit = onFail;
   };
-  setCodeSendingSubmitHandlers = (onSuccess, onError) => {
+  setCodeSendingSubmitHandlers = (onSuccess, onFail) => {
     this.#onCodeSendingFormSuccessSubmit = onSuccess;
-    this.#onCodeSendingFormErrorSubmit = onError;
+    this.#onCodeSendingFormErrorSubmit = onFail;
   };
   init() {
     this.#codeRequestFormElement = this.#modalElement.querySelector('.modal-form__form--code-request');
@@ -3071,12 +3066,11 @@ class SignInModal {
     });
   }
 }
-function initSignInModal(modalElement, openModal, closeModal, showAlert) {
+function initSignInModal(modalElement, openModal, closeModal) {
   const signInModal = new SignInModal({
     modalElement,
     openModal,
-    closeModal,
-    showAlert
+    closeModal
   });
   signInModal.init();
   return signInModal;
@@ -3749,7 +3743,8 @@ document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
 document.querySelectorAll('.profile-form').forEach(formElement => {
-  initProfileForm(formElement, sendData, openModal, showAlert);
+  const successCb = typeof onProfileFormSuccessSubmit !== 'undefined' ? onProfileFormSuccessSubmit : null;
+  initProfileForm(formElement, sendData, openModal, showAlert, successCb);
 });
 document.querySelectorAll('.feedback-form').forEach(formElement => {
   const cb = typeof onFeedbackFormSuccessSubmit !== 'undefined' ? onFeedbackFormSuccessSubmit : null;
@@ -3805,9 +3800,6 @@ document.querySelectorAll('.project').forEach(projetcElement => {
 document.querySelectorAll('[data-modal="search"]').forEach(modalElement => {
   initSearchModal(modalElement, openModal, createProductCardTemplate, initProductCard, createArticlePreviewTemplate);
 });
-document.querySelectorAll('[data-modal="phone-change"]').forEach(modalElement => {
-  initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
-});
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 document.querySelectorAll('[data-modal="cities"]').forEach(modalElement => {
   initCitiesModal(modalElement, initScrollContainer, openModal);
@@ -3816,7 +3808,12 @@ document.querySelectorAll('.document-actions__button--print').forEach(initButton
 const signInModalElement = document.querySelector('[data-modal="sign-in"]');
 let signInModal;
 if (signInModalElement) {
-  signInModal = initSignInModal(signInModalElement, openModal, closeModal, showAlert);
+  signInModal = initSignInModal(signInModalElement, openModal, closeModal);
+}
+const phoneChangeModalElement = document.querySelector('[data-modal="phone-change"]');
+let phoneChangeModal;
+if (phoneChangeModalElement) {
+  phoneChangeModal = initPhoneChangeModal(phoneChangeModalElement, openModal, closeModal);
 }
 
 /* * * * * * * * * * * * * * * * * * * * * * * */
