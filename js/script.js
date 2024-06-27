@@ -304,17 +304,44 @@ function initButtonPrintPdf(buttonElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * cart.js
  */
+
+function showCartResult({
+  heading,
+  text,
+  buttonText,
+  buttonHref
+}) {
+  const cartInnerElement = document.querySelector('.cart__inner');
+  cartInnerElement.querySelector('.cart__heading').remove();
+  cartInnerElement.querySelector('.cart__form').remove();
+  cartInnerElement.insertAdjacentHTML('beforeend', `
+    <div class="cart-result">
+      <div class="cart-result__inner container">
+        <h1 class="cart-result__heading heading">${heading}</h1>
+        <p class="cart-result__text">${text}</p>
+        <a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>
+      </div>
+    </div>
+  `);
+}
+function resetCartForm() {
+  const formElement = document.querySelector('.cart-form');
+  formElement.reset();
+}
 class Cart {
   #siteHeaderElement = null;
   #cartElement = null;
   #openModal = null;
   #showAlert = null;
+  #onCartFormSuccessSubmit = null;
+  #onCartFormErrorSubmit = null;
   #heading = null;
   #boxElement = null;
   #cartInnerElement = null;
   formElement = null;
   #infoElement = null;
   #promocodeElement = null;
+  #receivingSectionInnerElement = null;
   #receivingRadiobuttonsElement = null;
   #receivingDeliveryGroupElement = null;
   #receivingPickupGroupElement = null;
@@ -327,11 +354,15 @@ class Cart {
   constructor({
     cartElement,
     openModal,
-    showAlert
+    showAlert,
+    onCartFormSuccessSubmit,
+    onCartFormErrorSubmit
   }) {
     this.#cartElement = cartElement;
     this.#openModal = openModal;
     this.#showAlert = showAlert;
+    this.#onCartFormSuccessSubmit = onCartFormSuccessSubmit;
+    this.#onCartFormErrorSubmit = onCartFormErrorSubmit;
     this.formElement = this.#cartElement.querySelector('.cart-form');
     this.#heading = this.#cartElement.querySelector('.page-heading .heading');
   }
@@ -347,7 +378,7 @@ class Cart {
       const data = await response.json();
       onSuccess(data);
     } catch (err) {
-      onFail();
+      onFail(err);
     } finally {
       onFinally();
     }
@@ -375,13 +406,19 @@ class Cart {
     this.#cartInnerElement.querySelector('.cart__heading').remove();
     this.formElement.remove();
   };
-  showResult = orderNumber => {
+  showResult = ({
+    heading,
+    text,
+    buttonText,
+    buttonHref
+  }) => {
     this.#clearCart();
     this.#cartInnerElement.insertAdjacentHTML('beforeend', `
       <div class="cart-result">
         <div class="cart-result__inner container">
-          <h1 class="cart-result__heading heading">Заказ № ${orderNumber} успешно оформлен!</h1>
-          <p class="cart-result__text">Уведомления о&nbsp;заказе будут приходить на&nbsp;почту. Более подробно следить за&nbsp;состоянием заказа вы&nbsp;сможете через личный кабинет:</p><a class="button cart-result__button button--primary" href="#!">Войти в личный кабинет</a>
+          <h1 class="cart-result__heading heading">${heading}</h1>
+          <p class="cart-result__text">${text}</p>
+          <a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>
         </div>
       </div>
     `);
@@ -509,33 +546,44 @@ class Cart {
   }) => {
     if (target.closest('.cart-form__receiving-radiobutton--pickup')) {
       this.#receivingPickupGroupElement.classList.remove('cart-form__section-inner-group--hidden');
-      this.#receivingDeliveryGroupElement.classList.add('cart-form__section-inner-group--hidden');
+      this.#receivingDeliveryGroupElement.remove();
+      this.#initPristine();
     } else {
       this.#receivingPickupGroupElement.classList.add('cart-form__section-inner-group--hidden');
-      this.#receivingDeliveryGroupElement.classList.remove('cart-form__section-inner-group--hidden');
+      this.#receivingSectionInnerElement.appendChild(this.#receivingDeliveryGroupElement);
+      this.#initPristine();
     }
+  };
+  #successDefaultCb = () => {
+    resetCartForm();
+    showCartResult({
+      heading: 'Heading',
+      text: 'text',
+      buttonText: 'button',
+      buttonHref: '#'
+    });
+  };
+  #errorDefaultCb = () => {
+    this.#showAlert(this.#openModal, {
+      status: 'error',
+      heading: 'Ошибка',
+      text: 'Текст ошибки.'
+    });
   };
   #onFormSubmit = evt => {
     evt.preventDefault();
     const SUBMIT_BUTTON_PENDING_STATE_CLASS = 'button--pending';
     const isValid = this.#pristine.validate();
-
-    // const actionUrl = this.#formElement.getAttribute('action'); // url можно задать в атрибуте формы и брать оттуда
-    const actionUrl = 'https://fakestoreapi.com/products'; // Либо задать здесь. Пока не решил как делать.
-
+    const actionUrl = this.formElement.getAttribute('action');
     if (isValid) {
       this.#submitButtonElement.disabled = true;
       this.#submitButtonElement.classList.add(SUBMIT_BUTTON_PENDING_STATE_CLASS);
       this.#sendData(actionUrl, new FormData(evt.target), data => {
-        this.formElement.reset();
-        const orderNumber = data.number || '45678'; // Нужно будет удалить "|| '45678'"
-        this.showResult(orderNumber);
-      }, () => {
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось отправить сообщение, попробуйте снова.'
-        });
+        const successCb = this.#onCartFormSuccessSubmit ?? this.#successDefaultCb;
+        successCb(data);
+      }, err => {
+        const errorCb = this.#onCartFormErrorSubmit ?? this.#errorDefaultCb;
+        errorCb(err);
       }, () => {
         this.#submitButtonElement.disabled = false;
         this.#submitButtonElement.classList.remove(SUBMIT_BUTTON_PENDING_STATE_CLASS);
@@ -555,9 +603,10 @@ class Cart {
     this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
     this.#infoElement = this.formElement.querySelector('.cart-form__info');
     this.#chooseAllProductsButtonElement = this.formElement.querySelector('.cart-form__choose-all-button');
-    this.#receivingRadiobuttonsElement = this.formElement.querySelector('.cart-form__radiobuttons-list--receiving');
-    this.#receivingDeliveryGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--delivery');
-    this.#receivingPickupGroupElement = this.formElement.querySelector('.cart-form__section-inner-group--pickup');
+    this.#receivingSectionInnerElement = this.formElement.querySelector('.cart-form__section--receiving .cart-form__section-inner');
+    this.#receivingRadiobuttonsElement = this.#receivingSectionInnerElement.querySelector('.cart-form__radiobuttons-list--receiving');
+    this.#receivingDeliveryGroupElement = this.#receivingSectionInnerElement.querySelector('.cart-form__section-inner-group--delivery');
+    this.#receivingPickupGroupElement = this.#receivingSectionInnerElement.querySelector('.cart-form__section-inner-group--pickup');
     this.#promocodeElement = this.#infoElement.querySelector('.cart-form__promocode');
     this.#submitButtonElement = this.formElement.querySelector('.cart-form__submit-button');
     this.#checkoutLinkElement = this.formElement.querySelector('.cart-form__checkout-link');
@@ -575,11 +624,13 @@ class Cart {
     this.#toggleCartInfoStickiness();
   }
 }
-function initCart(cartElement, openModal, showAlert) {
+function initCart(cartElement, openModal, showAlert, onCartFormSuccessSubmit, onCartFormErrorSubmit) {
   const cart = new Cart({
     cartElement,
     openModal,
-    showAlert
+    showAlert,
+    onCartFormSuccessSubmit,
+    onCartFormErrorSubmit
   });
   if (cart.formElement) {
     cart.initForm();
@@ -2797,7 +2848,7 @@ function initSelectionSlider(sliderElement) {
  */
 class SignInModal {
   #submitButtonPendingStateClass = 'button--pending';
-  #requestCodeTimeInterval = 5; // Нужно увеличить интервал между запросами кода по номеру телефона
+  #requestCodeTimeInterval = 60; // Нужно увеличить интервал между запросами кода по номеру телефона
   #timer = 0;
   #modalElement = null;
   #openModal = null;
@@ -2816,6 +2867,12 @@ class SignInModal {
   #resendCodeButtonElement = null;
   #resendCodeTextElement = null;
   #resendCodeTextTimerElement = null;
+  #onCodeRequestFormSuccessSubmit = null;
+  #onCodeRequestFormErrorSubmit = null;
+  #onCodeReRequestFormSuccessSubmit = null;
+  #onCodeReRequestFormErrorSubmit = null;
+  #onCodeSendingFormSuccessSubmit = null;
+  #onCodeSendingFormErrorSubmit = null;
   constructor({
     modalElement,
     openModal,
@@ -2827,11 +2884,20 @@ class SignInModal {
     this.#closeModal = closeModal;
     this.#showAlert = showAlert;
   }
+  setRequestCodeTimeInterval = seconds => {
+    this.#requestCodeTimeInterval = seconds;
+  };
   close = () => {
     this.#closeModal(this.#modalElement);
   };
   open = () => {
     this.#openModal(this.#modalElement);
+  };
+  resetCodeRequestForm = () => {
+    this.#codeRequestFormElement.reset();
+  };
+  resetCodeSendingForm = () => {
+    this.#codeSendingFormElement.reset();
   };
   sendData = async (url, body, onSuccess, onFail, onFinally) => {
     try {
@@ -2845,7 +2911,7 @@ class SignInModal {
       const data = await response.json();
       onSuccess(data);
     } catch (err) {
-      onFail();
+      onFail(err);
     } finally {
       onFinally();
     }
@@ -2875,18 +2941,20 @@ class SignInModal {
     this.#resendCodeTextElement.remove();
   };
   startWaitingForResend = () => {
-    this.#timer = this.#requestCodeTimeInterval;
-    this.#resendCodeTextTimerElement.textContent = this.#timer;
-    const timerId = setInterval(() => {
-      this.#timer--;
+    if (this.#timer <= 0) {
+      this.#timer = this.#requestCodeTimeInterval;
       this.#resendCodeTextTimerElement.textContent = this.#timer;
-      if (this.#timer <= 0) {
-        clearInterval(timerId);
-        this.finishWaitingForResend();
-      }
-    }, 1000);
-    this.#resendCodeButtonElement.remove();
-    this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+      const timerId = setInterval(() => {
+        this.#timer--;
+        this.#resendCodeTextTimerElement.textContent = this.#timer;
+        if (this.#timer <= 0) {
+          clearInterval(timerId);
+          this.finishWaitingForResend();
+        }
+      }, 1000);
+      this.#resendCodeButtonElement.remove();
+      this.#codeSendingFormFooterElement.prepend(this.#resendCodeTextElement);
+    }
   };
   goToCodeRequestForm = () => {
     this.#codeRequestFormElement.classList.remove('modal-form__form--hidden');
@@ -2918,27 +2986,22 @@ class SignInModal {
   // Обработчик отправки формы запроса кода
   #onCodeRequestFormSubmit = evt => {
     evt.preventDefault();
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
-    const isValid = this.#codeRequestFormPristine.validate();
-    if (isValid) {
-      this.#codeRequestFormSubmitButton.disabled = true;
-      this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
-      this.sendData(actionUrl, new FormData(evt.target), () => {
-        this.goToCodeSendingForm();
-      }, () => {
-        this.close();
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось получить код, попробуйте снова.'
-        });
-      }, () => {
-        this.#codeRequestFormSubmitButton.disabled = false;
-        this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
-      });
+    if (this.#timer > 0) {
+      this.goToCodeSendingForm();
     } else {
-      this.#modalElement.classList.remove('modal--error');
-      setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      const actionUrl = this.#codeRequestFormElement.getAttribute('action');
+      const isValid = this.#codeRequestFormPristine.validate();
+      if (isValid) {
+        this.#codeRequestFormSubmitButton.disabled = true;
+        this.#codeRequestFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
+        this.sendData(actionUrl, new FormData(evt.target), this.#onCodeRequestFormSuccessSubmit, this.#onCodeRequestFormErrorSubmit, () => {
+          this.#codeRequestFormSubmitButton.disabled = false;
+          this.#codeRequestFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
+        });
+      } else {
+        this.#modalElement.classList.remove('modal--error');
+        setTimeout(() => this.#modalElement.classList.add('modal--error'), 50);
+      }
     }
   };
 
@@ -2946,20 +3009,8 @@ class SignInModal {
   #onResendCodeButtonClick = evt => {
     evt.preventDefault();
     this.#resendCodeButtonElement.disabled = true;
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
-
-    this.sendData(actionUrl, new FormData(this.#codeRequestFormElement), () => {
-      this.startWaitingForResend();
-      this.#showAlert(this.#openModal, {
-        heading: 'Код отправлен повторно'
-      });
-    }, () => {
-      this.#showAlert(this.#openModal, {
-        status: 'error',
-        heading: 'Ошибка',
-        text: 'Не удалось получить код, попробуйте снова.'
-      });
-    }, () => {
+    const actionUrl = this.#codeRequestFormElement.getAttribute('action');
+    this.sendData(actionUrl, new FormData(this.#codeRequestFormElement), this.#onCodeReRequestFormSuccessSubmit, this.#onCodeReRequestFormErrorSubmit, () => {
       this.#resendCodeButtonElement.disabled = false;
     });
   };
@@ -2967,23 +3018,12 @@ class SignInModal {
   // Обработчик отправки формы подтверждения
   #onCodeSendingFormSubmit = evt => {
     evt.preventDefault();
-    const actionUrl = 'https://fakestoreapi.com/products'; // Временный url, нужно заменить.
+    const actionUrl = this.#codeSendingFormElement.getAttribute('action');
     const isValid = this.#codeSendingFormPristine.validate();
     if (isValid) {
       this.#codeSendingFormSubmitButton.disabled = true;
       this.#codeSendingFormSubmitButton.classList.add(this.#submitButtonPendingStateClass);
-      this.sendData(actionUrl, new FormData(evt.target), () => {
-        this.#codeRequestFormElement.reset();
-        this.#codeSendingFormElement.reset();
-        this.close();
-        this.goToCodeRequestForm();
-      }, () => {
-        this.#showAlert(this.#openModal, {
-          status: 'error',
-          heading: 'Ошибка',
-          text: 'Не удалось подтвердить код, попробуйте снова.'
-        });
-      }, () => {
+      this.sendData(actionUrl, new FormData(evt.target), this.#onCodeSendingFormSuccessSubmit, this.#onCodeSendingFormErrorSubmit, () => {
         this.#codeSendingFormSubmitButton.disabled = false;
         this.#codeSendingFormSubmitButton.classList.remove(this.#submitButtonPendingStateClass);
       });
@@ -2995,6 +3035,18 @@ class SignInModal {
   #onOpenerElementClick = evt => {
     evt.preventDefault();
     this.open();
+  };
+  setCodeRequestSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeRequestFormErrorSubmit = onError;
+  };
+  setCodeReRequestSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeReRequestFormSuccessSubmit = onSuccess;
+    this.#onCodeReRequestFormErrorSubmit = onError;
+  };
+  setCodeSendingSubmitHandlers = (onSuccess, onError) => {
+    this.#onCodeSendingFormSuccessSubmit = onSuccess;
+    this.#onCodeSendingFormErrorSubmit = onError;
   };
   init() {
     this.#codeRequestFormElement = this.#modalElement.querySelector('.modal-form__form--code-request');
@@ -3020,14 +3072,14 @@ class SignInModal {
   }
 }
 function initSignInModal(modalElement, openModal, closeModal, showAlert) {
-  const phoneChangeModal = new SignInModal({
+  const signInModal = new SignInModal({
     modalElement,
     openModal,
     closeModal,
     showAlert
   });
-  phoneChangeModal.init();
-  return phoneChangeModal;
+  signInModal.init();
+  return signInModal;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3659,8 +3711,11 @@ function initVideo(videoElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * main.js
  */
+
 document.querySelectorAll('.cart').forEach(cartElement => {
-  initCart(cartElement, openModal, showAlert);
+  const successCb = typeof onCartFormSuccessSubmit !== 'undefined' ? onCartFormSuccessSubmit : null;
+  const errorCb = typeof onCartFormErrorSubmit !== 'undefined' ? onCartFormErrorSubmit : null;
+  initCart(cartElement, openModal, showAlert, successCb, errorCb);
 });
 document.querySelectorAll('.reviews__list').forEach(listElement => {
   initReviewsList(listElement, GalleryModal, initGallery, initVideo, openModal);
@@ -3693,7 +3748,6 @@ document.querySelectorAll('.video').forEach(initVideo);
 document.querySelectorAll('.projects-slider').forEach(initProjectsSlider);
 document.querySelectorAll('input[type="tel"]').forEach(initTelField);
 document.querySelectorAll('.all-brands').forEach(initAllBrands);
-document.querySelectorAll('.text-field--with-list').forEach(initTextFieldWithList);
 document.querySelectorAll('.profile-form').forEach(formElement => {
   initProfileForm(formElement, sendData, openModal, showAlert);
 });
@@ -3754,13 +3808,15 @@ document.querySelectorAll('[data-modal="search"]').forEach(modalElement => {
 document.querySelectorAll('[data-modal="phone-change"]').forEach(modalElement => {
   initPhoneChangeModal(modalElement, openModal, closeModal, showAlert);
 });
-document.querySelectorAll('[data-modal="sign-in"]').forEach(modalElement => {
-  initSignInModal(modalElement, openModal, closeModal, showAlert);
-});
 document.querySelectorAll('.user-navigation').forEach(initUserNavigation);
 document.querySelectorAll('[data-modal="cities"]').forEach(modalElement => {
   initCitiesModal(modalElement, initScrollContainer, openModal);
 });
 document.querySelectorAll('.document-actions__button--print').forEach(initButtonPrintPdf);
+const signInModalElement = document.querySelector('[data-modal="sign-in"]');
+let signInModal;
+if (signInModalElement) {
+  signInModal = initSignInModal(signInModalElement, openModal, closeModal, showAlert);
+}
 
 /* * * * * * * * * * * * * * * * * * * * * * * */
