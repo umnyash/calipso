@@ -13,7 +13,7 @@ function showCartResult({ heading, text, buttonText, buttonHref }) {
       <div class="cart-result__inner container">
         <h1 class="cart-result__heading heading">${heading}</h1>
         <p class="cart-result__text">${text}</p>
-        <a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>
+        ${buttonHref ? `<a class="button cart-result__button button--primary" href="${buttonHref}">${buttonText}</a>` : ''}
       </div>
     </div>
   `);
@@ -25,6 +25,7 @@ function resetCartForm() {
 }
 
 class Cart {
+  #pageInnerElement = null;
   #siteHeaderElement = null;
   #cartElement = null;
   #openModal = null;
@@ -70,7 +71,8 @@ class Cart {
         throw new Error(`${response.status} – ${response.statusText}`);
       }
 
-      const data = await response.json();
+      // const data = await response.json();
+      const data = 23;
       onSuccess(data);
     } catch (err) {
       onFail(err);
@@ -314,6 +316,7 @@ class Cart {
         (data) => {
           const successCb = this.#onCartFormSuccessSubmit ?? this.#successDefaultCb;
           successCb(data);
+          this.#pageInnerElement.scrollTo({ top: 0, behavior: 'instant' });
         },
         (err) => {
           const errorCb = this.#onCartFormErrorSubmit ?? this.#errorDefaultCb;
@@ -336,6 +339,7 @@ class Cart {
   };
 
   initForm() {
+    this.#pageInnerElement = document.querySelector('.page__inner');
     this.#siteHeaderElement = document.querySelector('.site-header')
     this.#boxElement = document.querySelector('.page__inner');
     this.#cartInnerElement = this.#cartElement.querySelector('.cart__inner');
