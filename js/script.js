@@ -6,6 +6,7 @@
 const DESKTOP_WIDTH_MEDIA_QUERY = '(min-width: 1346px)';
 const LAPTOP_WIDTH_MEDIA_QUERY = '(min-width: 1260px)';
 const WIDE_TABLET_WIDTH_MEDIA_QUERY = '(min-width: 1024px)';
+const CODE_LENGTH = 4;
 const KeyCode = Object.freeze({
   LEFT_ARROW: 'ArrowLeft',
   RIGHT_ARROW: 'ArrowRight',
@@ -1810,6 +1811,11 @@ class PhoneChangeModal {
     this.#phoneTextElement.textContent = formattedPhoneText;
     this.startWaitingForResend();
   };
+  #onCodeFieldInput = evt => {
+    if (evt.target.value.length > CODE_LENGTH) {
+      evt.target.value = evt.target.value.slice(0, CODE_LENGTH);
+    }
+  };
   #onModalClick = evt => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     const backButtonElement = evt.target.closest('.modal-form__back-button');
@@ -1907,6 +1913,7 @@ class PhoneChangeModal {
     this.#resendCodeTextTimerElement = this.#resendCodeTextElement.querySelector('.modal-form__footer-text-timer');
     this.#setValidationTexts();
     this.#initPristine();
+    this.#codeFieldElement.addEventListener('input', this.#onCodeFieldInput);
     this.#modalElement.addEventListener('click', this.#onModalClick);
     this.#codeRequestFormElement.addEventListener('submit', this.#onCodeRequestFormSubmit);
     this.#codeSendingFormElement.addEventListener('submit', this.#onCodeSendingFormSubmit);
@@ -2965,6 +2972,11 @@ class SignInModal {
     this.#phoneTextElement.textContent = formattedPhoneText;
     this.startWaitingForResend();
   };
+  #onCodeFieldInput = evt => {
+    if (evt.target.value.length > CODE_LENGTH) {
+      evt.target.value = evt.target.value.slice(0, CODE_LENGTH);
+    }
+  };
   #onModalClick = evt => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     const backButtonElement = evt.target.closest('.modal-form__back-button');
@@ -3060,6 +3072,7 @@ class SignInModal {
     this.#resendCodeTextTimerElement = this.#resendCodeTextElement.querySelector('.modal-form__footer-text-timer');
     this.#setValidationTexts();
     this.#initPristine();
+    this.#codeFieldElement.addEventListener('input', this.#onCodeFieldInput);
     this.#modalElement.addEventListener('click', this.#onModalClick);
     this.#codeRequestFormElement.addEventListener('submit', this.#onCodeRequestFormSubmit);
     this.#codeSendingFormElement.addEventListener('submit', this.#onCodeSendingFormSubmit);
