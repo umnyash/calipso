@@ -151,6 +151,12 @@ class PhoneChangeModal {
     this.startWaitingForResend();
   };
 
+  #onCodeFieldInput = (evt) => {
+    if (evt.target.value.length > CODE_LENGTH) {
+      evt.target.value = evt.target.value.slice(0, CODE_LENGTH);
+    }
+  }
+
   #onModalClick = (evt) => {
     const textFieldClearButtonElement = evt.target.closest('.text-field__clear-button');
     const backButtonElement = evt.target.closest('.modal-form__back-button');
@@ -285,6 +291,7 @@ class PhoneChangeModal {
     this.#setValidationTexts();
     this.#initPristine();
 
+    this.#codeFieldElement.addEventListener('input', this.#onCodeFieldInput);
     this.#modalElement.addEventListener('click', this.#onModalClick);
 
     this.#codeRequestFormElement.addEventListener('submit', this.#onCodeRequestFormSubmit);
