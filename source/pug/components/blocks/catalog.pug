@@ -14,6 +14,42 @@ mixin catalog(heading, headingIsHidden, withPanel)
               +button-alter('a', 'Размер', '', '#!')(class='catalog__filter-opener-button button-alter--secondary button-alter--small' data-fold-name='size')
             p.catalog__panel-text Найдено 100
             ul.catalog__applied-filters
+              li.catalog__applied-filter Цена от 10000 до 20000
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Угловой диван
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Модульный диван
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Ширина до 200
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Длина от 300
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Высота от 40 до 50
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Белый
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Голубой
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Франция
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter Канада
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter В наличии
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
+              li.catalog__applied-filter SALE
+                button.catalog__applied-filter-reset-button(type='button')
+                  span.visually-hidden Удалить фильтр
             +catalog-sorting(class='catalog__sorting')
         +products-list(products, 'xl')(class='catalog__list')
         +pagination(class='catalog__pagination')
