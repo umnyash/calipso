@@ -809,6 +809,7 @@ class CatalogFiltersModal {
     this.#updateAppliedFilters();
   };
   #onFiltersReset = () => {
+    this.#filtersElement.action = this.#filtersElement.dataset.url;
     setTimeout(() => {
       this.#fieldControlElements.forEach(fieldElement => {
         fieldElement.dispatchEvent(this.#changeEvent);
@@ -1967,14 +1968,25 @@ function createProductCardTemplate(product, modificators) {
   } else {
     price = priceFormatter.format(product.price);
   }
-  const dimensions = Object.values(product.dimensions).join('х');
+  let label;
+  switch (product.status) {
+    case 'in-stock':
+      label = '<p class="product-card__label product-card__label--in-stock">В наличии</p>';
+      break;
+    case 'arrival-expected':
+      label = '<p class="product-card__label product-card__label--arrival-expected">Ожидает поступления</p>';
+      break;
+    case 'to-order':
+      label = '<p class="product-card__label product-card__label--to-order">Под заказ</p>';
+      break;
+  }
   return `
     <article class="product-card product-card-popup__card ${modificators ? modificators : ''}">
       <div class="product-card__heading-and-signs">
         <h3 class="product-card__heading">
           <a class="product-card__link" href="${product.href}">${product.title}</a>
         </h3>
-        <p class="product-card__signs">${dimensions}</p>
+        ${product.dimensions ? `<p class="product-card__signs">${product.dimensions}</p>` : ''}
       </div>
       <div class="product-card__prices">
         <p class="product-card__price ${product.discount ? 'accent' : ''}">${price} ₽</p>
@@ -1993,9 +2005,9 @@ function createProductCardTemplate(product, modificators) {
       <div class="product-card__labels-wrapper">
         <div class="product-card__labels">
           ${product.isPremium ? '<p class="product-card__premium-label"><span class="product-card__premium-label-text">Premium</span></p>' : ''}
-          ${product.status === 'in-stock' ? '<p class="product-card__label">В наличии</p>' : ''}
+          ${label ? label : ''}
           <p class="product-card__like-button-wrapper">
-            <button class="like-button product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}" type="button">
+            <button class="like-button product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}" type="button" data-id="${product.id}">
               <span class="visually-hidden">Нравится</span>
             </button>
           </p>
@@ -2584,6 +2596,19 @@ function initScrollContainer(containerElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
 /* * * * * * * * * * * * * * * * * * * * * * * *
+ * search-form-with-submit-button.js
+ */
+function initSearchFormWithSubmitButton(formElement) {
+  const fieldElement = formElement.querySelector('.text-field__control');
+  const submitButtonElement = formElement.querySelector('.search-form__submit-button');
+  fieldElement.addEventListener('input', evt => {
+    submitButtonElement.disabled = evt.target.value.length === 0;
+  });
+  submitButtonElement.disabled = fieldElement.value.length === 0;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * *
  * search-modal.js
  */
 const searchResultMockData = {
@@ -2592,14 +2617,8 @@ const searchResultMockData = {
     title: 'Стул Tosca',
     isPremium: true,
     isFavorite: false,
-    status: 'in-stock',
     price: 12000,
     discount: 0,
-    dimensions: {
-      width: '15',
-      length: '20',
-      height: '60'
-    },
     images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
     href: 'product.html',
     brand: 'Calligaris',
@@ -2612,11 +2631,7 @@ const searchResultMockData = {
     status: 'in-stock',
     price: 15000,
     discount: 0,
-    dimensions: {
-      width: '15',
-      length: '20',
-      height: '60'
-    },
+    dimensions: '15x20x60',
     images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
     href: 'product.html',
     brand: 'Calligaris',
@@ -2626,14 +2641,10 @@ const searchResultMockData = {
     title: 'Тумба Mock',
     isPremium: true,
     isFavorite: false,
-    status: 'in-stock',
+    status: 'arrival-expected',
     price: 20000,
     discount: 10,
-    dimensions: {
-      width: '15',
-      length: '20',
-      height: '60'
-    },
+    dimensions: '15x20x60',
     images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
     href: 'product.html',
     brand: 'Calligaris',
@@ -2643,14 +2654,10 @@ const searchResultMockData = {
     title: 'Стул Tosca',
     isPremium: true,
     isFavorite: false,
-    status: 'in-stock',
+    status: 'to-order',
     price: 12000,
     discount: 0,
-    dimensions: {
-      width: '15',
-      length: '20',
-      height: '60'
-    },
+    dimensions: '15x20x60',
     images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
     href: 'product.html',
     brand: 'Calligaris',
@@ -2660,14 +2667,23 @@ const searchResultMockData = {
     title: 'Стул Tosca',
     isPremium: true,
     isFavorite: false,
-    status: 'in-stock',
+    status: 'arrival-expected',
     price: 15000,
     discount: 0,
-    dimensions: {
-      width: '15',
-      length: '20',
-      height: '60'
-    },
+    dimensions: '15x20x60',
+    images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
+    href: 'product.html',
+    brand: 'Calligaris',
+    brandHref: 'brand.html'
+  }, {
+    id: '2',
+    title: 'Стул Tosca',
+    isPremium: true,
+    isFavorite: false,
+    status: 'to-order',
+    price: 15000,
+    discount: 0,
+    dimensions: '15x20x60',
     images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
     href: 'product.html',
     brand: 'Calligaris',
@@ -2763,30 +2779,30 @@ class SearchModal {
     const actionUrl = this.#formElement.getAttribute('action');
     this.#sendData(actionUrl, new FormData(this.#formElement), data => {
       this.#resultElement.innerHTML = '';
-      const searchResult = data && [];
+      const searchResult = data;
       if (!searchResult?.products?.length && !searchResult?.articles?.length) {
         this.#resultElement.insertAdjacentHTML('beforeend', '<p class="search-modal__result-placeholder">По вашему запросу ничего не найдено</p>');
         return;
       }
-      if (searchResult.products.length) {
+      if (searchResult?.products?.length) {
         const productsListTemplate = `
             <ul class="products-list products-list--size_xs search-modal__result-group-list">
               ${searchResult.products.slice(0, this.#maxListItemsCount).map(product => this.#createProductCardTemplate(product, 'product-card--size_xs')).join('')}
             </ul>
           `;
-        const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount ? `search.html?query=${this.#controlElement.value.trim()}` : null;
+        const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount ? `/search_articles/?q${this.#controlElement.value.trim()}` : null;
         const resultGroupTemplate = this.#createResultGroupTemplate('Товары', moreResultsLinkHref, productsListTemplate);
         const resultGroupElement = createElementByString(resultGroupTemplate);
         resultGroupElement.querySelectorAll('.product-card').forEach(this.#initProductCard);
         this.#resultElement.append(resultGroupElement);
       }
-      if (searchResult.articles.length) {
+      if (searchResult?.articles?.length) {
         const articlesListTemplate = `
             <ul class="articles-list articles-list--size_s search-modal__result-group-list">
               ${searchResult.articles.map(article => this.#createArticlePreviewTemplate(article, 'article-preview--size_s')).join('')}
             </ul>
           `;
-        const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount ? `search.html?query=${this.#controlElement.value.trim()}` : null;
+        const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount ? `/search/?q=${this.#controlElement.value.trim()}` : null;
         const resultGroupTemplate = this.#createResultGroupTemplate('Статьи', moreResultsLinkHref, articlesListTemplate);
         const resultGroupElement = createElementByString(resultGroupTemplate);
         this.#resultElement.append(resultGroupElement);
@@ -3833,5 +3849,6 @@ let phoneChangeModal;
 if (phoneChangeModalElement) {
   phoneChangeModal = initPhoneChangeModal(phoneChangeModalElement, openModal, closeModal);
 }
+document.querySelectorAll('.search-form--with-submit-button').forEach(initSearchFormWithSubmitButton);
 
 /* * * * * * * * * * * * * * * * * * * * * * * */
