@@ -21,6 +21,10 @@
   background: transparent;
   cursor: pointer;
 
+  &:disabled {
+    pointer-events: none;
+  }
+
   &:hover {
     color: var(--text-color);
   }

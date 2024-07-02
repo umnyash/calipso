@@ -173,4 +173,6 @@ if (phoneChangeModalElement) {
   phoneChangeModal = initPhoneChangeModal(phoneChangeModalElement, openModal, closeModal);
 }
 
+document.querySelectorAll('.search-form--with-submit-button').forEach(initSearchFormWithSubmitButton);
+
 /* * * * * * * * * * * * * * * * * * * * * * * */
