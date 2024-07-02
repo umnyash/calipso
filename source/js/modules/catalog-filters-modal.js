@@ -126,7 +126,7 @@ class CatalogFiltersModal {
 
     if (targetFoldName) {
       const foldButtonElement = this.#filtersElement.querySelector(`[data-fold-name="${targetFoldName}"]`);
-      if(foldButtonElement.ariaExpanded !== 'true') {
+      if (foldButtonElement.ariaExpanded !== 'true') {
         this.#toggleFoldState(foldButtonElement);
       }
 
@@ -192,6 +192,8 @@ class CatalogFiltersModal {
   };
 
   #onFiltersReset = () => {
+    this.#filtersElement.action = this.#filtersElement.dataset.url;
+
     setTimeout(() => {
       this.#fieldControlElements.forEach((fieldElement) => {
         fieldElement.dispatchEvent(this.#changeEvent);
