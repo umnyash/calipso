@@ -1,5 +1,5 @@
 mixin search-form(label, name, placeholder, withSubmitButton)
-  form.search-form(action='https://echo.htmlacademy.ru' method='get' target='_blank' class= withSubmitButton && 'search-form--with-submit-button')&attributes(attributes)
+  form.search-form(action='https://fakestoreapi.com/products' method='get' target='_blank' class= withSubmitButton && 'search-form--with-submit-button')&attributes(attributes)
     +text-field(label, name, 'search', '', placeholder, true)(class='search-form__field text-field--big text-field--alter text-field--search')
     if withSubmitButton
       button.search-form__submit-button(type='submit')

@@ -8,14 +8,8 @@ const searchResultMockData = {
       title: 'Стул Tosca',
       isPremium: true,
       isFavorite: false,
-      status: 'in-stock',
       price: 12000,
       discount: 0,
-      dimensions: {
-        width: '15',
-        length: '20',
-        height: '60',
-      },
       images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
       href: 'product.html',
       brand: 'Calligaris',
@@ -29,11 +23,7 @@ const searchResultMockData = {
       status: 'in-stock',
       price: 15000,
       discount: 0,
-      dimensions: {
-        width: '15',
-        length: '20',
-        height: '60',
-      },
+      dimensions: '15x20x60',
       images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
       href: 'product.html',
       brand: 'Calligaris',
@@ -44,14 +34,10 @@ const searchResultMockData = {
       title: 'Тумба Mock',
       isPremium: true,
       isFavorite: false,
-      status: 'in-stock',
+      status: 'arrival-expected',
       price: 20000,
       discount: 10,
-      dimensions: {
-        width: '15',
-        length: '20',
-        height: '60',
-      },
+      dimensions: '15x20x60',
       images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
       href: 'product.html',
       brand: 'Calligaris',
@@ -62,14 +48,10 @@ const searchResultMockData = {
       title: 'Стул Tosca',
       isPremium: true,
       isFavorite: false,
-      status: 'in-stock',
+      status: 'to-order',
       price: 12000,
       discount: 0,
-      dimensions: {
-        width: '15',
-        length: '20',
-        height: '60',
-      },
+      dimensions: '15x20x60',
       images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
       href: 'product.html',
       brand: 'Calligaris',
@@ -80,14 +62,24 @@ const searchResultMockData = {
       title: 'Стул Tosca',
       isPremium: true,
       isFavorite: false,
-      status: 'in-stock',
+      status: 'arrival-expected',
       price: 15000,
       discount: 0,
-      dimensions: {
-        width: '15',
-        length: '20',
-        height: '60',
-      },
+      dimensions: '15x20x60',
+      images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
+      href: 'product.html',
+      brand: 'Calligaris',
+      brandHref: 'brand.html',
+    },
+    {
+      id: '2',
+      title: 'Стул Tosca',
+      isPremium: true,
+      isFavorite: false,
+      status: 'to-order',
+      price: 15000,
+      discount: 0,
+      dimensions: '15x20x60',
       images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
       href: 'product.html',
       brand: 'Calligaris',
@@ -194,14 +186,14 @@ class SearchModal {
       new FormData(this.#formElement),
       (data) => {
         this.#resultElement.innerHTML = '';
-        const searchResult = data && [];
+        const searchResult = data;
 
         if (!searchResult?.products?.length && !searchResult?.articles?.length) {
           this.#resultElement.insertAdjacentHTML('beforeend', '<p class="search-modal__result-placeholder">По вашему запросу ничего не найдено</p>');
           return;
         }
 
-        if (searchResult.products.length) {
+        if (searchResult?.products?.length) {
           const productsListTemplate = `
             <ul class="products-list products-list--size_xs search-modal__result-group-list">
               ${searchResult.products.slice(0, this.#maxListItemsCount).map((product) => this.#createProductCardTemplate(product, 'product-card--size_xs')).join('')}
@@ -209,7 +201,7 @@ class SearchModal {
           `;
 
           const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount
-            ? `search.html?query=${this.#controlElement.value.trim()}`
+            ? `/search_articles/?q${this.#controlElement.value.trim()}`
             : null;
 
           const resultGroupTemplate = this.#createResultGroupTemplate('Товары', moreResultsLinkHref, productsListTemplate);
@@ -218,7 +210,7 @@ class SearchModal {
           this.#resultElement.append(resultGroupElement);
         }
 
-        if (searchResult.articles.length) {
+        if (searchResult?.articles?.length) {
           const articlesListTemplate = `
             <ul class="articles-list articles-list--size_s search-modal__result-group-list">
               ${searchResult.articles.map((article) => this.#createArticlePreviewTemplate(article, 'article-preview--size_s')).join('')}
@@ -226,7 +218,7 @@ class SearchModal {
           `;
 
           const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount
-            ? `search.html?query=${this.#controlElement.value.trim()}`
+            ? `/search/?q=${this.#controlElement.value.trim()}`
             : null;
 
           const resultGroupTemplate = this.#createResultGroupTemplate('Статьи', moreResultsLinkHref, articlesListTemplate);

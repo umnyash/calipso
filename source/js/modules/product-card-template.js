@@ -13,7 +13,19 @@ function createProductCardTemplate(product, modificators) {
     price = priceFormatter.format(product.price);
   }
 
-  const dimensions = Object.values(product.dimensions).join('х');
+  let label;
+
+  switch (product.status) {
+    case 'in-stock':
+      label = '<p class="product-card__label product-card__label--in-stock">В наличии</p>';
+      break;
+    case 'arrival-expected':
+      label = '<p class="product-card__label product-card__label--arrival-expected">Ожидает поступления</p>';
+      break;
+    case 'to-order':
+      label = '<p class="product-card__label product-card__label--to-order">Под заказ</p>';
+      break;
+  }
 
   return `
     <article class="product-card product-card-popup__card ${modificators ? modificators : ''}">
@@ -21,7 +33,7 @@ function createProductCardTemplate(product, modificators) {
         <h3 class="product-card__heading">
           <a class="product-card__link" href="${product.href}">${product.title}</a>
         </h3>
-        <p class="product-card__signs">${dimensions}</p>
+        ${product.dimensions ? `<p class="product-card__signs">${product.dimensions}</p>` : ''}
       </div>
       <div class="product-card__prices">
         <p class="product-card__price ${product.discount ? 'accent' : ''}">${price} ₽</p>
@@ -40,9 +52,9 @@ function createProductCardTemplate(product, modificators) {
       <div class="product-card__labels-wrapper">
         <div class="product-card__labels">
           ${product.isPremium ? '<p class="product-card__premium-label"><span class="product-card__premium-label-text">Premium</span></p>' : ''}
-          ${product.status === 'in-stock' ? '<p class="product-card__label">В наличии</p>' : ''}
+          ${label ? label : ''}
           <p class="product-card__like-button-wrapper">
-            <button class="like-button product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}" type="button">
+            <button class="like-button product-card__like-button ${product.isFavorite ? 'like-button--active' : ''}" type="button" data-id="${product.id}">
               <span class="visually-hidden">Нравится</span>
             </button>
           </p>
