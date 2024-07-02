@@ -999,7 +999,9 @@ function initDateField(fieldElement, setInputDateMask) {
       formattedDate
     }) {
       fieldControlElement.value = formattedDate || '';
-      fieldControlElement.dispatchEvent(new Event('input'));
+      fieldControlElement.dispatchEvent(new Event('input', {
+        bubbles: true
+      }));
       closeCalendar();
     }
   });
