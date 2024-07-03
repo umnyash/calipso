@@ -2181,25 +2181,21 @@ function initProfileForm(formElement, sendData, openModal, showAlert, onProfileF
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * project.js
  */
-const productMockData = {
-  id: '1',
-  title: 'Тумба Mock',
-  isPremium: true,
-  isFavorite: false,
-  status: 'in-stock',
-  price: 100,
-  discount: 0,
-  dimensions: {
-    width: '15',
-    length: '20',
-    height: '60'
-  },
-  images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
-  images2x: ['img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp'],
-  href: 'product.html',
-  brand: 'Calligaris',
-  brandHref: 'brand.html'
-};
+// const productMockData = {
+//   id: '1',
+//   title: 'Тумба Mock',
+//   isPremium: true,
+//   isFavorite: false,
+//   status: 'in-stock',
+//   price: 100,
+//   discount: 0,
+//   dimensions: '15x20x60',
+//   images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
+//   href: 'product.html',
+//   brand: 'Calligaris',
+//   brandHref: 'brand.html',
+// };
+
 function createProductCardPopupTemplate(product, createProductCardTemplate, productCardModificators) {
   const productCardTemplate = createProductCardTemplate(product, productCardModificators);
   return `
@@ -2258,9 +2254,9 @@ function initProject(projectElement, createProductCardTemplate, initProductCard,
         closeAllActivePins(pinElements);
         pinButtonElement.disabled = true;
         const productId = pinElement.dataset.productId;
-        const actionUrl = `https://fakestoreapi.com/products/${productId}`;
+        const actionUrl = `/local/ajax/index.php?MODE=loadProjectPicProduct&id=${productId}`;
         getData(actionUrl, data => {
-          const productData = data && productMockData; // Нужно будет удалить "&& productMockData"
+          const productData = data;
           const popupElement = createElementByString(createProductCardPopupTemplate(productData, createProductCardTemplate, 'product-card--popup'));
           initProductCard(popupElement.querySelector('.product-card'));
           pinElement.append(popupElement);
@@ -2504,93 +2500,103 @@ function initSearchFormWithSubmitButton(formElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * search-modal.js
  */
-const searchResultMockData = {
-  products: [{
-    id: '1',
-    title: 'Стул Tosca',
-    isPremium: true,
-    isFavorite: false,
-    price: 12000,
-    discount: 0,
-    images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }, {
-    id: '2',
-    title: 'Стул Tosca',
-    isPremium: true,
-    isFavorite: false,
-    status: 'in-stock',
-    price: 15000,
-    discount: 0,
-    dimensions: '15x20x60',
-    images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }, {
-    id: '3',
-    title: 'Тумба Mock',
-    isPremium: true,
-    isFavorite: false,
-    status: 'arrival-expected',
-    price: 20000,
-    discount: 10,
-    dimensions: '15x20x60',
-    images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }, {
-    id: '1',
-    title: 'Стул Tosca',
-    isPremium: true,
-    isFavorite: false,
-    status: 'to-order',
-    price: 12000,
-    discount: 0,
-    dimensions: '15x20x60',
-    images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }, {
-    id: '2',
-    title: 'Стул Tosca',
-    isPremium: true,
-    isFavorite: false,
-    status: 'arrival-expected',
-    price: 15000,
-    discount: 0,
-    dimensions: '15x20x60',
-    images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }, {
-    id: '2',
-    title: 'Стул Tosca',
-    isPremium: true,
-    isFavorite: false,
-    status: 'to-order',
-    price: 15000,
-    discount: 0,
-    dimensions: '15x20x60',
-    images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
-    href: 'product.html',
-    brand: 'Calligaris',
-    brandHref: 'brand.html'
-  }],
-  articles: [{
-    title: 'Смена экспозиции в&nbsp;выставочном зале',
-    type: 'Блог',
-    image: 'img/articles/previews/preview-1.webp',
-    image2x: 'img/articles/previews/preview-1@2x.webp 2x',
-    date: '2023-05-10',
-    href: 'article.html'
-  }]
-};
+// const searchResultMockData = {
+//   products: [
+//     {
+//       id: '1',
+//       title: 'Стул Tosca',
+//       isPremium: true,
+//       isFavorite: false,
+//       price: 12000,
+//       discount: 0,
+//       images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//     {
+//       id: '2',
+//       title: 'Стул Tosca',
+//       isPremium: true,
+//       isFavorite: false,
+//       status: 'in-stock',
+//       price: 15000,
+//       discount: 0,
+//       dimensions: '15x20x60',
+//       images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//     {
+//       id: '3',
+//       title: 'Тумба Mock',
+//       isPremium: true,
+//       isFavorite: false,
+//       status: 'arrival-expected',
+//       price: 20000,
+//       discount: 10,
+//       dimensions: '15x20x60',
+//       images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//     {
+//       id: '1',
+//       title: 'Стул Tosca',
+//       isPremium: true,
+//       isFavorite: false,
+//       status: 'to-order',
+//       price: 12000,
+//       discount: 0,
+//       dimensions: '15x20x60',
+//       images: ['img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp', 'img/products/product-1.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//     {
+//       id: '2',
+//       title: 'Стул Tosca',
+//       isPremium: true,
+//       isFavorite: false,
+//       status: 'arrival-expected',
+//       price: 15000,
+//       discount: 0,
+//       dimensions: '15x20x60',
+//       images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//     {
+//       id: '2',
+//       title: 'Стул Tosca',
+//       isPremium: true,
+//       isFavorite: false,
+//       status: 'to-order',
+//       price: 15000,
+//       discount: 0,
+//       dimensions: '15x20x60',
+//       images: ['img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp', 'img/products/product-2.webp'],
+//       href: 'product.html',
+//       brand: 'Calligaris',
+//       brandHref: 'brand.html',
+//     },
+//   ],
+//   articles: [
+//     {
+//       title: 'Смена экспозиции в&nbsp;выставочном зале',
+//       type: 'Блог',
+//       image: 'img/articles/previews/preview-1.webp',
+//       image2x: 'img/articles/previews/preview-1@2x.webp 2x',
+//       date: '2023-05-10',
+//       href: 'article.html',
+//     },
+//   ],
+// };
+
 class SearchModal {
   #maxListItemsCount = 4;
   #modalElement = null;
