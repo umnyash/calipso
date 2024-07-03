@@ -1,25 +1,20 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * project.js
  */
-const productMockData = {
-  id: '1',
-  title: 'Тумба Mock',
-  isPremium: true,
-  isFavorite: false,
-  status: 'in-stock',
-  price: 100,
-  discount: 0,
-  dimensions: {
-    width: '15',
-    length: '20',
-    height: '60',
-  },
-  images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
-  images2x: ['img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp', 'img/products/product-3@2x.webp'],
-  href: 'product.html',
-  brand: 'Calligaris',
-  brandHref: 'brand.html',
-};
+// const productMockData = {
+//   id: '1',
+//   title: 'Тумба Mock',
+//   isPremium: true,
+//   isFavorite: false,
+//   status: 'in-stock',
+//   price: 100,
+//   discount: 0,
+//   dimensions: '15x20x60',
+//   images: ['img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp', 'img/products/product-3.webp'],
+//   href: 'product.html',
+//   brand: 'Calligaris',
+//   brandHref: 'brand.html',
+// };
 
 function createProductCardPopupTemplate(product, createProductCardTemplate, productCardModificators) {
   const productCardTemplate = createProductCardTemplate(product, productCardModificators);
@@ -63,7 +58,7 @@ function initProject(projectElement, createProductCardTemplate, initProductCard,
   const MIN_INDENT_FROM_WINDOW_EDGE = 100;
   const pinElements = projectElement.querySelectorAll('.pin');
 
-  const getData = async(url, onSuccess, onFail, onFinally) => {
+  const getData = async (url, onSuccess, onFail, onFinally) => {
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -71,7 +66,7 @@ function initProject(projectElement, createProductCardTemplate, initProductCard,
       }
       const data = await response.json();
       onSuccess(data);
-    } catch(err) {
+    } catch (err) {
       onFail();
     } finally {
       onFinally();
@@ -93,12 +88,12 @@ function initProject(projectElement, createProductCardTemplate, initProductCard,
         pinButtonElement.disabled = true;
 
         const productId = pinElement.dataset.productId;
-        const actionUrl = `https://fakestoreapi.com/products/${productId}`;
+        const actionUrl = `/local/ajax/index.php?MODE=loadProjectPicProduct&id=${productId}`;
 
         getData(
           actionUrl,
           (data) => {
-            const productData = data && productMockData; // Нужно будет удалить "&& productMockData"
+            const productData = data;
             const popupElement = createElementByString(createProductCardPopupTemplate(productData, createProductCardTemplate, 'product-card--popup'));
             initProductCard(popupElement.querySelector('.product-card'));
             pinElement.append(popupElement);
