@@ -1,21 +1,3 @@
-.project {
-  font: 400 14px/18px $main-font-family;
-
-  @media (min-width: $tablet-width) {
-    font-size: 16px;
-    line-height: 21px;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    font-size: 22px;
-    line-height: 28px;
-  }
-
-  .text-aling-right {
-    text-align: right;
-  }
-}
-
 .project__header {
   margin: 0 0 20px;
 
@@ -32,222 +14,122 @@
   margin: 0;
 }
 
-.project figure {
+.content {
   display: grid;
-  padding: 0;
-  border: none;
-  margin: 0;
-  gap: 10px;
+  row-gap: 20px;
+  font: 400 14px/18px $main-font-family;
+  align-items: start;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: repeat(12, 1fr);
+    gap: 40px 20px;
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 60px 30px;
+  }
 
   @media (min-width: $wide-desktop-width) {
+    gap: 90px 40px;
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .member-card {
+    @media (min-width: $tablet-width) {
+      grid-column: span 6;
+    }
+
+    @media (min-width: $wide-tablet-width) {
+      grid-column: span 4;
+    }
+  }
+
+  > figure img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  > p {
+    grid-column: 1 / -1;
+    margin: 20px 0;
+
+    @media (min-width: $tablet-width) {
+      margin: 0;
+    }
+  }
+
+  > figure {
+    display: grid;
+    padding: 0;
+    border: none;
+    margin: 0;
+    gap: 10px;
+
+    @media (min-width: $tablet-width) {
+      grid-column: span 6;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      gap: 20px;
+    }
+  }
+
+  > figure:first-of-type {
     gap: 20px;
-  }
-}
 
-.project figcaption {
-  padding: 0 10px;
-  font: inherit;
-  font-size: 12px;
-  line-height: 16px;
-  color: var(--text-weak-color);
+    @media (min-width: $wide-tablet-width) {
+      grid-column: span 8;
+    }
 
-  @media (min-width: $tablet-width) {
-    font-size: 14px;
-    line-height: 18px;
+    @media (min-width: $wide-desktop-width) {
+      gap: 24px;
+    }
   }
 
-  @media (min-width: $desktop-width) {
-    padding: 0 24px;
+  > figure > div {
+    position: relative;
   }
 
-  @media (min-width: $wide-desktop-width) {
-    padding: 0 40px;
-    font-size: 20px;
-    line-height: 26px;
-  }
-}
+  > figure div img {
+    display: block;
+    border-radius: 10px;
 
-.project__image-wrapper {
-  position: relative;
-}
-
-.project__image {
-  display: block;
-  border-radius: 10px;
-
-  @media (min-width: $desktop-width) {
-    border-radius: 16px;
-  }
-}
-
-.project__column figure + .project__text {
-  margin: 20px 0 0;
-
-  @media (min-width: $wide-desktop-width) {
-    margin: 24px 0 0;
-  }
-}
-
-.project__column .project__text + figure {
-  margin: 20px 0 0;
-
-  @media (min-width: $desktop-width) {
-    margin: 24px 0 0;
+    @media (min-width: $desktop-width) {
+      border-radius: 16px;
+    }
   }
 
-  @media (min-width: $wide-desktop-width) {
-    margin: 40px 0 0;
-  }
-}
+  > figure:not(:first-of-type) figcaption {
+    padding: 0 10px;
+    font: inherit;
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--text-weak-color);
 
-.project__column:first-child .project__text:only-child {
-  max-width: 618px;
+    @media (min-width: $tablet-width) {
+      font-size: 14px;
+      line-height: 18px;
+    }
 
-  @media (min-width: $wide-desktop-width) {
-    max-width: 860px;
-  }
-}
+    @media (min-width: $desktop-width) {
+      padding: 0 24px;
+    }
 
-.project__column:last-child .project__text:only-child {
-  max-width: 618px;
-
-  @media (min-width: $tablet-width) {
-    margin: 0 0 0 auto;
-    text-align: right;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    max-width: 860px;
-  }
-}
-
-.project__column figure + figure {
-  margin-top: 20px;
-
-  @media (min-width: $desktop-width) {
-    margin: 30px 0 0;
+    @media (min-width: $wide-desktop-width) {
+      padding: 0 40px;
+      font-size: 20px;
+      line-height: 26px;
+    }
   }
 
-  @media (min-width: $wide-desktop-width) {
-    margin: 40px 0 0;
-  }
-}
-
-.project__grid {
-  display: grid;
-  row-gap: 40px;
-
-  @media (min-width: $tablet-width) {
-    row-gap: 60px;
+  > :first-child {
+    margin-top: 0;
   }
 
-  @media (min-width: $desktop-width) {
-    row-gap: 120px;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    row-gap: 140px;
-  }
-}
-
-.project__row {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 20px;
-
-  @media (min-width: $desktop-width) {
-    column-gap: 30px;
-  }
-
-  @media (min-width: $wide-desktop-width) {
-    gap: 24px 40px;
-  }
-}
-
-.project__column > *:first-child {
-  margin-top: 0;
-}
-
-.project__column > *:last-child {
-  margin-bottom: 0;
-}
-
-.project__column {
-  grid-column: 1 / -1;
-}
-
-.project__column--1-4 {
-  @media (min-width: $tablet-width) {
-    grid-column: 1 / 6;
-  }
-
-  @media (min-width: $desktop-width) {
-    grid-column: 1 / 5;
-  }
-}
-
-.project__column--5-12 {
-  @media (min-width: $tablet-width) {
-    grid-column: 6 / 13;
-  }
-
-  @media (min-width: $desktop-width) {
-    grid-column: 5 / 13;
-  }
-}
-
-.project__column--1-6 {
-  @media (min-width: $tablet-width) {
-    grid-column: 1 / 7;
-  }
-}
-
-.project__column--1-6--wide {
-  @media (min-width: $desktop-width) {
-    grid-column: 1 / 7;
-  }
-}
-
-.project__column--7-12 {
-  @media (min-width: $tablet-width) {
-    grid-column: 7 / 13;
-  }
-}
-
-.project__column--7-12--wide {
-  @media (min-width: $desktop-width) {
-    grid-column: 7 / 13;
-  }
-}
-
-.project__column--1-8 {
-  @media (min-width: $tablet-width) {
-    grid-column: 1 / 7;
-  }
-
-  @media (min-width: $desktop-width) {
-    grid-column: 1 / 9;
-  }
-}
-
-.project__column--9-12 {
-  @media (min-width: $tablet-width) {
-    grid-column: 7 / 13;
-  }
-
-  @media (min-width: $desktop-width) {
-    grid-column: 9 / 13;
-  }
-}
-
-.project__column--1-7 {
-  @media (min-width: $tablet-width) {
-    grid-column: 1 / 8;
-  }
-}
-
-.project__column--8-12 {
-  @media (min-width: $tablet-width) {
-    grid-column: 8 / 13;
+  > :last-child {
+    margin-bottom: 0;
   }
 }

@@ -3,87 +3,57 @@ mixin project(withPopup)
     .project__inner.container
       header.project__header
         h1.project__heading.heading Проект ЖК «Ард-хаус», Нижний Новгород
-      .project__grid
-        .project__row
-          .project__column.project__column--1-8
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-1.webp' alt='' loading='lazy')
-            p.project__text Перед дизайнером-архитектором стояла масштабная и интересная задача – оформить десять апартаментов под сдачу в ЖК «Прайм Парк». Квартиры были трёх типов – одно-, двух- и трёхкомнатные. Для каждой из них команда разработала дизайн и создала визуализацию с выбранными цветовыми решениями и мебелью.
-          .project__column.project__column--9-12
-            +member-card(class='column-9-12')
+      .content
+        figure
+          div
+            img(src='img/articles/project/project-1.webp' width='1160' height='777' alt='' loading='lazy')
+          figcaption Перед дизайнером-архитектором стояла масштабная и интересная задача – оформить десять апартаментов под сдачу в ЖК «Прайм Парк». Квартиры были трёх типов – одно-, двух- и трёхкомнатные. Для каждой из них команда разработала дизайн и создала визуализацию с выбранными цветовыми решениями и мебелью.
 
-        .project__row
-          .project__column.project__column--1-6
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-2.webp' alt='' loading='lazy')
-          .project__column.project__column--7-12
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-3.webp' alt='' loading='lazy')
-          .project__column
-            p.project__text Все предметы интерьера в этом проекте, начиная от диванов и&nbsp;кухонь и&nbsp;заканчивая межкомнатными дверями, были произведены нами
+        +member-card
 
-        .project__row
-          .project__column.project__column--1-6--wide
-            p.project__text Апартаменты отражают вайб американской классики, который очень близок бренду. Тем не менее арендаторам есть из чего выбрать: интерьеры выполнены в двух цветовых гаммах – светлой и тёмной. В светлых квартирах преобладают бежевые, фисташковые оттенки и светлый дуб с латунными деталями. В тёмных к бежевому присоединяются серые и коричневые тона, а также мебель в отделке из дуба венге с чёрной фурнитурой.
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-4.webp' alt='' loading='lazy')
-                +pin(style='top: 67%; left: 22%;' data-product-id='1')
-                +pin(style='top: 75%; left: 34%;' data-product-id='1')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
-          .project__column.project__column--7-12--wide
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-5.webp' alt='' loading='lazy')
-                +pin(style='top: 37%; left: 66%;' data-product-id='1')
-                +pin(withPopup)(style='top: 52%; left: 40%;' data-product-id='1')
-                  if withPopup
-                    +product-card-popup(class='pin__popup')
-                +pin(style='top: 72%; left: 75%;' data-product-id='1')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+        p Апартаменты отражают вайб американской классики, который очень близок бренду. Тем не менее арендаторам есть из чего выбрать: интерьеры выполнены в двух цветовых гаммах – светлой и тёмной. В светлых квартирах преобладают бежевые, фисташковые оттенки и светлый дуб с латунными деталями. В тёмных к бежевому присоединяются серые и коричневые тона, а также мебель в отделке из дуба венге с чёрной фурнитурой. Квартиры были трёх типов – одно-, двух- и трёхкомнатные. Для каждой из них команда разработала дизайн и создала визуализацию с выбранными цветовыми решениями и мебелью. Перед дизайнером-архитектором стояла масштабная и интересная задача – оформить десять апартаментов под сдачу в ЖК «Прайм Парк». Квартиры были трёх типов – одно-, двух- и трёхкомнатные. Для каждой из них команда разработала дизайн и создала визуализацию с выбранными цветовыми решениями и мебелью.
 
-        .project__row
-          .project__column.project__column--1-6
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-6.webp' alt='' loading='lazy')
-                +pin(style='top: 53%; left: 16%;' data-product-id='1')
-                +pin(style='top: 78%; left: 65%;' data-product-id='1')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
-          .project__column.project__column--7-12
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-7.webp' alt='' loading='lazy')
-                +pin(style='top: 42%; left: 34%;' data-product-id='1')
-                +pin(style='top: 67%; left: 32%;' data-product-id='1')
-                +pin(style='top: 15%; left: 66%;' data-product-id='1')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+        figure
+          div
+            img(src='img/articles/project/project-2.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 53%; left: 16%;' data-product-id='1')
+            +pin(style='top: 78%; left: 65%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
-        .project__row
-          .project__column.project__column--1-4
-            +product-card(products[3])(class='product-card--size_xl')
-          .project__column.project__column--5-12
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-8.webp' alt='' loading='lazy')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+        figure
+          div
+            img(src='img/articles/project/project-3.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 42%; left: 34%;' data-product-id='1')
+            +pin(style='top: 67%; left: 32%;' data-product-id='1')
+            +pin(style='top: 15%; left: 66%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
 
-        .project__row
-          .project__column.project__column--1-7
-            p.project__text Апартаменты отражают вайб американской классики, который очень близок бренду. Тем не менее арендаторам есть из чего выбрать: интерьеры выполнены в двух цветовых гаммах – светлой и тёмной. В светлых квартирах преобладают бежевые, фисташковые оттенки и светлый дуб с латунными деталями. В тёмных к бежевому присоединяются серые и коричневые тона, а также мебель в отделке из дуба венге с чёрной фурнитурой.
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-9.webp' alt='' loading='lazy')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
-          .project__column.project__column--8-12
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-10.webp' alt='' loading='lazy')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
-            figure
-              .project__image-wrapper
-                img.project__image(src='img/articles/project/project-11.webp' alt='' loading='lazy')
-              figcaption.project__small-text Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+        figure
+          div
+            img(src='img/articles/project/project-2.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 53%; left: 16%;' data-product-id='1')
+            +pin(style='top: 78%; left: 65%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+
+        figure
+          div
+            img(src='img/articles/project/project-3.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 42%; left: 34%;' data-product-id='1')
+            +pin(style='top: 67%; left: 32%;' data-product-id='1')
+            +pin(style='top: 15%; left: 66%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+
+        figure
+          div
+            img(src='img/articles/project/project-2.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 53%; left: 16%;' data-product-id='1')
+            +pin(style='top: 78%; left: 65%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
+
+        figure
+          div
+            img(src='img/articles/project/project-3.webp' width='860' height='900' alt='' loading='lazy')
+            +pin(style='top: 42%; left: 34%;' data-product-id='1')
+            +pin(style='top: 67%; left: 32%;' data-product-id='1')
+            +pin(style='top: 15%; left: 66%;' data-product-id='1')
+          figcaption Готовый интерьер спальни с кроватью Ньюбери Low Страйпс и прикроватной тумбой из серии Metropolitan Esperia
