@@ -71,8 +71,7 @@ class Cart {
         throw new Error(`${response.status} – ${response.statusText}`);
       }
 
-      // const data = await response.json();
-      const data = 23;
+      const data = await response.json();
       onSuccess(data);
     } catch (err) {
       onFail(err);
