@@ -175,4 +175,5 @@ if (phoneChangeModalElement) {
 
 document.querySelectorAll('.search-form--with-submit-button').forEach(initSearchFormWithSubmitButton);
 
+initPopupsClosing();
 /* * * * * * * * * * * * * * * * * * * * * * * */

@@ -11,6 +11,9 @@
   gap: 20px;
   font: 500 14px/17px $main-font-family;
   background: var(--background-additional-color);
+  transition-property: opacity, visibility;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in;
   animation: sliding-from-bottom $drawer-timing-duration ease-out;
 
   @include main-shadow;
@@ -23,7 +26,7 @@
     line-height: 20px;
   }
 
-  @media (min-width: $desktop-width) {
+  @media (min-width: $wide-tablet-width) {
     top: 100px;
     bottom: auto;
     left: 100px;
@@ -106,8 +109,12 @@
   }
 }
 
-
 .popup .popup__actions .popup__button {
   padding-left: 30px;
   padding-right: 30px;
+}
+
+.popup--closing {
+  opacity: 0;
+  visibility: hidden;
 }
