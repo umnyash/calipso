@@ -39,6 +39,7 @@
 
 .banners__thumbnails-item {
   width: auto;
+  height: auto;
   cursor: pointer;
 }
 
@@ -47,6 +48,8 @@
 
   position: relative;
   display: grid;
+  box-sizing: border-box;
+  height: 100%;
   padding: 12px 24px;
   gap: 5px;
   border-radius: 10px 10px 0 0;
