@@ -13,7 +13,7 @@ mixin catalog-filters
               .folds__content-wrapper
                 .folds__content
                   fieldset.catalog-filter__section
-                    +number-range('price', ['', ''])
+                    +number-range('price', ['20', '1000'])
             li.catalog-filters__folds-item.catalog-filters__folds-item--checkers.folds__item
               h3.catalog-filters__folds-heading
                 button.catalog-filters__folds-button.folds__button(type='button') Тип
@@ -96,7 +96,7 @@ mixin catalog-filters
                     .catalog-filter__box
                       ul.catalog-filter__box-list
                         li.catalog-filter__box-list-item
-                          +checker('Россия', false, 'country', 'checkbox', 'russia')(class='checker--big')
+                          +checker('Россия', false, 'country', 'checkbox', 'russia', true)(class='checker--big')
                         li.catalog-filter__box-list-item
                           +checker('Италия', false, 'country', 'checkbox', 'italy')(class='checker--big')
                         li.catalog-filter__box-list-item
@@ -116,4 +116,4 @@ mixin catalog-filters
       .catalog-filters__scroll-container-scrollbar.swiper-scrollbar
     fieldset.catalog-filters__footer
       +button('button', 'Показать (124 товара)', 'submit')(class='catalog-filters__submit-button button--primary')
-      +button('button', 'Очистить фильтр', 'reset')(class='catalog-filters__reset-button button--simple')
+      +button('button', 'Очистить фильтр', 'button')(class='catalog-filters__reset-button button--simple')

@@ -2,11 +2,12 @@
  * catalog-filters-modal.js
  */
 class CatalogFiltersModal {
-  #changeEvent = new Event('change', { bubbles: true });
+  #inputEvent = new Event('input', { bubbles: true });
   #modalElement = null;
   #initScrollContainer = null;
   #openModal = null;
   #toggleFoldState = null;
+  #resetButtonElement = null;
 
   #filtersElement = null;
   #scrollContainerElement = null;
@@ -55,8 +56,8 @@ class CatalogFiltersModal {
     }
   };
 
-  #onFiltersChange = (evt) => {
-    const foldElement = evt.target.closest('.catalog-filters__folds-item');
+  #setFoldLabel = (fieldElement) => {
+    const foldElement = fieldElement.closest('.catalog-filters__folds-item');
 
     if (foldElement) {
       if (foldElement.classList.contains('catalog-filters__folds-item--range')) {
@@ -85,23 +86,45 @@ class CatalogFiltersModal {
           .join(', ');
       }
     }
+  }
+
+  #setFoldLabels = () => {
+    this.#fieldControlElements.forEach(this.#setFoldLabel);
+  }
+
+  #onFiltersInput = (evt) => {
+    this.#setFoldLabel(evt.target);
   };
 
-  #onFiltersReset = () => {
-    this.#filtersElement.action = this.#filtersElement.dataset.url;
+  #onResetButtonClick = (evt) => {
+    evt.preventDefault();
 
-    setTimeout(() => {
-      this.#fieldControlElements.forEach((fieldElement) => {
-        fieldElement.dispatchEvent(this.#changeEvent);
-      });
-    }, 0);
-  };
+    this.#fieldControlElements.forEach((fieldElement) => {
+      switch (fieldElement.type) {
+        case 'number':
+        case 'text':
+          fieldElement.value = '';
+          break;
+        case 'checkbox':
+        case 'radio':
+          fieldElement.checked = false;
+          break;
+      }
+    });
+
+    this.#fieldControlElements.forEach((fieldElement) => {
+      fieldElement.dispatchEvent(this.#inputEvent);
+    });
+  }
 
   init = () => {
     this.#filtersElement = this.#modalElement.querySelector('.catalog-filters');
     this.#scrollContainerElement = this.#filtersElement.querySelector('.catalog-filters__scroll-container');
     this.#swiper = this.#initScrollContainer(this.#scrollContainerElement);
     this.#fieldControlElements = Array.from(this.#filtersElement.querySelectorAll('input'));
+    this.#resetButtonElement = this.#filtersElement.querySelector('.catalog-filters__reset-button');
+
+    this.#setFoldLabels();
 
     const openerButtonElements = document.querySelectorAll('.catalog__filter-opener-button');
     openerButtonElements.forEach((buttonElement) => {
@@ -109,8 +132,8 @@ class CatalogFiltersModal {
     });
 
     this.#filtersElement.addEventListener('click', this.#onFiltersClick);
-    this.#filtersElement.addEventListener('change', this.#onFiltersChange);
-    this.#filtersElement.addEventListener('reset', this.#onFiltersReset);
+    this.#resetButtonElement.addEventListener('click', this.#onResetButtonClick);
+    this.#filtersElement.addEventListener('input', this.#onFiltersInput);
   };
 }
 
