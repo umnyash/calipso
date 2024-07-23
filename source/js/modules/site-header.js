@@ -2,6 +2,7 @@
  * site-header.js
  */
 function initSiteHeader(headerElement) {
+  const pageInnerElement = document.querySelector('.page__inner');
   const toggleButtonElement = headerElement.querySelector('.site-header__menu-button');
   const navigationElement = headerElement.querySelector('.site-header__navigation');
 
@@ -27,6 +28,7 @@ function initSiteHeader(headerElement) {
     toggleButtonElement.classList.remove('site-header__menu-button--animated');
     toggleButtonElement.classList.remove('site-header__menu-button--close');
     toggleButtonElement.ariaExpanded = 'false';
+    pageInnerElement.classList.remove('scroll-lock');
   });
 
   const firstPanelOpener = navigationElement.querySelector('.site-navigation__top-link--opener');
