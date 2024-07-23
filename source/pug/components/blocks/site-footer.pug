@@ -6,7 +6,8 @@ mixin site-footer
         p.site-footer__slogan Доставляем #[span.site-footer__slogan-accent по всей России]
       .site-footer__middle
         +footer-navigation(class='site-footer__navigation')
-        address.site-footer__contacts Нижний Новгород,#[br] ул Гагарина, 19
+        address.site-footer__contacts
+          a.site-footer__contacts-link(href='https://yandex.ru/maps/-/CDSkqWYz' target='_blank') Нижний Новгород,#[br] ул Гагарина, 19
           a.site-footer__contacts-link(href='tel:+78002009239') 8 800 200 92 39
         +socials(class='site-footer__socials socials--sizes_s-s-s-m')
       .site-footer__bottom
