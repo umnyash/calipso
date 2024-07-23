@@ -331,8 +331,10 @@
   }
 }
 
-.cart-item--checkout {
-  .cart-item__checkbox {
-    visibility: hidden;
-  }
+.cart-item--checkout .cart-item__delete-button {
+  visibility: hidden;
+}
+
+.cart-item--checkout .cart-item__checkbox {
+  visibility: hidden;
 }

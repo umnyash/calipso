@@ -5,7 +5,8 @@
   mask: url("../img/icons.svg#bin") 0 0 / contain;
   cursor: pointer;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     background: var(--accent-color-2);
   }
 
