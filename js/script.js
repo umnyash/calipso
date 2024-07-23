@@ -377,9 +377,7 @@ class Cart {
       if (!response.ok) {
         throw new Error(`${response.status} – ${response.statusText}`);
       }
-
-      // const data = await response.json();
-      const data = 23;
+      const data = await response.json();
       onSuccess(data);
     } catch (err) {
       onFail(err);
@@ -652,13 +650,14 @@ function initCart(cartElement, openModal, showAlert, onCartFormSuccessSubmit, on
  * catalog-filters-modal.js
  */
 class CatalogFiltersModal {
-  #changeEvent = new Event('change', {
+  #inputEvent = new Event('input', {
     bubbles: true
   });
   #modalElement = null;
   #initScrollContainer = null;
   #openModal = null;
   #toggleFoldState = null;
+  #resetButtonElement = null;
   #filtersElement = null;
   #scrollContainerElement = null;
   #swiper = null;
@@ -702,8 +701,8 @@ class CatalogFiltersModal {
       setTimeout(() => this.#swiper.update(), 300);
     }
   };
-  #onFiltersChange = evt => {
-    const foldElement = evt.target.closest('.catalog-filters__folds-item');
+  #setFoldLabel = fieldElement => {
+    const foldElement = fieldElement.closest('.catalog-filters__folds-item');
     if (foldElement) {
       if (foldElement.classList.contains('catalog-filters__folds-item--range')) {
         const rangeMinValueFieldElement = foldElement.querySelector('.number-range__field-control[data-range-limit="min"]');
@@ -728,26 +727,44 @@ class CatalogFiltersModal {
       }
     }
   };
-  #onFiltersReset = () => {
-    this.#filtersElement.action = this.#filtersElement.dataset.url;
-    setTimeout(() => {
-      this.#fieldControlElements.forEach(fieldElement => {
-        fieldElement.dispatchEvent(this.#changeEvent);
-      });
-    }, 0);
+  #setFoldLabels = () => {
+    this.#fieldControlElements.forEach(this.#setFoldLabel);
+  };
+  #onFiltersInput = evt => {
+    this.#setFoldLabel(evt.target);
+  };
+  #onResetButtonClick = evt => {
+    evt.preventDefault();
+    this.#fieldControlElements.forEach(fieldElement => {
+      switch (fieldElement.type) {
+        case 'number':
+        case 'text':
+          fieldElement.value = '';
+          break;
+        case 'checkbox':
+        case 'radio':
+          fieldElement.checked = false;
+          break;
+      }
+    });
+    this.#fieldControlElements.forEach(fieldElement => {
+      fieldElement.dispatchEvent(this.#inputEvent);
+    });
   };
   init = () => {
     this.#filtersElement = this.#modalElement.querySelector('.catalog-filters');
     this.#scrollContainerElement = this.#filtersElement.querySelector('.catalog-filters__scroll-container');
     this.#swiper = this.#initScrollContainer(this.#scrollContainerElement);
     this.#fieldControlElements = Array.from(this.#filtersElement.querySelectorAll('input'));
+    this.#resetButtonElement = this.#filtersElement.querySelector('.catalog-filters__reset-button');
+    this.#setFoldLabels();
     const openerButtonElements = document.querySelectorAll('.catalog__filter-opener-button');
     openerButtonElements.forEach(buttonElement => {
       buttonElement.addEventListener('click', this.#onOpenerClick);
     });
     this.#filtersElement.addEventListener('click', this.#onFiltersClick);
-    this.#filtersElement.addEventListener('change', this.#onFiltersChange);
-    this.#filtersElement.addEventListener('reset', this.#onFiltersReset);
+    this.#resetButtonElement.addEventListener('click', this.#onResetButtonClick);
+    this.#filtersElement.addEventListener('input', this.#onFiltersInput);
   };
 }
 function initCatalogFiltersModal(modalElement, initScrollContainer, openModal, toggleFoldState) {
@@ -969,6 +986,18 @@ function initDateField(fieldElement, setInputDateMask) {
  */
 function initDocumentModal(modalElement, openModal) {
   const modalName = modalElement.dataset.modal;
+  const headingElement = modalElement.querySelector('.document-modal__heading');
+  const contentElement = modalElement.querySelector('.document-modal__scroll-container-content');
+  const copyButtonElement = modalElement.querySelector('.document-actions__button--copy');
+  if (headingElement && contentElement && copyButtonElement) {
+    copyButtonElement.addEventListener('click', evt => {
+      evt.preventDefault();
+      const headingText = headingElement.textContent;
+      const contentText = contentElement.textContent;
+      const textToCopy = `${headingText} ${contentText}`;
+      navigator.clipboard.writeText(textToCopy);
+    });
+  }
   document.querySelectorAll(`[data-modal-opener="${modalName}"]`).forEach(openerElement => {
     openerElement.addEventListener('click', evt => {
       evt.preventDefault();
@@ -1827,6 +1856,23 @@ function initPhoneChangeModal(modalElement, openModal, closeModal) {
   });
   phoneChangeModal.init();
   return phoneChangeModal;
+}
+/* * * * * * * * * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * popup.js
+ */
+function initPopupsClosing() {
+  document.addEventListener('click', evt => {
+    if (evt.target.matches('.popup__button.button--primary') || evt.target.matches('.popup__close-button')) {
+      evt.preventDefault();
+      const popupElement = evt.target.closest('.popup');
+      popupElement.classList.add('popup--closing');
+      setTimeout(() => {
+        popupElement.remove();
+      }, 300);
+    }
+  });
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3116,6 +3162,7 @@ function initSimpleModalForm(modalElement, sendData, openModal, closeModal, show
  * site-header.js
  */
 function initSiteHeader(headerElement) {
+  const pageInnerElement = document.querySelector('.page__inner');
   const toggleButtonElement = headerElement.querySelector('.site-header__menu-button');
   const navigationElement = headerElement.querySelector('.site-header__navigation');
   const laptopWidthMediaQueryList = window.matchMedia(LAPTOP_WIDTH_MEDIA_QUERY);
@@ -3137,6 +3184,7 @@ function initSiteHeader(headerElement) {
     toggleButtonElement.classList.remove('site-header__menu-button--animated');
     toggleButtonElement.classList.remove('site-header__menu-button--close');
     toggleButtonElement.ariaExpanded = 'false';
+    pageInnerElement.classList.remove('scroll-lock');
   });
   const firstPanelOpener = navigationElement.querySelector('.site-navigation__top-link--opener');
   let activePanelElement = null;
@@ -3749,5 +3797,5 @@ if (phoneChangeModalElement) {
   phoneChangeModal = initPhoneChangeModal(phoneChangeModalElement, openModal, closeModal);
 }
 document.querySelectorAll('.search-form--with-submit-button').forEach(initSearchFormWithSubmitButton);
-
+initPopupsClosing();
 /* * * * * * * * * * * * * * * * * * * * * * * */
