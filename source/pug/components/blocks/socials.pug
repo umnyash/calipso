@@ -12,6 +12,10 @@ mixin socials__item(name, href)
           +socials__logo('img/icons.svg#socials_whatsapp', 'WhatsApp.', 22, 22)
         when 'vk'
           +socials__logo('img/icons.svg#socials_vk', 'VK.', 22, 12)
+        when 'telegram'
+          +socials__logo('img/icons.svg#socials_telegram', 'Telegram.', 22, 22)
+        when 'youtube'
+          +socials__logo('img/icons.svg#socials_youtube', 'YouTube.', 22, 22)
 
 mixin socials
   ul.socials&attributes(attributes)
