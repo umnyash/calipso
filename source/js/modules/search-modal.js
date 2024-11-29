@@ -201,7 +201,7 @@ class SearchModal {
           `;
 
           const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount
-            ? `/search_articles/?q${this.#controlElement.value.trim()}`
+            ? `/search/?q=${this.#controlElement.value.trim()}`
             : null;
 
           const resultGroupTemplate = this.#createResultGroupTemplate('Товары', moreResultsLinkHref, productsListTemplate);
@@ -218,7 +218,7 @@ class SearchModal {
           `;
 
           const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount
-            ? `/search/?q=${this.#controlElement.value.trim()}`
+            ? `/search_articles/?q=${this.#controlElement.value.trim()}`
             : null;
 
           const resultGroupTemplate = this.#createResultGroupTemplate('Статьи', moreResultsLinkHref, articlesListTemplate);
