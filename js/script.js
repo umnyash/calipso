@@ -2735,7 +2735,7 @@ class SearchModal {
               ${searchResult.products.slice(0, this.#maxListItemsCount).map(product => this.#createProductCardTemplate(product, 'product-card--size_xs')).join('')}
             </ul>
           `;
-        const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount ? `/search_articles/?q${this.#controlElement.value.trim()}` : null;
+        const moreResultsLinkHref = searchResult.products.length > this.#maxListItemsCount ? `/search/?q=${this.#controlElement.value.trim()}` : null;
         const resultGroupTemplate = this.#createResultGroupTemplate('Товары', moreResultsLinkHref, productsListTemplate);
         const resultGroupElement = createElementByString(resultGroupTemplate);
         resultGroupElement.querySelectorAll('.product-card').forEach(this.#initProductCard);
@@ -2747,7 +2747,7 @@ class SearchModal {
               ${searchResult.articles.map(article => this.#createArticlePreviewTemplate(article, 'article-preview--size_s')).join('')}
             </ul>
           `;
-        const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount ? `/search/?q=${this.#controlElement.value.trim()}` : null;
+        const moreResultsLinkHref = searchResult.articles.length > this.#maxListItemsCount ? `/search_articles/?q=${this.#controlElement.value.trim()}` : null;
         const resultGroupTemplate = this.#createResultGroupTemplate('Статьи', moreResultsLinkHref, articlesListTemplate);
         const resultGroupElement = createElementByString(resultGroupTemplate);
         this.#resultElement.append(resultGroupElement);
