@@ -1957,7 +1957,7 @@ function createProductCardTemplate(product, modificators) {
       <a class="product-card__brand" href="${product.brandHref}">
         Бренд <span class="product-card__brand-name">${product.brand}</span>
       </a>
-    </article >
+    </article>
   `;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
