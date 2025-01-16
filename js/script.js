@@ -1927,12 +1927,12 @@ function createProductCardTemplate(product, modificators) {
         </h3>
         ${product.dimensions ? `<p class="product-card__signs">${product.dimensions}</p>` : ''}
       </div>
-      ${price && `
+      ${price ? `
         <div class="product-card__prices">
           <p class="product-card__price ${product.discount ? 'accent' : ''}">${price} ₽</p>
           ${product.discount ? `<s class="product-card__old-price">${oldPrice} ₽</s><p class="producr-card__discount">-${product.discount}%</p>` : ''}
         </div>
-      `}
+      ` : ''}
       <a class="product-card__slider swiper" href="${product.href}">
         <ul class="product-card__slider-list swiper-wrapper">
           ${product.images.map((image, index) => `
@@ -1957,7 +1957,7 @@ function createProductCardTemplate(product, modificators) {
       <a class="product-card__brand" href="${product.brandHref}">
         Бренд <span class="product-card__brand-name">${product.brand}</span>
       </a>
-    </article>
+    </article >
   `;
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
