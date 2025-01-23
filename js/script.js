@@ -1927,7 +1927,7 @@ function createProductCardTemplate(product, modificators) {
         </h3>
         ${product.dimensions ? `<p class="product-card__signs">${product.dimensions}</p>` : ''}
       </div>
-      ${price ? `
+      ${product.price ? `
         <div class="product-card__prices">
           <p class="product-card__price ${product.discount ? 'accent' : ''}">${price} ₽</p>
           ${product.discount ? `<s class="product-card__old-price">${oldPrice} ₽</s><p class="producr-card__discount">-${product.discount}%</p>` : ''}
