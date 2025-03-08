@@ -105,9 +105,12 @@
   z-index: 1;
   grid-area: photos;
   justify-self: end;
-  margin: 10px 0;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin: 5px -11px 5px 0;
   text-align: right;
   font: 500 12px/14px $main-font-family;
+  background: var(--background-color-dark);
 
   &--in-stock {
     color: var(--accent-color-1);
@@ -122,17 +125,17 @@
   }
 
   @media (min-width: $tablet-width) {
-    margin: 25px 11px;
+    margin: 20px 0;
     font-size: 14px;
     line-height: 17px;
   }
 
   @media (min-width: $desktop-width) {
-    margin: 15px 20px;
+    margin: 10px;
   }
 
   @media (min-width: $wide-desktop-width) {
-    margin: 25px 30px;
+    margin: 20px;
     font-size: 20px;
     line-height: 25px;
   }
