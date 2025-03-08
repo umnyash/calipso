@@ -1,24 +1,29 @@
-mixin socials__logo(src, alt, width, height)
-  svg(width= width height= height role='img' aria-label= alt loading='lazy')
+mixin socials__logo(src, alt)
+  svg(width='24' height='24' role='img' aria-label= alt loading='lazy')
     use(href= src)
 
 mixin socials__item(name, href)
   li.socials__item
-    a.socials__link(href= href target='_blank' rel='noopener' class=`socials__link--${name}`)
+    a.socials__link(href= href target='_blank' rel='noopener')
       case name
-        when 'pinterest'
-          +socials__logo('img/icons.svg#socials_pinterest', 'Pinterest.', 16, 18)
-        when 'whatsapp'
-          +socials__logo('img/icons.svg#socials_whatsapp', 'WhatsApp.', 22, 22)
         when 'vk'
-          +socials__logo('img/icons.svg#socials_vk', 'VK.', 22, 12)
+          +socials__logo('img/icons.svg#socials_vk', 'VK.')
+        when 'instagram'
+          +socials__logo('img/icons.svg#socials_instagram', 'Instagram.')
         when 'telegram'
-          +socials__logo('img/icons.svg#socials_telegram', 'Telegram.', 22, 22)
+          +socials__logo('img/icons.svg#socials_telegram', 'Telegram.')
         when 'youtube'
-          +socials__logo('img/icons.svg#socials_youtube', 'YouTube.', 22, 22)
+          +socials__logo('img/icons.svg#socials_youtube', 'YouTube.')
+        when 'rutube'
+          +socials__logo('img/icons.svg#socials_rutube', 'RUTUBE.')
+        when 'pinterest'
+          +socials__logo('img/icons.svg#socials_pinterest', 'Pinterest.')
 
 mixin socials
   ul.socials&attributes(attributes)
-    +socials__item('pinterest', '#!')
-    +socials__item('whatsapp', '#!')
     +socials__item('vk', '#!')
+    +socials__item('instagram', '#!')
+    +socials__item('telegram', '#!')
+    +socials__item('youtube', '#!')
+    +socials__item('rutube', '#!')
+    +socials__item('pinterest', '#!')
