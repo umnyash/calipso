@@ -6,7 +6,11 @@ mixin banners(banners)
         li.banners__item.swiper-slide
           +banner(banners.exhibition)
         li.banners__item.swiper-slide
+          +banner(banners.video1)
+        li.banners__item.swiper-slide
           +banner(banners.discount)
+        li.banners__item.swiper-slide
+          +banner(banners.video2)
         li.banners__item.swiper-slide
           +banner(banners.payment)
     .banners__thumbnails-slider.swiper(thumbsSlider='')
@@ -17,7 +21,15 @@ mixin banners(banners)
             p.banners__thumbnail-text= banners.exhibition.thumbnail.text
         li.banners__thumbnails-item.swiper-slide
           .banners__thumbnail
+            p.banners__thumbnail-heading= banners.video1.thumbnail.heading
+            p.banners__thumbnail-text= banners.video1.thumbnail.text
+        li.banners__thumbnails-item.swiper-slide
+          .banners__thumbnail
             p.banners__thumbnail-heading= banners.discount.thumbnail.heading
+        li.banners__thumbnails-item.swiper-slide
+          .banners__thumbnail
+            p.banners__thumbnail-heading= banners.video2.thumbnail.heading
+            p.banners__thumbnail-text= banners.video2.thumbnail.text
         li.banners__thumbnails-item.swiper-slide
           .banners__thumbnail
             p.banners__thumbnail-heading= banners.payment.thumbnail.heading

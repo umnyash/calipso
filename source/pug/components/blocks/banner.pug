@@ -1,10 +1,14 @@
 mixin banner(banner)
   section.banner&attributes(attributes)
-    picture.banner__background-wrapper(aria-hidden='true')
-      source(media='(min-width: 1367px)' srcset=`${banner.wideDesktopImage} 1x, ${banner.wideDesktopImage2x} 2x`)
-      source(media='(min-width: 769px)' srcset=`${banner.desktopImage} 1x, ${banner.desktopImage2x} 2x`)
-      source(media='(min-width: 376px)' srcset=`${banner.tabletImage} 1x, ${banner.tabletImage2x} 2x`)
-      img.banner__background(src= banner.image srcset=`${banner.image2x} 2x` alt='' loading='lazy')
+    if banner.video
+      .banner__background-wrapper(aria-hidden='true')
+        video(class='banner__background' src= banner.video poster= banner.poster preload='metadata' playsinline='' muted='')
+    else
+      picture.banner__background-wrapper(aria-hidden='true')
+        source(media='(min-width: 1367px)' srcset=`${banner.wideDesktopImage} 1x, ${banner.wideDesktopImage2x} 2x`)
+        source(media='(min-width: 769px)' srcset=`${banner.desktopImage} 1x, ${banner.desktopImage2x} 2x`)
+        source(media='(min-width: 376px)' srcset=`${banner.tabletImage} 1x, ${banner.tabletImage2x} 2x`)
+        img.banner__background(src= banner.image srcset=`${banner.image2x} 2x` alt='' loading='lazy')
     .banner__content
       h2.banner__heading!= banner.heading
       p.banner__text!= banner.text

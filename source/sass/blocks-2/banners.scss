@@ -44,8 +44,6 @@
 }
 
 .banners__thumbnail {
-  --thumbnail-progress: 0;
-
   position: relative;
   display: grid;
   box-sizing: border-box;
@@ -111,7 +109,7 @@
       height: 2px;
       background: var(--accent-color-2);
       transform-origin: 0 0;
-      transform: scaleX(var(--thumbnail-progress));
+      transform: scaleX(var(--thumbnail-progress, 0));
     }
   }
 

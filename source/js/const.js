@@ -6,6 +6,7 @@ const LAPTOP_WIDTH_MEDIA_QUERY = '(min-width: 1260px)';
 const WIDE_TABLET_WIDTH_MEDIA_QUERY = '(min-width: 1024px)';
 
 const CODE_LENGTH = 4;
+const BANNERS_AUTOPLAY_DELAY = 6000;
 
 const KeyCode = Object.freeze({
   LEFT_ARROW: 'ArrowLeft',
