@@ -7,6 +7,7 @@ const DESKTOP_WIDTH_MEDIA_QUERY = '(min-width: 1346px)';
 const LAPTOP_WIDTH_MEDIA_QUERY = '(min-width: 1260px)';
 const WIDE_TABLET_WIDTH_MEDIA_QUERY = '(min-width: 1024px)';
 const CODE_LENGTH = 4;
+const BANNERS_AUTOPLAY_DELAY = 6000;
 const KeyCode = Object.freeze({
   LEFT_ARROW: 'ArrowLeft',
   RIGHT_ARROW: 'ArrowRight',
@@ -253,10 +254,11 @@ function initArticlesSlider(articlesSliderElement) {
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * banners.js
  */
+
 function initBanners(bannersElement) {
   const sliderElement = bannersElement.querySelector('.banners__slider');
   const thumbnailsSliderElement = bannersElement.querySelector('.banners__thumbnails-slider');
-  const thumbnailElements = thumbnailsSliderElement.querySelectorAll('.banners__thumbnail');
+  const thumbnailsListElement = thumbnailsSliderElement.querySelector('.banners__thumbnails-list');
   const thumbnailsSwiper = new Swiper(thumbnailsSliderElement, {
     spaceBetween: 5,
     slidesPerView: 'auto',
@@ -269,7 +271,7 @@ function initBanners(bannersElement) {
     },
     loop: true,
     autoplay: {
-      delay: 6000,
+      delay: BANNERS_AUTOPLAY_DELAY,
       disableOnInteraction: false
     },
     thumbs: {
@@ -277,11 +279,51 @@ function initBanners(bannersElement) {
       slideThumbActiveClass: 'banners__thumbnails-item--active'
     }
   });
+  const laptopWidthMediaQueryList = window.matchMedia(LAPTOP_WIDTH_MEDIA_QUERY);
+  let videoElement = null;
+  const updateProgressBar = throttle(value => {
+    thumbnailsListElement.style.setProperty('--thumbnail-progress', value);
+  }, 25);
+  const updateDelayAndPlay = () => {
+    const videoDurationMs = videoElement.duration * 1000;
+    bannersSwiper.params.autoplay.delay = videoDurationMs;
+    videoElement.currentTime = 0;
+    videoElement.play().catch(err => console.error(err));
+    bannersSwiper.autoplay.start();
+  };
   bannersSwiper.on('autoplayTimeLeft', (_s, _time, progress) => {
-    thumbnailElements.forEach(thumbnailElement => {
-      thumbnailElement.style.setProperty('--thumbnail-progress', 1 - progress);
-    });
+    updateProgressBar(1 - progress);
   });
+  const onBannersSWiperSlideChange = () => {
+    bannersSwiper.autoplay.stop();
+    if (videoElement) {
+      videoElement.pause();
+      videoElement.currentTime = 0;
+      videoElement.src = videoElement.src;
+    }
+    if (!laptopWidthMediaQueryList.matches) {
+      bannersSwiper.params.autoplay.delay = BANNERS_AUTOPLAY_DELAY;
+      bannersSwiper.autoplay.start();
+      return;
+    }
+    const activeSlideElement = bannersSwiper.slides[bannersSwiper.activeIndex];
+    videoElement = activeSlideElement.querySelector('video');
+    if (videoElement) {
+      if (videoElement.readyState >= 1) {
+        updateDelayAndPlay();
+      } else {
+        videoElement.addEventListener('loadedmetadata', updateDelayAndPlay, {
+          once: true
+        });
+      }
+    } else {
+      bannersSwiper.params.autoplay.delay = BANNERS_AUTOPLAY_DELAY;
+      bannersSwiper.autoplay.start();
+    }
+  };
+  onBannersSWiperSlideChange();
+  bannersSwiper.on('slideChange', onBannersSWiperSlideChange);
+  laptopWidthMediaQueryList.addEventListener('change', onBannersSWiperSlideChange);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -1601,6 +1643,25 @@ function initOneClickModal(modalElement, sendData, openModal, closeModal, showAl
     }
   };
   initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onOneClickFormSuccessSubmit);
+}
+/* * * * * * * * * * * * * * * * * * * * * * * */
+
+/* * * * * * * * * * * * * * * * * * * * * * * *
+ * order-call-modal.js
+ */
+function initOrderCallModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, onOrderCallFormSuccessSubmit) {
+  const alert = {
+    success: {
+      heading: 'Спасибо! Ваш вопрос успешно отправлен',
+      text: 'Наш менеджер свяжется с вами в течении 3 рабочих дней'
+    },
+    error: {
+      status: 'error',
+      heading: 'Ошибка',
+      text: 'Не удалось отправить вопрос, попробуйте снова.'
+    }
+  };
+  initSimpleModalForm(modalElement, sendData, openModal, closeModal, showAlert, alert, onOrderCallFormSuccessSubmit);
 }
 /* * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -3760,6 +3821,10 @@ document.querySelectorAll('[data-modal="product-question"]').forEach(modalElemen
 document.querySelectorAll('[data-modal="one-click"]').forEach(modalElement => {
   const cb = typeof onOneClickFormSuccessSubmit !== 'undefined' ? onOneClickFormSuccessSubmit : null;
   initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
+});
+document.querySelectorAll('[data-modal="order-call"]').forEach(modalElement => {
+  const cb = typeof onOrderCallFormSuccessSubmit !== 'undefined' ? onOrderCallFormSuccessSubmit : null;
+  initOrderCallModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 document.querySelectorAll('[data-modal="review"]').forEach(modalElement => {
   const cb = typeof onReviewFormSuccessSubmit !== 'undefined' ? onReviewFormSuccessSubmit : null;
