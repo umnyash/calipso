@@ -1,0 +1,63 @@
+.salon {
+  display: grid;
+  gap: 16px 24px;
+
+  @media (min-width: $wide-tablet-width) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "heading heading"
+      "contacts contacts"
+      "image video";
+    align-items: start;
+  }
+
+  @media (min-width: $narrow-desktop-width) {
+    grid-template-columns: minmax(294px, 410px) minmax(626px, 876px) minmax(294px, 410px);
+    grid-template-areas:
+      "image heading video"
+      "image contacts video";
+    row-gap: 24px;
+    align-items: start;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    gap: 20px 32px;
+  }
+}
+
+.salon__heading {
+  margin: 0;
+
+  @media (min-width: $wide-tablet-width) {
+    grid-area: heading;
+  }
+}
+
+.salon__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center;
+
+  @media (min-width: $wide-tablet-width) {
+    grid-area: image;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.salon__contacts-list {
+  margin-top: 0;
+
+  @media (min-width: $wide-tablet-width) {
+    grid-area: contacts;
+  }
+}
+
+.salon__video {
+  @media (min-width: $wide-tablet-width) {
+    grid-area: video;
+    aspect-ratio: 16 / 9;
+  }
+}

@@ -1,7 +1,7 @@
-mixin contacts-list(contacts, withSocials)
+mixin contacts-list(contacts, withSocials, withOrderCallButton)
   dl.contacts-list&attributes(attributes)
     each group in contacts
-      .contacts-list__group
+      .contacts-list__group(class= group.heading === 'Часы работы:' && 'contacts-list__group--time')
         dt.contacts-list__key= group.heading
         dd.contacts-list__value
           ul.contacts-list__list
@@ -12,6 +12,8 @@ mixin contacts-list(contacts, withSocials)
                     span.contacts-list__link.contacts-list__link--empty!= contact.text
                   when 'address'
                     span.contacts-list__link.contacts-list__link--address!= contact.text
+                      if contact.accentText
+                        span.contacts-list__link-accent!= contact.accentText
                   when 'comment'
                     span.contacts-list__link.contacts-list__link--comment!= contact.text
                   when 'time'
@@ -22,6 +24,8 @@ mixin contacts-list(contacts, withSocials)
                     a.contacts-list__link.contacts-list__link--email(href=`mailto:${contact.text}`)= contact.text
                   default
                     span.contacts-list__link= contact.text
+          if group.heading === 'Контакты:' && withOrderCallButton
+            button.contacts-list__group-button(type='button') Заказать звонок
     if withSocials
       .contacts-list__group
         dt.visually-hidden Социальные сети

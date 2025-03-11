@@ -1,0 +1,37 @@
+.salons-list {
+  padding: 0;
+  list-style: none;
+}
+
+.salons-list__item {
+  padding: 0 0 31px;
+
+  @media (min-width: $tablet-width) {
+    padding-bottom: 39px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding-bottom: 23px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    padding-bottom: 39px;
+  }
+}
+
+.salons-list__item:not(:last-child) {
+  border-bottom: 1px solid var(--border-color-light);
+  margin-bottom: 32px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 39px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 23px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-bottom: 39px;
+  }
+}

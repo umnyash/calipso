@@ -1,0 +1,6 @@
+mixin salon
+  article.salon&attributes(attributes)
+    h2.salon__heading.heading.heading--tiny-2 #[span.heading__accent Калипсо] на Варварской
+    img.salon__image(src='img/salons/salon-1.webp' width='975' height='585' alt='Салон Калипсо на Варварской')
+    +contacts-list(contacts.salon, false, true)(class='salon__contacts-list contacts-list--alter-3')
+    +video({ poster: 'img/salons/salon-1.webp' })(class='salon__video video--alter')

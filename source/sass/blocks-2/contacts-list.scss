@@ -69,14 +69,14 @@
 
 .contacts-list__link {
   display: grid;
-  gap: 5px;
+  gap: 4px 5px;
   grid-template-columns: auto 1fr;
   align-items: start;
   text-decoration: none;
   color: inherit;
 
   @media (min-width: $wide-desktop-width) {
-    gap: 10px;
+    column-gap: 10px;
   }
 
   &::before {
@@ -130,6 +130,38 @@
   &--email::before {
     display: block;
     background: url("../img/icons.svg#contacts_email");
+  }
+}
+
+.contacts-list__link-accent {
+  grid-column: 2 / -1;
+  color: var(--accent-color-1);
+}
+
+.contacts-list__group-button {
+  padding: 0;
+  border: none;
+  margin: 12px 0 0;
+  background: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  font: 600 12px/14px $main-font-family;
+  color: var(--accent-color-1);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--accent-color-1-dark);
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 19px;
   }
 }
 
@@ -249,6 +281,66 @@
     @media (min-width: $wide-desktop-width) {
       width: 20px;
       height: 20px;
+    }
+  }
+}
+
+.contacts-list--alter-3 {
+  --row-gap: 20px;
+  display: block;
+  margin-bottom: calc(var(--row-gap) * -1);
+
+  @media (min-width: $tablet-width) {
+    --row-gap: 12px;
+    column-width: 300px;
+    column-gap: 20px;
+  }
+
+  @media (min-width: $narrow-desktop-width) {
+    --row-gap: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    display: grid;
+    grid-template-columns: 308px 292px 1fr;
+    gap: 24px;
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  .contacts-list__group {
+    padding-bottom: var(--row-gap);
+    gap: 12px;
+    break-inside: avoid;
+
+    @media (min-width: $tablet-width) {
+      gap: 10px;
+    }
+
+    @media (min-width: $wide-desktop-width) {
+      gap: 12px;
+    }
+  }
+
+  .contacts-list__group--time {
+    @media (min-width: $wide-desktop-width) {
+      order: 2;
+    }
+  }
+
+  .contacts-list__list {
+    gap: 4px;
+  }
+
+  .contacts-list__key {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .contacts-list__link::before {
+    @media (min-width: $wide-desktop-width) {
+      width: 24px;
+      height: 24px;
     }
   }
 }

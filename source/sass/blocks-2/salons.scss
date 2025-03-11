@@ -1,0 +1,47 @@
+.salons {
+  font: 400 14px/18px $main-font-family;
+
+  @media (min-width: $tablet-width) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    font-size: 22px;
+    line-height: 27px;
+  }
+}
+
+.salons__description {
+  max-width: 840px;
+  margin: 0 0 20px;
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 24px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1040px;
+    margin-bottom: 40px;
+  }
+}
+
+.salons__heading {
+  margin: 0 0 12px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 16px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    margin-bottom: 24px;
+  }
+}
+
+.salons__list {
+  margin-top: 0;
+}
