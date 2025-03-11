@@ -28,4 +28,15 @@ function initVideo(videoElement) {
     });
   });
 }
+
+function resetVideo(videoElement) {
+  const playerElement = videoElement.querySelector('.video__player');
+  const posterElement = videoElement.querySelector('.video__poster');
+  const playButtonWrapperElement = videoElement.querySelector('.video__play-button-wrapper');
+
+  playerElement.pause();
+  playerElement.currentTime = 0;
+  playButtonWrapperElement.classList.remove('video__play-button-wrapper--hidden');
+  posterElement.classList.remove('video__poster--hidden');
+}
 /* * * * * * * * * * * * * * * * * * * * * * * */

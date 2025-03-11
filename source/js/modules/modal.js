@@ -27,6 +27,7 @@ function closeModal(modal) {
 
   setTimeout(() => {
     modal.classList.add('modal--hidden');
+    modal.querySelectorAll('.video').forEach(resetVideo);
 
     if (modal.classList.contains('modal--with_alert') || modal.classList.contains('modal--with_review-gallery')) {
       modal.remove();

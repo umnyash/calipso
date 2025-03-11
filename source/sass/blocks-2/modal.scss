@@ -338,3 +338,46 @@
     max-height: 100dvh;
   }
 }
+
+.modal__video {
+  width: 100%;
+  aspect-ratio: 375 / 253;
+  max-width: 834px;
+  max-height: 580px;
+  margin: 0 auto;
+
+  @media (min-width: $tablet-width) {
+    aspect-ratio: 768 / 454;
+  }
+
+  @media (min-width: $laptop-width) {
+    aspect-ratio: 834 / 580;
+    margin: auto;
+  }
+
+  @media (min-width: $wide-desktop-width) {
+    max-width: 1160px;
+    max-height: 806px;
+    aspect-ratio: 1160 / 806;
+  }
+}
+
+.modal--with_video {
+  background: var(--background-additional-color);
+
+  .modal__inner {
+    display: grid;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-top: 64px;
+
+    @media (min-width: $tablet-width) {
+      padding-top: 70px;
+    }
+
+    @media (min-width: $laptop-width) {
+      padding: 0;
+    }
+  }
+}
