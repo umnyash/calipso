@@ -7,7 +7,7 @@ mixin gallery(images, withVideo)
           ul.gallery__slider-list.swiper-wrapper
             if withVideo
               li.gallery__slider-item.swiper-slide
-                +video({ poster: 'img/reviews/review-1.webp' })(class='gallery__video')
+                +video({ src: 'files/video.mp4', poster: 'img/reviews/review-1.webp' })(class='gallery__video')
             each image in images
               li.gallery__slider-item.swiper-slide
                 picture.gallery__image-wrapper
