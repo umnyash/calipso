@@ -121,6 +121,14 @@ document.querySelectorAll('[data-modal="one-click"]').forEach((modalElement) => 
   initOneClickModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
 });
 
+document.querySelectorAll('[data-modal="order-call"]').forEach((modalElement) => {
+  const cb = (typeof onOrderCallFormSuccessSubmit !== 'undefined')
+    ? onOrderCallFormSuccessSubmit
+    : null;
+
+  initOrderCallModal(modalElement, sendData, openModal, closeModal, showAlert, initSimpleModalForm, cb);
+});
+
 document.querySelectorAll('[data-modal="review"]').forEach((modalElement) => {
   const cb = (typeof onReviewFormSuccessSubmit !== 'undefined')
     ? onReviewFormSuccessSubmit

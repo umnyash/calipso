@@ -1,0 +1,9 @@
+mixin order-call-modal-form
+  form.modal-form(action='https://echo.htmlacademy.ru' method='post' enctype='multipart/form-data' target='_blank')&attributes(attributes)
+    h2.modal-form__heading Заказать звонок
+    fieldset.modal-form__section
+      +text-field('Ваше имя:', 'name', 'text', '', 'Имя', true)(class='modal-form__item modal-form__item--name')
+      +text-field('Ваш телефон:', 'phone', 'tel', '', 'Телефон', true)(class='modal-form__item modal-form__item--phone')
+    fieldset.modal-form__footer
+      +button('button', 'Отправить', 'submit')(class='modal-form__submit-button button--primary')
+      small.modal-form__comment Нажимая на кнопку «Отправить», вы даете #[a.modal-form__comment-link(href='#!' target='_blank' rel='noopener') согласие на обработку персональных данных]

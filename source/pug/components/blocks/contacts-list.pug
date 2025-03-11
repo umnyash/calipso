@@ -25,7 +25,7 @@ mixin contacts-list(contacts, withSocials, withOrderCallButton)
                   default
                     span.contacts-list__link= contact.text
           if group.heading === 'Контакты:' && withOrderCallButton
-            button.contacts-list__group-button(type='button') Заказать звонок
+            button.contacts-list__group-button(type='button' data-modal-opener='order-call') Заказать звонок
     if withSocials
       .contacts-list__group
         dt.visually-hidden Социальные сети
