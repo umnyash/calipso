@@ -1,0 +1,25 @@
+.like-video {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: var(--blackout) url("../img/icons.svg#video_play") 50% 50% / 60px 60px no-repeat;
+
+    @media (min-width: $wide-desktop-width) {
+      background-size: 80px 80px;
+    }
+  }
+}
+
+.like-video--size_l::after {
+  background-size: 60px 60px;
+
+  @media (min-width: $desktop-width) {
+    background-size: 100px 100px;
+  }
+}
