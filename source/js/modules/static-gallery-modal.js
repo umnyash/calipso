@@ -1,23 +1,33 @@
 /* * * * * * * * * * * * * * * * * * * * * * * *
  * static-gallery-modal.js
  */
-function initStaticGalleryModal(modalElement, openModal, initGallery, openerElementSelector) {
-  const galleryElement = modalElement.querySelector('.modal__gallery');
 
+function initStaticGalleryModal(modalElement, openModal, initGallery, openerListWrapperElementSelector) {
+  const EXCEPTION_ELEMENT_SELECTORS = ['.product-images__slider-item--video'];
+
+  const anchorElementsSelector = `ul li${EXCEPTION_ELEMENT_SELECTORS.map((selector) => `:not(${selector})`).join('')}`;
+  const galleryElement = modalElement.querySelector('.modal__gallery');
   let gallerySlider = null;
 
   if (galleryElement) {
     gallerySlider = initGallery(galleryElement);
   }
 
-  document.querySelectorAll(openerElementSelector).forEach((openerElement) => {
+  document.querySelectorAll(openerListWrapperElementSelector).forEach((openerElement) => {
+    const anchorElements = Array.from(openerElement.querySelectorAll(anchorElementsSelector));
+
     openerElement.addEventListener('click', (evt) => {
-      evt.preventDefault();
       const listItemElement = evt.target.closest('li');
+      const isExceptionElement = EXCEPTION_ELEMENT_SELECTORS.some((selector) => listItemElement.matches(selector));
+
+      if (isExceptionElement) {
+        return;
+      }
+
+      evt.preventDefault();
 
       if (listItemElement && gallerySlider) {
-        const listElement = listItemElement.parentElement;
-        const listItemNumber = Array.from(listElement.children).indexOf(listItemElement);
+        const listItemNumber = anchorElements.indexOf(listItemElement);
         gallerySlider.slideTo(listItemNumber, 0);
       }
       openModal(modalElement);
