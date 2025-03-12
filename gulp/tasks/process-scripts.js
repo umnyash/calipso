@@ -17,7 +17,9 @@ export default function processScripts() {
     .pipe(concat('script.js'))
     .pipe(babel())
     .pipe(gulp.dest(paths.processScripts.dest))
-    .pipe(terser())
+    .pipe(terser({
+      mangle: false,
+    }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest(paths.processScripts.dest))
     .pipe(gulpIf(mode.isDev, browser.stream()));
